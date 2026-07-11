@@ -70,32 +70,27 @@
 <body class="text-cloud overflow-x-hidden">
 
     <div class="mist-bg"></div>
-<!-- 跨頁面導覽列 -->
-<nav style="background: rgba(18, 18, 18, 0.95); border-bottom: 1px solid #2A2A2A; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(5px);">
-    <a href="index.html" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px; font-size: 0.95rem; transition: color 0.3s;">首頁主殿</a>
-    <a href="gongfa.html" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px; font-size: 0.95rem; transition: color 0.3s;">法門深造</a>
-    <a href="calendar.html" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px; font-size: 0.95rem; transition: color 0.3s;">修煉日程</a>
-</nav>
     
-    <!-- 頂部道門天際導覽 -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-ink-deep/80 backdrop-blur-md border-b border-white/5 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2">
-                <span class="text-xs border border-bronze px-1.5 py-0.5 rounded">政大</span>
-                太極社 <span class="font-light text-sm text-cloud/70">| 隱逸道場</span>
-            </a>
-            <nav class="hidden md:flex space-x-8 text-sm tracking-widest">
-                <a href="#hero" class="hover:text-bronze transition-colors">首頁</a>
-                <a href="#methods" class="hover:text-bronze transition-colors">身心法門</a>
-                <a href="#experience" class="hover:text-bronze transition-colors">紅塵歷練</a>
-                <a href="#global" class="hover:text-bronze transition-colors">道傳寰宇</a>
-                <a href="#contact" class="hover:text-bronze transition-colors">尋訪仙蹤</a>
-            </nav>
-            <a href="#contact" class="border border-bronze text-bronze hover:bg-bronze hover:text-ink-deep transition-all duration-500 text-xs tracking-widest px-4 py-1.5 rounded">
-                結緣問道
-            </a>
-        </div>
-    </header>
+<!-- 整合版：頂部道門天際導覽 -->
+<header class="fixed top-0 left-0 w-full z-50 bg-ink-deep/80 backdrop-blur-md border-b border-white/5 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        
+        <!-- 左側：道場牌匾（保留你原來的設計） -->
+        <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white">
+            <span class="text-xs border border-bronze px-1.5 py-0.5 rounded">政大</span>
+            太極社 <span class="font-light text-sm text-cloud/70">| 隱逸道場</span>
+        </a>
+
+        <!-- 右側：跨頁導覽連結（合併進來） -->
+        <!-- 注意：此為 index.html 版本，"首頁主殿" 呈現亮色，其餘為暗色 -->
+        <nav class="flex gap-6 items-center">
+            <a href="index.html" class="text-sm tracking-widest text-bronze-light font-bold">首頁主殿</a>
+            <a href="gongfa.html" class="text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">法門深造</a>
+            <a href="calendar.html" class="text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">修煉日程</a>
+        </nav>
+
+    </div>
+</header>
 
     <!-- 1. 隱仙首頁 (Hero Section) -->
     <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 px-4">
