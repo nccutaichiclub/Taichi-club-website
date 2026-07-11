@@ -103,7 +103,18 @@
             <a href="calendar.html" class="text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
         </nav>
     </header>
+    
+    <!-- 手機版選單開關腳本 -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
 
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        });
+    </script>
+    
     <!-- 1. 隱仙首頁 (Hero Section) -->
     <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 px-4">
         <div class="max-w-4xl text-center z-10 space-y-8">
