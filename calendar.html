@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修煉日程｜政大太極社</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #1C3A27; --古銅金: #C5A059; --仙氣白: #E5E5E5;
+        }
+        body { background-color: var(--玄色); color: var(--仙氣白); font-family: 'Noto Serif TC', serif; margin: 0; line-by-line: 1.8; }
+        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+        h1 { color: var(--古銅金); text-align: center; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: var(--霧霾灰); font-style: italic; margin-bottom: 50px; font-size: 0.95rem; }
+        
+        /* 曆法表格樣式 */
+        .calendar-table { width: 100%; border-collapse: collapse; margin-top: 30px; background: #1A1A1A; border: 1px solid #2A2A2A; }
+        .calendar-table th { background-color: var(--松柏綠); color: var(--古銅金); padding: 15px; text-align: left; font-weight: 700; border-bottom: 2px solid #2A2A2A; letter-spacing: 2px; }
+        .calendar-table td { padding: 20px 15px; border-bottom: 1px solid #2A2A2A; color: var(--仙氣白); }
+        .calendar-table tr:hover { background-color: #222222; }
+        .event-tag { display: inline-block; padding: 2px 8px; font-size: 0.8rem; border-radius: 3px; margin-right: 5px; }
+        .tag-daily { background-color: #2A3A4A; color: #80A0C0; }
+        .tag-special { background-color: #4A2A2A; color: #C08080; }
+    </style>
+</head>
+<body>
+
+    <!-- 跨頁面導覽列 -->
+    <nav style="background: rgba(18, 18, 18, 0.95); border-bottom: 1px solid #2A2A2A; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(5px);">
+        <a href="index.html" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">首頁主殿</a>
+        <a href="gongfa.html" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">法門深造</a>
+        <a href="calendar.html" style="color: var(--古銅金); text-decoration: none; margin: 0 20px; letter-spacing: 2px; font-weight: bold;">修煉日程</a>
+    </nav>
+
+    <div class="container">
+        <h1>四時曆法</h1>
+        <div class="subtitle">「順應天時，不期而遇。此乃本門弟子紅塵與山林修煉之引導。」</div>
+        
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">時節 / 週期</th>
+                    <th style="width: 50%;">修行法事</th>
+                    <th style="width: 25%;">修煉據點</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>每週固定固定晨練</strong></td>
+                    <td><span class="event-tag tag-daily">常課</span>吸納天地初升之炁，專修華陀導引氣功與基礎太極功架。精氣神之築基。</td>
+                    <td>指南山麓（政大校區）</td>
+                </tr>
+                <tr>
+                    <td><strong>每週社課演武</strong></td>
+                    <td><span class="event-tag tag-daily">常課</span>同門齊聚。深研太極拳之借力打力、太祖棍之身棍合一、太極劍之以意御劍。</td>
+                    <td>宗門大殿（風雨教室）</td>
+                </tr>
+                <tr>
+                    <td><strong>仲春之期</strong></td>
+                    <td><span class="event-tag tag-special">歷練</span><strong>山林雲遊（社遊）</strong><br><span style="color: var(--霧霾灰); font-size: 0.9rem;">暫別書齋，前往大溪木藝生態博物館與老街散策，寄情山水，體會天人合一。</span></td>
+                    <td>大溪山水之間</td>
+                </tr>
+                <tr>
+                    <td><strong>歲暮將至</strong></td>
+                    <td><span class="event-tag tag-special">歷練</span><strong>期末大會（齊聚論道）</strong><br><span style="color: var(--霧霾灰); font-size: 0.9rem;">同門論道，總結一學期的修煉心得。設有同修共饗之筵席，在煙火氣中暢談道法。</span></td>
+                    <td>紅塵酒肆（政大周邊餐廳）</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
