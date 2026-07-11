@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #1C3A27; --古銅金: #C5A059; --仙氣白: #E5E5E5;
+            --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #5C9A6C; /* 將綠色稍微調亮，增加對比度 */ --古銅金: #C5A059; --仙氣白: #E5E5E5;
         }
         body { background-color: var(--玄色); color: var(--仙氣白); font-family: 'Noto Serif TC', serif; margin: 0; line-by-line: 1.8; }
         .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
@@ -15,22 +15,25 @@
         .subtitle { text-align: center; color: var(--霧霾灰); font-style: italic; margin-bottom: 60px; font-size: 0.95rem; }
         
         .gongfa-detail { 
-            background-color: rgba(255, 255, 255, 0.03); /* 極淡的灰色背景墊底 */
-            border: 1px solid rgba(160, 160, 160, 0.15); /* 霧霾灰細微邊框 */
-            padding: 40px; /* 四周向內縮，留出呼吸空間 */
-            border-radius: 12px; /* 柔和的圓角 */
+            background-color: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(160, 160, 160, 0.15); 
+            padding: 40px; 
+            border-radius: 12px; 
             margin-bottom: 60px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* 加上幽暗的陰影讓卡片浮現 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
         }
         
+        /* 修復後的標題樣式 */
         .gongfa-detail h2 { 
             color: var(--松柏綠); 
+            background-color: rgba(160, 160, 160, 0.15); /* 霧霾灰底框 */
+            display: inline-block; /* 讓框隨文字長度縮放 */
+            padding: 10px 18px; /* 內部留白 */
+            border-radius: 0 6px 6px 0; /* 柔和圓角 */
             font-size: 1.6rem; 
             letter-spacing: 2px; 
             margin-bottom: 20px; 
-            border-left: 3px solid var(--古銅金); 
-            padding-left: 15px; 
-            /* 稍微將松柏綠調亮一點點，若覺得還是太暗可將 color 改為 #2D6A42 */
+            border-left: 4px solid var(--古銅金); 
         }
         
         /* 影片預留區樣式 */
@@ -58,7 +61,7 @@
             <div class="gongfa-text">
                 運先天之炁，化五穀之精。本門氣功源自東漢神醫華陀之五禽戲精髓，專為調理現代學子因課業繁重、久坐內耗所致之身心失調。透過綿長深邃的吐納，引導體內氣血運化，疏通經絡。修行此法，不求擊技之猛，但求動靜中百病不生、延壽全真。
             </div>
-            <!-- 影片播放區（未來可將 placeholder 替換成實際 iframe） -->
+            <!-- 影片播放區 -->
             <div class="video-container">
                 <div class="video-placeholder">
                     <span>☯️ 功法招式演練．影像準備中 ☯️</span>
