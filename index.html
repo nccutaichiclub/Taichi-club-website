@@ -70,27 +70,39 @@
 <body class="text-cloud overflow-x-hidden">
 
     <div class="mist-bg"></div>
-    
-<!-- 整合版：頂部道門天際導覽 -->
-<header class="fixed top-0 left-0 w-full z-50 bg-ink-deep/80 backdrop-blur-md border-b border-white/5 px-6 py-4">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-        
-        <!-- 左側：道場牌匾（保留你原來的設計） -->
-        <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white">
-            <span class="text-xs border border-bronze px-1.5 py-0.5 rounded">政大</span>
-            太極社 <span class="font-light text-sm text-cloud/70">| 隱逸道場</span>
-        </a>
 
-        <!-- 右側：跨頁導覽連結（合併進來） -->
-        <!-- 注意：此為 index.html 版本，"首頁主殿" 呈現亮色，其餘為暗色 -->
-        <nav class="flex gap-6 items-center">
-            <a href="index.html" class="text-sm tracking-widest text-bronze-light font-bold">首頁主殿</a>
-            <a href="gongfa.html" class="text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">法門深造</a>
-            <a href="calendar.html" class="text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">修煉日程</a>
+    <!-- 整合版：頂部道門天際導覽（含手機版漢堡選單） -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center relative">
+            
+            <!-- 左側：道場牌匾 -->
+            <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white">
+                <span class="text-xs border border-bronze px-1.5 py-0.5 rounded">政大</span>
+                太極社 <span class="font-light text-sm text-cloud/70">| 隱逸道場</span>
+            </a>
+
+            <!-- 右側：電腦版跨頁導覽連結 (md:flex 代表在平板以上尺寸顯示，手機隱藏) -->
+            <nav class="hidden md:flex gap-8 items-center">
+                <a href="index.html" class="text-sm tracking-widest text-bronze-light font-bold">首頁主殿</a>
+                <a href="gongfa.html" class="text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">法門深造</a>
+                <a href="calendar.html" class="text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">修煉日程</a>
+            </nav>
+
+            <!-- 右側：手機版漢堡選單按鈕 (md:hidden 代表僅在手機顯示) -->
+            <button id="mobile-menu-btn" class="md:hidden text-bronze-light hover:text-white focus:outline-none transition-colors">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- 手機版下拉選單區塊 (預設隱藏，點擊按鈕後展開) -->
+        <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-ink-deep/95 backdrop-blur-lg border-b border-white/10 flex-col items-center py-6 space-y-6 shadow-2xl transition-all duration-300 z-40">
+            <a href="index.html" class="text-sm tracking-widest text-bronze-light font-bold w-full text-center block">首頁主殿</a>
+            <a href="gongfa.html" class="text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">法門深造</a>
+            <a href="calendar.html" class="text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
         </nav>
-
-    </div>
-</header>
+    </header>
 
     <!-- 1. 隱仙首頁 (Hero Section) -->
     <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 px-4">
