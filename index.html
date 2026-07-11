@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國立政治大學太極社｜方外隱仙道場</title>
+    <!-- 引入思源宋體，彰顯東方古典氣韻 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS 引入 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: {
+                            deep: '#08090A',    /* 飽和水墨黑 */
+                            dark: '#111315',    /* 沉澱墨色 */
+                            card: '#181B1E',    /* 紙墨微光 */
+                        },
+                        cloud: '#8E95A0',       /* 霧霾灰 */
+                        pine: {
+                            light: '#427A5B',   /* 嫩松綠 */
+                            DEFAULT: '#1E3D2F', /* 深松柏綠 */
+                            dark: '#0F2118',    /* 幽松綠 */
+                        },
+                        bronze: {
+                            light: '#D9C39E',   /* 浮雕金 */
+                            DEFAULT: '#B89742', /* 古銅金 */
+                            dark: '#8C6C30',    /* 歲月暗金 */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Noto Serif TC', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background-color: #08090A;
+            background-image: radial-gradient(circle at 50% 30%, rgba(30, 61, 47, 0.1) 0%, rgba(8, 9, 10, 1) 70%);
+        }
+        /* 山嵐霧氣飄動特效 */
+        .mist-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at 10% 20%, rgba(142, 149, 160, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(30, 61, 47, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        /* 自訂細線描邊，更有東方宣紙感 */
+        .ink-border {
+            border: 1px solid rgba(184, 151, 66, 0.15);
+        }
+        .ink-border-hover:hover {
+            border-color: rgba(184, 151, 66, 0.4);
+            box-shadow: 0 0 15px rgba(30, 61, 47, 0.2);
+        }
+    </style>
+</head>
+<body class="text-cloud overflow-x-hidden">
+
+    <div class="mist-bg"></div>
+
+    <!-- 頂部道門天際導覽 -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-ink-deep/80 backdrop-blur-md border-b border-white/5 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2">
+                <span class="text-xs border border-bronze px-1.5 py-0.5 rounded">政大</span>
+                太極社 <span class="font-light text-sm text-cloud/70">| 隱逸道場</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 text-sm tracking-widest">
+                <a href="#hero" class="hover:text-bronze transition-colors">首頁</a>
+                <a href="#methods" class="hover:text-bronze transition-colors">身心法門</a>
+                <a href="#experience" class="hover:text-bronze transition-colors">紅塵歷練</a>
+                <a href="#global" class="hover:text-bronze transition-colors">道傳寰宇</a>
+                <a href="#contact" class="hover:text-bronze transition-colors">尋訪仙蹤</a>
+            </nav>
+            <a href="#contact" class="border border-bronze text-bronze hover:bg-bronze hover:text-ink-deep transition-all duration-500 text-xs tracking-widest px-4 py-1.5 rounded">
+                結緣問道
+            </a>
+        </div>
+    </header>
+
+    <!-- 1. 隱仙首頁 (Hero Section) -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 px-4">
+        <div class="max-w-4xl text-center z-10 space-y-8">
+            <p class="text-bronze tracking-[1em] text-xs md:text-sm uppercase animate-pulse">指南山麓 ． 醉夢溪畔</p>
+            
+            <div class="space-y-4">
+                <h1 class="text-4xl md:text-6xl font-bold text-white tracking-[0.2em] leading-tight">
+                    政大太極社
+                </h1>
+                <p class="text-bronze-light font-light tracking-[0.15em] text-lg md:text-xl italic">
+                    「太極者，一陰一陽之道也。」
+                </p>
+            </div>
+
+            <!-- 古典長卷式標語 -->
+            <div class="py-6 px-4 md:px-12 ink-border max-w-2xl mx-auto bg-ink-dark/40 backdrop-blur-sm rounded-lg">
+                <p class="text-sm md:text-base leading-loose tracking-widest text-cloud">
+                    以此身心，運轉陰陽。<br class="md:hidden">
+                    可以保身、可以全真、可以養親、可以盡年。<br>
+                </p>
+            </div>
+
+            <div class="pt-4 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#methods" class="bg-pine text-white hover:bg-pine-light transition-all duration-300 px-8 py-3 tracking-[0.2em] rounded border border-pine-light">
+                    窺探法門
+                </a>
+                <a href="#contact" class="border border-bronze text-bronze hover:bg-bronze/10 transition-all duration-300 px-8 py-3 tracking-[0.2em] rounded">
+                    結緣問道
+                </a>
+            </div>
+        </div>
+
+        <!-- 虛化背景符號 -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none select-none z-0">
+            <svg class="w-[80vw] h-[80vw] max-w-[600px] text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-13c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 2. 四大道門法門 (身心法門 Section) -->
+    <section id="methods" class="py-24 px-6 max-w-6xl mx-auto relative z-10 scroll-mt-20">
+        <div class="text-center space-y-2 mb-16">
+            <p class="text-bronze tracking-[0.3em] text-xs">METHODOLOGY</p>
+            <h2 class="text-3xl font-bold text-white tracking-widest">四大身心法門</h2>
+            <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
+            <p class="text-sm text-cloud/80 max-w-md mx-auto pt-2">動靜相兼，形神俱妙。此為本社修行之四大柱石。</p>
+        </div>
+
+        <!-- 動態分頁頁籤 (Tabs) -->
+        <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+            <button onclick="switchTab('qigong')" id="tab-qigong" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-bronze bg-pine text-white">
+                華陀導引氣功
+            </button>
+            <button onclick="switchTab('taichi')" id="tab-taichi" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+                太極拳
+            </button>
+            <button onclick="switchTab('staff')" id="tab-staff" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+                太祖棍
+            </button>
+            <button onclick="switchTab('sword')" id="tab-sword" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+                太極劍
+            </button>
+        </div>
+
+        <!-- 法門展示卡片內容 -->
+        <div class="bg-ink-dark/60 rounded-xl p-6 md:p-10 ink-border min-h-[400px]">
+            
+            <!-- 1. 華陀導引氣功 -->
+            <div id="content-qigong" class="tab-content grid md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-5 space-y-6">
+                    <span class="text-xs text-pine-light tracking-[0.3em] font-bold">內功心法 ． 吐納歸真</span>
+                    <h3 class="text-2xl font-semibold text-white tracking-widest">華陀導引氣功</h3>
+                    <p class="text-sm leading-relaxed text-bronze-light italic">
+                        「運先天之炁，化五穀之精，以調身心、延壽命也。」
+                    </p>
+                    <p class="text-sm leading-relaxed text-cloud/90">
+                        引導吐納，疏通十二經絡。適合長期熬夜、為課業瑣事精神內耗的大學學子。無須繁複招式，只需靜心專注於一呼一吸，在沉靜中感受體內生生不息之炁。
+                    </p>
+                    <div class="pt-2">
+                        <span class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：入門</span>
+                    </div>
+                </div>
+                <div class="md:col-span-7">
+                    <!-- 影片預留區：使用者可自行替換成 YouTube Iframe -->
+                    <div class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center group">
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
+                        <div class="text-center z-10 p-4">
+                            <p class="text-bronze text-sm mb-2 tracking-widest">【 華陀導引氣功 ． 演示影像預留區 】</p>
+                            <p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 太極拳 (預設隱藏) -->
+            <div id="content-taichi" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-5 space-y-6">
+                    <span class="text-xs text-pine-light tracking-[0.3em] font-bold">動靜觀心 ． 借力化勁</span>
+                    <h3 class="text-2xl font-semibold text-white tracking-widest">太極拳</h3>
+                    <p class="text-sm leading-relaxed text-bronze-light italic">
+                        「動靜相兼，以柔克剛，先化而發，方能以四兩撥千金。」
+                    </p>
+                    <p class="text-sm leading-relaxed text-cloud/90">
+                        不與風爭強，不與水奪流。太極拳非防身格鬥之悍術，而是與自身重力、自然定律共處的和諧律動。一式一動皆在磨練定力，讓浮躁的心沉澱，感受圓融之美。
+                    </p>
+                    <div class="pt-2">
+                        <span class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：中等</span>
+                    </div>
+                </div>
+                <div class="md:col-span-7">
+                    <div class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
+                        <div class="text-center z-10 p-4">
+                            <p class="text-bronze text-sm mb-2 tracking-widest">【 太極拳 ． 演示影像預留區 】</p>
+                            <p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 太祖棍 (預設隱藏) -->
+            <div id="content-staff" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-5 space-y-6">
+                    <span class="text-xs text-pine-light tracking-[0.3em] font-bold">借物修身 ． 身棍合一</span>
+                    <h3 class="text-2xl font-semibold text-white tracking-widest">太祖棍</h3>
+                    <p class="text-sm leading-relaxed text-bronze-light italic">
+                        「借物修身，身棍合一。腰、棍、腳俱為一體。」
+                    </p>
+                    <p class="text-sm leading-relaxed text-cloud/90">
+                        長兵之祖，勢如破竹。太祖棍旨在訓練脊椎旋轉之核心爆發力，使手、足、身、步協調一致。棍身舞動之際，非唯破敵，實乃掃除心中雜念與懈怠。
+                    </p>
+                    <div class="pt-2">
+                        <span class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：進階</span>
+                    </div>
+                </div>
+                <div class="md:col-span-7">
+                    <div class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
+                        <div class="text-center z-10 p-4">
+                            <p class="text-bronze text-sm mb-2 tracking-widest">【 太祖棍 ． 演示影像預留區 】</p>
+                            <p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. 太極劍 (預設隱藏) -->
+            <div id="content-sword" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-5 space-y-6">
+                    <span class="text-xs text-pine-light tracking-[0.3em] font-bold">形神俱妙 ． 劍行行雲</span>
+                    <h3 class="text-2xl font-semibold text-white tracking-widest">太極劍</h3>
+                    <p class="text-sm leading-relaxed text-bronze-light italic">
+                        「以意御劍，瀟灑飄逸，形神俱妙而不失其防身之效。」
+                    </p>
+                    <p class="text-sm leading-relaxed text-cloud/90">
+                        劍隨身走，瀟灑似風。太極劍要求神態飄逸、步法靈動，非純剛猛，而以圓轉輕靈取勝。劍尖所指，皆是太極圓圈之化境，令身心如行雲流水，自在自得。
+                    </p>
+                    <div class="pt-2">
+                        <span class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：高階</span>
+                    </div>
+                </div>
+                <div class="md:col-span-7">
+                    <div class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
+                        <div class="text-center z-10 p-4">
+                            <p class="text-bronze text-sm mb-2 tracking-widest">【 太極劍 ． 演示影像預留區 】</p>
+                            <p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. 紅塵歷練 (課外活動 Section) -->
+    <section id="experience" class="py-24 bg-ink-dark/30 border-y border-white/5 px-6 scroll-mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center space-y-2 mb-16">
+                <p class="text-bronze tracking-[0.3em] text-xs">MORTAL EXPERIENCES</p>
+                <h2 class="text-3xl font-bold text-white tracking-widest">紅塵歷練</h2>
+                <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
+                <p class="text-sm text-cloud/80 max-w-md mx-auto pt-2">修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                
+                <!-- 1. 社遊 -->
+                <div class="bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4">
+                    <div class="text-bronze text-3xl font-light">壹</div>
+                    <h3 class="text-xl font-medium text-white tracking-widest">寄情山水</h3>
+                    <p class="text-xs text-pine-light tracking-widest font-semibold">【 雲遊社遊 】</p>
+                    <p class="text-sm text-cloud/80 leading-relaxed">
+                        暫別喧囂書齋，負笈出走。我們投身山嵐林海，體悟天人合一。在自然的懷抱中舒展筋骨，呼吸大地的靈炁。
+                    </p>
+                </div>
+
+                <!-- 2. 聚餐 -->
+                <div class="bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4">
+                    <div class="text-bronze text-3xl font-light">貳</div>
+                    <h3 class="text-xl font-medium text-white tracking-widest">圍爐論道</h3>
+                    <p class="text-xs text-pine-light tracking-widest font-semibold">【 同修聚餐 】</p>
+                    <p class="text-sm text-cloud/80 leading-relaxed">
+                        仙人亦需人間煙火。同修齊聚一堂，在融洽溫暖的香氣中，大口吃肉，細細品茗，暢談修煉日常與生活百態。
+                    </p>
+                </div>
+
+                <!-- 3. 包春捲 -->
+                <div class="bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4">
+                    <div class="text-bronze text-3xl font-light">參</div>
+                    <h3 class="text-xl font-medium text-white tracking-widest">手藝修持</h3>
+                    <p class="text-xs text-pine-light tracking-widest font-semibold">【 傳統包春捲 】</p>
+                    <p class="text-sm text-cloud/80 leading-relaxed">
+                        動與靜在指尖的交織。藉由親手包製傳統春捲，調和五味，考驗心靈與指尖的定力，在美味中感知傳統美學。
+                    </p>
+                </div>
+
+                <!-- 4. 期末大會 -->
+                <div class="bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4">
+                    <div class="text-bronze text-3xl font-light">肆</div>
+                    <h3 class="text-xl font-medium text-white tracking-widest">歲末論劍</h3>
+                    <p class="text-xs text-pine-light tracking-widest font-semibold">【 期末大會 】</p>
+                    <p class="text-sm text-cloud/80 leading-relaxed">
+                        一季修煉，功不唐捐。同門弟子在此分享感悟，印證所學，論功行賞，共同期許下一季的修行之途。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 道傳寰宇 (歷年成果 Section) -->
+    <section id="global" class="py-24 px-6 max-w-6xl mx-auto scroll-mt-20">
+        <div class="text-center space-y-2 mb-16">
+            <p class="text-bronze tracking-[0.3em] text-xs">GLOBAL CONNECTION</p>
+            <h2 class="text-3xl font-bold text-white tracking-widest">道傳寰宇</h2>
+            <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
+            <p class="text-sm text-cloud/80 max-w-md mx-auto pt-2">天涯咫尺，萬法歸一。前來問道的外邦同修，足跡早已遍及五洲。</p>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-4 space-y-6">
+                <h3 class="text-2xl font-semibold text-white tracking-widest">外邦弟子的修真緣分</h3>
+                <p class="text-sm leading-relaxed text-cloud/90">
+                    政大太極社歷年來接待了無數自歐美、日韓、東南亞等地慕名而來的交換弟子。
+                </p>
+                <p class="text-sm leading-relaxed text-cloud/90">
+                    在方外道場中，我們跨越言語藩籬，不尚空談，唯以拳意會友。太極無疆，道通天下，每位來此的靈魂，皆在指南山麓留下了共同修行的珍貴軌跡。
+                </p>
+                <div class="border-l-2 border-bronze pl-4 py-2 text-xs italic text-bronze-light">
+                    「道之所在，雖千萬里，心念若一，自能相逢。」
+                </div>
+            </div>
+
+            <!-- 寰宇地圖預留區 -->
+            <div class="md:col-span-8 bg-ink-dark rounded-xl p-6 ink-border relative overflow-hidden min-h-[350px] flex flex-col justify-between">
+                <div class="text-xs text-bronze tracking-widest flex justify-between items-center">
+                    <span>【 寰宇同道地圖 】</span>
+                    <span class="text-[10px] text-cloud/40">點位示意圖</span>
+                </div>
+                
+                <!-- 抽象地圖 SVG 與脈衝光點效果 -->
+                <div class="relative w-full h-[220px] flex items-center justify-center">
+                    <!-- 背景抽象地圖線條 -->
+                    <svg class="w-full h-full opacity-10 text-white" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M150 150 Q 200 100, 300 200 T 500 150 T 700 220" stroke="currentColor" stroke-width="1" stroke-dasharray="5 5"/>
+                        <path d="M100 250 Q 250 300, 400 180 T 750 250" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+                        <circle cx="200" cy="180" r="1.5" fill="currentColor"/>
+                        <circle cx="350" cy="120" r="1.5" fill="currentColor"/>
+                        <circle cx="620" cy="220" r="1.5" fill="currentColor"/>
+                    </svg>
+
+                    <!-- 自訂脈衝點位 - 代表曾經交流的國家 -->
+                    <!-- 歐洲點位 -->
+                    <div class="absolute left-[30%] top-[35%] group cursor-pointer">
+                        <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
+                        <span class="absolute left-4 -top-2 scale-0 group-hover:scale-100 transition-all text-[10px] bg-ink-deep px-1.5 py-0.5 rounded border border-bronze text-white whitespace-nowrap">法蘭西弟子</span>
+                    </div>
+
+                    <!-- 美洲點位 -->
+                    <div class="absolute left-[15%] top-[50%] group cursor-pointer">
+                        <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
+                        <span class="absolute left-4 -top-2 scale-0 group-hover:scale-100 transition-all text-[10px] bg-ink-deep px-1.5 py-0.5 rounded border border-bronze text-white whitespace-nowrap">美利堅同修</span>
+                    </div>
+
+                    <!-- 亞洲 (台灣政大中心點) -->
+                    <div class="absolute left-[70%] top-[45%] group cursor-pointer">
+                        <span class="absolute inline-flex h-5 w-5 rounded-full bg-bronze/30 opacity-75 animate-ping"></span>
+                        <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-pine-light border border-white"></span>
+                        <span class="absolute left-5 -top-2 scale-100 text-[10px] bg-pine-dark px-1.5 py-0.5 rounded border border-pine-light text-white whitespace-nowrap font-semibold">指南山道場</span>
+                    </div>
+
+                    <!-- 日韓點位 -->
+                    <div class="absolute left-[78%] top-[38%] group cursor-pointer">
+                        <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
+                        <span class="absolute left-4 -top-2 scale-0 group-hover:scale-100 transition-all text-[10px] bg-ink-deep px-1.5 py-0.5 rounded border border-bronze text-white whitespace-nowrap">東瀛問道者</span>
+                    </div>
+                </div>
+
+                <div class="text-[10px] text-cloud/50 text-center">
+                    提示：日後可在此處嵌入自訂的「Google My Maps 我的地圖」，展示更加精確的萬國足跡。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 尋訪仙蹤 (聯絡方式與行事曆 Section) -->
+    <section id="contact" class="py-24 bg-ink-dark/50 border-t border-white/5 px-6 scroll-mt-20">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-12">
+            
+            <!-- 聯絡與社群 -->
+            <div class="md:col-span-5 space-y-8">
+                <div class="space-y-2">
+                    <p class="text-bronze tracking-[0.3em] text-xs">VISIT THE TEMPLE</p>
+                    <h2 class="text-3xl font-bold text-white tracking-widest">尋訪仙蹤</h2>
+                    <div class="w-12 h-0.5 bg-bronze mt-4"></div>
+                </div>
+                
+                <p class="text-sm leading-relaxed text-cloud/80">
+                    道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。
+                </p>
+
+                <div class="space-y-4 text-sm">
+                    <div class="flex items-start gap-3">
+                        <span class="text-bronze font-bold">【道場位置】</span>
+                        <span class="text-cloud">國立政治大學 風雩樓／醉夢溪畔山路</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-bronze font-bold">【問道法郵】</span>
+                        <span class="text-cloud">nccutaichi@email.com</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-bronze font-bold">【仙界傳音】</span>
+                        <span class="text-cloud">IG: @nccu_taichi (歡迎私訊小編結緣)</span>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <p class="text-xs text-cloud/50 italic">
+                        「山不在高，有仙則名。水不在深，有龍則靈。」<br>
+                        期待在指南山下，與你在呼吸吐納中相遇。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 行事曆 -->
+            <div class="md:col-span-7 bg-ink-dark p-6 rounded-xl ink-border space-y-6">
+                <h3 class="text-xl font-semibold text-white tracking-widest text-center md:text-left">
+                    每週修煉行事曆 (社課時間)
+                </h3>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-cloud border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/10 text-bronze">
+                                <th class="pb-3 tracking-widest">修行時辰</th>
+                                <th class="pb-3 tracking-widest">修煉法門</th>
+                                <th class="pb-3 tracking-widest">道場處所</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="py-4 font-medium text-white">每週二 19:00 - 21:00</td>
+                                <td class="py-4">基礎吐納與華陀導引氣功</td>
+                                <td class="py-4 text-xs">風雩樓二樓</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="py-4 font-medium text-white">每週四 19:00 - 21:00</td>
+                                <td class="py-4">太極拳核心架構與推手</td>
+                                <td class="py-4 text-xs">風雩樓一樓</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="py-4 font-medium text-white">隔週六 09:00 - 11:30</td>
+                                <td class="py-4">太祖棍與太極劍兵刃修行</td>
+                                <td class="py-4 text-xs text-bronze-light font-semibold">醉夢溪畔草坪 (雨天移室內)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-pine/10 p-4 rounded border border-pine/30 text-xs text-pine-light leading-relaxed">
+                    <strong>道門提點：</strong> 本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 頁尾宣告 -->
+    <footer class="bg-ink-deep border-t border-white/5 py-8 text-center text-xs text-cloud/40 tracking-widest">
+        <p>© 2026 國立政治大學太極社 NCCU Tai Chi Club. 凡塵無憂，唯道是從。</p>
+        <p class="mt-2 text-[10px] text-bronze/30">指南天光，水墨太極。本頁面已啟用隨緣修行設定。</p>
+    </footer>
+
+    <!-- Tab 切換動態邏輯 -->
+    <script>
+        function switchTab(tabId) {
+            // 隱藏所有 tab 內容
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // 移除所有按鈕的啟用樣式
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-pine', 'text-white', 'border-bronze');
+                btn.classList.add('border-white/5', 'text-cloud');
+            });
+
+            // 顯示目前點擊的 tab 內容
+            const activeContent = document.getElementById(`content-${tabId}`);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+            }
+
+            // 啟用點擊按鈕的樣式
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-white/5', 'text-cloud');
+                activeBtn.classList.add('bg-pine', 'text-white', 'border-bronze');
+            }
+        }
+    </script>
+</body>
+</html>
