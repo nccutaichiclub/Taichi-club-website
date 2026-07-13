@@ -2,7 +2,6 @@ backend:
   name: github
   repo: nccutaichiclub/Taichi-club-website
   branch: main
-  base_url: https://nccutaichiclub.github.io/Taichi-club-website/admin
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
