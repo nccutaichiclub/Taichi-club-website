@@ -116,15 +116,17 @@
     </script>
     
     <!-- 1. 隱仙首頁 (Hero Section) -->
-    <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 px-4">
+   <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 px-4">
         <div class="max-w-4xl text-center z-10 space-y-8">
-            <p class="text-bronze tracking-[1em] text-xs md:text-sm uppercase animate-pulse">指南山麓 ． 醉夢溪畔</p>
+            <!-- 加在這裡 👉 id="dynamic-slogan" -->
+            <p id="dynamic-slogan" class="text-bronze tracking-[1em] text-xs md:text-sm uppercase animate-pulse">指南山麓 ． 醉夢溪畔</p>
             
             <div class="space-y-4">
                 <h1 class="text-4xl md:text-6xl font-bold text-white tracking-[0.2em] leading-tight">
                     政大太極社
                 </h1>
-                <p class="text-bronze-light font-light tracking-[0.15em] text-lg md:text-xl italic">
+                <!-- 加在這裡 👉 id="dynamic-intro" -->
+                <p id="dynamic-intro" class="text-bronze-light font-light tracking-[0.15em] text-lg md:text-xl italic">
                     「太極者，一陰一陽之道也。」
                 </p>
             </div>
@@ -542,6 +544,21 @@
                 activeBtn.classList.add('bg-pine', 'text-white', 'border-bronze');
             }
         }
+    </script>
+    
+<!-- 串接首頁後台資料的 JavaScript -->
+    <script>
+        fetch('data/home.json')
+            .then(response => response.json())
+            .then(data => {
+                // 請確認你的 index.html 裡面有給這些標籤對應的 id
+                // 例如： <p id="dynamic-slogan"></p> 和 <p id="dynamic-intro"></p>
+                const sloganEl = document.getElementById('dynamic-slogan');
+                const introEl = document.getElementById('dynamic-intro');
+                
+                if(sloganEl) sloganEl.innerText = data.slogan;
+                if(introEl) introEl.innerText = data.intro;
+            });
     </script>
 </body>
 </html>
