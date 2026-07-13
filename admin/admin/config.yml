@@ -1,0 +1,25 @@
+backend:
+  name: "github"
+  repo: "nccutaichiclub/nccu-taichi" # 👈 務必修改這裡！例如 yourname/nccu-taichi
+  branch: "main"
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "calendar_settings"
+    label: "📅 修煉行事曆管理"
+    files:
+      - file: "data/calendar.json"
+        label: "編輯活動列表"
+        name: "calendar"
+        fields:
+          - label: "行事曆活動列表"
+            name: "events"
+            widget: "list"
+            fields:
+              - {label: "時節 / 週期", name: "time", widget: "string"}
+              - {label: "活動類型 (如:常課/歷練)", name: "type", widget: "string"}
+              - {label: "活動標題", name: "title", widget: "string"}
+              - {label: "詳細說明", name: "desc", widget: "text"}
+              - {label: "修煉據點", name: "location", widget: "string"}
