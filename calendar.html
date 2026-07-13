@@ -45,29 +45,42 @@
                     <th style="width: 25%;">修煉據點</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td><strong>每週固定固定晨練</strong></td>
-                    <td><span class="event-tag tag-daily">常課</span>吸納天地初升之炁，專修華陀導引氣功與基礎太極功架。精氣神之築基。</td>
-                    <td>指南山麓（政大校區）</td>
-                </tr>
-                <tr>
-                    <td><strong>每週社課演武</strong></td>
-                    <td><span class="event-tag tag-daily">常課</span>同門齊聚。深研太極拳之借力打力、太祖棍之身棍合一、太極劍之以意御劍。</td>
-                    <td>宗門大殿（風雨教室）</td>
-                </tr>
-                <tr>
-                    <td><strong>仲春之期</strong></td>
-                    <td><span class="event-tag tag-special">歷練</span><strong>山林雲遊（社遊）</strong><br><span style="color: var(--霧霾灰); font-size: 0.9rem;">暫別書齋，前往大溪木藝生態博物館與老街散策，寄情山水，體會天人合一。</span></td>
-                    <td>大溪山水之間</td>
-                </tr>
-                <tr>
-                    <td><strong>歲暮將至</strong></td>
-                    <td><span class="event-tag tag-special">歷練</span><strong>期末大會（齊聚論道）</strong><br><span style="color: var(--霧霾灰); font-size: 0.9rem;">同門論道，總結一學期的修煉心得。設有同修共饗之筵席，在煙火氣中暢談道法。</span></td>
-                    <td>紅塵酒肆（政大周邊餐廳）</td>
-                </tr>
+            <tbody id="calendar-body">
+                <!-- 這裡的內容將由 JavaScript 自動從後台資料庫載入 -->
+                <tr><td colspan="3" style="text-align:center; color:#A0A0A0;">正在感應天時，載入曆法中...</td></tr>
             </tbody>
         </table>
+
+        <!-- 串接後台資料庫的 JavaScript 法陣 -->
+        <script>
+            fetch('data/calendar.json')
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.getElementById('calendar-body');
+                    tbody.innerHTML = ''; // 清空載入中文字
+                    
+                    data.events.forEach(event => {
+                        // 判斷標籤顏色：如果是常課就用藍灰底，其餘用紅棕底
+                        const tagClass = (event.type === '常課') ? 'tag-daily' : 'tag-special';
+                        
+                        const row = `
+                            <tr>
+                                <td><strong>${event.time}</strong></td>
+                                <td>
+                                    <span class="event-tag ${tagClass}">${event.type}</span>
+                                    <strong>${event.title}</strong><br>
+                                    <span style="color: var(--霧霾灰); font-size: 0.9rem;">${event.desc}</span>
+                                </td>
+                                <td>${event.location}</td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+                })
+                .catch(error => {
+                    document.getElementById('calendar-body').innerHTML = '<tr><td colspan="3" style="text-align:center; color:red;">曆法載入失敗，請確認資料庫陣法。</td></tr>';
+                });
+        </script>
     </div>
 
 </body>
