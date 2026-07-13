@@ -1,8 +1,8 @@
 backend:
   name: github
-  repo: nccutaichiclub/Taichi-club-website # 👈 務必修改這裡！例如 yourname/nccu-taichi
+  repo: nccutaichiclub/Taichi-club-website
   branch: main
-  base_url: https://gate.sveltia.com
+  base_url: https://decap-cms-oauth-provider.netlify.app # 👈 換成這條開源社群公用的萬能通道
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
