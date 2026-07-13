@@ -23,3 +23,28 @@ collections:
               - {label: "活動標題", name: "title", widget: "string"}
               - {label: "詳細說明", name: "desc", widget: "text"}
               - {label: "修煉據點", name: "location", widget: "string"}
+              
+  - name: "gongfa_settings"
+    label: "☯️ 法門深造管理"
+    files:
+      - file: "data/gongfa.json"
+        label: "編輯四大法門"
+        name: "gongfa"
+        fields:
+          - label: "法門列表"
+            name: "methods"
+            widget: "list"
+            fields:
+              - {label: "標題 (如: 一、華陀導引氣功)", name: "title", widget: "string"}
+              - {label: "功法心法說明", name: "desc", widget: "text"}
+              - {label: "影片嵌入碼 (若無則留空)", name: "video", widget: "string", required: false}
+
+  - name: "home_settings"
+    label: "⛩️ 首頁主殿管理"
+    files:
+      - file: "data/home.json"
+        label: "編輯首頁文字"
+        name: "home"
+        fields:
+          - {label: "道場招募標語", name: "slogan", widget: "string"}
+          - {label: "核心引言", name: "intro", widget: "text"}
