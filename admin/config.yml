@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: nccutaichiclub/nccu-taichi # 👈 務必修改這裡！例如 yourname/nccu-taichi
+  repo: nccutaichiclub/Taichi-club-website # 👈 務必修改這裡！例如 yourname/nccu-taichi
   branch: main
 
 media_folder: "assets/uploads"
