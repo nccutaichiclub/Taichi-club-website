@@ -116,28 +116,49 @@
     </script>
     
     <!-- 1. 隱仙首頁 (Hero Section) -->
-   <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 px-4">
-        <div class="max-w-4xl text-center z-10 space-y-8">
-            <!-- 加在這裡 👉 id="dynamic-slogan" -->
-            <p id="dynamic-slogan" class="text-bronze tracking-[1em] text-xs md:text-sm uppercase animate-pulse">指南山麓 ． 醉夢溪畔</p>
-            
-            <div class="space-y-4">
-                <h1 class="text-4xl md:text-6xl font-bold text-white tracking-[0.2em] leading-tight">
-                    政大太極社
-                </h1>
-                <!-- 加在這裡 👉 id="dynamic-intro" -->
-                <p id="dynamic-intro" class="text-bronze-light font-light tracking-[0.15em] text-lg md:text-xl italic">
-                    「太極者，一陰一陽之道也。」
-                </p>
-            </div>
+<!-- 全螢幕照片輪播區塊 -->
+<section id="hero-carousel" class="relative w-full h-screen overflow-hidden bg-black">
+    
+    <!-- 輪播圖片容器 -->
+    <div id="carousel-images" class="absolute inset-0 w-full h-full">
+        <!-- 第 1 張圖 (預設顯示: opacity-100) -->
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1920&auto=format&fit=crop" 
+             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100" alt="太極輪播 1">
+        
+        <!-- 第 2 張圖 (預設隱藏: opacity-0) -->
+        <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=80&w=1920&auto=format&fit=crop" 
+             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" alt="太極輪播 2">
+        
+        <!-- 第 3 張圖 (預設隱藏: opacity-0) -->
+        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=1920&auto=format&fit=crop" 
+             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" alt="太極輪播 3">
+    </div>
 
-            <!-- 古典長卷式標語 -->
-            <div class="py-6 px-4 md:px-12 ink-border max-w-2xl mx-auto bg-ink-dark/40 backdrop-blur-sm rounded-lg">
-                <p class="text-sm md:text-base leading-loose tracking-widest text-cloud">
-                    以此身心，運轉陰陽。<br class="md:hidden">
-                    可以保身、可以全真、可以養親、可以盡年。<br>
-                </p>
-            </div>
+    <!-- 加上一層極淡的黑色遮罩，讓導覽列與未來的內容更容易閱讀 -->
+    <div class="absolute inset-0 bg-black/30 z-10"></div>
+</section>
+
+<!-- 控制輪播淡入淡出的 JavaScript 法陣 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const images = document.querySelectorAll("#carousel-images img");
+        let currentIndex = 0;
+        const timeInterval = 4000; // 每 4000 毫秒 (4秒) 切換一次照片
+
+        setInterval(() => {
+            // 將目前這張照片隱藏 (透明度歸零)
+            images[currentIndex].classList.remove("opacity-100");
+            images[currentIndex].classList.add("opacity-0");
+
+            // 推進到下一張照片，如果到底了就回到第一張
+            currentIndex = (currentIndex + 1) % images.length;
+
+            // 將下一張照片顯示 (透明度設為全滿)
+            images[currentIndex].classList.remove("opacity-0");
+            images[currentIndex].classList.add("opacity-100");
+        }, timeInterval);
+    });
+</script>
 
             <div class="pt-4 flex flex-col sm:flex-row justify-center gap-4">
                 <a href="#methods" class="bg-pine text-white hover:bg-pine-light transition-all duration-300 px-8 py-3 tracking-[0.2em] rounded border border-pine-light">
