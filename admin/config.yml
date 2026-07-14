@@ -7,6 +7,134 @@ media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
+  - name: "home_settings"
+    label: "🏠 首頁主殿管理"
+    files:
+      - file: "data/home.json"
+        label: "編輯首頁全部文字"
+        name: "home"
+        fields:
+          - label: "頂部導覽列"
+            name: "nav"
+            widget: "object"
+            fields:
+              - { label: "角標文字 (如:政大)", name: "badge", widget: "string" }
+              - { label: "社團名稱", name: "brand", widget: "string" }
+              - { label: "副標 (如:隱逸道場)", name: "brand_sub", widget: "string" }
+              - { label: "選單-首頁", name: "link_home", widget: "string" }
+              - { label: "選單-法門深造", name: "link_method", widget: "string" }
+              - { label: "選單-修煉日程", name: "link_calendar", widget: "string" }
+
+          - label: "Hero 主視覺區"
+            name: "hero"
+            widget: "object"
+            fields:
+              - label: "輪播圖片"
+                name: "carousel"
+                widget: "list"
+                min: 1
+                fields:
+                  - { label: "圖片", name: "image", widget: "image" }
+                  - { label: "圖片說明 (畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
+              - { label: "按鈕-窺探法門", name: "btn_methods", widget: "string" }
+              - { label: "按鈕-結緣問道", name: "btn_contact", widget: "string" }
+
+          - label: "四大法門 - 區塊標題"
+            name: "methods_section"
+            widget: "object"
+            fields:
+              - { label: "英文小標", name: "eyebrow", widget: "string" }
+              - { label: "區塊標題", name: "title", widget: "string" }
+              - { label: "區塊說明", name: "desc", widget: "string" }
+
+          - label: "四大法門 - 內容"
+            name: "methods"
+            widget: "list"
+            fields:
+              - { label: "法門代號 (勿隨意更改, 對應網頁程式碼)", name: "id", widget: "select", options: ["qigong", "taichi", "staff", "sword"] }
+              - { label: "頁籤按鈕文字", name: "tab_label", widget: "string" }
+              - { label: "小標籤 (如:內功心法．吐納歸真)", name: "tag", widget: "string" }
+              - { label: "法門標題", name: "title", widget: "string" }
+              - { label: "引言", name: "quote", widget: "string" }
+              - { label: "詳細說明", name: "desc", widget: "text" }
+              - { label: "難度標示", name: "difficulty", widget: "string" }
+
+          - label: "紅塵歷練 - 區塊標題"
+            name: "experience_section"
+            widget: "object"
+            fields:
+              - { label: "英文小標", name: "eyebrow", widget: "string" }
+              - { label: "區塊標題", name: "title", widget: "string" }
+              - { label: "區塊說明", name: "desc", widget: "string" }
+
+          - label: "紅塵歷練 - 卡片列表 (可自由新增/刪除/排序)"
+            name: "experiences"
+            widget: "list"
+            min: 1
+            fields:
+              - { label: "編號 (壹/貳/參/肆...)", name: "roman", widget: "string" }
+              - { label: "卡片標題", name: "title", widget: "string" }
+              - { label: "卡片副標", name: "subtitle", widget: "string" }
+              - { label: "說明文字", name: "desc", widget: "text" }
+
+          - label: "道傳寰宇 - 區塊標題"
+            name: "global_section"
+            widget: "object"
+            fields:
+              - { label: "英文小標", name: "eyebrow", widget: "string" }
+              - { label: "區塊標題", name: "title", widget: "string" }
+              - { label: "區塊說明", name: "desc", widget: "string" }
+
+          - label: "道傳寰宇 - 內容"
+            name: "global"
+            widget: "object"
+            fields:
+              - { label: "小標題", name: "title", widget: "string" }
+              - { label: "段落一", name: "para1", widget: "text" }
+              - { label: "段落二", name: "para2", widget: "text" }
+              - { label: "引言", name: "quote", widget: "string" }
+
+          - label: "尋訪仙蹤 - 聯絡資訊"
+            name: "contact_section"
+            widget: "object"
+            fields:
+              - { label: "英文小標", name: "eyebrow", widget: "string" }
+              - { label: "區塊標題", name: "title", widget: "string" }
+              - { label: "簡介文字", name: "intro", widget: "text" }
+
+          - label: "尋訪仙蹤 - 詳細內容"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "道場位置標籤", name: "location_label", widget: "string" }
+              - { label: "道場位置內容", name: "location_value", widget: "string" }
+              - { label: "問道法郵標籤", name: "email_label", widget: "string" }
+              - { label: "問道法郵內容", name: "email_value", widget: "string" }
+              - { label: "仙界傳音標籤", name: "social_label", widget: "string" }
+              - { label: "仙界傳音內容", name: "social_value", widget: "string" }
+              - { label: "頁尾小語", name: "footer_quote", widget: "text" }
+
+          - label: "每週修煉行事曆"
+            name: "schedule"
+            widget: "object"
+            fields:
+              - { label: "表格標題", name: "title", widget: "string" }
+              - label: "課表列表"
+                name: "rows"
+                widget: "list"
+                fields:
+                  - { label: "修行時辰", name: "time", widget: "string" }
+                  - { label: "修煉法門", name: "content", widget: "string" }
+                  - { label: "道場處所", name: "location", widget: "string" }
+              - { label: "道門提點文字", name: "note", widget: "text" }
+
+          - label: "頁尾"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "版權文字", name: "copyright", widget: "string" }
+              - { label: "小字標語", name: "sub", widget: "string" }
+
   - name: "calendar_settings"
     label: "📅 修煉行事曆管理"
     files:
@@ -23,28 +151,3 @@ collections:
               - {label: "活動標題", name: "title", widget: "string"}
               - {label: "詳細說明", name: "desc", widget: "text"}
               - {label: "修煉據點", name: "location", widget: "string"}
-              
-  - name: "gongfa_settings"
-    label: "☯️ 法門深造管理"
-    files:
-      - file: "data/gongfa.json"
-        label: "編輯四大法門"
-        name: "gongfa"
-        fields:
-          - label: "法門列表"
-            name: "methods"
-            widget: "list"
-            fields:
-              - {label: "標題 (如: 一、華陀導引氣功)", name: "title", widget: "string"}
-              - {label: "功法心法說明", name: "desc", widget: "text"}
-              - {label: "影片嵌入碼 (若無則留空)", name: "video", widget: "string", required: false}
-
-  - name: "home_settings"
-    label: "⛩️ 首頁主殿管理"
-    files:
-      - file: "data/home.json"
-        label: "編輯首頁文字"
-        name: "home"
-        fields:
-          - {label: "道場招募標語", name: "slogan", widget: "string"}
-          - {label: "核心引言", name: "intro", widget: "text"}
