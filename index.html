@@ -74,21 +74,21 @@
     <!-- 整合版：頂部道門天際導覽（含手機版漢堡選單） -->
     <header class="fixed top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center relative">
-            
+
             <!-- 左側：道場牌匾 -->
             <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white">
-                <span class="text-xs border border-bronze px-1.5 py-0.5 rounded">政大</span>
-                太極社 <span class="font-light text-sm text-cloud/70">| 隱逸道場</span>
+                <span id="nav-badge" class="text-xs border border-bronze px-1.5 py-0.5 rounded">政大</span>
+                <span id="nav-brand">太極社</span> <span id="nav-brand-sub" class="font-light text-sm text-cloud/70">| 隱逸道場</span>
             </a>
 
-            <!-- 右側：電腦版跨頁導覽連結 (md:flex 代表在平板以上尺寸顯示，手機隱藏) -->
+            <!-- 右側：電腦版跨頁導覽連結 -->
             <nav class="hidden md:flex gap-8 items-center">
-                <a href="index.html" class="text-sm tracking-widest text-bronze-light font-bold">首頁主殿</a>
-                <a href="gongfa.html" class="text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">法門深造</a>
-                <a href="calendar.html" class="text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">修煉日程</a>
+                <a href="index.html" class="nav-link-home text-sm tracking-widest text-bronze-light font-bold">首頁主殿</a>
+                <a href="gongfa.html" class="nav-link-method text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">法門深造</a>
+                <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">修煉日程</a>
             </nav>
 
-            <!-- 右側：手機版漢堡選單按鈕 (md:hidden 代表僅在手機顯示) -->
+            <!-- 右側：手機版漢堡選單按鈕 -->
             <button id="mobile-menu-btn" class="md:hidden text-bronze-light hover:text-white focus:outline-none transition-colors">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -96,14 +96,14 @@
             </button>
         </div>
 
-        <!-- 手機版下拉選單區塊 (預設隱藏，點擊按鈕後展開) -->
+        <!-- 手機版下拉選單區塊 -->
         <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-ink-deep/95 backdrop-blur-lg border-b border-white/10 flex-col items-center py-6 space-y-6 shadow-2xl transition-all duration-300 z-40">
-            <a href="index.html" class="text-sm tracking-widest text-bronze-light font-bold w-full text-center block">首頁主殿</a>
-            <a href="gongfa.html" class="text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">法門深造</a>
-            <a href="calendar.html" class="text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
+            <a href="index.html" class="nav-link-home text-sm tracking-widest text-bronze-light font-bold w-full text-center block">首頁主殿</a>
+            <a href="gongfa.html" class="nav-link-method text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">法門深造</a>
+            <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
         </nav>
     </header>
-    
+
     <!-- 手機版選單開關腳本 -->
     <script>
         const btn = document.getElementById('mobile-menu-btn');
@@ -114,115 +114,75 @@
             menu.classList.toggle('flex');
         });
     </script>
-    
+
     <!-- 1. 隱仙首頁 (Hero Section) -->
-<!-- 全螢幕照片輪播區塊 -->
-<section id="hero-carousel" class="relative w-full h-screen overflow-hidden bg-black">
-    
-    <!-- 輪播圖片容器 -->
-    <div id="carousel-images" class="absolute inset-0 w-full h-full">
-        <!-- 第 1 張圖 (預設顯示: opacity-100) -->
-        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1920&auto=format&fit=crop" 
-             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100" alt="太極輪播 1">
-        
-        <!-- 第 2 張圖 (預設隱藏: opacity-0) -->
-        <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=80&w=1920&auto=format&fit=crop" 
-             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" alt="太極輪播 2">
-        
-        <!-- 第 3 張圖 (預設隱藏: opacity-0) -->
-        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=1920&auto=format&fit=crop" 
-             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" alt="太極輪播 3">
-    </div>
+    <!-- 原本的文字全部拿掉，改成照片輪播 (carousel)；#hero-carousel 是空容器，圖片由下方 JS 迴圈動態塞入 -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 px-4 overflow-hidden">
+        <!-- sr-only：畫面上看不到，但保留給搜尋引擎/螢幕報讀軟體辨識網站標題用 -->
+        <h1 class="sr-only">政大太極社</h1>
 
-    <!-- 加上一層極淡的黑色遮罩，讓導覽列與未來的內容更容易閱讀 -->
-    <div class="absolute inset-0 bg-black/30 z-10"></div>
-</section>
+        <!-- 輪播圖片容器：JS 會把每張圖片變成一個絕對定位 (absolute，疊在同一個位置) 的圖層，並定時切換透明度 -->
+        <div id="hero-carousel" class="absolute inset-0 w-full h-full z-0"></div>
+        <!-- 半透明黑色遮罩，讓上面的按鈕文字在任何照片背景下都看得清楚 -->
+        <div class="absolute inset-0 bg-black/45 z-[1]"></div>
 
-<!-- 控制輪播淡入淡出的 JavaScript 法陣 -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const images = document.querySelectorAll("#carousel-images img");
-        let currentIndex = 0;
-        const timeInterval = 4000; // 每 4000 毫秒 (4秒) 切換一次照片
-
-        setInterval(() => {
-            // 將目前這張照片隱藏 (透明度歸零)
-            images[currentIndex].classList.remove("opacity-100");
-            images[currentIndex].classList.add("opacity-0");
-
-            // 推進到下一張照片，如果到底了就回到第一張
-            currentIndex = (currentIndex + 1) % images.length;
-
-            // 將下一張照片顯示 (透明度設為全滿)
-            images[currentIndex].classList.remove("opacity-0");
-            images[currentIndex].classList.add("opacity-100");
-        }, timeInterval);
-    });
-</script>
-
-            <div class="pt-4 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#methods" class="bg-pine text-white hover:bg-pine-light transition-all duration-300 px-8 py-3 tracking-[0.2em] rounded border border-pine-light">
-                    窺探法門
-                </a>
-                <a href="#contact" class="border border-bronze text-bronze hover:bg-bronze/10 transition-all duration-300 px-8 py-3 tracking-[0.2em] rounded">
-                    結緣問道
-                </a>
-            </div>
+        <div class="relative z-10 pt-4 flex flex-col sm:flex-row justify-center gap-4">
+            <a href="#methods" id="hero-btn-methods" class="bg-pine text-white hover:bg-pine-light transition-all duration-300 px-8 py-3 tracking-[0.2em] rounded border border-pine-light">
+                窺探法門
+            </a>
+            <a href="#contact" id="hero-btn-contact" class="border border-bronze text-bronze hover:bg-bronze/10 transition-all duration-300 px-8 py-3 tracking-[0.2em] rounded bg-ink-deep/30">
+                結緣問道
+            </a>
         </div>
 
-        <!-- 虛化背景符號 -->
-        <div class="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none select-none z-0">
-            <svg class="w-[80vw] h-[80vw] max-w-[600px] text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-13c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
-            </svg>
-        </div>
+        <!-- 輪播指示點 (dots)，顯示目前是第幾張圖片，可點擊切換 -->
+        <div id="hero-carousel-dots" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10"></div>
     </section>
 
     <!-- 2. 四大道門法門 (身心法門 Section) -->
     <section id="methods" class="py-24 px-6 max-w-6xl mx-auto relative z-10 scroll-mt-20">
         <div class="text-center space-y-2 mb-16">
-            <p class="text-bronze tracking-[0.3em] text-xs">METHODOLOGY</p>
-            <h2 class="text-3xl font-bold text-white tracking-widest">四大身心法門</h2>
+            <p id="methods-eyebrow" class="text-bronze tracking-[0.3em] text-xs">METHODOLOGY</p>
+            <h2 id="methods-title" class="text-3xl font-bold text-white tracking-widest">四大身心法門</h2>
             <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
-            <p class="text-sm text-cloud/80 max-w-md mx-auto pt-2">動靜相兼，形神俱妙。此為本社修行之四大柱石。</p>
+            <p id="methods-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">動靜相兼，形神俱妙。此為本社修行之四大柱石。</p>
         </div>
 
         <!-- 動態分頁頁籤 (Tabs) -->
         <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
             <button onclick="switchTab('qigong')" id="tab-qigong" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-bronze bg-pine text-white">
-                華陀導引氣功
+                <span id="tab-qigong-label">華陀導引氣功</span>
             </button>
             <button onclick="switchTab('taichi')" id="tab-taichi" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                太極拳
+                <span id="tab-taichi-label">太極拳</span>
             </button>
             <button onclick="switchTab('staff')" id="tab-staff" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                太祖棍
+                <span id="tab-staff-label">太祖棍</span>
             </button>
             <button onclick="switchTab('sword')" id="tab-sword" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                太極劍
+                <span id="tab-sword-label">太極劍</span>
             </button>
         </div>
 
         <!-- 法門展示卡片內容 -->
         <div class="bg-ink-dark/60 rounded-xl p-6 md:p-10 ink-border min-h-[400px]">
-            
+
             <!-- 1. 華陀導引氣功 -->
             <div id="content-qigong" class="tab-content grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-5 space-y-6">
-                    <span class="text-xs text-pine-light tracking-[0.3em] font-bold">內功心法 ． 吐納歸真</span>
-                    <h3 class="text-2xl font-semibold text-white tracking-widest">華陀導引氣功</h3>
-                    <p class="text-sm leading-relaxed text-bronze-light italic">
+                    <span id="content-qigong-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold">內功心法 ． 吐納歸真</span>
+                    <h3 id="content-qigong-title" class="text-2xl font-semibold text-white tracking-widest">華陀導引氣功</h3>
+                    <p id="content-qigong-quote" class="text-sm leading-relaxed text-bronze-light italic">
                         「運先天之炁，化五穀之精，以調身心、延壽命也。」
                     </p>
-                    <p class="text-sm leading-relaxed text-cloud/90">
+                    <p id="content-qigong-desc" class="text-sm leading-relaxed text-cloud/90">
                         引導吐納，疏通十二經絡。適合長期熬夜、為課業瑣事精神內耗的大學學子。無須繁複招式，只需靜心專注於一呼一吸，在沉靜中感受體內生生不息之炁。
                     </p>
                     <div class="pt-2">
-                        <span class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：入門</span>
+                        <span id="content-qigong-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：入門</span>
                     </div>
                 </div>
                 <div class="md:col-span-7">
-                    <!-- 影片預留區：使用者可自行替換成 YouTube Iframe -->
                     <div class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center group">
                         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
                         <div class="text-center z-10 p-4">
@@ -236,16 +196,16 @@
             <!-- 2. 太極拳 (預設隱藏) -->
             <div id="content-taichi" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-5 space-y-6">
-                    <span class="text-xs text-pine-light tracking-[0.3em] font-bold">動靜觀心 ． 借力化勁</span>
-                    <h3 class="text-2xl font-semibold text-white tracking-widest">太極拳</h3>
-                    <p class="text-sm leading-relaxed text-bronze-light italic">
+                    <span id="content-taichi-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold">動靜觀心 ． 借力化勁</span>
+                    <h3 id="content-taichi-title" class="text-2xl font-semibold text-white tracking-widest">太極拳</h3>
+                    <p id="content-taichi-quote" class="text-sm leading-relaxed text-bronze-light italic">
                         「動靜相兼，以柔克剛，先化而發，方能以四兩撥千金。」
                     </p>
-                    <p class="text-sm leading-relaxed text-cloud/90">
+                    <p id="content-taichi-desc" class="text-sm leading-relaxed text-cloud/90">
                         不與風爭強，不與水奪流。太極拳非防身格鬥之悍術，而是與自身重力、自然定律共處的和諧律動。一式一動皆在磨練定力，讓浮躁的心沉澱，感受圓融之美。
                     </p>
                     <div class="pt-2">
-                        <span class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：中等</span>
+                        <span id="content-taichi-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：中等</span>
                     </div>
                 </div>
                 <div class="md:col-span-7">
@@ -262,16 +222,16 @@
             <!-- 3. 太祖棍 (預設隱藏) -->
             <div id="content-staff" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-5 space-y-6">
-                    <span class="text-xs text-pine-light tracking-[0.3em] font-bold">借物修身 ． 身棍合一</span>
-                    <h3 class="text-2xl font-semibold text-white tracking-widest">太祖棍</h3>
-                    <p class="text-sm leading-relaxed text-bronze-light italic">
+                    <span id="content-staff-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold">借物修身 ． 身棍合一</span>
+                    <h3 id="content-staff-title" class="text-2xl font-semibold text-white tracking-widest">太祖棍</h3>
+                    <p id="content-staff-quote" class="text-sm leading-relaxed text-bronze-light italic">
                         「借物修身，身棍合一。腰、棍、腳俱為一體。」
                     </p>
-                    <p class="text-sm leading-relaxed text-cloud/90">
+                    <p id="content-staff-desc" class="text-sm leading-relaxed text-cloud/90">
                         長兵之祖，勢如破竹。太祖棍旨在訓練脊椎旋轉之核心爆發力，使手、足、身、步協調一致。棍身舞動之際，非唯破敵，實乃掃除心中雜念與懈怠。
                     </p>
                     <div class="pt-2">
-                        <span class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：進階</span>
+                        <span id="content-staff-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：進階</span>
                     </div>
                 </div>
                 <div class="md:col-span-7">
@@ -288,16 +248,16 @@
             <!-- 4. 太極劍 (預設隱藏) -->
             <div id="content-sword" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-5 space-y-6">
-                    <span class="text-xs text-pine-light tracking-[0.3em] font-bold">形神俱妙 ． 劍行行雲</span>
-                    <h3 class="text-2xl font-semibold text-white tracking-widest">太極劍</h3>
-                    <p class="text-sm leading-relaxed text-bronze-light italic">
+                    <span id="content-sword-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold">形神俱妙 ． 劍行行雲</span>
+                    <h3 id="content-sword-title" class="text-2xl font-semibold text-white tracking-widest">太極劍</h3>
+                    <p id="content-sword-quote" class="text-sm leading-relaxed text-bronze-light italic">
                         「以意御劍，瀟灑飄逸，形神俱妙而不失其防身之效。」
                     </p>
-                    <p class="text-sm leading-relaxed text-cloud/90">
+                    <p id="content-sword-desc" class="text-sm leading-relaxed text-cloud/90">
                         劍隨身走，瀟灑似風。太極劍要求神態飄逸、步法靈動，非純剛猛，而以圓轉輕靈取勝。劍尖所指，皆是太極圓圈之化境，令身心如行雲流水，自在自得。
                     </p>
                     <div class="pt-2">
-                        <span class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：高階</span>
+                        <span id="content-sword-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：高階</span>
                     </div>
                 </div>
                 <div class="md:col-span-7">
@@ -318,91 +278,48 @@
     <section id="experience" class="py-24 bg-ink-dark/30 border-y border-white/5 px-6 scroll-mt-20">
         <div class="max-w-6xl mx-auto">
             <div class="text-center space-y-2 mb-16">
-                <p class="text-bronze tracking-[0.3em] text-xs">MORTAL EXPERIENCES</p>
-                <h2 class="text-3xl font-bold text-white tracking-widest">紅塵歷練</h2>
+                <p id="exp-eyebrow" class="text-bronze tracking-[0.3em] text-xs">MORTAL EXPERIENCES</p>
+                <h2 id="exp-title" class="text-3xl font-bold text-white tracking-widest">紅塵歷練</h2>
                 <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
-                <p class="text-sm text-cloud/80 max-w-md mx-auto pt-2">修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。</p>
+                <p id="exp-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。</p>
             </div>
 
-            <div class="grid md:grid-cols-4 gap-6">
-                
-                <!-- 1. 社遊 -->
-                <div class="bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4">
-                    <div class="text-bronze text-3xl font-light">壹</div>
-                    <h3 class="text-xl font-medium text-white tracking-widest">寄情山水</h3>
-                    <p class="text-xs text-pine-light tracking-widest font-semibold">【 雲遊社遊 】</p>
-                    <p class="text-sm text-cloud/80 leading-relaxed">
-                        暫別喧囂書齋，負笈出走。我們投身山嵐林海，體悟天人合一。在自然的懷抱中舒展筋骨，呼吸大地的靈炁。
-                    </p>
-                </div>
-
-                <!-- 2. 聚餐 -->
-                <div class="bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4">
-                    <div class="text-bronze text-3xl font-light">貳</div>
-                    <h3 class="text-xl font-medium text-white tracking-widest">圍爐論道</h3>
-                    <p class="text-xs text-pine-light tracking-widest font-semibold">【 同修聚餐 】</p>
-                    <p class="text-sm text-cloud/80 leading-relaxed">
-                        仙人亦需人間煙火。同修齊聚一堂，在融洽溫暖的香氣中，大口吃肉，細細品茗，暢談修煉日常與生活百態。
-                    </p>
-                </div>
-
-                <!-- 3. 包春捲 -->
-                <div class="bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4">
-                    <div class="text-bronze text-3xl font-light">參</div>
-                    <h3 class="text-xl font-medium text-white tracking-widest">手藝修持</h3>
-                    <p class="text-xs text-pine-light tracking-widest font-semibold">【 傳統包春捲 】</p>
-                    <p class="text-sm text-cloud/80 leading-relaxed">
-                        動與靜在指尖的交織。藉由親手包製傳統春捲，調和五味，考驗心靈與指尖的定力，在美味中感知傳統美學。
-                    </p>
-                </div>
-
-                <!-- 4. 期末大會 -->
-                <div class="bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4">
-                    <div class="text-bronze text-3xl font-light">肆</div>
-                    <h3 class="text-xl font-medium text-white tracking-widest">歲末論劍</h3>
-                    <p class="text-xs text-pine-light tracking-widest font-semibold">【 期末大會 】</p>
-                    <p class="text-sm text-cloud/80 leading-relaxed">
-                        一季修煉，功不唐捐。同門弟子在此分享感悟，印證所學，論功行賞，共同期許下一季的修行之途。
-                    </p>
-                </div>
-
-            </div>
+            <!-- 空容器 (container)，卡片由下方 JS 依照後台的 experiences 資料筆數，用迴圈自動產生 -->
+            <div id="experience-cards" class="grid md:grid-cols-4 gap-6"></div>
         </div>
     </section>
 
     <!-- 4. 道傳寰宇 (歷年成果 Section) -->
     <section id="global" class="py-24 px-6 max-w-6xl mx-auto scroll-mt-20">
         <div class="text-center space-y-2 mb-16">
-            <p class="text-bronze tracking-[0.3em] text-xs">GLOBAL CONNECTION</p>
-            <h2 class="text-3xl font-bold text-white tracking-widest">道傳寰宇</h2>
+            <p id="global-eyebrow" class="text-bronze tracking-[0.3em] text-xs">GLOBAL CONNECTION</p>
+            <h2 id="global-section-title" class="text-3xl font-bold text-white tracking-widest">道傳寰宇</h2>
             <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
-            <p class="text-sm text-cloud/80 max-w-md mx-auto pt-2">天涯咫尺，萬法歸一。前來問道的外邦同修，足跡早已遍及五洲。</p>
+            <p id="global-section-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">天涯咫尺，萬法歸一。前來問道的外邦同修，足跡早已遍及五洲。</p>
         </div>
 
         <div class="grid md:grid-cols-12 gap-8 items-center">
             <div class="md:col-span-4 space-y-6">
-                <h3 class="text-2xl font-semibold text-white tracking-widest">外邦弟子的修真緣分</h3>
-                <p class="text-sm leading-relaxed text-cloud/90">
+                <h3 id="global-title" class="text-2xl font-semibold text-white tracking-widest">外邦弟子的修真緣分</h3>
+                <p id="global-para1" class="text-sm leading-relaxed text-cloud/90">
                     政大太極社歷年來接待了無數自歐美、日韓、東南亞等地慕名而來的交換弟子。
                 </p>
-                <p class="text-sm leading-relaxed text-cloud/90">
+                <p id="global-para2" class="text-sm leading-relaxed text-cloud/90">
                     在方外道場中，我們跨越言語藩籬，不尚空談，唯以拳意會友。太極無疆，道通天下，每位來此的靈魂，皆在指南山麓留下了共同修行的珍貴軌跡。
                 </p>
-                <div class="border-l-2 border-bronze pl-4 py-2 text-xs italic text-bronze-light">
+                <div id="global-quote" class="border-l-2 border-bronze pl-4 py-2 text-xs italic text-bronze-light">
                     「道之所在，雖千萬里，心念若一，自能相逢。」
                 </div>
             </div>
 
-            <!-- 寰宇地圖預留區 -->
+            <!-- 寰宇地圖預留區（點位標籤暫維持固定，之後可比照同模式擴充） -->
             <div class="md:col-span-8 bg-ink-dark rounded-xl p-6 ink-border relative overflow-hidden min-h-[350px] flex flex-col justify-between">
                 <div class="text-xs text-bronze tracking-widest flex justify-between items-center">
                     <span>【 寰宇同道地圖 】</span>
                     <span class="text-[10px] text-cloud/40">點位示意圖</span>
                 </div>
-                
-                <!-- 抽象地圖 SVG 與脈衝光點效果 -->
+
                 <div class="relative w-full h-[220px] flex items-center justify-center">
-                    <!-- 背景抽象地圖線條 -->
                     <svg class="w-full h-full opacity-10 text-white" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M150 150 Q 200 100, 300 200 T 500 150 T 700 220" stroke="currentColor" stroke-width="1" stroke-dasharray="5 5"/>
                         <path d="M100 250 Q 250 300, 400 180 T 750 250" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
@@ -411,29 +328,24 @@
                         <circle cx="620" cy="220" r="1.5" fill="currentColor"/>
                     </svg>
 
-                    <!-- 自訂脈衝點位 - 代表曾經交流的國家 -->
-                    <!-- 歐洲點位 -->
                     <div class="absolute left-[30%] top-[35%] group cursor-pointer">
                         <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
                         <span class="absolute left-4 -top-2 scale-0 group-hover:scale-100 transition-all text-[10px] bg-ink-deep px-1.5 py-0.5 rounded border border-bronze text-white whitespace-nowrap">法蘭西弟子</span>
                     </div>
 
-                    <!-- 美洲點位 -->
                     <div class="absolute left-[15%] top-[50%] group cursor-pointer">
                         <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
                         <span class="absolute left-4 -top-2 scale-0 group-hover:scale-100 transition-all text-[10px] bg-ink-deep px-1.5 py-0.5 rounded border border-bronze text-white whitespace-nowrap">美利堅同修</span>
                     </div>
 
-                    <!-- 亞洲 (台灣政大中心點) -->
                     <div class="absolute left-[70%] top-[45%] group cursor-pointer">
                         <span class="absolute inline-flex h-5 w-5 rounded-full bg-bronze/30 opacity-75 animate-ping"></span>
                         <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-pine-light border border-white"></span>
                         <span class="absolute left-5 -top-2 scale-100 text-[10px] bg-pine-dark px-1.5 py-0.5 rounded border border-pine-light text-white whitespace-nowrap font-semibold">指南山道場</span>
                     </div>
 
-                    <!-- 日韓點位 -->
                     <div class="absolute left-[78%] top-[38%] group cursor-pointer">
                         <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
@@ -451,36 +363,36 @@
     <!-- 5. 尋訪仙蹤 (聯絡方式與行事曆 Section) -->
     <section id="contact" class="py-24 bg-ink-dark/50 border-t border-white/5 px-6 scroll-mt-20">
         <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-12">
-            
+
             <!-- 聯絡與社群 -->
             <div class="md:col-span-5 space-y-8">
                 <div class="space-y-2">
-                    <p class="text-bronze tracking-[0.3em] text-xs">VISIT THE TEMPLE</p>
-                    <h2 class="text-3xl font-bold text-white tracking-widest">尋訪仙蹤</h2>
+                    <p id="contact-eyebrow" class="text-bronze tracking-[0.3em] text-xs">VISIT THE TEMPLE</p>
+                    <h2 id="contact-title" class="text-3xl font-bold text-white tracking-widest">尋訪仙蹤</h2>
                     <div class="w-12 h-0.5 bg-bronze mt-4"></div>
                 </div>
-                
-                <p class="text-sm leading-relaxed text-cloud/80">
+
+                <p id="contact-intro" class="text-sm leading-relaxed text-cloud/80">
                     道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。
                 </p>
 
                 <div class="space-y-4 text-sm">
                     <div class="flex items-start gap-3">
-                        <span class="text-bronze font-bold">【道場位置】</span>
-                        <span class="text-cloud">國立政治大學 風雩樓／醉夢溪畔山路</span>
+                        <span id="contact-location-label" class="text-bronze font-bold">【道場位置】</span>
+                        <span id="contact-location-value" class="text-cloud">國立政治大學 風雩樓／醉夢溪畔山路</span>
                     </div>
                     <div class="flex items-start gap-3">
-                        <span class="text-bronze font-bold">【問道法郵】</span>
-                        <span class="text-cloud">nccutaichi@email.com</span>
+                        <span id="contact-email-label" class="text-bronze font-bold">【問道法郵】</span>
+                        <span id="contact-email-value" class="text-cloud">nccutaichi@email.com</span>
                     </div>
                     <div class="flex items-start gap-3">
-                        <span class="text-bronze font-bold">【仙界傳音】</span>
-                        <span class="text-cloud">IG: @nccu_taichi (歡迎私訊小編結緣)</span>
+                        <span id="contact-social-label" class="text-bronze font-bold">【仙界傳音】</span>
+                        <span id="contact-social-value" class="text-cloud">IG: @nccu_taichi (歡迎私訊小編結緣)</span>
                     </div>
                 </div>
 
                 <div class="pt-4">
-                    <p class="text-xs text-cloud/50 italic">
+                    <p id="contact-footer-quote" class="text-xs text-cloud/50 italic">
                         「山不在高，有仙則名。水不在深，有龍則靈。」<br>
                         期待在指南山下，與你在呼吸吐納中相遇。
                     </p>
@@ -489,10 +401,10 @@
 
             <!-- 行事曆 -->
             <div class="md:col-span-7 bg-ink-dark p-6 rounded-xl ink-border space-y-6">
-                <h3 class="text-xl font-semibold text-white tracking-widest text-center md:text-left">
+                <h3 id="schedule-title" class="text-xl font-semibold text-white tracking-widest text-center md:text-left">
                     每週修煉行事曆 (社課時間)
                 </h3>
-                
+
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm text-cloud border-collapse">
                         <thead>
@@ -502,7 +414,7 @@
                                 <th class="pb-3 tracking-widest">道場處所</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-white/5">
+                        <tbody id="schedule-body" class="divide-y divide-white/5">
                             <tr class="hover:bg-white/[0.02] transition-colors">
                                 <td class="py-4 font-medium text-white">每週二 19:00 - 21:00</td>
                                 <td class="py-4">基礎吐納與華陀導引氣功</td>
@@ -523,7 +435,7 @@
                 </div>
 
                 <div class="bg-pine/10 p-4 rounded border border-pine/30 text-xs text-pine-light leading-relaxed">
-                    <strong>道門提點：</strong> 本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。
+                    <strong>道門提點：</strong> <span id="schedule-note">本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。</span>
                 </div>
             </div>
 
@@ -532,33 +444,29 @@
 
     <!-- 頁尾宣告 -->
     <footer class="bg-ink-deep border-t border-white/5 py-8 text-center text-xs text-cloud/40 tracking-widest">
-        <p>© 2026 國立政治大學太極社 NCCU Tai Chi Club. 凡塵無憂，唯道是從。</p>
-        <p class="mt-2 text-[10px] text-bronze/30">指南天光，水墨太極。本頁面已啟用隨緣修行設定。</p>
+        <p id="footer-copyright">© 2026 國立政治大學太極社 NCCU Tai Chi Club. 凡塵無憂，唯道是從。</p>
+        <p id="footer-sub" class="mt-2 text-[10px] text-bronze/30">指南天光，水墨太極。本頁面已啟用隨緣修行設定。</p>
     </footer>
 
     <!-- Tab 切換動態邏輯 -->
     <script>
         function switchTab(tabId) {
-            // 隱藏所有 tab 內容
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => {
                 content.classList.add('hidden');
             });
 
-            // 移除所有按鈕的啟用樣式
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('bg-pine', 'text-white', 'border-bronze');
                 btn.classList.add('border-white/5', 'text-cloud');
             });
 
-            // 顯示目前點擊的 tab 內容
             const activeContent = document.getElementById(`content-${tabId}`);
             if (activeContent) {
                 activeContent.classList.remove('hidden');
             }
 
-            // 啟用點擊按鈕的樣式
             const activeBtn = document.getElementById(`tab-${tabId}`);
             if (activeBtn) {
                 activeBtn.classList.remove('border-white/5', 'text-cloud');
@@ -566,20 +474,188 @@
             }
         }
     </script>
-    
-<!-- 串接首頁後台資料的 JavaScript -->
+
+    <!-- 串接後台資料的 JavaScript：讀取 data/home.json 並填入整個首頁 -->
     <script>
+        function setText(id, value) {
+            const el = document.getElementById(id);
+            if (el && value !== undefined && value !== null) el.innerText = value;
+        }
+        function setTextAll(className, value) {
+            if (value === undefined || value === null) return;
+            document.querySelectorAll('.' + className).forEach(el => el.innerText = value);
+        }
+
+        // 初始化 Hero 照片輪播：images 是一個陣列 (array，也就是清單)，每一筆是 {image, alt}
+        function initHeroCarousel(images) {
+            const container = document.getElementById('hero-carousel');
+            const dotsContainer = document.getElementById('hero-carousel-dots');
+            if (!container || !dotsContainer || !Array.isArray(images) || images.length === 0) return;
+
+            // 迴圈 (loop)：陣列裡有幾張圖片，就重複執行「建立一個圖層」這件事幾次
+            images.forEach((img, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'absolute inset-0 bg-cover bg-center transition-opacity duration-1000';
+                slide.style.backgroundImage = `url('${img.image}')`;
+                slide.style.opacity = i === 0 ? '1' : '0';
+                if (img.alt) slide.setAttribute('aria-label', img.alt);
+                container.appendChild(slide);
+
+                const dot = document.createElement('button');
+                dot.className = 'w-2 h-2 rounded-full transition-colors ' + (i === 0 ? 'bg-bronze' : 'bg-white/40');
+                dot.addEventListener('click', () => showSlide(i));
+                dotsContainer.appendChild(dot);
+            });
+
+            const slides = container.children;
+            const dots = dotsContainer.children;
+            let current = 0;
+
+            function showSlide(index) {
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.opacity = i === index ? '1' : '0';
+                    dots[i].classList.toggle('bg-bronze', i === index);
+                    dots[i].classList.toggle('bg-white/40', i !== index);
+                }
+                current = index;
+            }
+
+            // 每 5 秒 (5000 毫秒) 自動切換到下一張圖片，超過最後一張就跳回第一張
+            if (images.length > 1) {
+                setInterval(() => showSlide((current + 1) % slides.length), 5000);
+            }
+        }
+
         fetch('data/home.json')
             .then(response => response.json())
             .then(data => {
-                // 請確認你的 index.html 裡面有給這些標籤對應的 id
-                // 例如： <p id="dynamic-slogan"></p> 和 <p id="dynamic-intro"></p>
-                const sloganEl = document.getElementById('dynamic-slogan');
-                const introEl = document.getElementById('dynamic-intro');
-                
-                if(sloganEl) sloganEl.innerText = data.slogan;
-                if(introEl) introEl.innerText = data.intro;
-            });
+                // 導覽列
+                if (data.nav) {
+                    setText('nav-badge', data.nav.badge);
+                    setText('nav-brand', data.nav.brand);
+                    if (data.nav.brand_sub) setText('nav-brand-sub', '| ' + data.nav.brand_sub);
+                    setTextAll('nav-link-home', data.nav.link_home);
+                    setTextAll('nav-link-method', data.nav.link_method);
+                    setTextAll('nav-link-calendar', data.nav.link_calendar);
+                }
+
+                // Hero：文字改成照片輪播
+                if (data.hero) {
+                    initHeroCarousel(data.hero.carousel);
+                    setText('hero-btn-methods', data.hero.btn_methods);
+                    setText('hero-btn-contact', data.hero.btn_contact);
+                }
+
+                // 四大法門 - 區塊標題
+                if (data.methods_section) {
+                    setText('methods-eyebrow', data.methods_section.eyebrow);
+                    setText('methods-title', data.methods_section.title);
+                    setText('methods-desc', data.methods_section.desc);
+                }
+
+                // 四大法門 - 內容（依 id 對應到既有的四個固定區塊）
+                if (Array.isArray(data.methods)) {
+                    data.methods.forEach(m => {
+                        setText(`tab-${m.id}-label`, m.tab_label);
+                        setText(`content-${m.id}-tag`, m.tag);
+                        setText(`content-${m.id}-title`, m.title);
+                        setText(`content-${m.id}-quote`, m.quote);
+                        setText(`content-${m.id}-desc`, m.desc);
+                        setText(`content-${m.id}-difficulty`, m.difficulty);
+                    });
+                }
+
+                // 紅塵歷練 - 區塊標題
+                if (data.experience_section) {
+                    setText('exp-eyebrow', data.experience_section.eyebrow);
+                    setText('exp-title', data.experience_section.title);
+                    setText('exp-desc', data.experience_section.desc);
+                }
+
+                // 紅塵歷練 - 卡片：用迴圈依照後台資料筆數動態產生 DOM，數量可自由增減
+                if (Array.isArray(data.experiences)) {
+                    const expContainer = document.getElementById('experience-cards');
+                    if (expContainer) {
+                        expContainer.innerHTML = ''; // 先清空，避免重複
+                        data.experiences.forEach(e => {
+                            const card = document.createElement('div');
+                            card.className = 'bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4';
+                            card.innerHTML = `
+                                <div class="text-bronze text-3xl font-light"></div>
+                                <h3 class="text-xl font-medium text-white tracking-widest"></h3>
+                                <p class="text-xs text-pine-light tracking-widest font-semibold"></p>
+                                <p class="text-sm text-cloud/80 leading-relaxed"></p>
+                            `;
+                            card.children[0].innerText = e.roman || '';
+                            card.children[1].innerText = e.title || '';
+                            card.children[2].innerText = e.subtitle || '';
+                            card.children[3].innerText = e.desc || '';
+                            expContainer.appendChild(card);
+                        });
+                    }
+                }
+
+                // 道傳寰宇
+                if (data.global_section) {
+                    setText('global-eyebrow', data.global_section.eyebrow);
+                    setText('global-section-title', data.global_section.title);
+                    setText('global-section-desc', data.global_section.desc);
+                }
+                if (data.global) {
+                    setText('global-title', data.global.title);
+                    setText('global-para1', data.global.para1);
+                    setText('global-para2', data.global.para2);
+                    setText('global-quote', data.global.quote);
+                }
+
+                // 尋訪仙蹤
+                if (data.contact_section) {
+                    setText('contact-eyebrow', data.contact_section.eyebrow);
+                    setText('contact-title', data.contact_section.title);
+                    setText('contact-intro', data.contact_section.intro);
+                }
+                if (data.contact) {
+                    setText('contact-location-label', data.contact.location_label);
+                    setText('contact-location-value', data.contact.location_value);
+                    setText('contact-email-label', data.contact.email_label);
+                    setText('contact-email-value', data.contact.email_value);
+                    setText('contact-social-label', data.contact.social_label);
+                    setText('contact-social-value', data.contact.social_value);
+                    setText('contact-footer-quote', data.contact.footer_quote);
+                }
+
+                // 行事曆表格（整段重新產生列）
+                if (data.schedule) {
+                    setText('schedule-title', data.schedule.title);
+                    setText('schedule-note', data.schedule.note);
+                    if (Array.isArray(data.schedule.rows)) {
+                        const tbody = document.getElementById('schedule-body');
+                        if (tbody) {
+                            tbody.innerHTML = '';
+                            data.schedule.rows.forEach(row => {
+                                const tr = document.createElement('tr');
+                                tr.className = 'hover:bg-white/[0.02] transition-colors';
+                                tr.innerHTML = `
+                                    <td class="py-4 font-medium text-white"></td>
+                                    <td class="py-4"></td>
+                                    <td class="py-4 text-xs"></td>
+                                `;
+                                tr.children[0].innerText = row.time || '';
+                                tr.children[1].innerText = row.content || '';
+                                tr.children[2].innerText = row.location || '';
+                                tbody.appendChild(tr);
+                            });
+                        }
+                    }
+                }
+
+                // 頁尾
+                if (data.footer) {
+                    setText('footer-copyright', data.footer.copyright);
+                    setText('footer-sub', data.footer.sub);
+                }
+            })
+            .catch(err => console.error('讀取 data/home.json 失敗：', err));
     </script>
 </body>
 </html>
