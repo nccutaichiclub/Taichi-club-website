@@ -151,16 +151,16 @@
         <!-- 動態分頁頁籤 (Tabs) -->
         <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
             <button onclick="switchTab('qigong')" id="tab-qigong" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-bronze bg-pine text-white">
-                <span id="tab-qigong-label">華陀導引氣功</span>
+                <span id="tab-qigong-label" class="truncate max-w-[6rem] inline-block align-middle">華陀導引氣功</span>
             </button>
             <button onclick="switchTab('taichi')" id="tab-taichi" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                <span id="tab-taichi-label">太極拳</span>
+                <span id="tab-taichi-label" class="truncate max-w-[6rem] inline-block align-middle">太極拳</span>
             </button>
             <button onclick="switchTab('staff')" id="tab-staff" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                <span id="tab-staff-label">太祖棍</span>
+                <span id="tab-staff-label" class="truncate max-w-[6rem] inline-block align-middle">太祖棍</span>
             </button>
             <button onclick="switchTab('sword')" id="tab-sword" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                <span id="tab-sword-label">太極劍</span>
+                <span id="tab-sword-label" class="truncate max-w-[6rem] inline-block align-middle">太極劍</span>
             </button>
         </div>
 
@@ -170,16 +170,16 @@
             <!-- 1. 華陀導引氣功 -->
             <div id="content-qigong" class="tab-content grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-5 space-y-6">
-                    <span id="content-qigong-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold">內功心法 ． 吐納歸真</span>
-                    <h3 id="content-qigong-title" class="text-2xl font-semibold text-white tracking-widest">華陀導引氣功</h3>
-                    <p id="content-qigong-quote" class="text-sm leading-relaxed text-bronze-light italic">
+                    <span id="content-qigong-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">內功心法 ． 吐納歸真</span>
+                    <h3 id="content-qigong-title" class="text-2xl font-semibold text-white tracking-widest truncate">華陀導引氣功</h3>
+                    <p id="content-qigong-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
                         「運先天之炁，化五穀之精，以調身心、延壽命也。」
                     </p>
-                    <p id="content-qigong-desc" class="text-sm leading-relaxed text-cloud/90">
+                    <p id="content-qigong-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-6">
                         引導吐納，疏通十二經絡。適合長期熬夜、為課業瑣事精神內耗的大學學子。無須繁複招式，只需靜心專注於一呼一吸，在沉靜中感受體內生生不息之炁。
                     </p>
                     <div class="pt-2">
-                        <span id="content-qigong-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：入門</span>
+                        <span id="content-qigong-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：入門</span>
                     </div>
                 </div>
                 <div class="md:col-span-7">
@@ -196,16 +196,16 @@
             <!-- 2. 太極拳 (預設隱藏) -->
             <div id="content-taichi" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-5 space-y-6">
-                    <span id="content-taichi-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold">動靜觀心 ． 借力化勁</span>
-                    <h3 id="content-taichi-title" class="text-2xl font-semibold text-white tracking-widest">太極拳</h3>
-                    <p id="content-taichi-quote" class="text-sm leading-relaxed text-bronze-light italic">
+                    <span id="content-taichi-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">動靜觀心 ． 借力化勁</span>
+                    <h3 id="content-taichi-title" class="text-2xl font-semibold text-white tracking-widest truncate">太極拳</h3>
+                    <p id="content-taichi-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
                         「動靜相兼，以柔克剛，先化而發，方能以四兩撥千金。」
                     </p>
-                    <p id="content-taichi-desc" class="text-sm leading-relaxed text-cloud/90">
+                    <p id="content-taichi-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-6">
                         不與風爭強，不與水奪流。太極拳非防身格鬥之悍術，而是與自身重力、自然定律共處的和諧律動。一式一動皆在磨練定力，讓浮躁的心沉澱，感受圓融之美。
                     </p>
                     <div class="pt-2">
-                        <span id="content-taichi-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：中等</span>
+                        <span id="content-taichi-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：中等</span>
                     </div>
                 </div>
                 <div class="md:col-span-7">
@@ -222,16 +222,16 @@
             <!-- 3. 太祖棍 (預設隱藏) -->
             <div id="content-staff" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-5 space-y-6">
-                    <span id="content-staff-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold">借物修身 ． 身棍合一</span>
-                    <h3 id="content-staff-title" class="text-2xl font-semibold text-white tracking-widest">太祖棍</h3>
-                    <p id="content-staff-quote" class="text-sm leading-relaxed text-bronze-light italic">
+                    <span id="content-staff-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">借物修身 ． 身棍合一</span>
+                    <h3 id="content-staff-title" class="text-2xl font-semibold text-white tracking-widest truncate">太祖棍</h3>
+                    <p id="content-staff-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
                         「借物修身，身棍合一。腰、棍、腳俱為一體。」
                     </p>
-                    <p id="content-staff-desc" class="text-sm leading-relaxed text-cloud/90">
+                    <p id="content-staff-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-6">
                         長兵之祖，勢如破竹。太祖棍旨在訓練脊椎旋轉之核心爆發力，使手、足、身、步協調一致。棍身舞動之際，非唯破敵，實乃掃除心中雜念與懈怠。
                     </p>
                     <div class="pt-2">
-                        <span id="content-staff-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：進階</span>
+                        <span id="content-staff-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：進階</span>
                     </div>
                 </div>
                 <div class="md:col-span-7">
@@ -248,16 +248,16 @@
             <!-- 4. 太極劍 (預設隱藏) -->
             <div id="content-sword" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-5 space-y-6">
-                    <span id="content-sword-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold">形神俱妙 ． 劍行行雲</span>
-                    <h3 id="content-sword-title" class="text-2xl font-semibold text-white tracking-widest">太極劍</h3>
-                    <p id="content-sword-quote" class="text-sm leading-relaxed text-bronze-light italic">
+                    <span id="content-sword-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">形神俱妙 ． 劍行行雲</span>
+                    <h3 id="content-sword-title" class="text-2xl font-semibold text-white tracking-widest truncate">太極劍</h3>
+                    <p id="content-sword-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
                         「以意御劍，瀟灑飄逸，形神俱妙而不失其防身之效。」
                     </p>
-                    <p id="content-sword-desc" class="text-sm leading-relaxed text-cloud/90">
+                    <p id="content-sword-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-6">
                         劍隨身走，瀟灑似風。太極劍要求神態飄逸、步法靈動，非純剛猛，而以圓轉輕靈取勝。劍尖所指，皆是太極圓圈之化境，令身心如行雲流水，自在自得。
                     </p>
                     <div class="pt-2">
-                        <span id="content-sword-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light">修煉難度：高階</span>
+                        <span id="content-sword-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：高階</span>
                     </div>
                 </div>
                 <div class="md:col-span-7">
@@ -581,10 +581,10 @@
                             const card = document.createElement('div');
                             card.className = 'bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4';
                             card.innerHTML = `
-                                <div class="text-bronze text-3xl font-light"></div>
-                                <h3 class="text-xl font-medium text-white tracking-widest"></h3>
-                                <p class="text-xs text-pine-light tracking-widest font-semibold"></p>
-                                <p class="text-sm text-cloud/80 leading-relaxed"></p>
+                                <div class="text-bronze text-3xl font-light truncate"></div>
+                                <h3 class="text-xl font-medium text-white tracking-widest truncate"></h3>
+                                <p class="text-xs text-pine-light tracking-widest font-semibold truncate"></p>
+                                <p class="text-sm text-cloud/80 leading-relaxed line-clamp-4"></p>
                             `;
                             card.children[0].innerText = e.roman || '';
                             card.children[1].innerText = e.title || '';
