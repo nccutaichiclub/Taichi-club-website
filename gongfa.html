@@ -1,177 +1,159 @@
-backend:
-  name: github
-  repo: nccutaichiclub/Taichi-club-website
-  branch: main
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>法門深造｜政大太極社</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #5C9A6C; /* 將綠色稍微調亮，增加對比度 */ --古銅金: #C5A059; --仙氣白: #E5E5E5;
+        }
+        body { background-color: var(--玄色); color: var(--仙氣白); font-family: 'Noto Serif TC', serif; margin: 0; line-by-line: 1.8; }
+        .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
+        h1 { color: var(--古銅金); text-align: center; letter-spacing: 4px; font-size: 2.2rem; }
+        .subtitle { text-align: center; color: var(--霧霾灰); font-style: italic; margin-bottom: 60px; font-size: 0.95rem; }
 
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
+        .gongfa-detail {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(160, 160, 160, 0.15);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-collections:
-  - name: "home_settings"
-    label: "🏠 首頁主殿管理"
-    files:
-      - file: "data/home.json"
-        label: "編輯首頁全部文字"
-        name: "home"
-        fields:
-          - label: "頂部導覽列"
-            name: "nav"
-            widget: "object"
-            fields:
-              - { label: "角標文字 (如:政大)", name: "badge", widget: "string", hint: "建議 4 字以內，超過會擠到旁邊的社團名稱", pattern: ['^.{1,4}$', '請控制在 4 字以內'] }
-              - { label: "社團名稱", name: "brand", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
-              - { label: "副標 (如:隱逸道場)", name: "brand_sub", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
-              - { label: "選單-首頁", name: "link_home", widget: "string", hint: "建議 6 字以內，避免手機版選單跑版", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
-              - { label: "選單-法門深造", name: "link_method", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
-              - { label: "選單-修煉日程", name: "link_calendar", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+        /* 修復後的標題樣式 */
+        .gongfa-detail h2 {
+            color: var(--松柏綠);
+            background-color: rgba(160, 160, 160, 0.15); /* 霧霾灰底框 */
+            display: inline-block; /* 讓框隨文字長度縮放 */
+            padding: 10px 18px; /* 內部留白 */
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--古銅金);
+            border-right: 4px solid var(--古銅金);
+        }
 
-          - label: "Hero 主視覺區"
-            name: "hero"
-            widget: "object"
-            fields:
-              - label: "輪播圖片"
-                name: "carousel"
-                widget: "list"
-                min: 1
-                summary: "{{fields.alt}}"
-                fields:
-                  - { label: "圖片", name: "image", widget: "image", hint: "建議使用橫式(寬>高)、至少 1600px 寬的照片，避免手機版放大後模糊" }
-                  - { label: "圖片說明 (畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
-              - { label: "按鈕-窺探法門", name: "btn_methods", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
-              - { label: "按鈕-結緣問道", name: "btn_contact", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+        /* 內文段落間距：文字現在會被自動包成一段一段的 <p>，這裡統一控制段落間的留白 */
+        .gongfa-text p {
+            margin: 0 0 16px 0;
+        }
+        .gongfa-text p:last-child {
+            margin-bottom: 0;
+        }
 
-          - label: "四大法門 - 區塊標題"
-            name: "methods_section"
-            widget: "object"
-            fields:
-              - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
-              - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
-              - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內，一行內顯示完畢較美觀" }
+        /* 影片預留區樣式 */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #1A1A1A; border: 1px solid #333; }
+        .video-placeholder { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--霧霾灰); }
+        .video-placeholder i { font-size: 2rem; margin-bottom: 10px; color: var(--古銅金); }
+    </style>
+</head>
+<body>
 
-          - label: "四大法門 - 內容"
-            name: "methods"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - { label: "法門代號 (勿隨意更改, 對應網頁程式碼)", name: "id", widget: "select", options: ["qigong", "taichi", "staff", "sword"] }
-              - { label: "頁籤按鈕文字", name: "tab_label", widget: "string", hint: "建議 8 字以內，太長按鈕會被擠壓變形", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
-              - { label: "小標籤 (如:內功心法．吐納歸真)", name: "tag", widget: "string", hint: "建議 14 字以內", pattern: ['^.{1,14}$', '請控制在 14 字以內'] }
-              - { label: "法門標題", name: "title", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
-              - { label: "引言", name: "quote", widget: "string", hint: "建議 40 字以內，太長會佔用太多版面" }
-              - { label: "詳細說明", name: "desc", widget: "text", hint: "建議 120 字以內，超過會被自動截斷顯示" }
-              - { label: "難度標示", name: "difficulty", widget: "string", hint: "建議 10 字以內，例如「修煉難度：入門」", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+    <!-- 跨頁面導覽列：文字內容改由 data/home.json 的 nav 欄位統一控管，
+         這樣你在後台「首頁主殿管理」改一次選單文字，全站每一頁都會一起更新，不用每頁分開改 -->
+    <nav style="background: rgba(18, 18, 18, 0.95); border-bottom: 1px solid #2A2A2A; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(5px);">
+        <a href="index.html" id="nav-link-home" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">首頁主殿</a>
+        <a href="gongfa.html" id="nav-link-method" style="color: var(--古銅金); text-decoration: none; margin: 0 20px; letter-spacing: 2px; font-weight: bold;">法門深造</a>
+        <a href="calendar.html" id="nav-link-calendar" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">修煉日程</a>
+    </nav>
 
-          - label: "紅塵歷練 - 區塊標題"
-            name: "experience_section"
-            widget: "object"
-            fields:
-              - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
-              - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
-              - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
+    <div class="container">
+        <h1 id="page-title">四大法門深探</h1>
+        <div class="subtitle" id="page-subtitle">「由淺入深，由動入靜。此處記載本門核心武學之微言大義與演武示範。」</div>
 
-          - label: "紅塵歷練 - 卡片列表 (可自由新增/刪除/排序)"
-            name: "experiences"
-            widget: "list"
-            min: 1
-            summary: "{{fields.title}}"
-            fields:
-              - { label: "編號 (壹/貳/參/肆...)", name: "roman", widget: "string", hint: "建議 1-2 字", pattern: ['^.{1,2}$', '請控制在 2 字以內'] }
-              - { label: "卡片標題", name: "title", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
-              - { label: "卡片副標", name: "subtitle", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
-              - { label: "說明文字", name: "desc", widget: "text", hint: "建議 90 字以內，超過會被自動截斷顯示，4 張卡片高度才能對齊" }
+       <!-- 動態功法載入區塊 -->
+        <div id="gongfa-container">
+            <div style="text-align:center; color:var(--霧霾灰);">正在翻閱藏經閣，載入法門中...</div>
+        </div>
 
-          - label: "道傳寰宇 - 區塊標題"
-            name: "global_section"
-            widget: "object"
-            fields:
-              - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
-              - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
-              - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
+        <!-- 串接後台資料的 JavaScript -->
+        <script>
+            // 把後台填的「純文字」自動轉成一段一段的 <p>：
+            // 空一行 = 分段；段落內單純換行 = 換行(<br>)。
+            // 這樣後台不用寫任何 HTML 標籤，打字習慣照打就好。
+            function paragraphize(text) {
+                if (!text) return '';
+                return text
+                    .split(/\n\s*\n/)
+                    .map(p => `<p>${p.trim().replace(/\n/g, '<br>')}</p>`)
+                    .join('');
+            }
 
-          - label: "道傳寰宇 - 內容"
-            name: "global"
-            widget: "object"
-            fields:
-              - { label: "小標題", name: "title", widget: "string", hint: "建議 14 字以內", pattern: ['^.{1,14}$', '請控制在 14 字以內'] }
-              - { label: "段落一", name: "para1", widget: "text", hint: "建議 80 字以內" }
-              - { label: "段落二", name: "para2", widget: "text", hint: "建議 100 字以內" }
-              - { label: "引言", name: "quote", widget: "string", hint: "建議 30 字以內" }
+            // 從各種常見的 YouTube 網址格式（分享連結、短網址、embed 連結）擷取出影片 ID
+            function extractYouTubeId(url) {
+                if (!url) return null;
+                const patterns = [
+                    /youtube\.com\/watch\?v=([\w-]{11})/,
+                    /youtu\.be\/([\w-]{11})/,
+                    /youtube\.com\/embed\/([\w-]{11})/
+                ];
+                for (const pattern of patterns) {
+                    const match = url.match(pattern);
+                    if (match) return match[1];
+                }
+                return null;
+            }
 
-          - label: "尋訪仙蹤 - 聯絡資訊"
-            name: "contact_section"
-            widget: "object"
-            fields:
-              - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
-              - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
-              - { label: "簡介文字", name: "intro", widget: "text", hint: "建議 60 字以內" }
+            // 導覽列文字：讀取 data/home.json 的 nav 設定，跟首頁共用同一份資料
+            fetch('data/home.json')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.nav) return;
+                    const homeLink = document.getElementById('nav-link-home');
+                    const methodLink = document.getElementById('nav-link-method');
+                    const calendarLink = document.getElementById('nav-link-calendar');
+                    if (homeLink && data.nav.link_home) homeLink.innerText = data.nav.link_home;
+                    if (methodLink && data.nav.link_method) methodLink.innerText = data.nav.link_method;
+                    if (calendarLink && data.nav.link_calendar) calendarLink.innerText = data.nav.link_calendar;
+                })
+                .catch(error => console.error('讀取 data/home.json 失敗：', error));
 
-          - label: "尋訪仙蹤 - 詳細內容"
-            name: "contact"
-            widget: "object"
-            fields:
-              - { label: "道場位置標籤", name: "location_label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
-              - { label: "道場位置內容", name: "location_value", widget: "string", hint: "建議 30 字以內" }
-              - { label: "問道法郵標籤", name: "email_label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
-              - { label: "問道法郵內容", name: "email_value", widget: "string" }
-              - { label: "仙界傳音標籤", name: "social_label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
-              - { label: "仙界傳音內容", name: "social_value", widget: "string" }
-              - { label: "頁尾小語", name: "footer_quote", widget: "text", hint: "建議 60 字以內" }
+            // 本頁主要內容：讀取 data/gongfa.json
+            fetch('data/gongfa.json')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.page_title) {
+                        document.getElementById('page-title').innerText = data.page_title;
+                    }
+                    if (data.page_subtitle) {
+                        document.getElementById('page-subtitle').innerText = data.page_subtitle;
+                    }
 
-          - label: "每週修煉行事曆"
-            name: "schedule"
-            widget: "object"
-            fields:
-              - { label: "表格標題", name: "title", widget: "string", hint: "建議 20 字以內" }
-              - label: "課表列表"
-                name: "rows"
-                widget: "list"
-                summary: "{{fields.time}} - {{fields.content}}"
-                fields:
-                  - { label: "修行時辰", name: "time", widget: "string", hint: "建議 14 字以內，太長表格會被壓縮" }
-                  - { label: "修煉法門", name: "content", widget: "string", hint: "建議 20 字以內" }
-                  - { label: "道場處所", name: "location", widget: "string", hint: "建議 16 字以內" }
-              - { label: "道門提點文字", name: "note", widget: "text", hint: "建議 80 字以內" }
+                    const container = document.getElementById('gongfa-container');
+                    container.innerHTML = '';
 
-          - label: "頁尾"
-            name: "footer"
-            widget: "object"
-            fields:
-              - { label: "版權文字", name: "copyright", widget: "string", hint: "建議 60 字以內" }
-              - { label: "小字標語", name: "sub", widget: "string", hint: "建議 30 字以內" }
+                    (data.methods || []).forEach(method => {
+                        const videoId = extractYouTubeId(method.video_url);
+                        const videoContent = videoId
+                            ? `<iframe src="https://www.youtube.com/embed/${videoId}" title="${method.title}"
+                                   style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                   allowfullscreen></iframe>`
+                            : `<div class="video-placeholder">
+                                   <span>☯️ 功法招式演練．影像準備中 ☯️</span>
+                               </div>`;
 
-  - name: "gongfa_settings"
-    label: "🥋 法門深造頁管理"
-    files:
-      - file: "data/gongfa.json"
-        label: "編輯法門深造內容"
-        name: "gongfa"
-        fields:
-          - { label: "頁面主標題", name: "page_title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
-          - { label: "頁面引言 / 副標", name: "page_subtitle", widget: "string", hint: "建議 50 字以內" }
-          - label: "法門詳解列表 (可自由新增/刪除/排序)"
-            name: "methods"
-            widget: "list"
-            min: 1
-            summary: "{{fields.title}}"
-            fields:
-              - { label: "法門標題", name: "title", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
-              - { label: "詳細內容", name: "desc", widget: "text", hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段" }
-              - { label: "YouTube 影片網址 (選填)", name: "video_url", widget: "string", required: false, hint: "直接貼上完整的 YouTube 影片網址即可 (例如 https://www.youtube.com/watch?v=xxxxxxx)，留空則畫面顯示「準備中」提示" }
+                        const methodHTML = `
+                            <div class="gongfa-detail">
+                                <h2>${method.title}</h2>
+                                <div class="gongfa-text">${paragraphize(method.desc)}</div>
+                                <div class="video-container">
+                                    ${videoContent}
+                                </div>
+                            </div>
+                        `;
+                        container.innerHTML += methodHTML;
+                    });
+                })
+                .catch(error => {
+                    document.getElementById('gongfa-container').innerHTML = '<div style="text-align:center; color:red;">藏經閣大門深鎖，載入失敗。</div>';
+                });
+        </script>
 
-  - name: "calendar_settings"
-    label: "📅 修煉行事曆管理"
-    files:
-      - file: "data/calendar.json"
-        label: "編輯活動列表"
-        name: "calendar"
-        fields:
-          - label: "行事曆活動列表"
-            name: "events"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - {label: "時節 / 週期", name: "time", widget: "string"}
-              - {label: "活動類型 (如:常課/歷練)", name: "type", widget: "string"}
-              - {label: "活動標題", name: "title", widget: "string"}
-              - {label: "詳細說明", name: "desc", widget: "text"}
-              - {label: "修煉據點", name: "location", widget: "string"}
+    </div>
+
+</body>
+</html>
