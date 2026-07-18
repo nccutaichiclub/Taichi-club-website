@@ -18,12 +18,12 @@ collections:
             name: "nav"
             widget: "object"
             fields:
-              - { label: "角標文字 (如:政大)", name: "badge", widget: "string" }
-              - { label: "社團名稱", name: "brand", widget: "string" }
-              - { label: "副標 (如:隱逸道場)", name: "brand_sub", widget: "string" }
-              - { label: "選單-首頁", name: "link_home", widget: "string" }
-              - { label: "選單-法門深造", name: "link_method", widget: "string" }
-              - { label: "選單-修煉日程", name: "link_calendar", widget: "string" }
+              - { label: "角標文字 (如:政大)", name: "badge", widget: "string", hint: "建議 4 字以內，超過會擠到旁邊的社團名稱", pattern: ['^.{1,4}$', '請控制在 4 字以內'] }
+              - { label: "社團名稱", name: "brand", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "副標 (如:隱逸道場)", name: "brand_sub", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "選單-首頁", name: "link_home", widget: "string", hint: "建議 6 字以內，避免手機版選單跑版", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "選單-法門深造", name: "link_method", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "選單-修煉日程", name: "link_calendar", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
 
           - label: "Hero 主視覺區"
             name: "hero"
@@ -33,107 +33,111 @@ collections:
                 name: "carousel"
                 widget: "list"
                 min: 1
+                summary: "{{fields.alt}}"
                 fields:
-                  - { label: "圖片", name: "image", widget: "image" }
+                  - { label: "圖片", name: "image", widget: "image", hint: "建議使用橫式(寬>高)、至少 1600px 寬的照片，避免手機版放大後模糊" }
                   - { label: "圖片說明 (畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
-              - { label: "按鈕-窺探法門", name: "btn_methods", widget: "string" }
-              - { label: "按鈕-結緣問道", name: "btn_contact", widget: "string" }
+              - { label: "按鈕-窺探法門", name: "btn_methods", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "按鈕-結緣問道", name: "btn_contact", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
 
           - label: "四大法門 - 區塊標題"
             name: "methods_section"
             widget: "object"
             fields:
-              - { label: "英文小標", name: "eyebrow", widget: "string" }
-              - { label: "區塊標題", name: "title", widget: "string" }
-              - { label: "區塊說明", name: "desc", widget: "string" }
+              - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內，一行內顯示完畢較美觀" }
 
           - label: "四大法門 - 內容"
             name: "methods"
             widget: "list"
+            summary: "{{fields.title}}"
             fields:
               - { label: "法門代號 (勿隨意更改, 對應網頁程式碼)", name: "id", widget: "select", options: ["qigong", "taichi", "staff", "sword"] }
-              - { label: "頁籤按鈕文字", name: "tab_label", widget: "string" }
-              - { label: "小標籤 (如:內功心法．吐納歸真)", name: "tag", widget: "string" }
-              - { label: "法門標題", name: "title", widget: "string" }
-              - { label: "引言", name: "quote", widget: "string" }
-              - { label: "詳細說明", name: "desc", widget: "text" }
-              - { label: "難度標示", name: "difficulty", widget: "string" }
+              - { label: "頁籤按鈕文字", name: "tab_label", widget: "string", hint: "建議 8 字以內，太長按鈕會被擠壓變形", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "小標籤 (如:內功心法．吐納歸真)", name: "tag", widget: "string", hint: "建議 14 字以內", pattern: ['^.{1,14}$', '請控制在 14 字以內'] }
+              - { label: "法門標題", name: "title", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "引言", name: "quote", widget: "string", hint: "建議 40 字以內，太長會佔用太多版面" }
+              - { label: "詳細說明", name: "desc", widget: "text", hint: "建議 120 字以內，超過會被自動截斷顯示" }
+              - { label: "難度標示", name: "difficulty", widget: "string", hint: "建議 10 字以內，例如「修煉難度：入門」", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
 
           - label: "紅塵歷練 - 區塊標題"
             name: "experience_section"
             widget: "object"
             fields:
-              - { label: "英文小標", name: "eyebrow", widget: "string" }
-              - { label: "區塊標題", name: "title", widget: "string" }
-              - { label: "區塊說明", name: "desc", widget: "string" }
+              - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
 
           - label: "紅塵歷練 - 卡片列表 (可自由新增/刪除/排序)"
             name: "experiences"
             widget: "list"
             min: 1
+            summary: "{{fields.title}}"
             fields:
-              - { label: "編號 (壹/貳/參/肆...)", name: "roman", widget: "string" }
-              - { label: "卡片標題", name: "title", widget: "string" }
-              - { label: "卡片副標", name: "subtitle", widget: "string" }
-              - { label: "說明文字", name: "desc", widget: "text" }
+              - { label: "編號 (壹/貳/參/肆...)", name: "roman", widget: "string", hint: "建議 1-2 字", pattern: ['^.{1,2}$', '請控制在 2 字以內'] }
+              - { label: "卡片標題", name: "title", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "卡片副標", name: "subtitle", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "說明文字", name: "desc", widget: "text", hint: "建議 90 字以內，超過會被自動截斷顯示，4 張卡片高度才能對齊" }
 
           - label: "道傳寰宇 - 區塊標題"
             name: "global_section"
             widget: "object"
             fields:
-              - { label: "英文小標", name: "eyebrow", widget: "string" }
-              - { label: "區塊標題", name: "title", widget: "string" }
-              - { label: "區塊說明", name: "desc", widget: "string" }
+              - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
 
           - label: "道傳寰宇 - 內容"
             name: "global"
             widget: "object"
             fields:
-              - { label: "小標題", name: "title", widget: "string" }
-              - { label: "段落一", name: "para1", widget: "text" }
-              - { label: "段落二", name: "para2", widget: "text" }
-              - { label: "引言", name: "quote", widget: "string" }
+              - { label: "小標題", name: "title", widget: "string", hint: "建議 14 字以內", pattern: ['^.{1,14}$', '請控制在 14 字以內'] }
+              - { label: "段落一", name: "para1", widget: "text", hint: "建議 80 字以內" }
+              - { label: "段落二", name: "para2", widget: "text", hint: "建議 100 字以內" }
+              - { label: "引言", name: "quote", widget: "string", hint: "建議 30 字以內" }
 
           - label: "尋訪仙蹤 - 聯絡資訊"
             name: "contact_section"
             widget: "object"
             fields:
-              - { label: "英文小標", name: "eyebrow", widget: "string" }
-              - { label: "區塊標題", name: "title", widget: "string" }
-              - { label: "簡介文字", name: "intro", widget: "text" }
+              - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "簡介文字", name: "intro", widget: "text", hint: "建議 60 字以內" }
 
           - label: "尋訪仙蹤 - 詳細內容"
             name: "contact"
             widget: "object"
             fields:
-              - { label: "道場位置標籤", name: "location_label", widget: "string" }
-              - { label: "道場位置內容", name: "location_value", widget: "string" }
-              - { label: "問道法郵標籤", name: "email_label", widget: "string" }
+              - { label: "道場位置標籤", name: "location_label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "道場位置內容", name: "location_value", widget: "string", hint: "建議 30 字以內" }
+              - { label: "問道法郵標籤", name: "email_label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
               - { label: "問道法郵內容", name: "email_value", widget: "string" }
-              - { label: "仙界傳音標籤", name: "social_label", widget: "string" }
+              - { label: "仙界傳音標籤", name: "social_label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
               - { label: "仙界傳音內容", name: "social_value", widget: "string" }
-              - { label: "頁尾小語", name: "footer_quote", widget: "text" }
+              - { label: "頁尾小語", name: "footer_quote", widget: "text", hint: "建議 60 字以內" }
 
           - label: "每週修煉行事曆"
             name: "schedule"
             widget: "object"
             fields:
-              - { label: "表格標題", name: "title", widget: "string" }
+              - { label: "表格標題", name: "title", widget: "string", hint: "建議 20 字以內" }
               - label: "課表列表"
                 name: "rows"
                 widget: "list"
+                summary: "{{fields.time}} - {{fields.content}}"
                 fields:
-                  - { label: "修行時辰", name: "time", widget: "string" }
-                  - { label: "修煉法門", name: "content", widget: "string" }
-                  - { label: "道場處所", name: "location", widget: "string" }
-              - { label: "道門提點文字", name: "note", widget: "text" }
+                  - { label: "修行時辰", name: "time", widget: "string", hint: "建議 14 字以內，太長表格會被壓縮" }
+                  - { label: "修煉法門", name: "content", widget: "string", hint: "建議 20 字以內" }
+                  - { label: "道場處所", name: "location", widget: "string", hint: "建議 16 字以內" }
+              - { label: "道門提點文字", name: "note", widget: "text", hint: "建議 80 字以內" }
 
           - label: "頁尾"
             name: "footer"
             widget: "object"
             fields:
-              - { label: "版權文字", name: "copyright", widget: "string" }
-              - { label: "小字標語", name: "sub", widget: "string" }
+              - { label: "版權文字", name: "copyright", widget: "string", hint: "建議 60 字以內" }
+              - { label: "小字標語", name: "sub", widget: "string", hint: "建議 30 字以內" }
 
   - name: "calendar_settings"
     label: "📅 修煉行事曆管理"
@@ -145,6 +149,7 @@ collections:
           - label: "行事曆活動列表"
             name: "events"
             widget: "list"
+            summary: "{{fields.title}}"
             fields:
               - {label: "時節 / 週期", name: "time", widget: "string"}
               - {label: "活動類型 (如:常課/歷練)", name: "type", widget: "string"}
