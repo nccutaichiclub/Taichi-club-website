@@ -139,6 +139,25 @@ collections:
               - { label: "版權文字", name: "copyright", widget: "string", hint: "建議 60 字以內" }
               - { label: "小字標語", name: "sub", widget: "string", hint: "建議 30 字以內" }
 
+  - name: "gongfa_settings"
+    label: "🥋 法門深造頁管理"
+    files:
+      - file: "data/gongfa.json"
+        label: "編輯法門深造內容"
+        name: "gongfa"
+        fields:
+          - { label: "頁面主標題", name: "page_title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+          - { label: "頁面引言 / 副標", name: "page_subtitle", widget: "string", hint: "建議 50 字以內" }
+          - label: "法門詳解列表 (可自由新增/刪除/排序)"
+            name: "methods"
+            widget: "list"
+            min: 1
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "法門標題", name: "title", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "詳細內容", name: "desc", widget: "text", hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段" }
+              - { label: "YouTube 影片網址 (選填)", name: "video_url", widget: "string", required: false, hint: "直接貼上完整的 YouTube 影片網址即可 (例如 https://www.youtube.com/watch?v=xxxxxxx)，留空則畫面顯示「準備中」提示" }
+
   - name: "calendar_settings"
     label: "📅 修煉行事曆管理"
     files:
