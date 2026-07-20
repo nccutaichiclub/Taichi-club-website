@@ -9,9 +9,18 @@
   },
   "hero": {
     "carousel": [
-      { "image": "assets/uploads/hero-1.jpg", "alt": "社課練習剪影" },
-      { "image": "assets/uploads/hero-2.jpg", "alt": "社遊活動剪影" },
-      { "image": "assets/uploads/hero-3.jpg", "alt": "太極劍演練剪影" }
+      {
+        "image": "assets/uploads/hero-1.jpg",
+        "alt": "社課練習剪影"
+      },
+      {
+        "image": "assets/uploads/hero-2.jpg",
+        "alt": "社遊活動剪影"
+      },
+      {
+        "image": "assets/uploads/hero-3.jpg",
+        "alt": "太極劍演練剪影"
+      }
     ],
     "btn_methods": "窺探法門",
     "btn_contact": "結緣問道"
@@ -65,10 +74,32 @@
     "desc": "修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。"
   },
   "experiences": [
-    { "roman": "壹", "title": "寄情山水", "subtitle": "【 雲遊社遊 】", "desc": "暫別喧囂書齋，負笈出走。我們投身山嵐林海，體悟天人合一。在自然的懷抱中舒展筋骨，呼吸大地的靈炁。" },
-    { "roman": "貳", "title": "圍爐論道", "subtitle": "【 同修聚餐 】", "desc": "仙人亦需人間煙火。同修齊聚一堂，在融洽溫暖的香氣中，大口吃肉，細細品茗，暢談修煉日常與生活百態。" },
-    { "roman": "參", "title": "手藝修持", "subtitle": "【 傳統包春捲 】", "desc": "動與靜在指尖的交織。藉由親手包製傳統春捲，調和五味，考驗心靈與指尖的定力，在美味中感知傳統美學。" },
-    { "roman": "肆", "title": "歲末論劍", "subtitle": "【 期末大會 】", "desc": "一季修煉，功不唐捐。同門弟子在此分享感悟，印證所學，論功行賞，共同期許下一季的修行之途。" }
+    {
+      "roman": "壹",
+      "title": "寄情山水",
+      "subtitle": "【 雲遊社遊 】",
+      "desc": "暫別喧囂書齋，負笈出走。我們投身山嵐林海，體悟天人合一。在自然的懷抱中舒展筋骨，呼吸大地的靈炁。",
+      "background_image": "/assets/uploads/Grasslands-menggu.jpg",
+      "background_opacity": 50
+    },
+    {
+      "roman": "貳",
+      "title": "圍爐論道",
+      "subtitle": "【 同修聚餐 】",
+      "desc": "仙人亦需人間煙火。同修齊聚一堂，在融洽溫暖的香氣中，大口吃肉，細細品茗，暢談修煉日常與生活百態。"
+    },
+    {
+      "roman": "參",
+      "title": "手藝修持",
+      "subtitle": "【 傳統包春捲 】",
+      "desc": "動與靜在指尖的交織。藉由親手包製傳統春捲，調和五味，考驗心靈與指尖的定力，在美味中感知傳統美學。"
+    },
+    {
+      "roman": "肆",
+      "title": "歲末論劍",
+      "subtitle": "【 期末大會 】",
+      "desc": "一季修煉，功不唐捐。同門弟子在此分享感悟，印證所學，論功行賞，共同期許下一季的修行之途。"
+    }
   ],
   "global_section": {
     "eyebrow": "GLOBAL CONNECTION",
@@ -85,20 +116,32 @@
     "eyebrow": "VISIT THE TEMPLE",
     "title": "尋訪仙蹤",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
-    "location_label": "【道場位置】",
-    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "email_label": "【問道法郵】",
-    "email_value": "nccutaichi@email.com",
-    "social_label": "【仙界傳音】",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
     "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
+    "social_label": "【仙界傳音】",
+    "email_value": "nccutaichi@email.com",
+    "email_label": "【問道法郵】",
+    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
+    "location_label": "【道場位置】"
   },
   "schedule": {
     "title": "每週修煉行事曆 (社課時間)",
     "rows": [
-      { "time": "每週二 19:00 - 21:00", "content": "基礎吐納與華陀導引氣功", "location": "風雩樓二樓" },
-      { "time": "每週四 19:00 - 21:00", "content": "太極拳核心架構與推手", "location": "風雩樓一樓" },
-      { "time": "隔週六 09:00 - 11:30", "content": "太祖棍與太極劍兵刃修行", "location": "醉夢溪畔草坪 (雨天移室內)" }
+      {
+        "time": "每週二 19:00 - 21:00",
+        "content": "基礎吐納與華陀導引氣功",
+        "location": "風雩樓二樓"
+      },
+      {
+        "time": "每週四 19:00 - 21:00",
+        "content": "太極拳核心架構與推手",
+        "location": "風雩樓一樓"
+      },
+      {
+        "time": "隔週六 09:00 - 11:30",
+        "content": "太祖棍與太極劍兵刃修行",
+        "location": "醉夢溪畔草坪 (雨天移室內)"
+      }
     ],
     "note": "道門提點： 本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。"
   },
