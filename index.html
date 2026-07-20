@@ -579,17 +579,37 @@
                         expContainer.innerHTML = ''; // 先清空，避免重複
                         data.experiences.forEach(e => {
                             const card = document.createElement('div');
-                            card.className = 'bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4';
-                            card.innerHTML = `
+                            // 加上 relative + overflow-hidden：讓等一下要疊上去的背景圖片不會超出卡片邊框
+                            card.className = 'relative overflow-hidden bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4';
+
+                            // 如果後台有上傳背景圖片，疊一層淡化過的圖片在卡片最底層
+                            if (e.background_image) {
+                                const bg = document.createElement('div');
+                                bg.className = 'absolute inset-0 bg-cover bg-center pointer-events-none';
+                                bg.style.backgroundImage = `url('${e.background_image}')`;
+                                // 透明度 (opacity) 數值範圍是 0~1，後台存的是 0~100 的百分比數字，這裡除以 100 換算
+                                const opacityValue = (e.background_opacity !== undefined && e.background_opacity !== null)
+                                    ? e.background_opacity / 100
+                                    : 0.2;
+                                bg.style.opacity = opacityValue;
+                                card.appendChild(bg);
+                            }
+
+                            // 文字內容包在一個獨立的層，並設定 relative + z-10，確保永遠疊在背景圖片「上面」
+                            const content = document.createElement('div');
+                            content.className = 'relative z-10 space-y-4';
+                            content.innerHTML = `
                                 <div class="text-bronze text-3xl font-light truncate"></div>
                                 <h3 class="text-xl font-medium text-white tracking-widest truncate"></h3>
                                 <p class="text-xs text-pine-light tracking-widest font-semibold truncate"></p>
                                 <p class="text-sm text-cloud/80 leading-relaxed line-clamp-4"></p>
                             `;
-                            card.children[0].innerText = e.roman || '';
-                            card.children[1].innerText = e.title || '';
-                            card.children[2].innerText = e.subtitle || '';
-                            card.children[3].innerText = e.desc || '';
+                            content.children[0].innerText = e.roman || '';
+                            content.children[1].innerText = e.title || '';
+                            content.children[2].innerText = e.subtitle || '';
+                            content.children[3].innerText = e.desc || '';
+                            card.appendChild(content);
+
                             expContainer.appendChild(card);
                         });
                     }
