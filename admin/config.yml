@@ -79,6 +79,8 @@ collections:
               - { label: "卡片標題", name: "title", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
               - { label: "卡片副標", name: "subtitle", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
               - { label: "說明文字", name: "desc", widget: "text", hint: "建議 90 字以內，超過會被自動截斷顯示，4 張卡片高度才能對齊" }
+              - { label: "卡片背景圖片 (選填)", name: "background_image", widget: "image", required: false, hint: "留空則維持原本的深色卡片背景；上傳後可用下面的透明度調整淡化程度" }
+              - { label: "背景圖片透明度", name: "background_opacity", widget: "select", default: 20, options: [10, 20, 30, 40, 50, 60, 70], hint: "數字越小圖片越淡、文字越清楚好讀；數字越大圖片越明顯。建議先從 20 開始試" }
 
           - label: "道傳寰宇 - 區塊標題"
             name: "global_section"
