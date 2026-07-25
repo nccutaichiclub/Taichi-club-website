@@ -98,7 +98,8 @@
             }
 
             // 導覽列文字：讀取 data/home.json 的 nav 設定，跟首頁共用同一份資料
-            fetch('data/home.json')
+            // 網址後面加上 ?v=時間戳記，避免瀏覽器用快取的舊資料
+            fetch('data/home.json?v=' + Date.now())
                 .then(response => response.json())
                 .then(data => {
                     if (!data.nav) return;
@@ -112,7 +113,8 @@
                 .catch(error => console.error('讀取 data/home.json 失敗：', error));
 
             // 本頁主要內容：讀取 data/gongfa.json
-            fetch('data/gongfa.json')
+            // 網址後面加上 ?v=時間戳記，避免瀏覽器用快取的舊資料
+            fetch('data/gongfa.json?v=' + Date.now())
                 .then(response => response.json())
                 .then(data => {
                     if (data.page_title) {
