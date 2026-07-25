@@ -481,6 +481,14 @@
             const el = document.getElementById(id);
             if (el && value !== undefined && value !== null) el.innerText = value;
         }
+        // 圖片路徑防呆：因為本網站是放在 .../Taichi-club-website/ 這個子路徑下，
+        // 如果圖片路徑意外帶了開頭的 "/"（會被瀏覽器當成網域根目錄的絕對路徑），
+        // 這裡統一把開頭的 "/" 拿掉，改成正確的相對路徑，圖片才抓得到
+        function resolveImagePath(path) {
+            if (!path) return '';
+            return path.replace(/^\/+/, '');
+        }
+
         function setTextAll(className, value) {
             if (value === undefined || value === null) return;
             document.querySelectorAll('.' + className).forEach(el => el.innerText = value);
@@ -496,7 +504,7 @@
             images.forEach((img, i) => {
                 const slide = document.createElement('div');
                 slide.className = 'absolute inset-0 bg-cover bg-center transition-opacity duration-1000';
-                slide.style.backgroundImage = `url('${img.image}')`;
+                slide.style.backgroundImage = `url('${resolveImagePath(img.image)}')`;
                 slide.style.opacity = i === 0 ? '1' : '0';
                 if (img.alt) slide.setAttribute('aria-label', img.alt);
                 container.appendChild(slide);
@@ -587,7 +595,7 @@
                             if (e.background_image) {
                                 const bg = document.createElement('div');
                                 bg.className = 'absolute inset-0 bg-cover bg-center pointer-events-none';
-                                bg.style.backgroundImage = `url('${e.background_image}')`;
+                                bg.style.backgroundImage = `url('${resolveImagePath(e.background_image)}')`;
                                 // 透明度 (opacity) 數值範圍是 0~1，後台存的是 0~100 的百分比數字，這裡除以 100 換算
                                 const opacityValue = (e.background_opacity !== undefined && e.background_opacity !== null)
                                     ? e.background_opacity / 100
