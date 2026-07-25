@@ -1,6 +1,6 @@
 {
   "nav": {
-    "badge": "政治大學",
+    "badge": "政大",
     "brand": "太極社",
     "brand_sub": "隱逸道場",
     "link_home": "首頁主殿",
@@ -101,28 +101,114 @@
       "desc": "一季修煉，功不唐捐。同門弟子在此分享感悟，印證所學，論功行賞，共同期許下一季的修行之途。"
     }
   ],
-  "global_section": {
-    "eyebrow": "GLOBAL CONNECTION",
-    "title": "道傳寰宇",
-    "desc": "天涯咫尺，萬法歸一。前來問道的外邦同修，足跡早已遍及五洲。"
-  },
   "global": {
+    "badge_label": "道傳寰宇",
     "title": "外邦弟子的修真緣分",
     "para1": "政大太極社歷年來接待了無數自歐美、日韓、東南亞等地慕名而來的交換弟子。",
     "para2": "在方外道場中，我們跨越言語藩籬，不尚空談，唯以拳意會友。太極無疆，道通天下，每位來此的靈魂，皆在指南山麓留下了共同修行的珍貴軌跡。",
+    "country_tags": [
+      {
+        "code": "JP",
+        "name": "日本",
+        "count": 1
+      },
+      {
+        "code": "KR",
+        "name": "韓國",
+        "count": 1
+      },
+      {
+        "code": "VN",
+        "name": "越南",
+        "count": 2
+      }
+    ],
+    "stats": [
+      {
+        "number": "12+",
+        "label": "位國際同道"
+      },
+      {
+        "number": "6+",
+        "label": "學期國際交流"
+      },
+      {
+        "number": "10+",
+        "label": "位持續聯絡"
+      }
+    ],
     "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
   },
+  "instructors_section": {
+    "eyebrow": "OUR MASTERS",
+    "title": "師資介紹",
+    "desc": "名師引路，薪火相傳。"
+  },
+  "instructors": [
+    {
+      "photo": "/assets/uploads/玉清元始天尊.jpg",
+      "name": "元始天尊",
+      "subtitle": "先天至尊 萬物乃生",
+      "desc": "道教最高天神，居三清之首。又稱“玉清大帝”。全稱“玉清聖境虛無自然元始天尊”，在宮觀的“三清殿”中其塑像居中位，大多手執混元寶珠。"
+    },
+    {
+      "photo": "/assets/uploads/7ec9139ca36256138cc8ead6a19ae3ab.jpg",
+      "name": "道德天尊",
+      "subtitle": "著五千言 曉示大道",
+      "desc": "太上老君，簡稱老君，全稱「一炁化三清太清居火赤天仙登太清境玄氣所成日神寶君道德天尊混元上帝」，為「三清」之一，相傳他化身為周朝的思想家老子。"
+    }
+  ],
+  "staff_section": {
+    "eyebrow": "OUR TEAM",
+    "title": "幹部介紹",
+    "desc": "點選頭銜，認識本屆核心幹部。"
+  },
+  "staff": [
+    {
+      "role": "東方",
+      "name": "東方持國天王",
+      "photo": "/assets/uploads/北京十方普觉寺_持国天.jfif",
+      "desc": "「持國」意為慈悲為懷，保護眾生，護持國土，在漢傳佛教形象，手持琵琶或阮琴 ，有兩義：一、弦樂器鬆緊要適中，太緊則易斷，太鬆則聲不響，表行中道之法；二、是主樂神，表明他要用音樂來使眾生皈依佛教。"
+    },
+    {
+      "role": "西方",
+      "name": "西方廣目天王",
+      "photo": "/assets/uploads/Guangmutian,_Shifangpujue_Temple,_Beijing,_P.R.China.jfif",
+      "desc": "「廣目」意為能以淨天眼隨時觀察世界，護持人民，在漢傳佛教形象，手纏一條龍或蛇，有兩義：一、表世間多變之意，二、是龍神的首領。"
+    },
+    {
+      "role": "南方",
+      "name": "南方增長天王",
+      "photo": "/assets/uploads/北京十方普觉寺_增长天.jfif",
+      "desc": "「增長」意為能傳令眾生，增長善根，護持佛法，在漢傳佛教形象，手握寶劍，有兩義：一、寶劍象徵智慧，慧劍斬煩惱；二、為的是保護佛法，不受侵犯。"
+    },
+    {
+      "role": "北方",
+      "name": "北方多聞天王",
+      "photo": "/assets/uploads/北京十方普觉寺_多闻天.jfif",
+      "desc": "又名毗沙門，「多聞」意為頗精通佛法，以福、德聞於四方，在漢傳佛教形象，左手臥銀鼠，右持寶傘（或作寶幡），有兩義：一：傘蓋代表要保護自己的內心不受外面環境染污；二、用以遮蔽世間，避免邪神危害，以護持人民財富。"
+    }
+  ],
   "contact_section": {
     "eyebrow": "VISIT THE TEMPLE",
     "title": "尋訪仙蹤",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
-    "location_label": "【道場位置】",
-    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "email_label": "【問道法郵】",
-    "email_value": "nccutaichi@email.com",
-    "social_label": "【仙界傳音】",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
     "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
+    "social_label": "【仙界傳音】",
+    "email_value": "nccutaichi@email.com",
+    "email_label": "【問道法郵】",
+    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
+    "location_label": "【道場位置】"
+  },
+  "contact": {
+    "location_label": "道場位置",
+    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
+    "email_label": "問道法郵",
+    "email_value": "nccutaichi@email.com",
+    "social_label": "仙界傳音",
+    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」\n期待在指南山下，與你在呼吸吐納中相遇。"
   },
   "schedule": {
     "title": "每週修煉行事曆 (社課時間)",
@@ -148,5 +234,10 @@
   "footer": {
     "copyright": "© 2026 國立政治大學太極社 NCCU Tai Chi Club. 凡塵無憂，唯道是從。",
     "sub": "指南天光，水墨太極。本頁面已啟用隨緣修行設定。"
+  },
+  "global_section": {
+    "desc": "天涯咫尺，萬法歸一。前來問道的外邦同修，足跡早已遍及五洲。",
+    "title": "道傳寰宇",
+    "eyebrow": "GLOBAL CONNECTION"
   }
 }
