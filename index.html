@@ -526,7 +526,8 @@
             }
         }
 
-        fetch('data/home.json')
+        // 網址後面加上 ?v=時間戳記，強迫瀏覽器每次都跟伺服器要最新版本，不要用瀏覽器裡快取的舊資料
+        fetch('data/home.json?v=' + Date.now())
             .then(response => response.json())
             .then(data => {
                 // 導覽列
