@@ -282,13 +282,17 @@
 
     <!-- 4. 道傳寰宇 (歷年成果 Section) -->
     <section id="global" class="py-24 px-6 max-w-6xl mx-auto scroll-mt-20">
+        <div class="text-center space-y-2 mb-16">
+            <p id="global-eyebrow" class="text-bronze tracking-[0.3em] text-xs">GLOBAL CONNECTION</p>
+            <h2 id="global-section-title" class="text-3xl font-bold text-white tracking-widest">道傳寰宇</h2>
+            <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
+            <p id="global-section-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">天涯咫尺，萬法歸一。前來問道的外邦同修，足跡早已遍及五洲。</p>
+        </div>
+
         <div class="grid md:grid-cols-12 gap-10 items-start">
 
-            <!-- 左側：角標 + 地圖預留區（保留原本可自行嵌入 Google My Maps 的設計） -->
-            <div class="md:col-span-5 space-y-6">
-                <span id="global-badge" class="inline-block px-4 py-1.5 rounded-full border border-bronze/40 text-bronze text-xs tracking-widest">⊕ 道傳寰宇</span>
-
-                <!-- 寰宇地圖預留區（點位標籤暫維持固定，之後可比照同模式擴充） -->
+            <!-- 左側：地圖預留區（保留原本可自行嵌入 Google My Maps 的設計） -->
+            <div class="md:col-span-5">
                 <div class="bg-ink-dark rounded-xl p-6 ink-border relative overflow-hidden min-h-[350px] flex flex-col justify-between">
                     <div class="text-xs text-bronze tracking-widest flex justify-between items-center">
                         <span>【 寰宇同道地圖 】</span>
@@ -335,10 +339,9 @@
                 </div>
             </div>
 
-            <!-- 右側：標題 + 文字 + 國家標籤 + 統計數字 -->
-            <div class="md:col-span-7 space-y-6 pt-2">
-                <h2 id="global-title" class="text-3xl md:text-4xl font-bold text-white tracking-widest leading-snug whitespace-pre-line">道傳寰宇
-四海之內皆同道</h2>
+            <!-- 右側：副標文字 + 段落 + 國家標籤 + 統計數字 -->
+            <div class="md:col-span-7 space-y-6">
+                <h3 id="global-subtitle" class="text-2xl font-semibold text-white tracking-widest">外邦弟子的修真緣分</h3>
                 <p id="global-para1" class="text-sm leading-relaxed text-cloud/90">
                     歷年來，政大太極社迎接來自世界各地的交換學生與訪客。無論語言與膚色，太極的圓融之道跨越文化疆界，成為連結人心的橋樑。
                 </p>
@@ -364,8 +367,8 @@
             <p id="instructors-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">名師引路，薪火相傳。</p>
         </div>
 
-        <!-- 空容器，由 JS 依照後台資料筆數動態產生「左側照片＋右側介紹」的橫條，一排可容納兩位老師 -->
-        <div id="instructors-list" class="grid md:grid-cols-2 gap-6"></div>
+        <!-- 空容器，由 JS 依照後台資料筆數動態產生「左側照片＋右側介紹」的長條，一排一位、寬版呈現 -->
+        <div id="instructors-list" class="space-y-6"></div>
     </section>
 
     <!-- 6. 幹部介紹 -->
@@ -375,16 +378,11 @@
                 <p id="staff-eyebrow" class="text-bronze tracking-[0.3em] text-xs">OUR TEAM</p>
                 <h2 id="staff-title" class="text-3xl font-bold text-white tracking-widest">幹部介紹</h2>
                 <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
-                <p id="staff-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">點選頭銜，認識本屆核心幹部。</p>
+                <p id="staff-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">認識本屆核心幹部。</p>
             </div>
 
-            <!-- 動態頁籤：依照後台幹部人數自動產生按鈕，點選切換下方內容 -->
-            <div id="staff-tabs" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8"></div>
-
-            <!-- 幹部詳細內容 -->
-            <div class="bg-ink-dark/60 rounded-xl p-6 md:p-10 ink-border min-h-[300px]">
-                <div id="staff-content" class="grid md:grid-cols-12 gap-8 items-center"></div>
-            </div>
+            <!-- 空容器，跟師資介紹用同一種長條卡片樣式呈現 -->
+            <div id="staff-list" class="space-y-6"></div>
         </div>
     </section>
 
@@ -652,8 +650,7 @@
 
                 // 道傳寰宇
                 if (data.global) {
-                    setText('global-badge', data.global.badge_label);
-                    setText('global-title', data.global.title);
+                    setText('global-subtitle', data.global.subtitle);
                     setText('global-para1', data.global.para1);
                     setText('global-para2', data.global.para2);
 
@@ -692,100 +689,70 @@
                         });
                     }
                 }
+                if (data.global_section) {
+                    setText('global-eyebrow', data.global_section.eyebrow);
+                    setText('global-section-title', data.global_section.title);
+                    setText('global-section-desc', data.global_section.desc);
+                }
 
-                // 師資介紹 - 區塊標題
+                // 共用的「長條卡片」渲染函式：左側照片、右側文字，師資介紹跟幹部介紹共用同一套樣式
+                // subtitleField：要顯示在名字下方那一行的欄位名稱（師資用 subtitle，幹部用 role）
+                function renderPersonList(containerId, list, subtitleField) {
+                    const container = document.getElementById(containerId);
+                    if (!container || !Array.isArray(list)) return;
+                    container.innerHTML = '';
+                    list.forEach(p => {
+                        const card = document.createElement('div');
+                        card.className = 'flex items-center gap-6 md:gap-10 bg-ink-dark p-6 md:p-8 rounded-lg ink-border ink-border-hover transition-all duration-500';
+
+                        // 照片：有上傳就顯示照片，沒有就顯示姓名首字當作預留樣式
+                        const photoWrap = document.createElement('div');
+                        photoWrap.className = 'w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
+                        if (p.photo) {
+                            const img = document.createElement('img');
+                            img.className = 'w-full h-full object-cover';
+                            img.src = resolveImagePath(p.photo);
+                            img.alt = p.name || '';
+                            photoWrap.appendChild(img);
+                        } else {
+                            const initial = document.createElement('span');
+                            initial.className = 'text-3xl text-bronze font-bold';
+                            initial.innerText = (p.name || '').charAt(0);
+                            photoWrap.appendChild(initial);
+                        }
+                        card.appendChild(photoWrap);
+
+                        const textWrap = document.createElement('div');
+                        textWrap.className = 'space-y-1.5 min-w-0';
+                        textWrap.innerHTML = `
+                            <h3 class="text-lg md:text-xl font-medium text-white tracking-widest truncate"></h3>
+                            <p class="text-xs md:text-sm text-pine-light tracking-widest font-semibold truncate"></p>
+                            <p class="text-sm text-cloud/80 leading-relaxed line-clamp-3"></p>
+                        `;
+                        textWrap.querySelector('h3').innerText = p.name || '';
+                        textWrap.querySelector('p.text-pine-light').innerText = p[subtitleField] || '';
+                        textWrap.querySelector('p.text-cloud\\/80').innerText = p.desc || '';
+                        card.appendChild(textWrap);
+
+                        container.appendChild(card);
+                    });
+                }
+
+                // 師資介紹
                 if (data.instructors_section) {
                     setText('instructors-eyebrow', data.instructors_section.eyebrow);
                     setText('instructors-title', data.instructors_section.title);
                     setText('instructors-desc', data.instructors_section.desc);
                 }
+                renderPersonList('instructors-list', data.instructors, 'subtitle');
 
-                // 師資介紹 - 老師列表：左側照片、右側介紹，一排兩位
-                if (Array.isArray(data.instructors)) {
-                    const listContainer = document.getElementById('instructors-list');
-                    if (listContainer) {
-                        listContainer.innerHTML = '';
-                        data.instructors.forEach(t => {
-                            const card = document.createElement('div');
-                            card.className = 'flex items-center gap-5 bg-ink-dark p-5 rounded-lg ink-border ink-border-hover transition-all duration-500';
-                            card.innerHTML = `
-                                <img class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-2 border-bronze/40 flex-shrink-0" />
-                                <div class="space-y-1 min-w-0">
-                                    <h3 class="text-lg font-medium text-white tracking-widest truncate"></h3>
-                                    <p class="text-xs text-pine-light tracking-widest font-semibold truncate"></p>
-                                    <p class="text-sm text-cloud/80 leading-relaxed line-clamp-3"></p>
-                                </div>
-                            `;
-                            const img = card.querySelector('img');
-                            img.src = resolveImagePath(t.photo);
-                            img.alt = t.name || '';
-                            card.querySelector('h3').innerText = t.name || '';
-                            card.querySelector('p.text-pine-light').innerText = t.subtitle || '';
-                            card.querySelector('p.text-cloud\\/80').innerText = t.desc || '';
-                            listContainer.appendChild(card);
-                        });
-                    }
-                }
-
-                // 幹部介紹 - 區塊標題
+                // 幹部介紹
                 if (data.staff_section) {
                     setText('staff-eyebrow', data.staff_section.eyebrow);
                     setText('staff-title', data.staff_section.title);
                     setText('staff-desc', data.staff_section.desc);
                 }
-
-                // 幹部介紹 - 點選式頁籤：依人數動態產生按鈕，點擊切換下方內容
-                if (Array.isArray(data.staff) && data.staff.length > 0) {
-                    const tabsContainer = document.getElementById('staff-tabs');
-                    const contentContainer = document.getElementById('staff-content');
-
-                    function renderStaffContent(index) {
-                        const s = data.staff[index];
-                        if (!contentContainer || !s) return;
-                        contentContainer.innerHTML = `
-                            <div class="md:col-span-5 space-y-4">
-                                <h3 class="text-2xl font-semibold text-white tracking-widest"></h3>
-                                <p class="text-xs text-pine-light tracking-widest font-semibold"></p>
-                                <p class="text-sm leading-relaxed text-cloud/90"></p>
-                            </div>
-                            <div class="md:col-span-7">
-                                <div class="aspect-[4/3] w-full rounded-lg overflow-hidden bg-ink-deep ink-border">
-                                    <img class="w-full h-full object-cover" />
-                                </div>
-                            </div>
-                        `;
-                        contentContainer.querySelector('h3').innerText = s.name || '';
-                        contentContainer.querySelector('p.text-pine-light').innerText = s.role || '';
-                        contentContainer.querySelector('p.text-cloud\\/90').innerText = s.desc || '';
-                        const img = contentContainer.querySelector('img');
-                        if (s.photo) {
-                            img.src = resolveImagePath(s.photo);
-                            img.alt = s.name || '';
-                        }
-                    }
-
-                    if (tabsContainer) {
-                        tabsContainer.innerHTML = '';
-                        data.staff.forEach((s, index) => {
-                            const btn = document.createElement('button');
-                            btn.className = 'staff-tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border ' +
-                                (index === 0 ? 'border-bronze bg-pine text-white' : 'border-white/5 hover:border-bronze/40 text-cloud');
-                            btn.innerText = s.role || s.name || `幹部 ${index + 1}`;
-                            btn.addEventListener('click', () => {
-                                document.querySelectorAll('.staff-tab-btn').forEach(b => {
-                                    b.classList.remove('bg-pine', 'text-white', 'border-bronze');
-                                    b.classList.add('border-white/5', 'text-cloud');
-                                });
-                                btn.classList.remove('border-white/5', 'text-cloud');
-                                btn.classList.add('bg-pine', 'text-white', 'border-bronze');
-                                renderStaffContent(index);
-                            });
-                            tabsContainer.appendChild(btn);
-                        });
-                    }
-
-                    renderStaffContent(0);
-                }
+                renderPersonList('staff-list', data.staff, 'role');
 
                 // 尋訪仙蹤
                 if (data.contact_section) {
