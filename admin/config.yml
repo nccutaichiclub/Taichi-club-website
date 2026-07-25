@@ -37,8 +37,6 @@ collections:
                 fields:
                   - { label: "圖片", name: "image", widget: "image", hint: "建議使用橫式(寬>高)、至少 1600px 寬的照片，避免手機版放大後模糊" }
                   - { label: "圖片說明 (畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
-              - { label: "按鈕-窺探法門", name: "btn_methods", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
-              - { label: "按鈕-結緣問道", name: "btn_contact", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
 
           - label: "四大法門 - 區塊標題"
             name: "methods_section"
@@ -82,22 +80,67 @@ collections:
               - { label: "卡片背景圖片 (選填)", name: "background_image", widget: "image", required: false, hint: "留空則維持原本的深色卡片背景；上傳後可用下面的透明度調整淡化程度" }
               - { label: "背景圖片透明度", name: "background_opacity", widget: "select", default: 20, options: [10, 20, 30, 40, 50, 60, 70], hint: "數字越小圖片越淡、文字越清楚好讀；數字越大圖片越明顯。建議先從 20 開始試" }
 
-          - label: "道傳寰宇 - 區塊標題"
-            name: "global_section"
+          - label: "道傳寰宇 - 內容"
+            name: "global"
+            widget: "object"
+            fields:
+              - { label: "左上角標籤 (如:⊕ 道傳寰宇)", name: "badge_label", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "主標題 (可分兩行，直接按 Enter 換行即可)", name: "title", widget: "text", hint: "建議每行 10 字以內" }
+              - { label: "段落一", name: "para1", widget: "text", hint: "建議 80 字以內" }
+              - { label: "段落二", name: "para2", widget: "text", hint: "建議 100 字以內" }
+              - label: "國家標籤 (可自由新增/刪除/排序)"
+                name: "country_tags"
+                widget: "list"
+                summary: "{{fields.code}} {{fields.name}}"
+                fields:
+                  - { label: "國碼 (如:JP)", name: "code", widget: "string", hint: "建議 2-3 個英文字母", pattern: ['^.{1,3}$', '請控制在 3 字以內'] }
+                  - { label: "國家名稱 (如:日本)", name: "name", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+                  - { label: "人數", name: "count", widget: "number", value_type: "int", min: 0 }
+              - label: "統計數字 (建議 3 筆)"
+                name: "stats"
+                widget: "list"
+                summary: "{{fields.number}} {{fields.label}}"
+                fields:
+                  - { label: "數字 (如:67+)", name: "number", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+                  - { label: "說明文字 (如:位國際同道)", name: "label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+
+          - label: "師資介紹 - 區塊標題"
+            name: "instructors_section"
             widget: "object"
             fields:
               - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
               - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
               - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
 
-          - label: "道傳寰宇 - 內容"
-            name: "global"
+          - label: "師資介紹 - 老師列表 (一排顯示兩位)"
+            name: "instructors"
+            widget: "list"
+            min: 1
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "照片", name: "photo", widget: "image", hint: "建議使用方形或接近方形的大頭照，畫面會裁切成圓形顯示" }
+              - { label: "姓名/稱謂", name: "name", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "副標 (如:太極拳教練．十年教學經驗)", name: "subtitle", widget: "string", hint: "建議 20 字以內", pattern: ['^.{1,20}$', '請控制在 20 字以內'] }
+              - { label: "簡介", name: "desc", widget: "text", hint: "建議 60 字以內，超過會被自動截斷顯示" }
+
+          - label: "幹部介紹 - 區塊標題"
+            name: "staff_section"
             widget: "object"
             fields:
-              - { label: "小標題", name: "title", widget: "string", hint: "建議 14 字以內", pattern: ['^.{1,14}$', '請控制在 14 字以內'] }
-              - { label: "段落一", name: "para1", widget: "text", hint: "建議 80 字以內" }
-              - { label: "段落二", name: "para2", widget: "text", hint: "建議 100 字以內" }
-              - { label: "引言", name: "quote", widget: "string", hint: "建議 30 字以內" }
+              - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
+
+          - label: "幹部介紹 - 幹部列表 (點選頁籤切換)"
+            name: "staff"
+            widget: "list"
+            min: 1
+            summary: "{{fields.name}} - {{fields.role}}"
+            fields:
+              - { label: "頁籤按鈕文字 (通常填職稱，如:社長)", name: "role", widget: "string", hint: "建議 8 字以內，太長按鈕會被擠壓", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "姓名", name: "name", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "照片 (選填)", name: "photo", widget: "image", required: false, hint: "留空則維持空白圖片框" }
+              - { label: "簡介", name: "desc", widget: "text", hint: "建議 100 字以內" }
 
           - label: "尋訪仙蹤 - 聯絡資訊"
             name: "contact_section"
