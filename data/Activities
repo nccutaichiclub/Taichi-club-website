@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動介紹｜政大太極社</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #5C9A6C; --古銅金: #C5A059; --仙氣白: #E5E5E5;
+        }
+        body { background-color: var(--玄色); color: var(--仙氣白); font-family: 'Noto Serif TC', serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+        h1 { color: var(--古銅金); text-align: center; letter-spacing: 4px; font-size: 2.2rem; }
+        .subtitle { text-align: center; color: var(--霧霾灰); font-style: italic; margin-bottom: 60px; font-size: 0.95rem; }
+
+        .activity-detail {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(160, 160, 160, 0.15);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .activity-detail h2 {
+            color: var(--松柏綠);
+            background-color: rgba(160, 160, 160, 0.15);
+            display: inline-block;
+            padding: 10px 18px;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--古銅金);
+            border-right: 4px solid var(--古銅金);
+        }
+
+        .activity-text p {
+            margin: 0 0 16px 0;
+        }
+        .activity-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 歷年活動照片：相簿式網格 */
+        .activity-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            margin-top: 28px;
+        }
+        .activity-photo {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            background: #1A1A1A;
+            border: 1px solid rgba(160, 160, 160, 0.15);
+        }
+        .activity-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .activity-photo:hover img {
+            transform: scale(1.06);
+        }
+        .activity-photo .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+            color: var(--仙氣白);
+            font-size: 0.75rem;
+            padding: 16px 8px 6px;
+            text-align: center;
+        }
+        .gallery-empty-hint {
+            color: var(--霧霾灰);
+            font-size: 0.8rem;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 跨頁面導覽列：文字內容由 data/home.json 的 nav 欄位統一控管 -->
+    <nav style="background: rgba(18, 18, 18, 0.95); border-bottom: 1px solid #2A2A2A; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(5px);">
+        <a href="index.html" id="nav-link-home" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">首頁主殿</a>
+        <a href="gongfa.html" id="nav-link-method" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">法門深造</a>
+        <a href="activities.html" id="nav-link-activities" style="color: var(--古銅金); text-decoration: none; margin: 0 20px; letter-spacing: 2px; font-weight: bold;">活動介紹</a>
+        <a href="calendar.html" id="nav-link-calendar" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">修煉日程</a>
+    </nav>
+
+    <div class="container">
+        <h1 id="page-title">活動點點滴滴</h1>
+        <div class="subtitle" id="page-subtitle">「紀錄每一次揮灑汗水、交心暢談的珍貴時光。」</div>
+
+        <!-- 動態活動載入區塊 -->
+        <div id="activities-container">
+            <div style="text-align:center; color:var(--霧霾灰);">正在翻閱活動紀事，載入中...</div>
+        </div>
+
+        <!-- 串接後台資料的 JavaScript -->
+        <script>
+            // 把後台填的「純文字」自動轉成一段一段的 <p>：空一行 = 分段；段落內單純換行 = 換行(<br>)
+            function paragraphize(text) {
+                if (!text) return '';
+                return text
+                    .split(/\n\s*\n/)
+                    .map(p => `<p>${p.trim().replace(/\n/g, '<br>')}</p>`)
+                    .join('');
+            }
+
+            // 圖片路徑防呆：本網站放在 .../Taichi-club-website/ 這個子路徑下，
+            // 如果圖片路徑意外帶了開頭的 "/"，這裡統一拿掉，改成正確的相對路徑
+            function resolveImagePath(path) {
+                if (!path) return '';
+                return path.replace(/^\/+/, '');
+            }
+
+            // 導覽列文字：讀取 data/home.json 的 nav 設定，跟其他頁面共用同一份資料
+            fetch('data/home.json?v=' + Date.now())
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.nav) return;
+                    const map = {
+                        'nav-link-home': data.nav.link_home,
+                        'nav-link-method': data.nav.link_method,
+                        'nav-link-activities': data.nav.link_activities,
+                        'nav-link-calendar': data.nav.link_calendar
+                    };
+                    Object.keys(map).forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el && map[id]) el.innerText = map[id];
+                    });
+                })
+                .catch(error => console.error('讀取 data/home.json 失敗：', error));
+
+            // 本頁主要內容：讀取 data/activities.json
+            fetch('data/activities.json?v=' + Date.now())
+                .then(response => response.json())
+                .then(data => {
+                    if (data.page_title) {
+                        document.getElementById('page-title').innerText = data.page_title;
+                    }
+                    if (data.page_subtitle) {
+                        document.getElementById('page-subtitle').innerText = data.page_subtitle;
+                    }
+
+                    const container = document.getElementById('activities-container');
+                    container.innerHTML = '';
+
+                    (data.activities || []).forEach(activity => {
+                        const wrap = document.createElement('div');
+                        wrap.className = 'activity-detail';
+
+                        const heading = document.createElement('h2');
+                        heading.innerText = activity.title || '';
+                        wrap.appendChild(heading);
+
+                        const textDiv = document.createElement('div');
+                        textDiv.className = 'activity-text';
+                        textDiv.innerHTML = paragraphize(activity.desc);
+                        wrap.appendChild(textDiv);
+
+                        const photos = Array.isArray(activity.photos) ? activity.photos : [];
+                        if (photos.length > 0) {
+                            const gallery = document.createElement('div');
+                            gallery.className = 'activity-gallery';
+                            photos.forEach(p => {
+                                const photoBox = document.createElement('div');
+                                photoBox.className = 'activity-photo';
+                                const img = document.createElement('img');
+                                img.src = resolveImagePath(p.image);
+                                img.alt = p.caption || activity.title || '';
+                                photoBox.appendChild(img);
+                                if (p.caption) {
+                                    const cap = document.createElement('div');
+                                    cap.className = 'caption';
+                                    cap.innerText = p.caption;
+                                    photoBox.appendChild(cap);
+                                }
+                                gallery.appendChild(photoBox);
+                            });
+                            wrap.appendChild(gallery);
+                        }
+
+                        container.appendChild(wrap);
+                    });
+                })
+                .catch(error => {
+                    document.getElementById('activities-container').innerHTML = '<div style="text-align:center; color:red;">活動紀事讀取失敗。</div>';
+                });
+        </script>
+
+    </div>
+
+</body>
+</html>
