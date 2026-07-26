@@ -57,6 +57,7 @@
     <nav style="background: rgba(18, 18, 18, 0.95); border-bottom: 1px solid #2A2A2A; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(5px);">
         <a href="index.html" id="nav-link-home" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">首頁主殿</a>
         <a href="gongfa.html" id="nav-link-method" style="color: var(--古銅金); text-decoration: none; margin: 0 20px; letter-spacing: 2px; font-weight: bold;">法門深造</a>
+        <a href="activities.html" id="nav-link-activities" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">活動介紹</a>
         <a href="calendar.html" id="nav-link-calendar" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">修煉日程</a>
     </nav>
 
@@ -105,9 +106,11 @@
                     if (!data.nav) return;
                     const homeLink = document.getElementById('nav-link-home');
                     const methodLink = document.getElementById('nav-link-method');
+                    const activitiesLink = document.getElementById('nav-link-activities');
                     const calendarLink = document.getElementById('nav-link-calendar');
                     if (homeLink && data.nav.link_home) homeLink.innerText = data.nav.link_home;
                     if (methodLink && data.nav.link_method) methodLink.innerText = data.nav.link_method;
+                    if (activitiesLink && data.nav.link_activities) activitiesLink.innerText = data.nav.link_activities;
                     if (calendarLink && data.nav.link_calendar) calendarLink.innerText = data.nav.link_calendar;
                 })
                 .catch(error => console.error('讀取 data/home.json 失敗：', error));
