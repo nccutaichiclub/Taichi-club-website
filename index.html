@@ -85,6 +85,7 @@
             <nav class="hidden md:flex gap-8 items-center">
                 <a href="index.html" class="nav-link-home text-sm tracking-widest text-bronze-light font-bold">首頁主殿</a>
                 <a href="gongfa.html" class="nav-link-method text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">法門深造</a>
+                <a href="activities.html" class="nav-link-activities text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">活動介紹</a>
                 <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">修煉日程</a>
             </nav>
 
@@ -100,6 +101,7 @@
         <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-ink-deep/95 backdrop-blur-lg border-b border-white/10 flex-col items-center py-6 space-y-6 shadow-2xl transition-all duration-300 z-40">
             <a href="index.html" class="nav-link-home text-sm tracking-widest text-bronze-light font-bold w-full text-center block">首頁主殿</a>
             <a href="gongfa.html" class="nav-link-method text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">法門深造</a>
+            <a href="activities.html" class="nav-link-activities text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">活動介紹</a>
             <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
         </nav>
     </header>
@@ -571,6 +573,7 @@
                     if (data.nav.brand_sub) setText('nav-brand-sub', '| ' + data.nav.brand_sub);
                     setTextAll('nav-link-home', data.nav.link_home);
                     setTextAll('nav-link-method', data.nav.link_method);
+                    setTextAll('nav-link-activities', data.nav.link_activities);
                     setTextAll('nav-link-calendar', data.nav.link_calendar);
                 }
 
