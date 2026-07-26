@@ -23,6 +23,7 @@ collections:
               - { label: "副標 (如:隱逸道場)", name: "brand_sub", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
               - { label: "選單-首頁", name: "link_home", widget: "string", hint: "建議 6 字以內，避免手機版選單跑版", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
               - { label: "選單-法門深造", name: "link_method", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "選單-活動介紹", name: "link_activities", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
               - { label: "選單-修煉日程", name: "link_calendar", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
 
           - label: "Hero 主視覺區"
@@ -210,6 +211,30 @@ collections:
               - { label: "詳細內容", name: "desc", widget: "text", hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段" }
               - { label: "YouTube 影片網址 (選填)", name: "video_url", widget: "string", required: false, hint: "直接貼上完整的 YouTube 影片網址即可 (例如 https://www.youtube.com/watch?v=xxxxxxx)，留空則畫面顯示「準備中」提示" }
 
+  - name: "activities_settings"
+    label: "🎉 活動介紹頁管理"
+    files:
+      - file: "data/activities.json"
+        label: "編輯活動介紹內容"
+        name: "activities"
+        fields:
+          - { label: "頁面主標題", name: "page_title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+          - { label: "頁面引言 / 副標", name: "page_subtitle", widget: "string", hint: "建議 50 字以內" }
+          - label: "活動列表 (可自由新增/刪除/排序)"
+            name: "activities"
+            widget: "list"
+            min: 1
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "活動標題", name: "title", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "活動詳細介紹", name: "desc", widget: "text", hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段" }
+              - label: "歷年活動照片 (可自由新增/刪除/排序)"
+                name: "photos"
+                widget: "list"
+                fields:
+                  - { label: "照片", name: "image", widget: "image" }
+                  - { label: "照片說明 (選填，如:2025年秋季社遊)", name: "caption", widget: "string", required: false, hint: "建議 20 字以內" }
+
   - name: "calendar_settings"
     label: "📅 修煉行事曆管理"
     files:
@@ -217,13 +242,25 @@ collections:
         label: "編輯活動列表"
         name: "calendar"
         fields:
+          - label: "本學期行事曆"
+            name: "semester_schedule"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "行事曆圖片 (選填，會顯示在頁面最上方)", name: "display_image", widget: "image", required: false, hint: "建議上傳整學期的行事曆總覽圖，橫式較適合" }
+              - { label: "下載檔案 (選填，如 PDF 版本)", name: "download_file", widget: "file", required: false, hint: "上傳後畫面上會出現一個下載按鈕，方便社員存檔或列印" }
+              - { label: "下載按鈕文字", name: "download_label", widget: "string", required: false, default: "下載本學期行事曆", hint: "建議 12 字以內" }
           - label: "行事曆活動列表"
             name: "events"
             widget: "list"
             summary: "{{fields.title}}"
             fields:
-              - {label: "時節 / 週期", name: "time", widget: "string"}
+              - {label: "時節 / 週期 (顯示用文字)", name: "time", widget: "string", hint: "畫面上顯示的文字，例如「每週二 19:00 - 21:00」"}
               - {label: "活動類型 (如:常課/歷練)", name: "type", widget: "string"}
               - {label: "活動標題", name: "title", widget: "string"}
               - {label: "詳細說明", name: "desc", widget: "text"}
               - {label: "修煉據點", name: "location", widget: "string"}
+              - { label: "起始日期 (選填，填了才會出現「加入日曆」按鈕)", name: "event_date", widget: "date", required: false, hint: "選這個活動最近一次(或第一次)舉行的日期" }
+              - { label: "開始時間 (選填，24小時制，如 19:00)", name: "start_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 19:00'] }
+              - { label: "結束時間 (選填，24小時制，如 21:00)", name: "end_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 21:00'] }
+              - { label: "重複頻率 (選填)", name: "repeat", widget: "select", required: false, options: [{label: "不重複 (單次活動)", value: "none"}, {label: "每週重複", value: "weekly"}, {label: "隔週重複", value: "biweekly"}], default: "none" }
