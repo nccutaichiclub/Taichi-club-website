@@ -9,60 +9,196 @@
         :root {
             --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #1C3A27; --古銅金: #C5A059; --仙氣白: #E5E5E5;
         }
-        body { background-color: var(--玄色); color: var(--仙氣白); font-family: 'Noto Serif TC', serif; margin: 0; line-by-line: 1.8; }
+        body { background-color: var(--玄色); color: var(--仙氣白); font-family: 'Noto Serif TC', serif; margin: 0; line-height: 1.8; }
         .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
         h1 { color: var(--古銅金); text-align: center; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px; }
         .subtitle { text-align: center; color: var(--霧霾灰); font-style: italic; margin-bottom: 50px; font-size: 0.95rem; }
-        
+
+        /* 本學期行事曆圖片 + 下載按鈕 */
+        .semester-schedule {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        .semester-schedule img {
+            max-width: 100%;
+            border-radius: 12px;
+            border: 1px solid #2A2A2A;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 24px;
+            background-color: var(--古銅金);
+            color: #121212;
+            text-decoration: none;
+            border-radius: 6px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
+        }
+        .download-btn:hover {
+            opacity: 0.85;
+        }
+
         /* 曆法表格樣式 */
         .calendar-table { width: 100%; border-collapse: collapse; margin-top: 30px; background: #1A1A1A; border: 1px solid #2A2A2A; }
         .calendar-table th { background-color: var(--松柏綠); color: var(--古銅金); padding: 15px; text-align: left; font-weight: 700; border-bottom: 2px solid #2A2A2A; letter-spacing: 2px; }
-        .calendar-table td { padding: 20px 15px; border-bottom: 1px solid #2A2A2A; color: var(--仙氣白); }
+        .calendar-table td { padding: 20px 15px; border-bottom: 1px solid #2A2A2A; color: var(--仙氣白); vertical-align: top; }
         .calendar-table tr:hover { background-color: #222222; }
         .event-tag { display: inline-block; padding: 2px 8px; font-size: 0.8rem; border-radius: 3px; margin-right: 5px; }
         .tag-daily { background-color: #2A3A4A; color: #80A0C0; }
         .tag-special { background-color: #4A2A2A; color: #C08080; }
+
+        /* 加入 Google 日曆按鈕 */
+        .gcal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            padding: 5px 12px;
+            font-size: 0.75rem;
+            color: var(--古銅金);
+            border: 1px solid var(--古銅金);
+            border-radius: 20px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .gcal-btn:hover {
+            background-color: var(--古銅金);
+            color: #121212;
+        }
     </style>
 </head>
 <body>
 
-    <!-- 跨頁面導覽列 -->
+    <!-- 跨頁面導覽列：文字內容由 data/home.json 的 nav 欄位統一控管 -->
     <nav style="background: rgba(18, 18, 18, 0.95); border-bottom: 1px solid #2A2A2A; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(5px);">
-        <a href="index.html" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">首頁主殿</a>
-        <a href="gongfa.html" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">法門深造</a>
-        <a href="calendar.html" style="color: var(--古銅金); text-decoration: none; margin: 0 20px; letter-spacing: 2px; font-weight: bold;">修煉日程</a>
+        <a href="index.html" id="nav-link-home" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">首頁主殿</a>
+        <a href="gongfa.html" id="nav-link-method" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">法門深造</a>
+        <a href="activities.html" id="nav-link-activities" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">活動介紹</a>
+        <a href="calendar.html" id="nav-link-calendar" style="color: var(--古銅金); text-decoration: none; margin: 0 20px; letter-spacing: 2px; font-weight: bold;">修煉日程</a>
     </nav>
 
     <div class="container">
         <h1>四時曆法</h1>
         <div class="subtitle">「順應天時，不期而遇。此乃本門弟子紅塵與山林修煉之引導。」</div>
-        
+
+        <!-- 本學期行事曆：圖片 + 下載連結，由後台選填資料決定是否顯示 -->
+        <div id="semester-schedule" class="semester-schedule" style="display:none;">
+            <img id="semester-schedule-image" style="display:none;" />
+            <div>
+                <a id="semester-schedule-download" class="download-btn" style="display:none;" target="_blank" rel="noopener">下載本學期行事曆</a>
+            </div>
+        </div>
+
         <table class="calendar-table">
             <thead>
                 <tr>
-                    <th style="width: 25%;">時節 / 週期</th>
-                    <th style="width: 50%;">修行法事</th>
-                    <th style="width: 25%;">修煉據點</th>
+                    <th style="width: 22%;">時節 / 週期</th>
+                    <th style="width: 45%;">修行法事</th>
+                    <th style="width: 18%;">修煉據點</th>
+                    <th style="width: 15%;"></th>
                 </tr>
             </thead>
             <tbody id="calendar-body">
                 <!-- 這裡的內容將由 JavaScript 自動從後台資料庫載入 -->
-                <tr><td colspan="3" style="text-align:center; color:#A0A0A0;">正在感應天時，載入曆法中...</td></tr>
+                <tr><td colspan="4" style="text-align:center; color:#A0A0A0;">正在感應天時，載入曆法中...</td></tr>
             </tbody>
         </table>
 
-        <!-- 串接後台資料庫的 JavaScript 法陣 -->
+        <!-- 圖片路徑防呆：本網站放在 .../Taichi-club-website/ 這個子路徑下，
+             如果圖片/檔案路徑意外帶了開頭的 "/"，這裡統一拿掉，改成正確的相對路徑 -->
         <script>
-            fetch('data/calendar.json')
+            function resolveImagePath(path) {
+                if (!path) return '';
+                return path.replace(/^\/+/, '');
+            }
+
+            // 組出「一鍵加入 Google 日曆」的網址：需要活動有填「起始日期」跟「開始時間」才會產生
+            function buildGoogleCalendarUrl(event) {
+                if (!event.event_date || !event.start_time) return null;
+
+                const dateStr = event.event_date.replace(/-/g, ''); // 2026-09-08 -> 20260908
+                const startStr = event.start_time.replace(':', '') + '00';
+                const endStr = (event.end_time || event.start_time).replace(':', '') + '00';
+                const dates = `${dateStr}T${startStr}/${dateStr}T${endStr}`;
+
+                const params = new URLSearchParams({
+                    action: 'TEMPLATE',
+                    text: event.title || '',
+                    dates: dates,
+                    details: event.desc || '',
+                    location: event.location || '',
+                    ctz: 'Asia/Taipei'
+                });
+
+                if (event.repeat === 'weekly') {
+                    params.set('recur', 'RRULE:FREQ=WEEKLY');
+                } else if (event.repeat === 'biweekly') {
+                    params.set('recur', 'RRULE:FREQ=WEEKLY;INTERVAL=2');
+                }
+
+                return `https://www.google.com/calendar/render?${params.toString()}`;
+            }
+
+            // 導覽列文字：讀取 data/home.json 的 nav 設定，跟其他頁面共用同一份資料
+            fetch('data/home.json?v=' + Date.now())
                 .then(response => response.json())
                 .then(data => {
+                    if (!data.nav) return;
+                    const map = {
+                        'nav-link-home': data.nav.link_home,
+                        'nav-link-method': data.nav.link_method,
+                        'nav-link-activities': data.nav.link_activities,
+                        'nav-link-calendar': data.nav.link_calendar
+                    };
+                    Object.keys(map).forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el && map[id]) el.innerText = map[id];
+                    });
+                })
+                .catch(error => console.error('讀取 data/home.json 失敗：', error));
+
+            // 本頁主要內容：讀取 data/calendar.json
+            fetch('data/calendar.json?v=' + Date.now())
+                .then(response => response.json())
+                .then(data => {
+
+                    // 本學期行事曆圖片 / 下載按鈕
+                    if (data.semester_schedule) {
+                        const wrap = document.getElementById('semester-schedule');
+                        const img = document.getElementById('semester-schedule-image');
+                        const downloadBtn = document.getElementById('semester-schedule-download');
+                        let hasContent = false;
+
+                        if (data.semester_schedule.display_image) {
+                            img.src = resolveImagePath(data.semester_schedule.display_image);
+                            img.style.display = 'inline-block';
+                            hasContent = true;
+                        }
+                        if (data.semester_schedule.download_file) {
+                            downloadBtn.href = resolveImagePath(data.semester_schedule.download_file);
+                            downloadBtn.innerText = data.semester_schedule.download_label || '下載本學期行事曆';
+                            downloadBtn.style.display = 'inline-block';
+                            hasContent = true;
+                        }
+                        if (hasContent) wrap.style.display = 'block';
+                    }
+
                     const tbody = document.getElementById('calendar-body');
                     tbody.innerHTML = ''; // 清空載入中文字
-                    
-                    data.events.forEach(event => {
+
+                    (data.events || []).forEach(event => {
                         // 判斷標籤顏色：如果是常課就用藍灰底，其餘用紅棕底
                         const tagClass = (event.type === '常課') ? 'tag-daily' : 'tag-special';
-                        
+                        const gcalUrl = buildGoogleCalendarUrl(event);
+                        const gcalCell = gcalUrl
+                            ? `<a class="gcal-btn" href="${gcalUrl}" target="_blank" rel="noopener">📅 加入日曆</a>`
+                            : '';
+
                         const row = `
                             <tr>
                                 <td><strong>${event.time}</strong></td>
@@ -72,13 +208,14 @@
                                     <span style="color: var(--霧霾灰); font-size: 0.9rem;">${event.desc}</span>
                                 </td>
                                 <td>${event.location}</td>
+                                <td>${gcalCell}</td>
                             </tr>
                         `;
                         tbody.innerHTML += row;
                     });
                 })
                 .catch(error => {
-                    document.getElementById('calendar-body').innerHTML = '<tr><td colspan="3" style="text-align:center; color:red;">曆法載入失敗，請確認資料庫陣法。</td></tr>';
+                    document.getElementById('calendar-body').innerHTML = '<tr><td colspan="4" style="text-align:center; color:red;">曆法載入失敗，請確認資料庫陣法。</td></tr>';
                 });
         </script>
     </div>
