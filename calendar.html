@@ -14,32 +14,133 @@
         h1 { color: var(--古銅金); text-align: center; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px; }
         .subtitle { text-align: center; color: var(--霧霾灰); font-style: italic; margin-bottom: 50px; font-size: 0.95rem; }
 
-        /* 本學期行事曆圖片 + 下載按鈕 */
+        /* 本學期行事曆：中英雙語並排小圖預覽區塊 */
         .semester-schedule {
             margin-bottom: 50px;
-            text-align: center;
         }
-        .semester-schedule img {
-            max-width: 100%;
-            border-radius: 12px;
+        .semester-schedule-title {
+            text-align: center;
+            color: var(--仙氣白);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        /* 桌面版固定兩欄並排；手機版（螢幕寬度不足時）自動改成單欄堆疊 */
+        .semester-schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        @media (max-width: 640px) {
+            .semester-schedule-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .schedule-card {
+            background: #1A1A1A;
             border: 1px solid #2A2A2A;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .schedule-card-label {
+            color: var(--古銅金);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        /* 小圖預覽：固定比例，不需要捲動頁面即可同時看到兩張 */
+        .schedule-thumb-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #2A2A2A;
+            cursor: zoom-in;
+            background: #0E0E0E;
+        }
+        .schedule-thumb-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+        .schedule-thumb-wrap:hover img {
+            transform: scale(1.04);
+        }
+        .schedule-thumb-hint {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+            color: var(--仙氣白);
+            font-size: 0.7rem;
+            padding: 18px 6px 6px;
+            letter-spacing: 1px;
         }
         .download-btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 24px;
+            margin-top: 14px;
+            padding: 8px 20px;
             background-color: var(--古銅金);
             color: #121212;
             text-decoration: none;
             border-radius: 6px;
             letter-spacing: 2px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: opacity 0.3s;
         }
         .download-btn:hover {
             opacity: 0.85;
+        }
+
+        /* 燈箱（Lightbox）：點縮圖後全螢幕顯示大圖 */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            cursor: zoom-out;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--仙氣白);
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--古銅金);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
         }
 
         /* 曆法表格樣式 */
@@ -86,12 +187,17 @@
         <h1>四時曆法</h1>
         <div class="subtitle">「順應天時，不期而遇。此乃本門弟子紅塵與山林修煉之引導。」</div>
 
-        <!-- 本學期行事曆：圖片 + 下載連結，由後台選填資料決定是否顯示 -->
+        <!-- 本學期行事曆：中英雙語並排小圖預覽，由後台資料決定顯示筆數與內容 -->
         <div id="semester-schedule" class="semester-schedule" style="display:none;">
-            <img id="semester-schedule-image" style="display:none;" />
-            <div>
-                <a id="semester-schedule-download" class="download-btn" style="display:none;" target="_blank" rel="noopener">下載本學期行事曆</a>
-            </div>
+            <div id="semester-schedule-title" class="semester-schedule-title" style="display:none;"></div>
+            <div id="semester-schedule-grid" class="semester-schedule-grid"></div>
+        </div>
+
+        <!-- 燈箱：點擊小圖後在此全螢幕顯示大圖 -->
+        <div id="lightbox-overlay" class="lightbox-overlay">
+            <button class="lightbox-close" id="lightbox-close" aria-label="關閉">&times;</button>
+            <img id="lightbox-image" src="" alt="">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
         </div>
 
         <table class="calendar-table">
@@ -144,6 +250,29 @@
                 return `https://www.google.com/calendar/render?${params.toString()}`;
             }
 
+            // 燈箱開關邏輯
+            function openLightbox(imageSrc, caption) {
+                const overlay = document.getElementById('lightbox-overlay');
+                const img = document.getElementById('lightbox-image');
+                const captionEl = document.getElementById('lightbox-caption');
+                img.src = imageSrc;
+                img.alt = caption || '';
+                captionEl.innerText = caption || '';
+                overlay.classList.add('active');
+            }
+            function closeLightbox() {
+                document.getElementById('lightbox-overlay').classList.remove('active');
+            }
+            document.getElementById('lightbox-overlay').addEventListener('click', (e) => {
+                // 點擊圖片本身不關閉，點背景或叉叉才關閉
+                if (e.target.id === 'lightbox-overlay' || e.target.id === 'lightbox-close') {
+                    closeLightbox();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+            });
+
             // 導覽列文字：讀取 data/home.json 的 nav 設定，跟其他頁面共用同一份資料
             fetch('data/home.json?v=' + Date.now())
                 .then(response => response.json())
@@ -167,25 +296,68 @@
                 .then(response => response.json())
                 .then(data => {
 
-                    // 本學期行事曆圖片 / 下載按鈕
+                    // 本學期行事曆：支援多筆（例如中文版 + 英文版）並排小圖預覽
                     if (data.semester_schedule) {
                         const wrap = document.getElementById('semester-schedule');
-                        const img = document.getElementById('semester-schedule-image');
-                        const downloadBtn = document.getElementById('semester-schedule-download');
-                        let hasContent = false;
+                        const titleEl = document.getElementById('semester-schedule-title');
+                        const grid = document.getElementById('semester-schedule-grid');
 
-                        if (data.semester_schedule.display_image) {
-                            img.src = resolveImagePath(data.semester_schedule.display_image);
-                            img.style.display = 'inline-block';
-                            hasContent = true;
+                        if (data.semester_schedule.title) {
+                            titleEl.innerText = data.semester_schedule.title;
+                            titleEl.style.display = 'block';
                         }
-                        if (data.semester_schedule.download_file) {
-                            downloadBtn.href = resolveImagePath(data.semester_schedule.download_file);
-                            downloadBtn.innerText = data.semester_schedule.download_label || '下載本學期行事曆';
-                            downloadBtn.style.display = 'inline-block';
-                            hasContent = true;
+
+                        // 資料格式：data.semester_schedule.items 是一個陣列，每筆代表一種語言版本的行事曆
+                        // 例如：[{label:"中文版", display_image:"...", download_file:"...", download_label:"下載中文行事曆"}, {label:"English", ...}]
+                        const items = Array.isArray(data.semester_schedule.items) ? data.semester_schedule.items : [];
+
+                        if (items.length > 0) {
+                            grid.innerHTML = '';
+                            items.forEach(item => {
+                                const card = document.createElement('div');
+                                card.className = 'schedule-card';
+
+                                if (item.label) {
+                                    const labelEl = document.createElement('div');
+                                    labelEl.className = 'schedule-card-label';
+                                    labelEl.innerText = item.label;
+                                    card.appendChild(labelEl);
+                                }
+
+                                if (item.display_image) {
+                                    const thumbWrap = document.createElement('div');
+                                    thumbWrap.className = 'schedule-thumb-wrap';
+                                    const img = document.createElement('img');
+                                    img.src = resolveImagePath(item.display_image);
+                                    img.alt = item.label || '本學期行事曆';
+                                    thumbWrap.appendChild(img);
+
+                                    const hint = document.createElement('div');
+                                    hint.className = 'schedule-thumb-hint';
+                                    hint.innerText = '點擊看大圖';
+                                    thumbWrap.appendChild(hint);
+
+                                    thumbWrap.addEventListener('click', () => {
+                                        openLightbox(resolveImagePath(item.display_image), item.label);
+                                    });
+                                    card.appendChild(thumbWrap);
+                                }
+
+                                if (item.download_file) {
+                                    const downloadBtn = document.createElement('a');
+                                    downloadBtn.className = 'download-btn';
+                                    downloadBtn.href = resolveImagePath(item.download_file);
+                                    downloadBtn.target = '_blank';
+                                    downloadBtn.rel = 'noopener';
+                                    downloadBtn.innerText = item.download_label || '下載行事曆';
+                                    card.appendChild(downloadBtn);
+                                }
+
+                                grid.appendChild(card);
+                            });
+
+                            wrap.style.display = 'block';
                         }
-                        if (hasContent) wrap.style.display = 'block';
                     }
 
                     const tbody = document.getElementById('calendar-body');
