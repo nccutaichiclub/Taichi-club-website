@@ -1,18 +1,31 @@
 {
+  "semester_schedule": {
+    "display_image": "/assets/uploads/行事曆中文114-2.jpg",
+    "download_file": "/assets/uploads/政大太極社114-2行事曆（中文）.pdf",
+    "download_label": "下載本學期行事曆"
+  },
   "events": [
     {
       "time": "每週固定晨練",
       "type": "常課",
       "title": "晨間氣功與太極基礎",
       "desc": "吸納天地初升之炁，專修華陀導引氣功與基礎太極功架。精氣神之築基。",
-      "location": "指南山麓（政大校區）"
+      "location": "指南山麓（政大校區）",
+      "event_date": "2026-09-09",
+      "start_time": "07:40",
+      "end_time": "08:10",
+      "repeat": "weekly"
     },
     {
       "time": "仲春之期",
       "type": "歷練",
       "title": "山林雲遊（大溪社遊）",
       "desc": "暫別書齋，前往大溪木藝生態博物館與老街散策，寄情山水，體會天人合一。",
-      "location": "大溪山水之間"
+      "location": "大溪山水之間",
+      "event_date": "2026-09-26",
+      "start_time": "08:00",
+      "end_time": "17:00",
+      "repeat": "none"
     }
   ]
 }
