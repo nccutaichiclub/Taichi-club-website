@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>活動介紹｜政大太極社</title>
+    <title>修煉日程｜政大太極社</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- 引入 Tailwind CSS，與首頁共用同一套配色/字體設定，讓四個頁面視覺統一 -->
@@ -28,81 +28,169 @@
 
     <style>
         :root {
-            --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #5C9A6C; --古銅金: #C5A059; --仙氣白: #E5E5E5;
+            --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #1C3A27; --古銅金: #C5A059; --仙氣白: #E5E5E5;
         }
         body { background-color: var(--玄色); color: var(--仙氣白); font-family: 'Noto Serif TC', serif; margin: 0; line-height: 1.8; }
         .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
-        h1 { color: var(--古銅金); text-align: center; letter-spacing: 4px; font-size: 2.2rem; }
-        .subtitle { text-align: center; color: var(--霧霾灰); font-style: italic; margin-bottom: 60px; font-size: 0.95rem; }
+        h1 { color: var(--古銅金); text-align: center; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: var(--霧霾灰); font-style: italic; margin-bottom: 50px; font-size: 0.95rem; }
 
-        .activity-detail {
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(160, 160, 160, 0.15);
-            padding: 40px;
-            border-radius: 12px;
-            margin-bottom: 60px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        /* 本學期行事曆：中英雙語並排小圖預覽區塊 */
+        .semester-schedule {
+            margin-bottom: 50px;
         }
-
-        .activity-detail h2 {
-            color: var(--松柏綠);
-            background-color: rgba(160, 160, 160, 0.15);
-            display: inline-block;
-            padding: 10px 18px;
-            font-size: 1.6rem;
+        .semester-schedule-title {
+            text-align: center;
+            color: var(--仙氣白);
+            font-size: 1.1rem;
             letter-spacing: 2px;
             margin-bottom: 20px;
-            border-left: 4px solid var(--古銅金);
-            border-right: 4px solid var(--古銅金);
         }
-
-        .activity-text p {
-            margin: 0 0 16px 0;
-        }
-        .activity-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* 歷年活動照片：相簿式網格 */
-        .activity-gallery {
+        /* 桌面版固定兩欄並排；手機版（螢幕寬度不足時）自動改成單欄堆疊 */
+        .semester-schedule-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 12px;
-            margin-top: 28px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
-        .activity-photo {
+        @media (max-width: 640px) {
+            .semester-schedule-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .schedule-card {
+            background: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .schedule-card-label {
+            color: var(--古銅金);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        /* 小圖預覽：固定比例，不需要捲動頁面即可同時看到兩張 */
+        .schedule-thumb-wrap {
             position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 4;
             border-radius: 8px;
             overflow: hidden;
-            aspect-ratio: 4 / 3;
-            background: #1A1A1A;
-            border: 1px solid rgba(160, 160, 160, 0.15);
+            border: 1px solid #2A2A2A;
+            cursor: zoom-in;
+            background: #0E0E0E;
         }
-        .activity-photo img {
+        .schedule-thumb-wrap img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
-            transition: transform 0.4s ease;
+            transition: transform 0.35s ease;
         }
-        .activity-photo:hover img {
-            transform: scale(1.06);
+        .schedule-thumb-wrap:hover img {
+            transform: scale(1.04);
         }
-        .activity-photo .caption {
+        .schedule-thumb-hint {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
             color: var(--仙氣白);
-            font-size: 0.75rem;
-            padding: 16px 8px 6px;
-            text-align: center;
+            font-size: 0.7rem;
+            padding: 18px 6px 6px;
+            letter-spacing: 1px;
         }
-        .gallery-empty-hint {
-            color: var(--霧霾灰);
-            font-size: 0.8rem;
-            margin-top: 16px;
+        .download-btn {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 8px 20px;
+            background-color: var(--古銅金);
+            color: #121212;
+            text-decoration: none;
+            border-radius: 6px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: opacity 0.3s;
+        }
+        .download-btn:hover {
+            opacity: 0.85;
+        }
+
+        /* 燈箱（Lightbox）：點縮圖後全螢幕顯示大圖 */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            cursor: zoom-out;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--仙氣白);
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--古銅金);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        /* 曆法表格樣式 */
+        .calendar-table { width: 100%; border-collapse: collapse; margin-top: 30px; background: #1A1A1A; border: 1px solid #2A2A2A; }
+        .calendar-table th { background-color: var(--松柏綠); color: var(--古銅金); padding: 15px; text-align: left; font-weight: 700; border-bottom: 2px solid #2A2A2A; letter-spacing: 2px; }
+        .calendar-table td { padding: 20px 15px; border-bottom: 1px solid #2A2A2A; color: var(--仙氣白); vertical-align: top; }
+        .calendar-table tr:hover { background-color: #222222; }
+        .event-tag { display: inline-block; padding: 2px 8px; font-size: 0.8rem; border-radius: 3px; margin-right: 5px; }
+        .tag-daily { background-color: #2A3A4A; color: #80A0C0; }
+        .tag-special { background-color: #4A2A2A; color: #C08080; }
+
+        /* 加入 Google 日曆按鈕 */
+        .gcal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            padding: 5px 12px;
+            font-size: 0.75rem;
+            color: var(--古銅金);
+            border: 1px solid var(--古銅金);
+            border-radius: 20px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .gcal-btn:hover {
+            background-color: var(--古銅金);
+            color: #121212;
         }
     </style>
 </head>
@@ -122,8 +210,8 @@
             <nav class="hidden md:flex gap-8 items-center">
                 <a href="index.html" class="nav-link-home text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">首頁主殿</a>
                 <a href="gongfa.html" class="nav-link-method text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">法門深造</a>
-                <a href="activities.html" class="nav-link-activities text-sm tracking-widest text-bronze-light font-bold">活動介紹</a>
-                <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">修煉日程</a>
+                <a href="activities.html" class="nav-link-activities text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">活動介紹</a>
+                <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-bronze-light font-bold">修煉日程</a>
             </nav>
 
             <!-- 右側：手機版漢堡選單按鈕 -->
@@ -138,8 +226,8 @@
         <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-ink-deep/95 backdrop-blur-lg border-b border-white/10 flex-col items-center py-6 space-y-6 shadow-2xl transition-all duration-300 z-40">
             <a href="index.html" class="nav-link-home text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">首頁主殿</a>
             <a href="gongfa.html" class="nav-link-method text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">法門深造</a>
-            <a href="activities.html" class="nav-link-activities text-sm tracking-widest text-bronze-light font-bold w-full text-center block">活動介紹</a>
-            <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
+            <a href="activities.html" class="nav-link-activities text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">活動介紹</a>
+            <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-bronze-light font-bold w-full text-center block">修煉日程</a>
         </nav>
     </header>
 
@@ -154,16 +242,44 @@
     </script>
 
     <div class="container">
-        <h1 id="page-title">活動點點滴滴</h1>
-        <div class="subtitle" id="page-subtitle">「紀錄每一次揮灑汗水、交心暢談的珍貴時光。」</div>
+        <h1>四時曆法</h1>
+        <div class="subtitle">「順應天時，不期而遇。此乃本門弟子紅塵與山林修煉之引導。」</div>
 
-        <!-- 動態活動載入區塊 -->
-        <div id="activities-container">
-            <div style="text-align:center; color:var(--霧霾灰);">正在翻閱活動紀事，載入中...</div>
+        <!-- 本學期行事曆：中英雙語並排小圖預覽，由後台資料決定顯示筆數與內容 -->
+        <div id="semester-schedule" class="semester-schedule" style="display:none;">
+            <div id="semester-schedule-title" class="semester-schedule-title" style="display:none;"></div>
+            <div id="semester-schedule-grid" class="semester-schedule-grid"></div>
         </div>
 
-        <!-- 串接後台資料的 JavaScript -->
+        <!-- 燈箱：點擊小圖後在此全螢幕顯示大圖 -->
+        <div id="lightbox-overlay" class="lightbox-overlay">
+            <button class="lightbox-close" id="lightbox-close" aria-label="關閉">&times;</button>
+            <img id="lightbox-image" src="" alt="">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th style="width: 22%;">時節 / 週期</th>
+                    <th style="width: 45%;">修行法事</th>
+                    <th style="width: 18%;">修煉據點</th>
+                    <th style="width: 15%;"></th>
+                </tr>
+            </thead>
+            <tbody id="calendar-body">
+                <!-- 這裡的內容將由 JavaScript 自動從後台資料庫載入 -->
+                <tr><td colspan="4" style="text-align:center; color:#A0A0A0;">正在感應天時，載入曆法中...</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 圖片路徑防呆：本網站放在 .../Taichi-club-website/ 這個子路徑下，
+             如果圖片/檔案路徑意外帶了開頭的 "/"，這裡統一拿掉，改成正確的相對路徑 -->
         <script>
+            function resolveImagePath(path) {
+                if (!path) return '';
+                return path.replace(/^\/+/, '');
+            }
             function setText(id, value) {
                 const el = document.getElementById(id);
                 if (el && value !== undefined && value !== null) el.innerText = value;
@@ -173,21 +289,55 @@
                 document.querySelectorAll('.' + className).forEach(el => el.innerText = value);
             }
 
-            // 把後台填的「純文字」自動轉成一段一段的 <p>：空一行 = 分段；段落內單純換行 = 換行(<br>)
-            function paragraphize(text) {
-                if (!text) return '';
-                return text
-                    .split(/\n\s*\n/)
-                    .map(p => `<p>${p.trim().replace(/\n/g, '<br>')}</p>`)
-                    .join('');
+            // 組出「一鍵加入 Google 日曆」的網址：需要活動有填「起始日期」跟「開始時間」才會產生
+            function buildGoogleCalendarUrl(event) {
+                if (!event.event_date || !event.start_time) return null;
+
+                const dateStr = event.event_date.slice(0, 10).replace(/-/g, ''); // 取前10碼 "2026-09-08" -> "20260908"，避免完整時間字串影響
+                const startStr = event.start_time.replace(':', '') + '00';
+                const endStr = (event.end_time || event.start_time).replace(':', '') + '00';
+                const dates = `${dateStr}T${startStr}/${dateStr}T${endStr}`;
+
+                const params = new URLSearchParams({
+                    action: 'TEMPLATE',
+                    text: event.title || '',
+                    dates: dates,
+                    details: event.desc || '',
+                    location: event.location || '',
+                    ctz: 'Asia/Taipei'
+                });
+
+                if (event.repeat === 'weekly') {
+                    params.set('recur', 'RRULE:FREQ=WEEKLY');
+                } else if (event.repeat === 'biweekly') {
+                    params.set('recur', 'RRULE:FREQ=WEEKLY;INTERVAL=2');
+                }
+
+                return `https://www.google.com/calendar/render?${params.toString()}`;
             }
 
-            // 圖片路徑防呆：本網站放在 .../Taichi-club-website/ 這個子路徑下，
-            // 如果圖片路徑意外帶了開頭的 "/"，這裡統一拿掉，改成正確的相對路徑
-            function resolveImagePath(path) {
-                if (!path) return '';
-                return path.replace(/^\/+/, '');
+            // 燈箱開關邏輯
+            function openLightbox(imageSrc, caption) {
+                const overlay = document.getElementById('lightbox-overlay');
+                const img = document.getElementById('lightbox-image');
+                const captionEl = document.getElementById('lightbox-caption');
+                img.src = imageSrc;
+                img.alt = caption || '';
+                captionEl.innerText = caption || '';
+                overlay.classList.add('active');
             }
+            function closeLightbox() {
+                document.getElementById('lightbox-overlay').classList.remove('active');
+            }
+            document.getElementById('lightbox-overlay').addEventListener('click', (e) => {
+                // 點擊圖片本身不關閉，點背景或叉叉才關閉
+                if (e.target.id === 'lightbox-overlay' || e.target.id === 'lightbox-close') {
+                    closeLightbox();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+            });
 
             // 導覽列文字與品牌角標：讀取 data/home.json 的 nav 設定，跟其他頁面共用同一份資料
             fetch('data/home.json?v=' + Date.now())
@@ -204,63 +354,105 @@
                 })
                 .catch(error => console.error('讀取 data/home.json 失敗：', error));
 
-            // 本頁主要內容：讀取 data/activities.json
-            fetch('data/activities.json?v=' + Date.now())
+            // 本頁主要內容：讀取 data/calendar.json
+            fetch('data/calendar.json?v=' + Date.now())
                 .then(response => response.json())
                 .then(data => {
-                    if (data.page_title) {
-                        document.getElementById('page-title').innerText = data.page_title;
-                    }
-                    if (data.page_subtitle) {
-                        document.getElementById('page-subtitle').innerText = data.page_subtitle;
-                    }
 
-                    const container = document.getElementById('activities-container');
-                    container.innerHTML = '';
+                    // 本學期行事曆：支援多筆（例如中文版 + 英文版）並排小圖預覽
+                    if (data.semester_schedule) {
+                        const wrap = document.getElementById('semester-schedule');
+                        const titleEl = document.getElementById('semester-schedule-title');
+                        const grid = document.getElementById('semester-schedule-grid');
 
-                    (data.activities || []).forEach(activity => {
-                        const wrap = document.createElement('div');
-                        wrap.className = 'activity-detail';
-
-                        const heading = document.createElement('h2');
-                        heading.innerText = activity.title || '';
-                        wrap.appendChild(heading);
-
-                        const textDiv = document.createElement('div');
-                        textDiv.className = 'activity-text';
-                        textDiv.innerHTML = paragraphize(activity.desc);
-                        wrap.appendChild(textDiv);
-
-                        const photos = Array.isArray(activity.photos) ? activity.photos : [];
-                        if (photos.length > 0) {
-                            const gallery = document.createElement('div');
-                            gallery.className = 'activity-gallery';
-                            photos.forEach(p => {
-                                const photoBox = document.createElement('div');
-                                photoBox.className = 'activity-photo';
-                                const img = document.createElement('img');
-                                img.src = resolveImagePath(p.image);
-                                img.alt = p.caption || activity.title || '';
-                                photoBox.appendChild(img);
-                                if (p.caption) {
-                                    const cap = document.createElement('div');
-                                    cap.className = 'caption';
-                                    cap.innerText = p.caption;
-                                    photoBox.appendChild(cap);
-                                }
-                                gallery.appendChild(photoBox);
-                            });
-                            wrap.appendChild(gallery);
+                        if (data.semester_schedule.title) {
+                            titleEl.innerText = data.semester_schedule.title;
+                            titleEl.style.display = 'block';
                         }
 
-                        container.appendChild(wrap);
+                        // 資料格式：data.semester_schedule.items 是一個陣列，每筆代表一種語言版本的行事曆
+                        // 例如：[{label:"中文版", display_image:"...", download_file:"...", download_label:"下載中文行事曆"}, {label:"English", ...}]
+                        const items = Array.isArray(data.semester_schedule.items) ? data.semester_schedule.items : [];
+
+                        if (items.length > 0) {
+                            grid.innerHTML = '';
+                            items.forEach(item => {
+                                const card = document.createElement('div');
+                                card.className = 'schedule-card';
+
+                                if (item.label) {
+                                    const labelEl = document.createElement('div');
+                                    labelEl.className = 'schedule-card-label';
+                                    labelEl.innerText = item.label;
+                                    card.appendChild(labelEl);
+                                }
+
+                                if (item.display_image) {
+                                    const thumbWrap = document.createElement('div');
+                                    thumbWrap.className = 'schedule-thumb-wrap';
+                                    const img = document.createElement('img');
+                                    img.src = resolveImagePath(item.display_image);
+                                    img.alt = item.label || '本學期行事曆';
+                                    thumbWrap.appendChild(img);
+
+                                    const hint = document.createElement('div');
+                                    hint.className = 'schedule-thumb-hint';
+                                    hint.innerText = '點擊看大圖';
+                                    thumbWrap.appendChild(hint);
+
+                                    thumbWrap.addEventListener('click', () => {
+                                        openLightbox(resolveImagePath(item.display_image), item.label);
+                                    });
+                                    card.appendChild(thumbWrap);
+                                }
+
+                                if (item.download_file) {
+                                    const downloadBtn = document.createElement('a');
+                                    downloadBtn.className = 'download-btn';
+                                    downloadBtn.href = resolveImagePath(item.download_file);
+                                    downloadBtn.target = '_blank';
+                                    downloadBtn.rel = 'noopener';
+                                    downloadBtn.innerText = item.download_label || '下載行事曆';
+                                    card.appendChild(downloadBtn);
+                                }
+
+                                grid.appendChild(card);
+                            });
+
+                            wrap.style.display = 'block';
+                        }
+                    }
+
+                    const tbody = document.getElementById('calendar-body');
+                    tbody.innerHTML = ''; // 清空載入中文字
+
+                    (data.events || []).forEach(event => {
+                        // 判斷標籤顏色：如果是常課就用藍灰底，其餘用紅棕底
+                        const tagClass = (event.type === '常課') ? 'tag-daily' : 'tag-special';
+                        const gcalUrl = buildGoogleCalendarUrl(event);
+                        const gcalCell = gcalUrl
+                            ? `<a class="gcal-btn" href="${gcalUrl}" target="_blank" rel="noopener">📅 加入日曆</a>`
+                            : '';
+
+                        const row = `
+                            <tr>
+                                <td><strong>${event.time}</strong></td>
+                                <td>
+                                    <span class="event-tag ${tagClass}">${event.type}</span>
+                                    <strong>${event.title}</strong><br>
+                                    <span style="color: var(--霧霾灰); font-size: 0.9rem;">${event.desc}</span>
+                                </td>
+                                <td>${event.location}</td>
+                                <td>${gcalCell}</td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
                     });
                 })
                 .catch(error => {
-                    document.getElementById('activities-container').innerHTML = '<div style="text-align:center; color:red;">活動紀事讀取失敗。</div>';
+                    document.getElementById('calendar-body').innerHTML = '<tr><td colspan="4" style="text-align:center; color:red;">曆法載入失敗，請確認資料庫陣法。</td></tr>';
                 });
         </script>
-
     </div>
 
 </body>
