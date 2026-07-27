@@ -260,7 +260,7 @@ collections:
               - {label: "活動標題", name: "title", widget: "string"}
               - {label: "詳細說明", name: "desc", widget: "text"}
               - {label: "修煉據點", name: "location", widget: "string"}
-              - { label: "起始日期 (選填，填了才會出現「加入日曆」按鈕)", name: "event_date", widget: "date", required: false, hint: "選這個活動最近一次(或第一次)舉行的日期" }
+              - { label: "起始日期 (選填，填了才會出現「加入日曆」按鈕)", name: "event_date", widget: "datetime", time_format: false, required: false, hint: "選這個活動最近一次(或第一次)舉行的日期" }
               - { label: "開始時間 (選填，24小時制，如 19:00)", name: "start_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 19:00'] }
               - { label: "結束時間 (選填，24小時制，如 21:00)", name: "end_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 21:00'] }
               - { label: "重複頻率 (選填)", name: "repeat", widget: "select", required: false, options: [{label: "不重複 (單次活動)", value: "none"}, {label: "每週重複", value: "weekly"}, {label: "隔週重複", value: "biweekly"}], default: "none" }
