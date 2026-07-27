@@ -121,7 +121,7 @@
             function buildGoogleCalendarUrl(event) {
                 if (!event.event_date || !event.start_time) return null;
 
-                const dateStr = event.event_date.replace(/-/g, ''); // 2026-09-08 -> 20260908
+                const dateStr = event.event_date.slice(0, 10).replace(/-/g, ''); // 取前10碼 "2026-09-08" -> "20260908"，避免完整時間字串影響
                 const startStr = event.start_time.replace(':', '') + '00';
                 const endStr = (event.end_time || event.start_time).replace(':', '') + '00';
                 const dates = `${dateStr}T${startStr}/${dateStr}T${endStr}`;
