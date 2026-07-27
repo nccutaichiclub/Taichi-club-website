@@ -242,14 +242,22 @@ collections:
         label: "編輯活動列表"
         name: "calendar"
         fields:
-          - label: "本學期行事曆"
+          - label: "本學期行事曆 (可上傳中/英文等多語言版本，並排顯示)"
             name: "semester_schedule"
             widget: "object"
             required: false
             fields:
-              - { label: "行事曆圖片 (選填，會顯示在頁面最上方)", name: "display_image", widget: "image", required: false, hint: "建議上傳整學期的行事曆總覽圖，橫式較適合" }
-              - { label: "下載檔案 (選填，如 PDF 版本)", name: "download_file", widget: "file", required: false, hint: "上傳後畫面上會出現一個下載按鈕，方便社員存檔或列印" }
-              - { label: "下載按鈕文字", name: "download_label", widget: "string", required: false, default: "下載本學期行事曆", hint: "建議 12 字以內" }
+              - { label: "區塊標題 (選填，顯示在圖片上方)", name: "title", widget: "string", required: false, default: "本學期行事曆", hint: "建議 16 字以內" }
+              - label: "行事曆版本列表 (可自由新增/刪除/排序，例如新增「中文版」「English」兩筆，會自動並排顯示)"
+                name: "items"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "版本名稱 (如:中文版 / English)", name: "label", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+                  - { label: "行事曆圖片", name: "display_image", widget: "image", hint: "建議使用直式或接近A4比例的圖片，會以小圖並排顯示，點擊可看全螢幕大圖" }
+                  - { label: "下載檔案 (選填，如 PDF 版本)", name: "download_file", widget: "file", required: false, hint: "上傳後畫面上會出現一個下載按鈕，方便社員存檔或列印" }
+                  - { label: "下載按鈕文字", name: "download_label", widget: "string", required: false, default: "下載行事曆", hint: "建議 12 字以內" }
           - label: "行事曆活動列表"
             name: "events"
             widget: "list"
