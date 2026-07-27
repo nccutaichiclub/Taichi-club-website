@@ -1,0 +1,16 @@
+{
+  "page_title": "活動介紹",
+  "page_subtitle": "練功之餘，也要 Work out-Life Balance",
+  "activities": [
+    {
+      "title": "迎新",
+      "desc": "迎接新人",
+      "photos": [
+        {
+          "image": "/assets/uploads/朋.png",
+          "caption": "新人"
+        }
+      ]
+    }
+  ]
+}
