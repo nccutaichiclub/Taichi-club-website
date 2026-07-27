@@ -1,5 +1,20 @@
 {
   "semester_schedule": {
+    "title": "",
+    "items": [
+      {
+        "label": "中文版",
+        "display_image": "/assets/uploads/行事曆中文114-2.jpg",
+        "download_file": "",
+        "download_label": ""
+      },
+      {
+        "label": "English",
+        "display_image": "/assets/uploads/行事曆英文114-2.jpg",
+        "download_file": "",
+        "download_label": "下載行事曆"
+      }
+    ],
     "display_image": "/assets/uploads/行事曆中文114-2.jpg",
     "download_file": "/assets/uploads/政大太極社114-2行事曆（中文）.pdf",
     "download_label": "下載本學期行事曆"
