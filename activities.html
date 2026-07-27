@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>活動介紹｜政大太極社</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 引入 Tailwind CSS，與首頁共用同一套配色/字體設定，讓四個頁面視覺統一 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            // 關閉 preflight（Tailwind 的預設樣式重置），避免影響本頁原本手寫的 CSS
+            corePlugins: { preflight: false },
+            theme: {
+                extend: {
+                    colors: {
+                        ink: { deep: '#08090A', dark: '#111315', card: '#181B1E' },
+                        cloud: '#8E95A0',
+                        pine: { light: '#427A5B', DEFAULT: '#1E3D2F', dark: '#0F2118' },
+                        bronze: { light: '#D9C39E', DEFAULT: '#B89742', dark: '#8C6C30' }
+                    },
+                    fontFamily: { serif: ['Noto Serif TC', 'serif'] }
+                }
+            }
+        }
+    </script>
+
     <style>
         :root {
             --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #5C9A6C; --古銅金: #C5A059; --仙氣白: #E5E5E5;
@@ -87,13 +108,50 @@
 </head>
 <body>
 
-    <!-- 跨頁面導覽列：文字內容由 data/home.json 的 nav 欄位統一控管 -->
-    <nav style="background: rgba(18, 18, 18, 0.95); border-bottom: 1px solid #2A2A2A; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(5px);">
-        <a href="index.html" id="nav-link-home" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">首頁主殿</a>
-        <a href="gongfa.html" id="nav-link-method" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">法門深造</a>
-        <a href="activities.html" id="nav-link-activities" style="color: var(--古銅金); text-decoration: none; margin: 0 20px; letter-spacing: 2px; font-weight: bold;">活動介紹</a>
-        <a href="calendar.html" id="nav-link-calendar" style="color: #A0A0A0; text-decoration: none; margin: 0 20px; letter-spacing: 2px;">修煉日程</a>
-    </nav>
+    <!-- 整合版：頂部道門天際導覽（含手機版漢堡選單），與首頁共用同一套設計 -->
+    <header class="sticky top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center relative">
+
+            <!-- 左側：道場牌匾 -->
+            <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white">
+                <span id="nav-badge" class="text-xs border border-bronze px-1.5 py-0.5 rounded">政大</span>
+                <span id="nav-brand">太極社</span> <span id="nav-brand-sub" class="font-light text-sm text-cloud/70">| 隱逸道場</span>
+            </a>
+
+            <!-- 右側：電腦版跨頁導覽連結 -->
+            <nav class="hidden md:flex gap-8 items-center">
+                <a href="index.html" class="nav-link-home text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">首頁主殿</a>
+                <a href="gongfa.html" class="nav-link-method text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">法門深造</a>
+                <a href="activities.html" class="nav-link-activities text-sm tracking-widest text-bronze-light font-bold">活動介紹</a>
+                <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">修煉日程</a>
+            </nav>
+
+            <!-- 右側：手機版漢堡選單按鈕 -->
+            <button id="mobile-menu-btn" class="md:hidden text-bronze-light hover:text-white focus:outline-none transition-colors">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- 手機版下拉選單區塊 -->
+        <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-ink-deep/95 backdrop-blur-lg border-b border-white/10 flex-col items-center py-6 space-y-6 shadow-2xl transition-all duration-300 z-40">
+            <a href="index.html" class="nav-link-home text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">首頁主殿</a>
+            <a href="gongfa.html" class="nav-link-method text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">法門深造</a>
+            <a href="activities.html" class="nav-link-activities text-sm tracking-widest text-bronze-light font-bold w-full text-center block">活動介紹</a>
+            <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
+        </nav>
+    </header>
+
+    <!-- 手機版選單開關腳本 -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        });
+    </script>
 
     <div class="container">
         <h1 id="page-title">活動點點滴滴</h1>
@@ -106,6 +164,15 @@
 
         <!-- 串接後台資料的 JavaScript -->
         <script>
+            function setText(id, value) {
+                const el = document.getElementById(id);
+                if (el && value !== undefined && value !== null) el.innerText = value;
+            }
+            function setTextAll(className, value) {
+                if (value === undefined || value === null) return;
+                document.querySelectorAll('.' + className).forEach(el => el.innerText = value);
+            }
+
             // 把後台填的「純文字」自動轉成一段一段的 <p>：空一行 = 分段；段落內單純換行 = 換行(<br>)
             function paragraphize(text) {
                 if (!text) return '';
@@ -122,21 +189,18 @@
                 return path.replace(/^\/+/, '');
             }
 
-            // 導覽列文字：讀取 data/home.json 的 nav 設定，跟其他頁面共用同一份資料
+            // 導覽列文字與品牌角標：讀取 data/home.json 的 nav 設定，跟其他頁面共用同一份資料
             fetch('data/home.json?v=' + Date.now())
                 .then(response => response.json())
                 .then(data => {
                     if (!data.nav) return;
-                    const map = {
-                        'nav-link-home': data.nav.link_home,
-                        'nav-link-method': data.nav.link_method,
-                        'nav-link-activities': data.nav.link_activities,
-                        'nav-link-calendar': data.nav.link_calendar
-                    };
-                    Object.keys(map).forEach(id => {
-                        const el = document.getElementById(id);
-                        if (el && map[id]) el.innerText = map[id];
-                    });
+                    setText('nav-badge', data.nav.badge);
+                    setText('nav-brand', data.nav.brand);
+                    if (data.nav.brand_sub) setText('nav-brand-sub', '| ' + data.nav.brand_sub);
+                    setTextAll('nav-link-home', data.nav.link_home);
+                    setTextAll('nav-link-method', data.nav.link_method);
+                    setTextAll('nav-link-activities', data.nav.link_activities);
+                    setTextAll('nav-link-calendar', data.nav.link_calendar);
                 })
                 .catch(error => console.error('讀取 data/home.json 失敗：', error));
 
