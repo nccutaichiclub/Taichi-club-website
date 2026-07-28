@@ -143,17 +143,17 @@
 
         <!-- 動態分頁頁籤 (Tabs) -->
         <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
-            <button onclick="switchTab('qigong')" id="tab-qigong" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-bronze bg-pine text-white">
-                <span id="tab-qigong-label" class="truncate max-w-[6rem] inline-block align-middle">華陀導引氣功</span>
+            <button onclick="switchTab('qigong')" id="tab-qigong" class="tab-btn px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-bronze bg-pine text-white">
+                <span id="tab-qigong-label" class="inline-block align-middle whitespace-nowrap">華陀導引氣功</span>
             </button>
-            <button onclick="switchTab('taichi')" id="tab-taichi" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                <span id="tab-taichi-label" class="truncate max-w-[6rem] inline-block align-middle">太極拳</span>
+            <button onclick="switchTab('taichi')" id="tab-taichi" class="tab-btn px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+                <span id="tab-taichi-label" class="inline-block align-middle whitespace-nowrap">太極拳</span>
             </button>
-            <button onclick="switchTab('staff')" id="tab-staff" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                <span id="tab-staff-label" class="truncate max-w-[6rem] inline-block align-middle">太祖棍</span>
+            <button onclick="switchTab('staff')" id="tab-staff" class="tab-btn px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+                <span id="tab-staff-label" class="inline-block align-middle whitespace-nowrap">太祖棍</span>
             </button>
-            <button onclick="switchTab('sword')" id="tab-sword" class="tab-btn px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                <span id="tab-sword-label" class="truncate max-w-[6rem] inline-block align-middle">太極劍</span>
+            <button onclick="switchTab('sword')" id="tab-sword" class="tab-btn px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+                <span id="tab-sword-label" class="inline-block align-middle whitespace-nowrap">太極劍</span>
             </button>
         </div>
 
@@ -310,29 +310,8 @@
                             <circle cx="620" cy="220" r="1.5" fill="currentColor"/>
                         </svg>
 
-                        <div class="absolute left-[30%] top-[35%] group cursor-pointer">
-                            <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
-                            <span class="absolute left-4 -top-2 scale-0 group-hover:scale-100 transition-all text-[10px] bg-ink-deep px-1.5 py-0.5 rounded border border-bronze text-white whitespace-nowrap">法蘭西弟子</span>
-                        </div>
-
-                        <div class="absolute left-[15%] top-[50%] group cursor-pointer">
-                            <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
-                            <span class="absolute left-4 -top-2 scale-0 group-hover:scale-100 transition-all text-[10px] bg-ink-deep px-1.5 py-0.5 rounded border border-bronze text-white whitespace-nowrap">美利堅同修</span>
-                        </div>
-
-                        <div class="absolute left-[70%] top-[45%] group cursor-pointer">
-                            <span class="absolute inline-flex h-5 w-5 rounded-full bg-bronze/30 opacity-75 animate-ping"></span>
-                            <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-pine-light border border-white"></span>
-                            <span class="absolute left-5 -top-2 scale-100 text-[10px] bg-pine-dark px-1.5 py-0.5 rounded border border-pine-light text-white whitespace-nowrap font-semibold">指南山道場</span>
-                        </div>
-
-                        <div class="absolute left-[78%] top-[38%] group cursor-pointer">
-                            <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
-                            <span class="absolute left-4 -top-2 scale-0 group-hover:scale-100 transition-all text-[10px] bg-ink-deep px-1.5 py-0.5 rounded border border-bronze text-white whitespace-nowrap">東瀛問道者</span>
-                        </div>
+                        <!-- 地圖點位：由 JS 依照後台的 map_points 資料動態產生，可自由新增/刪除 -->
+                        <div id="global-map-points" class="absolute inset-0"></div>
                     </div>
 
                     <div class="text-[10px] text-cloud/50 text-center">
@@ -392,8 +371,8 @@
     <section id="contact" class="py-24 bg-ink-dark/50 border-t border-white/5 px-6 scroll-mt-20">
         <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-12">
 
-            <!-- 聯絡與社群 -->
-            <div class="md:col-span-5 space-y-8">
+            <!-- 聯絡與社群：手機版排序在後(order-2)，電腦版維持在左側(md:order-1) -->
+            <div class="md:col-span-5 space-y-8 order-2 md:order-1">
                 <div class="space-y-2">
                     <p id="contact-eyebrow" class="text-bronze tracking-[0.3em] text-xs">VISIT THE TEMPLE</p>
                     <h2 id="contact-title" class="text-3xl font-bold text-white tracking-widest">尋訪仙蹤</h2>
@@ -427,39 +406,28 @@
                 </div>
             </div>
 
-            <!-- 行事曆 -->
-            <div class="md:col-span-7 bg-ink-dark p-6 rounded-xl ink-border space-y-6">
+            <!-- 行事曆：手機版排序在前(order-1)，電腦版維持在右側(md:order-2) -->
+            <div class="md:col-span-7 bg-ink-dark p-6 rounded-xl ink-border space-y-6 order-1 md:order-2">
                 <h3 id="schedule-title" class="text-xl font-semibold text-white tracking-widest text-center md:text-left">
                     每週修煉行事曆 (社課時間)
                 </h3>
 
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm text-cloud border-collapse">
-                        <thead>
-                            <tr class="border-b border-white/10 text-bronze">
-                                <th class="pb-3 tracking-widest">修行時辰</th>
-                                <th class="pb-3 tracking-widest">修煉法門</th>
-                                <th class="pb-3 tracking-widest">道場處所</th>
-                            </tr>
-                        </thead>
-                        <tbody id="schedule-body" class="divide-y divide-white/5">
-                            <tr class="hover:bg-white/[0.02] transition-colors">
-                                <td class="py-4 font-medium text-white">每週二 19:00 - 21:00</td>
-                                <td class="py-4">基礎吐納與華陀導引氣功</td>
-                                <td class="py-4 text-xs">風雩樓二樓</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition-colors">
-                                <td class="py-4 font-medium text-white">每週四 19:00 - 21:00</td>
-                                <td class="py-4">太極拳核心架構與推手</td>
-                                <td class="py-4 text-xs">風雩樓一樓</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition-colors">
-                                <td class="py-4 font-medium text-white">隔週六 09:00 - 11:30</td>
-                                <td class="py-4">太祖棍與太極劍兵刃修行</td>
-                                <td class="py-4 text-xs text-bronze-light font-semibold">醉夢溪畔草坪 (雨天移室內)</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div id="schedule-list" class="space-y-3">
+                    <div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors">
+                        <div class="text-bronze font-bold tracking-widest text-base mb-1.5">基礎吐納與華陀導引氣功</div>
+                        <div class="text-sm text-cloud/90">時間：<span class="text-white">每週二 19:00 - 21:00</span></div>
+                        <div class="text-sm text-cloud/90">地點：<span class="text-white">風雩樓二樓</span></div>
+                    </div>
+                    <div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors">
+                        <div class="text-bronze font-bold tracking-widest text-base mb-1.5">太極拳核心架構與推手</div>
+                        <div class="text-sm text-cloud/90">時間：<span class="text-white">每週四 19:00 - 21:00</span></div>
+                        <div class="text-sm text-cloud/90">地點：<span class="text-white">風雩樓一樓</span></div>
+                    </div>
+                    <div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors">
+                        <div class="text-bronze font-bold tracking-widest text-base mb-1.5">太祖棍與太極劍兵刃修行</div>
+                        <div class="text-sm text-cloud/90">時間：<span class="text-white">隔週六 09:00 - 11:30</span></div>
+                        <div class="text-sm text-cloud/90">地點：<span class="text-white">醉夢溪畔草坪 (雨天移室內)</span></div>
+                    </div>
                 </div>
 
                 <div class="bg-pine/10 p-4 rounded border border-pine/30 text-xs text-pine-light leading-relaxed">
@@ -522,11 +490,33 @@
             document.querySelectorAll('.' + className).forEach(el => el.innerText = value);
         }
 
-        // 初始化 Hero 照片輪播：images 是一個陣列 (array，也就是清單)，每一筆是 {image, alt}
-        function initHeroCarousel(images) {
+        // 頁籤文字專用：超過 5 個字時自動縮短字距(tracking)，避免被截斷成「...」
+        function setTabLabel(id, value) {
+            const el = document.getElementById(id);
+            if (!el || value === undefined || value === null) return;
+            el.innerText = value;
+            if (value.length > 5) {
+                el.classList.remove('tracking-wider');
+                el.classList.add('tracking-tight');
+            } else {
+                el.classList.add('tracking-wider');
+                el.classList.remove('tracking-tight');
+            }
+        }
+
+        // 初始化 Hero 照片輪播：desktopImages/mobileImages 是陣列 (array)，每一筆是 {image, alt}
+        // 手機版若後台沒填圖片，會自動沿用電腦版的圖片，確保不會開天窗
+        function initHeroCarousel(desktopImages, mobileImages) {
             const container = document.getElementById('hero-carousel');
             const dotsContainer = document.getElementById('hero-carousel-dots');
-            if (!container || !dotsContainer || !Array.isArray(images) || images.length === 0) return;
+            if (!container || !dotsContainer) return;
+
+            const isMobile = window.matchMedia('(max-width: 767px)').matches;
+            const images = (isMobile && Array.isArray(mobileImages) && mobileImages.length > 0)
+                ? mobileImages
+                : desktopImages;
+
+            if (!Array.isArray(images) || images.length === 0) return;
 
             // 迴圈 (loop)：陣列裡有幾張圖片，就重複執行「建立一個圖層」這件事幾次
             images.forEach((img, i) => {
@@ -562,6 +552,40 @@
             }
         }
 
+        // 渲染地圖點位：points 是陣列 [{label, left_percent, top_percent, highlight}]
+        // highlight=true 的點位（例如本社道場）會用較大、常駐顯示的標記；其餘則是滑鼠移過去才顯示名稱的小點
+        function renderMapPoints(points) {
+            const container = document.getElementById('global-map-points');
+            if (!container) return;
+            container.innerHTML = '';
+            if (!Array.isArray(points)) return;
+
+            points.forEach(pt => {
+                const wrap = document.createElement('div');
+                const leftPct = (pt.left_percent !== undefined && pt.left_percent !== null) ? pt.left_percent : 50;
+                const topPct = (pt.top_percent !== undefined && pt.top_percent !== null) ? pt.top_percent : 50;
+                wrap.className = 'absolute group cursor-pointer';
+                wrap.style.left = leftPct + '%';
+                wrap.style.top = topPct + '%';
+
+                if (pt.highlight) {
+                    wrap.innerHTML = `
+                        <span class="absolute inline-flex h-5 w-5 rounded-full bg-bronze/30 opacity-75 animate-ping"></span>
+                        <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-pine-light border border-white"></span>
+                        <span class="absolute left-5 -top-2 scale-100 text-[10px] bg-pine-dark px-1.5 py-0.5 rounded border border-pine-light text-white whitespace-nowrap font-semibold"></span>
+                    `;
+                } else {
+                    wrap.innerHTML = `
+                        <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
+                        <span class="absolute left-4 -top-2 scale-0 group-hover:scale-100 transition-all text-[10px] bg-ink-deep px-1.5 py-0.5 rounded border border-bronze text-white whitespace-nowrap"></span>
+                    `;
+                }
+                wrap.querySelector('span:last-child').innerText = pt.label || '';
+                container.appendChild(wrap);
+            });
+        }
+
         // 網址後面加上 ?v=時間戳記，強迫瀏覽器每次都跟伺服器要最新版本，不要用瀏覽器裡快取的舊資料
         fetch('data/home.json?v=' + Date.now())
             .then(response => response.json())
@@ -577,9 +601,9 @@
                     setTextAll('nav-link-calendar', data.nav.link_calendar);
                 }
 
-                // Hero：文字改成照片輪播
+                // Hero：文字改成照片輪播，電腦版與手機版分開讀取
                 if (data.hero) {
-                    initHeroCarousel(data.hero.carousel);
+                    initHeroCarousel(data.hero.carousel_desktop, data.hero.carousel_mobile);
                 }
 
                 // 四大法門 - 區塊標題
@@ -592,7 +616,7 @@
                 // 四大法門 - 內容（依 id 對應到既有的四個固定區塊）
                 if (Array.isArray(data.methods)) {
                     data.methods.forEach(m => {
-                        setText(`tab-${m.id}-label`, m.tab_label);
+                        setTabLabel(`tab-${m.id}-label`, m.tab_label);
                         setText(`content-${m.id}-tag`, m.tag);
                         setText(`content-${m.id}-title`, m.title);
                         setText(`content-${m.id}-quote`, m.quote);
@@ -657,6 +681,10 @@
                     setText('global-para1', data.global.para1);
                     setText('global-para2', data.global.para2);
 
+                    // 地圖點位：依照後台的 map_points 資料動態產生（這是示意圖，不是真實地圖，
+                    // 用 0~100 的百分比座標決定點位在圖上的左右/上下位置）
+                    renderMapPoints(data.global.map_points);
+
                     // 國家標籤：例如「JP 日本 +12」
                     const tagsContainer = document.getElementById('global-country-tags');
                     if (tagsContainer && Array.isArray(data.global.country_tags)) {
@@ -706,11 +734,11 @@
                     container.innerHTML = '';
                     list.forEach(p => {
                         const card = document.createElement('div');
-                        card.className = 'flex items-center gap-6 md:gap-10 bg-ink-dark p-6 md:p-8 rounded-lg ink-border ink-border-hover transition-all duration-500';
+                        card.className = 'flex flex-wrap items-center gap-4 md:gap-10 bg-ink-dark p-6 md:p-8 rounded-lg ink-border ink-border-hover transition-all duration-500';
 
-                        // 照片：有上傳就顯示照片，沒有就顯示姓名首字當作預留樣式
+                        // 照片：有上傳就顯示照片，沒有就顯示姓名首字當作預留樣式（手機/電腦共用同一個照片）
                         const photoWrap = document.createElement('div');
-                        photoWrap.className = 'w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
+                        photoWrap.className = 'w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
                         if (p.photo) {
                             const img = document.createElement('img');
                             img.className = 'w-full h-full object-cover';
@@ -725,17 +753,35 @@
                         }
                         card.appendChild(photoWrap);
 
-                        const textWrap = document.createElement('div');
-                        textWrap.className = 'space-y-1.5 min-w-0';
-                        textWrap.innerHTML = `
+                        // 手機版專用：姓名＋副標，放在照片右側、字體放大，肖像不會因為簡介文字多寡而被推擠
+                        const mobileNameWrap = document.createElement('div');
+                        mobileNameWrap.className = 'flex-1 min-w-0 space-y-1 md:hidden';
+                        mobileNameWrap.innerHTML = `
+                            <h3 class="text-xl font-medium text-white tracking-widest"></h3>
+                            <p class="text-sm text-pine-light tracking-widest font-semibold"></p>
+                        `;
+                        mobileNameWrap.querySelector('h3').innerText = p.name || '';
+                        mobileNameWrap.querySelector('p').innerText = p[subtitleField] || '';
+                        card.appendChild(mobileNameWrap);
+
+                        // 電腦版專用：姓名＋副標＋簡介維持原本長條樣式（簡介超過 3 行仍會截斷顯示）
+                        const desktopTextWrap = document.createElement('div');
+                        desktopTextWrap.className = 'space-y-1.5 min-w-0 hidden md:block';
+                        desktopTextWrap.innerHTML = `
                             <h3 class="text-lg md:text-xl font-medium text-white tracking-widest truncate"></h3>
                             <p class="text-xs md:text-sm text-pine-light tracking-widest font-semibold truncate"></p>
                             <p class="text-sm text-cloud/80 leading-relaxed line-clamp-3"></p>
                         `;
-                        textWrap.querySelector('h3').innerText = p.name || '';
-                        textWrap.querySelector('p.text-pine-light').innerText = p[subtitleField] || '';
-                        textWrap.querySelector('p.text-cloud\\/80').innerText = p.desc || '';
-                        card.appendChild(textWrap);
+                        desktopTextWrap.querySelector('h3').innerText = p.name || '';
+                        desktopTextWrap.querySelector('p.text-pine-light').innerText = p[subtitleField] || '';
+                        desktopTextWrap.querySelector('p.text-cloud\\/80').innerText = p.desc || '';
+                        card.appendChild(desktopTextWrap);
+
+                        // 手機版專用：簡介文字獨立一行、滿版顯示在照片下方，不截斷，卡片高度隨文字多寡自動調整
+                        const mobileDescWrap = document.createElement('div');
+                        mobileDescWrap.className = 'w-full mt-3 md:hidden text-sm text-cloud/80 leading-relaxed';
+                        mobileDescWrap.innerText = p.desc || '';
+                        card.appendChild(mobileDescWrap);
 
                         container.appendChild(card);
                     });
@@ -773,26 +819,26 @@
                     setText('contact-footer-quote', data.contact.footer_quote);
                 }
 
-                // 行事曆表格（整段重新產生列）
+                // 每週修煉行事曆（精簡卡片格式：項目/時間/地點）
                 if (data.schedule) {
                     setText('schedule-title', data.schedule.title);
                     setText('schedule-note', data.schedule.note);
                     if (Array.isArray(data.schedule.rows)) {
-                        const tbody = document.getElementById('schedule-body');
-                        if (tbody) {
-                            tbody.innerHTML = '';
+                        const list = document.getElementById('schedule-list');
+                        if (list) {
+                            list.innerHTML = '';
                             data.schedule.rows.forEach(row => {
-                                const tr = document.createElement('tr');
-                                tr.className = 'hover:bg-white/[0.02] transition-colors';
-                                tr.innerHTML = `
-                                    <td class="py-4 font-medium text-white"></td>
-                                    <td class="py-4"></td>
-                                    <td class="py-4 text-xs"></td>
+                                const item = document.createElement('div');
+                                item.className = 'bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors';
+                                item.innerHTML = `
+                                    <div class="text-bronze font-bold tracking-widest text-base mb-1.5"></div>
+                                    <div class="text-sm text-cloud/90">時間：<span class="text-white"></span></div>
+                                    <div class="text-sm text-cloud/90">地點：<span class="text-white"></span></div>
                                 `;
-                                tr.children[0].innerText = row.time || '';
-                                tr.children[1].innerText = row.content || '';
-                                tr.children[2].innerText = row.location || '';
-                                tbody.appendChild(tr);
+                                item.children[0].innerText = row.content || '';
+                                item.children[1].querySelector('span').innerText = row.time || '';
+                                item.children[2].querySelector('span').innerText = row.location || '';
+                                list.appendChild(item);
                             });
                         }
                     }
