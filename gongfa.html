@@ -69,6 +69,14 @@
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #1A1A1A; border: 1px solid #333; }
         .video-placeholder { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--霧霾灰); }
         .video-placeholder i { font-size: 2rem; margin-bottom: 10px; color: var(--古銅金); }
+
+        /* 手機版漢堡選單按鈕：因子頁關閉了 Tailwind 的 preflight，瀏覽器預設的按鈕框線/背景會跑出來，這裡手動重置 */
+        #mobile-menu-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
