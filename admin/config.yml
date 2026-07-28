@@ -30,13 +30,21 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - label: "輪播圖片"
-                name: "carousel"
+              - label: "電腦版輪播圖片 (建議使用橫式，寬 > 高，至少 1600px 寬)"
+                name: "carousel_desktop"
                 widget: "list"
                 min: 1
                 summary: "{{fields.alt}}"
                 fields:
-                  - { label: "圖片", name: "image", widget: "image", hint: "建議使用橫式(寬>高)、至少 1600px 寬的照片，避免手機版放大後模糊" }
+                  - { label: "圖片", name: "image", widget: "image", hint: "請上傳橫式(寬>高)的照片，避免電腦版寬螢幕顯示時被裁切過多" }
+                  - { label: "圖片說明 (畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
+              - label: "手機版輪播圖片 (建議使用直式，高 > 寬；若留空，手機版會自動沿用電腦版圖片)"
+                name: "carousel_mobile"
+                widget: "list"
+                required: false
+                summary: "{{fields.alt}}"
+                fields:
+                  - { label: "圖片", name: "image", widget: "image", hint: "請上傳直式(高>寬)的照片，避免手機直式螢幕顯示時被裁切過多" }
                   - { label: "圖片說明 (畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
 
           - label: "四大法門 - 區塊標題"
@@ -111,6 +119,16 @@ collections:
                 fields:
                   - { label: "數字 (如:67+)", name: "number", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
                   - { label: "說明文字 (如:位國際同道)", name: "label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - label: "寰宇同道地圖點位 (可自由新增/刪除，這是示意圖不是真實地圖，用 0~100 的數字決定點位在圖上的位置)"
+                name: "map_points"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "地點名稱 (如:指南山道場、法蘭西弟子)", name: "label", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+                  - { label: "水平位置 (0~100，數字越大越靠右)", name: "left_percent", widget: "number", value_type: "int", min: 0, max: 100, hint: "這是示意地圖不是真實經緯度，先填個數字看畫面效果，再慢慢微調即可" }
+                  - { label: "垂直位置 (0~100，數字越大越靠下)", name: "top_percent", widget: "number", value_type: "int", min: 0, max: 100 }
+                  - { label: "是否為本社道場位置 (會用較大的常駐標記顯示)", name: "highlight", widget: "boolean", default: false, required: false }
 
           - label: "師資介紹 - 區塊標題"
             name: "instructors_section"
