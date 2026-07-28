@@ -5,14 +5,50 @@
     {
       "title": "迎新",
       "desc": "迎接新人",
-      "photos": [
+      "albums": [
         {
-          "image": "/assets/uploads/朋.png",
-          "caption": "新人"
+          "name": "測試一",
+          "photos": [
+            {
+              "image": "/assets/uploads/玉清元始天尊.jpg",
+              "caption": ""
+            },
+            {
+              "image": "/assets/uploads/7ec9139ca36256138cc8ead6a19ae3ab.jpg",
+              "caption": ""
+            }
+          ]
         },
         {
-          "image": "/assets/uploads/Grasslands-menggu.jpg",
-          "caption": "草地"
+          "name": "測試二",
+          "photos": [
+            {
+              "image": "/assets/uploads/北京十方普觉寺_多闻天.jfif",
+              "caption": ""
+            },
+            {
+              "image": "/assets/uploads/北京十方普觉寺_持国天.jfif",
+              "caption": ""
+            },
+            {
+              "image": "/assets/uploads/北京十方普觉寺_增长天.jfif",
+              "caption": ""
+            },
+            {
+              "image": "/assets/uploads/Guangmutian,_Shifangpujue_Temple,_Beijing,_P.R.China.jfif",
+              "caption": ""
+            }
+          ]
+        }
+      ],
+      "photos": [
+        {
+          "caption": "新人",
+          "image": "/assets/uploads/朋.png"
+        },
+        {
+          "caption": "草地",
+          "image": "/assets/uploads/Grasslands-menggu.jpg"
         }
       ]
     }
