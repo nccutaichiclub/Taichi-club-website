@@ -63,41 +63,141 @@
             margin-bottom: 0;
         }
 
-        /* 歷年活動照片：相簿式網格 */
-        .activity-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 12px;
-            margin-top: 28px;
+        /* 歷年活動照片：小尺寸封面預覽（不管照片幾張，都只佔一個小方塊的版面） */
+        .activity-gallery-preview {
+            margin-top: 24px;
         }
-        .activity-photo {
+        .gallery-cover {
             position: relative;
-            border-radius: 8px;
+            width: 150px;
+            height: 112px;
+            border-radius: 10px;
             overflow: hidden;
-            aspect-ratio: 4 / 3;
+            cursor: zoom-in;
             background: #1A1A1A;
             border: 1px solid rgba(160, 160, 160, 0.15);
         }
-        .activity-photo img {
+        .gallery-cover img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.4s ease;
+            transition: transform 0.35s ease;
         }
-        .activity-photo:hover img {
+        .gallery-cover:hover img {
             transform: scale(1.06);
         }
-        .activity-photo .caption {
+        .gallery-count-badge {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             color: var(--仙氣白);
-            font-size: 0.75rem;
-            padding: 16px 8px 6px;
+            font-size: 0.7rem;
+            padding: 20px 8px 6px;
             text-align: center;
+            letter-spacing: 0.5px;
+        }
+        /* 手機版縮圖再縮小一點，確保不佔用介紹欄位太多空間 */
+        @media (max-width: 640px) {
+            .gallery-cover {
+                width: 110px;
+                height: 82px;
+            }
+            .gallery-count-badge {
+                font-size: 0.62rem;
+                padding: 16px 4px 4px;
+            }
+        }
+
+        /* 全螢幕相片集燈箱：點縮圖後開啟，可左右切換 */
+        .gallery-lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .gallery-lightbox-overlay.active {
+            display: flex;
+        }
+        .gallery-lightbox-img-wrap {
+            max-width: 90vw;
+            max-height: 85vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gallery-lightbox-img-wrap img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            display: block;
+        }
+        .gallery-lightbox-close {
+            position: absolute;
+            top: 18px;
+            right: 24px;
+            color: var(--仙氣白);
+            font-size: 2rem;
+            line-height: 1;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1002;
+        }
+        .gallery-lightbox-counter {
+            position: absolute;
+            top: 22px;
+            left: 26px;
+            color: var(--霧霾灰);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            z-index: 1002;
+        }
+        .gallery-lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--仙氣白);
+            font-size: 1.6rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1002;
+            user-select: none;
+        }
+        .gallery-lightbox-arrow.prev { left: 14px; }
+        .gallery-lightbox-arrow.next { right: 14px; }
+        .gallery-lightbox-arrow:hover { background: rgba(255,255,255,0.2); }
+        .gallery-lightbox-caption {
+            position: absolute;
+            bottom: 18px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--古銅金);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            padding: 0 60px;
+        }
+        @media (max-width: 640px) {
+            .gallery-lightbox-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 1.3rem;
+            }
         }
         .gallery-empty-hint {
             color: var(--霧霾灰);
@@ -162,6 +262,18 @@
             <div style="text-align:center; color:var(--霧霾灰);">正在翻閱活動紀事，載入中...</div>
         </div>
 
+        <!-- 全螢幕相片集燈箱：所有活動共用同一組，開啟時依索引顯示對應的活動照片 -->
+        <div id="gallery-lightbox-overlay" class="gallery-lightbox-overlay">
+            <button id="gallery-lightbox-close" class="gallery-lightbox-close" aria-label="關閉">&times;</button>
+            <div id="gallery-lightbox-counter" class="gallery-lightbox-counter"></div>
+            <button id="gallery-lightbox-prev" class="gallery-lightbox-arrow prev" aria-label="上一張">&#10094;</button>
+            <div id="gallery-lightbox-img-wrap" class="gallery-lightbox-img-wrap">
+                <img id="gallery-lightbox-image" src="" alt="">
+            </div>
+            <button id="gallery-lightbox-next" class="gallery-lightbox-arrow next" aria-label="下一張">&#10095;</button>
+            <div id="gallery-lightbox-caption" class="gallery-lightbox-caption"></div>
+        </div>
+
         <!-- 串接後台資料的 JavaScript -->
         <script>
             function setText(id, value) {
@@ -188,6 +300,77 @@
                 if (!path) return '';
                 return path.replace(/^\/+/, '');
             }
+
+            // ===== 全螢幕相片集燈箱邏輯 =====
+            // galleryData[活動編號] = 該活動的照片陣列 [{image, caption}, ...]
+            let galleryData = [];
+            let currentGalleryIndex = 0;
+            let currentPhotoIndex = 0;
+
+            function renderLightboxPhoto() {
+                const photos = galleryData[currentGalleryIndex] || [];
+                if (photos.length === 0) return;
+                const photo = photos[currentPhotoIndex];
+                const imgEl = document.getElementById('gallery-lightbox-image');
+                imgEl.src = resolveImagePath(photo.image);
+                imgEl.alt = photo.caption || '';
+                document.getElementById('gallery-lightbox-caption').innerText = photo.caption || '';
+                document.getElementById('gallery-lightbox-counter').innerText = `${currentPhotoIndex + 1} / ${photos.length}`;
+            }
+            function openGalleryLightbox(activityIndex, photoIndex) {
+                currentGalleryIndex = activityIndex;
+                currentPhotoIndex = photoIndex;
+                renderLightboxPhoto();
+                document.getElementById('gallery-lightbox-overlay').classList.add('active');
+            }
+            function closeGalleryLightbox() {
+                document.getElementById('gallery-lightbox-overlay').classList.remove('active');
+            }
+            function showPrevPhoto() {
+                const photos = galleryData[currentGalleryIndex] || [];
+                if (photos.length === 0) return;
+                currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+                renderLightboxPhoto();
+            }
+            function showNextPhoto() {
+                const photos = galleryData[currentGalleryIndex] || [];
+                if (photos.length === 0) return;
+                currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+                renderLightboxPhoto();
+            }
+
+            document.getElementById('gallery-lightbox-close').addEventListener('click', closeGalleryLightbox);
+            document.getElementById('gallery-lightbox-prev').addEventListener('click', showPrevPhoto);
+            document.getElementById('gallery-lightbox-next').addEventListener('click', showNextPhoto);
+            // 點背景（非圖片本身）也可以關閉
+            document.getElementById('gallery-lightbox-overlay').addEventListener('click', (e) => {
+                if (e.target.id === 'gallery-lightbox-overlay') closeGalleryLightbox();
+            });
+            // 鍵盤操作：左右鍵切換、Esc 關閉
+            document.addEventListener('keydown', (e) => {
+                const overlay = document.getElementById('gallery-lightbox-overlay');
+                if (!overlay.classList.contains('active')) return;
+                if (e.key === 'Escape') closeGalleryLightbox();
+                if (e.key === 'ArrowLeft') showPrevPhoto();
+                if (e.key === 'ArrowRight') showNextPhoto();
+            });
+            // 手機觸控滑動：左滑下一張、右滑上一張
+            let touchStartX = 0;
+            const lightboxImgWrap = document.getElementById('gallery-lightbox-img-wrap');
+            lightboxImgWrap.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            lightboxImgWrap.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                const diff = touchEndX - touchStartX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        showPrevPhoto();
+                    } else {
+                        showNextPhoto();
+                    }
+                }
+            });
 
             // 導覽列文字與品牌角標：讀取 data/home.json 的 nav 設定，跟其他頁面共用同一份資料
             fetch('data/home.json?v=' + Date.now())
@@ -217,8 +400,9 @@
 
                     const container = document.getElementById('activities-container');
                     container.innerHTML = '';
+                    galleryData = []; // 每次重新載入時清空，避免資料累加重複
 
-                    (data.activities || []).forEach(activity => {
+                    (data.activities || []).forEach((activity, activityIndex) => {
                         const wrap = document.createElement('div');
                         wrap.className = 'activity-detail';
 
@@ -232,25 +416,30 @@
                         wrap.appendChild(textDiv);
 
                         const photos = Array.isArray(activity.photos) ? activity.photos : [];
+                        galleryData[activityIndex] = photos;
+
                         if (photos.length > 0) {
-                            const gallery = document.createElement('div');
-                            gallery.className = 'activity-gallery';
-                            photos.forEach(p => {
-                                const photoBox = document.createElement('div');
-                                photoBox.className = 'activity-photo';
-                                const img = document.createElement('img');
-                                img.src = resolveImagePath(p.image);
-                                img.alt = p.caption || activity.title || '';
-                                photoBox.appendChild(img);
-                                if (p.caption) {
-                                    const cap = document.createElement('div');
-                                    cap.className = 'caption';
-                                    cap.innerText = p.caption;
-                                    photoBox.appendChild(cap);
-                                }
-                                gallery.appendChild(photoBox);
-                            });
-                            wrap.appendChild(gallery);
+                            const previewWrap = document.createElement('div');
+                            previewWrap.className = 'activity-gallery-preview';
+
+                            const cover = document.createElement('div');
+                            cover.className = 'gallery-cover';
+
+                            const img = document.createElement('img');
+                            img.src = resolveImagePath(photos[0].image);
+                            img.alt = photos[0].caption || activity.title || '';
+                            cover.appendChild(img);
+
+                            const badge = document.createElement('div');
+                            badge.className = 'gallery-count-badge';
+                            badge.innerText = photos.length > 1 ? `📷 共 ${photos.length} 張，點擊查看` : '📷 點擊查看';
+                            cover.appendChild(badge);
+
+                            // 點擊封面縮圖，開啟全螢幕燈箱並從第一張開始瀏覽
+                            cover.addEventListener('click', () => openGalleryLightbox(activityIndex, 0));
+
+                            previewWrap.appendChild(cover);
+                            wrap.appendChild(previewWrap);
                         }
 
                         container.appendChild(wrap);
