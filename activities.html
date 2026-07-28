@@ -208,6 +208,14 @@
             font-size: 0.8rem;
             margin-top: 16px;
         }
+
+        /* 手機版漢堡選單按鈕：因子頁關閉了 Tailwind 的 preflight，瀏覽器預設的按鈕框線/背景會跑出來，這裡手動重置 */
+        #mobile-menu-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
