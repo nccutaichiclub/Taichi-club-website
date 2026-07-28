@@ -63,9 +63,13 @@
             margin-bottom: 0;
         }
 
-        /* 歷年活動照片：小尺寸封面預覽（不管照片幾張，都只佔一個小方塊的版面） */
+        /* 歷年活動照片：小尺寸封面預覽（不管照片幾張，都只佔一個小方塊的版面）
+           一個活動可以有多組照片集，用 flex 並排顯示，手機版會自動換行 */
         .activity-gallery-preview {
             margin-top: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
         }
         .gallery-cover {
             position: relative;
@@ -302,7 +306,8 @@
             }
 
             // ===== 全螢幕相片集燈箱邏輯 =====
-            // galleryData[活動編號] = 該活動的照片陣列 [{image, caption}, ...]
+            // galleryData 是攤平的照片集陣列：galleryData[N] = 第N組照片集的照片陣列 [{image, caption}, ...]
+            // 一個活動可能對應好幾組照片集，所以不是用活動編號索引，而是用「渲染時遇到的順序」索引
             let galleryData = [];
             let currentGalleryIndex = 0;
             let currentPhotoIndex = 0;
@@ -415,31 +420,46 @@
                         textDiv.innerHTML = paragraphize(activity.desc);
                         wrap.appendChild(textDiv);
 
-                        const photos = Array.isArray(activity.photos) ? activity.photos : [];
-                        galleryData[activityIndex] = photos;
-
-                        if (photos.length > 0) {
+                        // 一個活動可以有多組照片集(albums)，每組各自可命名，也各自能點開全螢幕瀏覽
+                        const albums = Array.isArray(activity.albums) ? activity.albums : [];
+                        if (albums.length > 0) {
                             const previewWrap = document.createElement('div');
                             previewWrap.className = 'activity-gallery-preview';
 
-                            const cover = document.createElement('div');
-                            cover.className = 'gallery-cover';
+                            albums.forEach(album => {
+                                const photos = Array.isArray(album.photos) ? album.photos : [];
+                                if (photos.length === 0) return; // 這組照片集沒有照片就跳過，不顯示空縮圖
 
-                            const img = document.createElement('img');
-                            img.src = resolveImagePath(photos[0].image);
-                            img.alt = photos[0].caption || activity.title || '';
-                            cover.appendChild(img);
+                                // 用「目前已經有幾組照片集」當作這組的索引，燈箱靠這個索引找到對應照片
+                                const galleryIndex = galleryData.length;
+                                galleryData.push(photos);
 
-                            const badge = document.createElement('div');
-                            badge.className = 'gallery-count-badge';
-                            badge.innerText = photos.length > 1 ? `📷 共 ${photos.length} 張，點擊查看` : '📷 點擊查看';
-                            cover.appendChild(badge);
+                                const cover = document.createElement('div');
+                                cover.className = 'gallery-cover';
 
-                            // 點擊封面縮圖，開啟全螢幕燈箱並從第一張開始瀏覽
-                            cover.addEventListener('click', () => openGalleryLightbox(activityIndex, 0));
+                                const img = document.createElement('img');
+                                img.src = resolveImagePath(photos[0].image);
+                                img.alt = album.name || activity.title || '';
+                                cover.appendChild(img);
 
-                            previewWrap.appendChild(cover);
-                            wrap.appendChild(previewWrap);
+                                const badge = document.createElement('div');
+                                badge.className = 'gallery-count-badge';
+                                // 有填「照片集名稱」就顯示名稱，取代預設的「共N張，點擊查看」
+                                const hasName = album.name && album.name.trim() !== '';
+                                badge.innerText = hasName
+                                    ? album.name
+                                    : (photos.length > 1 ? `📷 共 ${photos.length} 張，點擊查看` : '📷 點擊查看');
+                                cover.appendChild(badge);
+
+                                // 點擊封面縮圖，開啟全螢幕燈箱並從這組照片集的第一張開始瀏覽
+                                cover.addEventListener('click', () => openGalleryLightbox(galleryIndex, 0));
+
+                                previewWrap.appendChild(cover);
+                            });
+
+                            if (previewWrap.children.length > 0) {
+                                wrap.appendChild(previewWrap);
+                            }
                         }
 
                         container.appendChild(wrap);
