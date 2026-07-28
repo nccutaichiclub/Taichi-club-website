@@ -228,12 +228,19 @@ collections:
             fields:
               - { label: "活動標題", name: "title", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
               - { label: "活動詳細介紹", name: "desc", widget: "text", hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段" }
-              - label: "歷年活動照片 (可自由新增/刪除/排序)"
-                name: "photos"
+              - label: "照片集列表 (可自由新增/刪除/排序，一個活動可以放好幾組照片集，會並排顯示成好幾個小縮圖)"
+                name: "albums"
                 widget: "list"
+                required: false
+                summary: "{{fields.name}}"
                 fields:
-                  - { label: "照片", name: "image", widget: "image" }
-                  - { label: "照片說明 (選填，如:2025年秋季社遊)", name: "caption", widget: "string", required: false, hint: "建議 20 字以內" }
+                  - { label: "照片集名稱 (選填)", name: "name", widget: "string", required: false, hint: "建議 12 字以內，例如「社課花絮」「幹部合照」；填了會取代畫面上預設的「共N張，點擊查看」文字，留空則顯示預設文字", pattern: ['^.{0,12}$', '請控制在 12 字以內'] }
+                  - label: "這組照片集的照片 (可自由新增/刪除/排序)"
+                    name: "photos"
+                    widget: "list"
+                    fields:
+                      - { label: "照片", name: "image", widget: "image" }
+                      - { label: "照片說明 (選填，如:2025年秋季社遊)", name: "caption", widget: "string", required: false, hint: "建議 20 字以內" }
 
   - name: "calendar_settings"
     label: "📅 修煉行事曆管理"
