@@ -282,13 +282,23 @@ collections:
           - label: "行事曆活動列表"
             name: "events"
             widget: "list"
-            summary: "{{fields.title}}"
+            summary: "{{fields.semester}} · {{fields.title}}"
             fields:
-              - {label: "時節 / 週期 (顯示用文字)", name: "time", widget: "string", hint: "畫面上顯示的文字，例如「每週二 19:00 - 21:00」"}
-              - {label: "活動類型 (如:常課/歷練)", name: "type", widget: "string"}
+              - { label: "學期 (如:115-1)，同學期的活動會歸在同一個綠底金字的框框標題下", name: "semester", widget: "string", hint: "同一學期的活動請填寫完全相同的文字（例如都打「115-1」），系統才能正確分在同一組", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - label: "月份 (活動會依此歸類到對應的月份標題下)"
+                name: "month"
+                widget: "select"
+                options: [
+                  {label: "1月", value: "1"}, {label: "2月", value: "2"}, {label: "3月", value: "3"},
+                  {label: "4月", value: "4"}, {label: "5月", value: "5"}, {label: "6月", value: "6"},
+                  {label: "7月", value: "7"}, {label: "8月", value: "8"}, {label: "9月", value: "9"},
+                  {label: "10月", value: "10"}, {label: "11月", value: "11"}, {label: "12月", value: "12"}
+                ]
+              - {label: "日期文字 (顯示用)", name: "time", widget: "string", hint: "顯示在活動標題前面的日期文字，例如「9/16(三)」"}
+              - {label: "活動類型 (如:常課/歷練，僅供內部參考，畫面上不會顯示)", name: "type", widget: "string", required: false}
               - {label: "活動標題", name: "title", widget: "string"}
-              - {label: "詳細說明", name: "desc", widget: "text"}
-              - {label: "修煉據點", name: "location", widget: "string"}
+              - {label: "詳細說明 (選填)", name: "desc", widget: "text", required: false}
+              - {label: "修煉據點 (選填)", name: "location", widget: "string", required: false}
               - { label: "起始日期 (選填，填了才會出現「加入日曆」按鈕)", name: "event_date", widget: "datetime", time_format: false, required: false, hint: "選這個活動最近一次(或第一次)舉行的日期" }
               - { label: "開始時間 (選填，24小時制，如 19:00)", name: "start_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 19:00'] }
               - { label: "結束時間 (選填，24小時制，如 21:00)", name: "end_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 21:00'] }
