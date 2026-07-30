@@ -728,62 +728,88 @@
 
                 // 共用的「長條卡片」渲染函式：左側照片、右側文字，師資介紹跟幹部介紹共用同一套樣式
                 // subtitleField：要顯示在名字下方那一行的欄位名稱（師資用 subtitle，幹部用 role）
+                // 共用的「長條卡片」渲染函式：師資介紹跟幹部介紹共用同一套樣式
+                // subtitleField：要顯示在名字下方那一行的欄位名稱（師資用 subtitle，幹部用 role）
+                // 電腦版與手機版是完全獨立的兩張卡片（各自產生、各自控制顯示/隱藏），互不影響
                 function renderPersonList(containerId, list, subtitleField) {
                     const container = document.getElementById(containerId);
                     if (!container || !Array.isArray(list)) return;
                     container.innerHTML = '';
                     list.forEach(p => {
-                        const card = document.createElement('div');
-                        card.className = 'flex flex-wrap items-center gap-4 md:gap-10 bg-ink-dark p-6 md:p-8 rounded-lg ink-border ink-border-hover transition-all duration-500';
+                        const wrapper = document.createElement('div');
 
-                        // 照片：有上傳就顯示照片，沒有就顯示姓名首字當作預留樣式（手機/電腦共用同一個照片）
-                        const photoWrap = document.createElement('div');
-                        photoWrap.className = 'w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
+                        // ===== 電腦版卡片：與原本樣式完全一致，只在 md(768px) 以上顯示 =====
+                        const desktopCard = document.createElement('div');
+                        desktopCard.className = 'hidden md:flex items-center gap-10 bg-ink-dark p-8 rounded-lg ink-border ink-border-hover transition-all duration-500';
+
+                        const desktopPhotoWrap = document.createElement('div');
+                        desktopPhotoWrap.className = 'w-32 h-32 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
                         if (p.photo) {
-                            const img = document.createElement('img');
-                            img.className = 'w-full h-full object-cover';
-                            img.src = resolveImagePath(p.photo);
-                            img.alt = p.name || '';
-                            photoWrap.appendChild(img);
+                            const dImg = document.createElement('img');
+                            dImg.className = 'w-full h-full object-cover';
+                            dImg.src = resolveImagePath(p.photo);
+                            dImg.alt = p.name || '';
+                            desktopPhotoWrap.appendChild(dImg);
                         } else {
-                            const initial = document.createElement('span');
-                            initial.className = 'text-3xl text-bronze font-bold';
-                            initial.innerText = (p.name || '').charAt(0);
-                            photoWrap.appendChild(initial);
+                            const dInitial = document.createElement('span');
+                            dInitial.className = 'text-3xl text-bronze font-bold';
+                            dInitial.innerText = (p.name || '').charAt(0);
+                            desktopPhotoWrap.appendChild(dInitial);
                         }
-                        card.appendChild(photoWrap);
+                        desktopCard.appendChild(desktopPhotoWrap);
 
-                        // 手機版專用：姓名＋副標，放在照片右側、字體放大，肖像不會因為簡介文字多寡而被推擠
+                        const desktopTextWrap = document.createElement('div');
+                        desktopTextWrap.className = 'space-y-1.5 min-w-0';
+                        desktopTextWrap.innerHTML = `
+                            <h3 class="text-xl font-medium text-white tracking-widest truncate"></h3>
+                            <p class="text-sm text-pine-light tracking-widest font-semibold truncate"></p>
+                            <p class="text-sm text-cloud/80 leading-relaxed line-clamp-3"></p>
+                        `;
+                        desktopTextWrap.querySelector('h3').innerText = p.name || '';
+                        desktopTextWrap.querySelector('p.text-pine-light').innerText = p[subtitleField] || '';
+                        desktopTextWrap.querySelector('p.text-cloud\\/80').innerText = p.desc || '';
+                        desktopCard.appendChild(desktopTextWrap);
+
+                        wrapper.appendChild(desktopCard);
+
+                        // ===== 手機版卡片：肖像固定＋姓名放大在右側＋簡介滿版顯示於下方，只在 md 以下顯示 =====
+                        const mobileCard = document.createElement('div');
+                        mobileCard.className = 'flex md:hidden flex-wrap items-center gap-4 bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500';
+
+                        const mobilePhotoWrap = document.createElement('div');
+                        mobilePhotoWrap.className = 'w-20 h-20 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
+                        if (p.photo) {
+                            const mImg = document.createElement('img');
+                            mImg.className = 'w-full h-full object-cover';
+                            mImg.src = resolveImagePath(p.photo);
+                            mImg.alt = p.name || '';
+                            mobilePhotoWrap.appendChild(mImg);
+                        } else {
+                            const mInitial = document.createElement('span');
+                            mInitial.className = 'text-2xl text-bronze font-bold';
+                            mInitial.innerText = (p.name || '').charAt(0);
+                            mobilePhotoWrap.appendChild(mInitial);
+                        }
+                        mobileCard.appendChild(mobilePhotoWrap);
+
                         const mobileNameWrap = document.createElement('div');
-                        mobileNameWrap.className = 'flex-1 min-w-0 space-y-1 md:hidden';
+                        mobileNameWrap.className = 'flex-1 min-w-0 space-y-1';
                         mobileNameWrap.innerHTML = `
                             <h3 class="text-xl font-medium text-white tracking-widest"></h3>
                             <p class="text-sm text-pine-light tracking-widest font-semibold"></p>
                         `;
                         mobileNameWrap.querySelector('h3').innerText = p.name || '';
                         mobileNameWrap.querySelector('p').innerText = p[subtitleField] || '';
-                        card.appendChild(mobileNameWrap);
+                        mobileCard.appendChild(mobileNameWrap);
 
-                        // 電腦版專用：姓名＋副標＋簡介維持原本長條樣式（簡介超過 3 行仍會截斷顯示）
-                        const desktopTextWrap = document.createElement('div');
-                        desktopTextWrap.className = 'space-y-1.5 min-w-0 hidden md:block';
-                        desktopTextWrap.innerHTML = `
-                            <h3 class="text-lg md:text-xl font-medium text-white tracking-widest truncate"></h3>
-                            <p class="text-xs md:text-sm text-pine-light tracking-widest font-semibold truncate"></p>
-                            <p class="text-sm text-cloud/80 leading-relaxed line-clamp-3"></p>
-                        `;
-                        desktopTextWrap.querySelector('h3').innerText = p.name || '';
-                        desktopTextWrap.querySelector('p.text-pine-light').innerText = p[subtitleField] || '';
-                        desktopTextWrap.querySelector('p.text-cloud\\/80').innerText = p.desc || '';
-                        card.appendChild(desktopTextWrap);
-
-                        // 手機版專用：簡介文字獨立一行、滿版顯示在照片下方，不截斷，卡片高度隨文字多寡自動調整
                         const mobileDescWrap = document.createElement('div');
-                        mobileDescWrap.className = 'w-full mt-3 md:hidden text-sm text-cloud/80 leading-relaxed';
+                        mobileDescWrap.className = 'w-full mt-1 text-sm text-cloud/80 leading-relaxed';
                         mobileDescWrap.innerText = p.desc || '';
-                        card.appendChild(mobileDescWrap);
+                        mobileCard.appendChild(mobileDescWrap);
 
-                        container.appendChild(card);
+                        wrapper.appendChild(mobileCard);
+
+                        container.appendChild(wrapper);
                     });
                 }
 
