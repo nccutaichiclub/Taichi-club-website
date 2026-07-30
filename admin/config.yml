@@ -279,27 +279,30 @@ collections:
                   - { label: "行事曆圖片", name: "display_image", widget: "image", hint: "建議使用直式或接近A4比例的圖片，會以小圖並排顯示，點擊可看全螢幕大圖" }
                   - { label: "下載檔案 (選填，如 PDF 版本)", name: "download_file", widget: "file", required: false, hint: "上傳後畫面上會出現一個下載按鈕，方便社員存檔或列印" }
                   - { label: "下載按鈕文字", name: "download_label", widget: "string", required: false, default: "下載行事曆", hint: "建議 12 字以內" }
+          - { label: "目前學期標題 (如:115-1)，一次只會有一個學期在使用，畫面上方會顯示成「115-1 學期行事曆」", name: "semester_title", widget: "string", hint: "換學期時只要改這一個欄位就好，不用逐筆活動修改", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
           - label: "行事曆活動列表"
             name: "events"
             widget: "list"
-            summary: "{{fields.semester}} · {{fields.title}}"
+            summary: "{{fields.title}}"
             fields:
-              - { label: "學期 (如:115-1)，同學期的活動會歸在同一個綠底金字的框框標題下", name: "semester", widget: "string", hint: "同一學期的活動請填寫完全相同的文字（例如都打「115-1」），系統才能正確分在同一組", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
-              - label: "月份 (活動會依此歸類到對應的月份標題下)"
+              - label: "分類標題 (活動會依此歸類到對應的標題下)"
                 name: "month"
                 widget: "select"
                 options: [
+                  {label: "例行活動 (跨月份，如晨練、社課)", value: "recurring"},
                   {label: "1月", value: "1"}, {label: "2月", value: "2"}, {label: "3月", value: "3"},
                   {label: "4月", value: "4"}, {label: "5月", value: "5"}, {label: "6月", value: "6"},
                   {label: "7月", value: "7"}, {label: "8月", value: "8"}, {label: "9月", value: "9"},
                   {label: "10月", value: "10"}, {label: "11月", value: "11"}, {label: "12月", value: "12"}
                 ]
-              - {label: "日期文字 (顯示用)", name: "time", widget: "string", hint: "顯示在活動標題前面的日期文字，例如「9/16(三)」"}
+              - {label: "日期文字 (顯示用)", name: "time", widget: "string", hint: "顯示在活動標題前面的日期文字，例如「10/18」"}
               - {label: "活動類型 (如:常課/歷練，僅供內部參考，畫面上不會顯示)", name: "type", widget: "string", required: false}
               - {label: "活動標題", name: "title", widget: "string"}
-              - {label: "詳細說明 (選填)", name: "desc", widget: "text", required: false}
               - {label: "修煉據點 (選填)", name: "location", widget: "string", required: false}
+              - {label: "詳細說明 (選填)", name: "desc", widget: "text", required: false}
+              - { label: "異動註記 (選填，如:停課、活動異動；會用醒目的暖紅色顯示在說明文字下方)", name: "note", widget: "string", required: false, hint: "建議 40 字以內，例如「因場地維修，本週暫停一次」" }
               - { label: "起始日期 (選填，填了才會出現「加入日曆」按鈕)", name: "event_date", widget: "datetime", time_format: false, required: false, hint: "選這個活動最近一次(或第一次)舉行的日期" }
-              - { label: "開始時間 (選填，24小時制，如 19:00)", name: "start_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 19:00'] }
-              - { label: "結束時間 (選填，24小時制，如 21:00)", name: "end_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 21:00'] }
+              - { label: "開始時間 (選填，24小時制，如 19:00)，會同時顯示在畫面上的活動時間", name: "start_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 19:00'] }
+              - { label: "結束時間 (選填，24小時制，如 21:00)，會同時顯示在畫面上的活動時間", name: "end_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 21:00'] }
               - { label: "重複頻率 (選填)", name: "repeat", widget: "select", required: false, options: [{label: "不重複 (單次活動)", value: "none"}, {label: "每週重複", value: "weekly"}, {label: "隔週重複", value: "biweekly"}], default: "none" }
+              - { label: "重複結束日期 (選填，只有「重複頻率」設定為每週或隔週時才有作用)", name: "repeat_until", widget: "datetime", time_format: false, required: false, hint: "設定後，加入 Google 日曆的重複活動只會重複到這一天為止，不會無限重複下去" }
