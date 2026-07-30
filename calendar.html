@@ -165,7 +165,7 @@
         }
 
         /* 曆法表格樣式 */
-        /* 三層行事曆結構樣式：學期(獨立金字直角框) → 月份/例行活動(金底深字標題，更醒目) → 活動(透明底白字，與標題相連) */
+        /* 三層行事曆結構樣式：學期(獨立金字直角框) → 月份/例行活動(綠底白字標題) → 活動(淡底白字+左側金線，與標題相連) */
         .semester-badge {
             display: inline-block;
             background-color: var(--松柏綠);
@@ -185,19 +185,24 @@
             margin-bottom: 16px;
         }
         .month-header {
-            /* 改用金色底＋深色字，跟下方透明底的活動列形成清楚的明暗對比，更醒目易讀 */
-            background-color: var(--古銅金);
-            color: #14140F;
+            background-color: var(--松柏綠);
+            color: var(--仙氣白);
             font-weight: 700;
             letter-spacing: 1.5px;
             padding: 10px 18px;
             font-size: 0.95rem;
         }
         .event-row {
-            background-color: transparent;
+            /* 淡淡的卡片底色 + 左側金色細線，跟綠底的月份標題拉出清楚的層次，同時不會太搶眼 */
+            background-color: rgba(255,255,255,0.03);
             color: var(--仙氣白);
-            padding: 14px 18px;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 14px 18px 14px 16px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            border-left: 3px solid rgba(197, 160, 89, 0.5);
+            transition: background-color 0.2s ease;
+        }
+        .event-row:hover {
+            background-color: rgba(255,255,255,0.06);
         }
         .event-row:first-child {
             border-top: none;
