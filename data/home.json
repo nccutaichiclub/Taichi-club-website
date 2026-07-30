@@ -5,25 +5,8 @@
     "brand_sub": "隱逸道場",
     "link_home": "首頁主殿",
     "link_method": "法門深造",
+    "link_activities": "活動介紹",
     "link_calendar": "修煉日程"
-  },
-  "hero": {
-    "carousel": [
-      {
-        "image": "/assets/uploads/Gemini_Generated_Image_lctaojlctaojlcta.png",
-        "alt": "社課練習剪影"
-      },
-      {
-        "image": "/assets/uploads/ChatGPT Image 2026年7月19日 下午04_13_59.png",
-        "alt": "社遊活動剪影"
-      },
-      {
-        "image": "/assets/uploads/colorful-winding-autumn-road.jpg",
-        "alt": "太極劍演練剪影"
-      }
-    ],
-    "btn_methods": "窺探法門",
-    "btn_contact": "結緣問道"
   },
   "methods_section": {
     "eyebrow": "METHODOLOGY",
@@ -141,9 +124,9 @@
         "label": "位持續聯絡"
       }
     ],
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
+    "badge_label": "道傳寰宇",
     "title": "外邦弟子的修真緣分",
-    "badge_label": "道傳寰宇"
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -199,13 +182,13 @@
     "eyebrow": "VISIT THE TEMPLE",
     "title": "尋訪仙蹤",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
-    "location_label": "【道場位置】",
-    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "email_label": "【問道法郵】",
-    "email_value": "nccutaichi@email.com",
-    "social_label": "【仙界傳音】",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
     "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
+    "social_label": "【仙界傳音】",
+    "email_value": "nccutaichi@email.com",
+    "email_label": "【問道法郵】",
+    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
+    "location_label": "【道場位置】"
   },
   "contact": {
     "location_label": "道場位置",
@@ -235,10 +218,28 @@
         "location": "醉夢溪畔草坪 (雨天移室內)"
       }
     ],
-    "note": "道門提點： 本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。"
+    "note": "本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。"
   },
   "footer": {
     "copyright": "© 2026 國立政治大學太極社 NCCU Tai Chi Club. 凡塵無憂，唯道是從。",
     "sub": "指南天光，水墨太極。本頁面已啟用隨緣修行設定。"
+  },
+  "hero": {
+    "carousel": [
+      {
+        "image": "/assets/uploads/Gemini_Generated_Image_lctaojlctaojlcta.png",
+        "alt": "社課練習剪影"
+      },
+      {
+        "image": "/assets/uploads/ChatGPT Image 2026年7月19日 下午04_13_59.png",
+        "alt": "社遊活動剪影"
+      },
+      {
+        "image": "/assets/uploads/colorful-winding-autumn-road.jpg",
+        "alt": "太極劍演練剪影"
+      }
+    ],
+    "btn_methods": "窺探法門",
+    "btn_contact": "結緣問道"
   }
 }
