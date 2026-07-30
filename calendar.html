@@ -207,6 +207,14 @@
         .event-row:first-child {
             border-top: none;
         }
+        .event-row .event-date {
+            color: var(--霧霾灰);
+            font-weight: 400;
+        }
+        .event-row .event-title {
+            color: var(--古銅金);
+            font-weight: 700;
+        }
         .event-row .event-title-line {
             display: flex;
             flex-wrap: wrap;
@@ -457,7 +465,7 @@
 
                         row.innerHTML = `
                             <div class="event-title-line">
-                                <span><strong>${ev.time || ''}</strong>　${ev.title || ''}</span>
+                                <span><span class="event-date">${ev.time || ''}</span>　<span class="event-title">${ev.title || ''}</span></span>
                                 ${gcalHtml}
                             </div>
                             ${metaParts.length > 0 ? `<div class="event-meta-line">${metaParts.join('　|　')}</div>` : ''}
