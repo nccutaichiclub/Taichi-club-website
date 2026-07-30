@@ -21,6 +21,8 @@
   },
   "events": [
     {
+      "semester": "115-1",
+      "month": "9",
       "time": "每週固定晨練",
       "type": "常課",
       "title": "晨間氣功與太極基礎",
@@ -32,6 +34,7 @@
       "repeat": "weekly"
     },
     {
+      "semester": "115-1",
       "time": "仲春之期",
       "type": "歷練",
       "title": "山林雲遊（大溪社遊）",
