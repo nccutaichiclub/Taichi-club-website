@@ -22,16 +22,18 @@
   "semester_title": "115-1",
   "events": [
     {
-      "month": "9",
-      "time": "每週固定晨練",
+      "month": "recurring",
+      "time": "每週三",
       "type": "常課",
-      "title": "晨間氣功與太極基礎",
-      "location": "指南山麓（政大校區）",
+      "title": "晨練",
+      "location": "資訊大樓1F平台",
       "desc": "吸納天地初升之炁，專修華陀導引氣功與基礎太極功架。精氣神之築基。",
+      "note": "註：7/1-9/5 暑假停練",
       "event_date": "2026-09-09",
       "start_time": "07:40",
       "end_time": "08:10",
       "repeat": "weekly",
+      "repeat_until": "2026-12-12",
       "semester": "115-1"
     },
     {
@@ -41,10 +43,12 @@
       "title": "山林雲遊（大溪社遊）",
       "location": "大溪山水之間",
       "desc": "暫別書齋，前往大溪木藝生態博物館與老街散策，寄情山水，體會天人合一。",
+      "note": "",
       "event_date": "2026-10-03",
       "start_time": "08:00",
       "end_time": "17:00",
       "repeat": "none",
+      "repeat_until": "",
       "semester": "115-1"
     }
   ]
