@@ -176,7 +176,7 @@
                     </div>
                 </div>
                 <div class="md:col-span-7">
-                    <div class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center group">
+                    <div id="content-qigong-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center group">
                         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
                         <div class="text-center z-10 p-4">
                             <p class="text-bronze text-sm mb-2 tracking-widest">【 華陀導引氣功 ． 演示影像預留區 】</p>
@@ -202,7 +202,7 @@
                     </div>
                 </div>
                 <div class="md:col-span-7">
-                    <div class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
+                    <div id="content-taichi-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
                         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
                         <div class="text-center z-10 p-4">
                             <p class="text-bronze text-sm mb-2 tracking-widest">【 太極拳 ． 演示影像預留區 】</p>
@@ -228,7 +228,7 @@
                     </div>
                 </div>
                 <div class="md:col-span-7">
-                    <div class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
+                    <div id="content-staff-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
                         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
                         <div class="text-center z-10 p-4">
                             <p class="text-bronze text-sm mb-2 tracking-widest">【 太祖棍 ． 演示影像預留區 】</p>
@@ -254,7 +254,7 @@
                     </div>
                 </div>
                 <div class="md:col-span-7">
-                    <div class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
+                    <div id="content-sword-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
                         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
                         <div class="text-center z-10 p-4">
                             <p class="text-bronze text-sm mb-2 tracking-widest">【 太極劍 ． 演示影像預留區 】</p>
@@ -293,29 +293,19 @@
 
         <div class="grid md:grid-cols-12 gap-10 items-start">
 
-            <!-- 左側：地圖預留區（保留原本可自行嵌入 Google My Maps 的設計） -->
+            <!-- 左側：地圖區塊，會嵌入後台設定的 Google My Maps -->
             <div class="md:col-span-5">
                 <div class="bg-ink-dark rounded-xl p-6 ink-border relative overflow-hidden min-h-[350px] flex flex-col justify-between">
-                    <div class="text-xs text-bronze tracking-widest flex justify-between items-center">
+                    <div class="text-xs text-bronze tracking-widest flex justify-between items-center mb-3">
                         <span>【 寰宇同道地圖 】</span>
-                        <span class="text-[10px] text-cloud/40">點位示意圖</span>
                     </div>
 
-                    <div class="relative w-full h-[220px] flex items-center justify-center">
-                        <svg class="w-full h-full opacity-10 text-white" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M150 150 Q 200 100, 300 200 T 500 150 T 700 220" stroke="currentColor" stroke-width="1" stroke-dasharray="5 5"/>
-                            <path d="M100 250 Q 250 300, 400 180 T 750 250" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
-                            <circle cx="200" cy="180" r="1.5" fill="currentColor"/>
-                            <circle cx="350" cy="120" r="1.5" fill="currentColor"/>
-                            <circle cx="620" cy="220" r="1.5" fill="currentColor"/>
-                        </svg>
-
-                        <!-- 地圖點位：由 JS 依照後台的 map_points 資料動態產生，可自由新增/刪除 -->
-                        <div id="global-map-points" class="absolute inset-0"></div>
-                    </div>
-
-                    <div class="text-[10px] text-cloud/50 text-center">
-                        提示：日後可在此處嵌入自訂的「Google My Maps 我的地圖」，展示更加精確的萬國足跡。
+                    <!-- 地圖嵌入區：有設定後台的 Google 地圖連結就顯示地圖，沒有就顯示提示文字 -->
+                    <div id="global-map-embed-wrap" class="w-full h-[260px] rounded-lg overflow-hidden border border-white/10 bg-ink-deep flex items-center justify-center">
+                        <div class="text-center p-4">
+                            <p class="text-bronze text-sm mb-2 tracking-widest">尚未設定地圖</p>
+                            <p class="text-xs text-cloud/50">請於後台「道傳寰宇」貼上 Google My Maps 嵌入連結</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -430,8 +420,8 @@
                     </div>
                 </div>
 
-                <div class="bg-pine/10 p-4 rounded border border-pine/30 text-xs text-pine-light leading-relaxed">
-                    <strong>道門提點：</strong> <span id="schedule-note">本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。</span>
+                <div class="bg-pine/10 p-4 rounded border border-pine/30 text-xs leading-relaxed">
+                    <strong class="text-pine-light">道門提點：</strong> <span id="schedule-note" class="text-white">本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。</span>
                 </div>
             </div>
 
@@ -552,38 +542,56 @@
             }
         }
 
-        // 渲染地圖點位：points 是陣列 [{label, left_percent, top_percent, highlight}]
-        // highlight=true 的點位（例如本社道場）會用較大、常駐顯示的標記；其餘則是滑鼠移過去才顯示名稱的小點
-        function renderMapPoints(points) {
-            const container = document.getElementById('global-map-points');
-            if (!container) return;
-            container.innerHTML = '';
-            if (!Array.isArray(points)) return;
+        // 嵌入後台設定的 Google My Maps：embedUrl 是「分享 → 在我的網站上嵌入」裡 <iframe> 標籤 src="..." 的網址
+        function renderGoogleMapEmbed(embedUrl) {
+            const wrap = document.getElementById('global-map-embed-wrap');
+            if (!wrap) return;
+            if (embedUrl) {
+                wrap.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`;
+            } else {
+                wrap.innerHTML = `
+                    <div class="text-center p-4">
+                        <p class="text-bronze text-sm mb-2 tracking-widest">尚未設定地圖</p>
+                        <p class="text-xs text-cloud/50">請於後台「道傳寰宇」貼上 Google My Maps 嵌入連結</p>
+                    </div>
+                `;
+            }
+        }
 
-            points.forEach(pt => {
-                const wrap = document.createElement('div');
-                const leftPct = (pt.left_percent !== undefined && pt.left_percent !== null) ? pt.left_percent : 50;
-                const topPct = (pt.top_percent !== undefined && pt.top_percent !== null) ? pt.top_percent : 50;
-                wrap.className = 'absolute group cursor-pointer';
-                wrap.style.left = leftPct + '%';
-                wrap.style.top = topPct + '%';
+        // 從常見的 YouTube 網址格式（分享連結、短網址、embed 連結）擷取出影片 ID
+        function extractYouTubeId(url) {
+            if (!url) return null;
+            const patterns = [
+                /youtube\.com\/watch\?v=([\w-]{11})/,
+                /youtu\.be\/([\w-]{11})/,
+                /youtube\.com\/embed\/([\w-]{11})/
+            ];
+            for (const pattern of patterns) {
+                const match = url.match(pattern);
+                if (match) return match[1];
+            }
+            return null;
+        }
 
-                if (pt.highlight) {
-                    wrap.innerHTML = `
-                        <span class="absolute inline-flex h-5 w-5 rounded-full bg-bronze/30 opacity-75 animate-ping"></span>
-                        <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-pine-light border border-white"></span>
-                        <span class="absolute left-5 -top-2 scale-100 text-[10px] bg-pine-dark px-1.5 py-0.5 rounded border border-pine-light text-white whitespace-nowrap font-semibold"></span>
-                    `;
-                } else {
-                    wrap.innerHTML = `
-                        <span class="absolute inline-flex h-3 w-3 rounded-full bg-pine opacity-75 animate-ping"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-bronze"></span>
-                        <span class="absolute left-4 -top-2 scale-0 group-hover:scale-100 transition-all text-[10px] bg-ink-deep px-1.5 py-0.5 rounded border border-bronze text-white whitespace-nowrap"></span>
-                    `;
-                }
-                wrap.querySelector('span:last-child').innerText = pt.label || '';
-                container.appendChild(wrap);
-            });
+        // 四大法門的影片預留區：有填 YouTube 網址就嵌入影片，沒有就顯示「演示影像預留區」提示
+        function renderMethodVideo(id, videoUrl, title) {
+            const wrap = document.getElementById(`content-${id}-video`);
+            if (!wrap) return;
+            const videoId = extractYouTubeId(videoUrl);
+            if (videoId) {
+                wrap.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" title="${title || ''}"
+                    class="absolute inset-0 w-full h-full" style="border:0;"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>`;
+            } else {
+                wrap.innerHTML = `
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
+                    <div class="text-center z-10 p-4 relative">
+                        <p class="text-bronze text-sm mb-2 tracking-widest">【 ${title || ''} ． 演示影像預留區 】</p>
+                        <p class="text-xs text-cloud/50">尚未設定影片，請於後台上傳 YouTube 連結</p>
+                    </div>
+                `;
+            }
         }
 
         // 網址後面加上 ?v=時間戳記，強迫瀏覽器每次都跟伺服器要最新版本，不要用瀏覽器裡快取的舊資料
@@ -622,6 +630,7 @@
                         setText(`content-${m.id}-quote`, m.quote);
                         setText(`content-${m.id}-desc`, m.desc);
                         setText(`content-${m.id}-difficulty`, m.difficulty);
+                        renderMethodVideo(m.id, m.video_url, m.title);
                     });
                 }
 
@@ -681,9 +690,8 @@
                     setText('global-para1', data.global.para1);
                     setText('global-para2', data.global.para2);
 
-                    // 地圖點位：依照後台的 map_points 資料動態產生（這是示意圖，不是真實地圖，
-                    // 用 0~100 的百分比座標決定點位在圖上的左右/上下位置）
-                    renderMapPoints(data.global.map_points);
+                    // 地圖：嵌入後台設定的 Google My Maps 連結
+                    renderGoogleMapEmbed(data.global.google_map_embed_url);
 
                     // 國家標籤：例如「JP 日本 +12」
                     const tagsContainer = document.getElementById('global-country-tags');
