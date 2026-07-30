@@ -66,6 +66,7 @@ collections:
               - { label: "法門標題", name: "title", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
               - { label: "引言", name: "quote", widget: "string", hint: "建議 40 字以內，太長會佔用太多版面" }
               - { label: "詳細說明", name: "desc", widget: "text", hint: "建議 120 字以內，超過會被自動截斷顯示" }
+              - { label: "YouTube 影片網址 (選填)", name: "video_url", widget: "string", required: false, hint: "直接貼上完整的 YouTube 影片網址即可 (例如 https://www.youtube.com/watch?v=xxxxxxx)，留空則畫面顯示「演示影像預留區」提示" }
               - { label: "難度標示", name: "difficulty", widget: "string", hint: "建議 10 字以內，例如「修煉難度：入門」", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
 
           - label: "紅塵歷練 - 區塊標題"
@@ -119,16 +120,11 @@ collections:
                 fields:
                   - { label: "數字 (如:67+)", name: "number", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
                   - { label: "說明文字 (如:位國際同道)", name: "label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
-              - label: "寰宇同道地圖點位 (可自由新增/刪除，這是示意圖不是真實地圖，用 0~100 的數字決定點位在圖上的位置)"
-                name: "map_points"
-                widget: "list"
+              - label: "寰宇同道地圖 (貼上 Google My Maps 的嵌入連結)"
+                name: "google_map_embed_url"
+                widget: "string"
                 required: false
-                summary: "{{fields.label}}"
-                fields:
-                  - { label: "地點名稱 (如:指南山道場、法蘭西弟子)", name: "label", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
-                  - { label: "水平位置 (0~100，數字越大越靠右)", name: "left_percent", widget: "number", value_type: "int", min: 0, max: 100, hint: "這是示意地圖不是真實經緯度，先填個數字看畫面效果，再慢慢微調即可" }
-                  - { label: "垂直位置 (0~100，數字越大越靠下)", name: "top_percent", widget: "number", value_type: "int", min: 0, max: 100 }
-                  - { label: "是否為本社道場位置 (會用較大的常駐標記顯示)", name: "highlight", widget: "boolean", default: false, required: false }
+                hint: "步驟：1) 到 Google My Maps (mymaps.google.com) 建立地圖並標記想要的地點 2) 點左上角選單「分享」→「在我的網站上嵌入」 3) 會出現一段 <iframe> 程式碼，把裡面 src=\"...\" 雙引號中的網址複製，只貼那段網址到這裡（不用貼整段 <iframe> 標籤）"
 
           - label: "師資介紹 - 區塊標題"
             name: "instructors_section"
