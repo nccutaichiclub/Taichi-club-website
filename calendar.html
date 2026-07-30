@@ -165,7 +165,7 @@
         }
 
         /* 曆法表格樣式 */
-        /* 三層行事曆結構樣式：學期(獨立金字框) → 月份(綠底白字標題) → 活動(透明底白字，與月份標題相連) */
+        /* 三層行事曆結構樣式：學期(獨立金字直角框) → 月份/例行活動(金底深字標題，更醒目) → 活動(透明底白字，與標題相連) */
         .semester-badge {
             display: inline-block;
             background-color: var(--松柏綠);
@@ -173,20 +173,21 @@
             font-weight: 700;
             letter-spacing: 2px;
             padding: 8px 18px;
-            border-radius: 6px;
+            border-radius: 0; /* 直角邊框 */
             border: 1px solid rgba(197, 160, 89, 0.4);
             font-size: 0.95rem;
-            margin-bottom: 16px;
+            margin-bottom: 28px; /* 與下方月份標題拉開間距 */
         }
         .month-block {
             border-radius: 8px;
             overflow: hidden;
-            border: 1px solid rgba(28, 58, 39, 0.6);
+            border: 1px solid rgba(197, 160, 89, 0.35);
             margin-bottom: 16px;
         }
         .month-header {
-            background-color: var(--松柏綠);
-            color: var(--仙氣白);
+            /* 改用金色底＋深色字，跟下方透明底的活動列形成清楚的明暗對比，更醒目易讀 */
+            background-color: var(--古銅金);
+            color: #14140F;
             font-weight: 700;
             letter-spacing: 1.5px;
             padding: 10px 18px;
@@ -201,17 +202,29 @@
         .event-row:first-child {
             border-top: none;
         }
-        .event-row .event-main {
+        .event-row .event-title-line {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
             gap: 8px;
         }
+        .event-row .event-meta-line {
+            color: var(--霧霾灰);
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
         .event-row .event-detail {
             color: var(--霧霾灰);
             font-size: 0.82rem;
-            margin-top: 4px;
+            margin-top: 6px;
+        }
+        .event-row .event-note {
+            /* 停課/活動異動提醒：用不刺眼的暖紅色，醒目但不會讓人不適 */
+            color: #E2725B;
+            font-weight: 600;
+            font-size: 0.82rem;
+            margin-top: 8px;
         }
         .semester-group {
             margin-bottom: 40px;
@@ -352,25 +365,31 @@
                     ctz: 'Asia/Taipei'
                 });
 
-                if (event.repeat === 'weekly') {
-                    params.set('recur', 'RRULE:FREQ=WEEKLY');
-                } else if (event.repeat === 'biweekly') {
-                    params.set('recur', 'RRULE:FREQ=WEEKLY;INTERVAL=2');
+                if (event.repeat === 'weekly' || event.repeat === 'biweekly') {
+                    let rrule = event.repeat === 'weekly' ? 'RRULE:FREQ=WEEKLY' : 'RRULE:FREQ=WEEKLY;INTERVAL=2';
+                    // 有設定「重複結束日期」就加上 UNTIL，讓重複活動到那天為止就停止，不會無限重複下去
+                    if (event.repeat_until) {
+                        const untilStr = event.repeat_until.slice(0, 10).replace(/-/g, '');
+                        rrule += `;UNTIL=${untilStr}T235959Z`;
+                    }
+                    params.set('recur', rrule);
                 }
 
                 return `https://www.google.com/calendar/render?${params.toString()}`;
             }
 
-            // 月份數字轉中文標題，例如 9 -> 「九月份活動」
+            // 月份數字轉中文標題，例如 9 -> 「九月份活動」；recurring 則顯示「例行活動」
             const CHINESE_MONTH = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];
             function monthLabel(monthValue) {
+                if (monthValue === 'recurring') return '例行活動';
                 const n = parseInt(monthValue, 10);
                 if (!n || n < 1 || n > 12) return '未分類月份活動';
                 return `${CHINESE_MONTH[n]}月份活動`;
             }
 
-            // 三層行事曆渲染：先依「學期」分組，同學期內再依「月份」分組，維持後台輸入的先後順序
-            function renderScheduleEvents(events) {
+            // 三層行事曆渲染：最上方是單一的學期標題（一次只會有一個學期在使用），
+            // 底下依「月份／例行活動」分組，維持後台輸入的先後順序
+            function renderScheduleEvents(semesterTitle, events) {
                 const container = document.getElementById('calendar-events-container');
                 if (!container) return;
                 container.innerHTML = '';
@@ -379,73 +398,74 @@
                     return;
                 }
 
-                const semesterOrder = [];
-                const semesterMap = {};
+                const semesterGroup = document.createElement('div');
+                semesterGroup.className = 'semester-group';
 
+                // 第一層：學期，綠底金字、直角獨立框框
+                const badge = document.createElement('div');
+                badge.className = 'semester-badge';
+                badge.innerText = (semesterTitle && semesterTitle.trim() !== '') ? `${semesterTitle.trim()} 學期行事曆` : '學期行事曆';
+                semesterGroup.appendChild(badge);
+
+                // 依「月份／例行活動」分組，維持後台輸入的先後順序
+                const groupOrder = [];
+                const groupMap = {};
                 events.forEach(ev => {
-                    const sem = (ev.semester && ev.semester.trim() !== '') ? ev.semester.trim() : '未分類';
-                    if (!semesterMap[sem]) {
-                        semesterMap[sem] = { order: [], map: {} };
-                        semesterOrder.push(sem);
+                    const key = (ev.month !== undefined && ev.month !== null && ev.month !== '') ? String(ev.month) : '未分類';
+                    if (!groupMap[key]) {
+                        groupMap[key] = [];
+                        groupOrder.push(key);
                     }
-                    const monthKey = (ev.month !== undefined && ev.month !== null && ev.month !== '') ? String(ev.month) : '未分類';
-                    const semObj = semesterMap[sem];
-                    if (!semObj.map[monthKey]) {
-                        semObj.map[monthKey] = [];
-                        semObj.order.push(monthKey);
-                    }
-                    semObj.map[monthKey].push(ev);
+                    groupMap[key].push(ev);
                 });
 
-                semesterOrder.forEach(sem => {
-                    const semesterGroup = document.createElement('div');
-                    semesterGroup.className = 'semester-group';
+                groupOrder.forEach(key => {
+                    // 第二層：月份或例行活動，金底深字標題，跟底下的活動列相連成一個區塊
+                    const monthBlock = document.createElement('div');
+                    monthBlock.className = 'month-block';
 
-                    // 第一層：學期，綠底金字獨立框框
-                    const badge = document.createElement('div');
-                    badge.className = 'semester-badge';
-                    badge.innerText = sem === '未分類' ? '未分類學期行事曆' : `${sem} 學期行事曆`;
-                    semesterGroup.appendChild(badge);
+                    const monthHeader = document.createElement('div');
+                    monthHeader.className = 'month-header';
+                    monthHeader.innerText = key === '未分類' ? '未分類活動' : monthLabel(key);
+                    monthBlock.appendChild(monthHeader);
 
-                    const semObj = semesterMap[sem];
-                    semObj.order.forEach(monthKey => {
-                        // 第二層：月份，綠底白字，跟底下的活動列相連成一個區塊
-                        const monthBlock = document.createElement('div');
-                        monthBlock.className = 'month-block';
+                    // 第三層：活動，透明底白字
+                    groupMap[key].forEach(ev => {
+                        const row = document.createElement('div');
+                        row.className = 'event-row';
 
-                        const monthHeader = document.createElement('div');
-                        monthHeader.className = 'month-header';
-                        monthHeader.innerText = monthKey === '未分類' ? '未分類月份活動' : monthLabel(monthKey);
-                        monthBlock.appendChild(monthHeader);
+                        const gcalUrl = buildGoogleCalendarUrl(ev);
+                        const gcalHtml = gcalUrl
+                            ? `<a class="gcal-btn" href="${gcalUrl}" target="_blank" rel="noopener">📅 加入日曆</a>`
+                            : '';
 
-                        // 第三層：活動，透明底白字
-                        semObj.map[monthKey].forEach(ev => {
-                            const row = document.createElement('div');
-                            row.className = 'event-row';
+                        // 活動時間：直接取用開始/結束時間欄位組成「7:00-16:00」樣式的文字
+                        let activityTime = '';
+                        if (ev.start_time && ev.end_time) {
+                            activityTime = `${ev.start_time}-${ev.end_time}`;
+                        } else if (ev.start_time) {
+                            activityTime = ev.start_time;
+                        }
+                        const metaParts = [];
+                        if (activityTime) metaParts.push(activityTime);
+                        if (ev.location) metaParts.push(ev.location);
 
-                            const gcalUrl = buildGoogleCalendarUrl(ev);
-                            const gcalHtml = gcalUrl
-                                ? `<a class="gcal-btn" href="${gcalUrl}" target="_blank" rel="noopener">📅 加入日曆</a>`
-                                : '';
-                            const detailParts = [];
-                            if (ev.location) detailParts.push(ev.location);
-                            if (ev.desc) detailParts.push(ev.desc);
-
-                            row.innerHTML = `
-                                <div class="event-main">
-                                    <span><strong>${ev.time || ''}</strong>　${ev.title || ''}</span>
-                                    ${gcalHtml}
-                                </div>
-                                ${detailParts.length > 0 ? `<div class="event-detail">${detailParts.join('　|　')}</div>` : ''}
-                            `;
-                            monthBlock.appendChild(row);
-                        });
-
-                        semesterGroup.appendChild(monthBlock);
+                        row.innerHTML = `
+                            <div class="event-title-line">
+                                <span><strong>${ev.time || ''}</strong>　${ev.title || ''}</span>
+                                ${gcalHtml}
+                            </div>
+                            ${metaParts.length > 0 ? `<div class="event-meta-line">${metaParts.join('　|　')}</div>` : ''}
+                            ${ev.desc ? `<div class="event-detail">${ev.desc}</div>` : ''}
+                            ${ev.note ? `<div class="event-note">⚠ ${ev.note}</div>` : ''}
+                        `;
+                        monthBlock.appendChild(row);
                     });
 
-                    container.appendChild(semesterGroup);
+                    semesterGroup.appendChild(monthBlock);
                 });
+
+                container.appendChild(semesterGroup);
             }
 
             // 燈箱開關邏輯
@@ -556,7 +576,7 @@
                     }
 
                     // 三層行事曆：學期 → 月份 → 活動
-                    renderScheduleEvents(data.events);
+                    renderScheduleEvents(data.semester_title, data.events);
                 })
                 .catch(error => {
                     document.getElementById('calendar-events-container').innerHTML = '<p style="text-align:center; color:red;">曆法載入失敗，請確認資料庫陣法。</p>';
