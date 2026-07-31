@@ -300,11 +300,9 @@ collections:
                 name: "month"
                 widget: "select"
                 options: [
-                  {label: "例行活動 (跨月份，如晨練、社課)", value: "recurring"},
-                  {label: "1月", value: "1"}, {label: "2月", value: "2"}, {label: "3月", value: "3"},
-                  {label: "4月", value: "4"}, {label: "5月", value: "5"}, {label: "6月", value: "6"},
-                  {label: "7月", value: "7"}, {label: "8月", value: "8"}, {label: "9月", value: "9"},
-                  {label: "10月", value: "10"}, {label: "11月", value: "11"}, {label: "12月", value: "12"}
+                  {label: "例行活動 (跨學期，如晨練、社課)", value: "recurring"},
+                  {label: "上半學期活動 (期中前)", value: "first_half"},
+                  {label: "下半學期活動 (期中後)", value: "second_half"}
                 ]
               - {label: "日期文字 (顯示用)", name: "time", widget: "string", hint: "顯示在活動標題前面的日期文字，例如「10/18」"}
               - {label: "活動類型 (如:常課/歷練，僅供內部參考，畫面上不會顯示)", name: "type", widget: "string", required: false}
