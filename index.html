@@ -65,6 +65,25 @@
             border-color: rgba(184, 151, 66, 0.4);
             box-shadow: 0 0 15px rgba(30, 61, 47, 0.2);
         }
+        /* 紅塵歷練橫向滑動列的捲軸配色：黑底灰拉桿，取代瀏覽器預設的白底灰拉桿 */
+        #experience-cards {
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: #8E95A0 #08090A; /* Firefox: 拉桿色 / 底色 */
+        }
+        #experience-cards::-webkit-scrollbar {
+            height: 8px;
+        }
+        #experience-cards::-webkit-scrollbar-track {
+            background: #08090A;
+            border-radius: 4px;
+        }
+        #experience-cards::-webkit-scrollbar-thumb {
+            background-color: #8E95A0;
+            border-radius: 4px;
+        }
+        #experience-cards::-webkit-scrollbar-thumb:hover {
+            background-color: #B89742;
+        }
     </style>
 </head>
 <body class="text-cloud overflow-x-hidden">
@@ -838,13 +857,18 @@
                     container.innerHTML = '';
                     list.forEach(p => {
                         const card = document.createElement('div');
-                        card.className = 'bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500';
+                        card.className = 'bg-ink-dark p-7 rounded-lg ink-border ink-border-hover transition-all duration-500';
 
+                        // topRow 用 items-end + justify-between：左邊放照片＋姓名，右邊放「查看更多」，
+                        // 兩者底部對齊，讓「查看更多」出現在照片同一水平帶的右下角，而不是卡片最下方
                         const topRow = document.createElement('div');
-                        topRow.className = 'flex items-center gap-5';
+                        topRow.className = 'flex items-end justify-between gap-4';
+
+                        const identityWrap = document.createElement('div');
+                        identityWrap.className = 'flex items-center gap-5 min-w-0';
 
                         const photoWrap = document.createElement('div');
-                        photoWrap.className = 'w-20 h-20 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
+                        photoWrap.className = 'w-24 h-24 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
                         if (p.photo) {
                             const img = document.createElement('img');
                             img.className = 'w-full h-full object-cover';
@@ -853,45 +877,44 @@
                             photoWrap.appendChild(img);
                         } else {
                             const initial = document.createElement('span');
-                            initial.className = 'text-2xl text-bronze font-bold';
+                            initial.className = 'text-3xl text-bronze font-bold';
                             initial.innerText = (p.name || '').charAt(0);
                             photoWrap.appendChild(initial);
                         }
-                        topRow.appendChild(photoWrap);
+                        identityWrap.appendChild(photoWrap);
 
                         const nameWrap = document.createElement('div');
-                        nameWrap.className = 'min-w-0 flex-1 space-y-1';
+                        nameWrap.className = 'min-w-0 space-y-1.5';
                         nameWrap.innerHTML = `
-                            <h3 class="text-lg font-medium text-white tracking-widest truncate"></h3>
-                            <p class="text-sm text-pine-light tracking-widest font-semibold truncate"></p>
+                            <h3 class="text-xl font-medium text-white tracking-widest truncate"></h3>
+                            <p class="text-base text-pine-light tracking-widest font-semibold truncate"></p>
                         `;
                         nameWrap.querySelector('h3').innerText = p.name || '';
                         nameWrap.querySelector('p').innerText = p[subtitleField] || '';
-                        topRow.appendChild(nameWrap);
+                        identityWrap.appendChild(nameWrap);
 
-                        card.appendChild(topRow);
+                        topRow.appendChild(identityWrap);
 
                         // 簡介文字：預設用 hidden 藏起來
                         const descWrap = document.createElement('div');
                         descWrap.className = 'hidden mt-4 text-sm text-cloud/80 leading-relaxed';
                         descWrap.innerText = p.desc || '';
-                        card.appendChild(descWrap);
 
                         // 只有在有簡介文字時才顯示「查看更多」，沒有簡介就不需要這個按鈕
                         if (p.desc && p.desc.trim() !== '') {
-                            const toggleWrap = document.createElement('div');
-                            toggleWrap.className = 'text-right mt-3';
                             const toggleBtn = document.createElement('button');
                             toggleBtn.type = 'button';
-                            toggleBtn.className = 'text-xs text-bronze-light hover:text-white transition-colors';
+                            toggleBtn.className = 'flex-shrink-0 whitespace-nowrap text-xs text-bronze-light hover:text-white transition-colors';
                             toggleBtn.innerText = '查看更多';
                             toggleBtn.addEventListener('click', () => {
                                 const isHidden = descWrap.classList.toggle('hidden');
                                 toggleBtn.innerText = isHidden ? '查看更多' : '收合';
                             });
-                            toggleWrap.appendChild(toggleBtn);
-                            card.appendChild(toggleWrap);
+                            topRow.appendChild(toggleBtn);
                         }
+
+                        card.appendChild(topRow);
+                        card.appendChild(descWrap);
 
                         container.appendChild(card);
                     });
