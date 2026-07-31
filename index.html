@@ -40,10 +40,18 @@
         }
     </script>
     <style>
+        /* html 也加上 overflow-x hidden：body 的 overflow-x-hidden 對 position:fixed 的元素(例如導覽列)
+           不一定完全有效，因為 fixed 元素是以整個瀏覽器視窗為基準定位，不受 body 的 overflow 裁切影響。
+           連 html 一起設定，才能確保手機版不會出現橫向拖曳橫桿 */
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
         body {
             font-family: 'Noto Serif TC', serif;
             background-color: #08090A;
             background-image: radial-gradient(circle at 50% 30%, rgba(30, 61, 47, 0.1) 0%, rgba(8, 9, 10, 1) 70%);
+            max-width: 100%;
         }
         /* 山嵐霧氣飄動特效 */
         .mist-bg {
@@ -859,16 +867,12 @@
                         const card = document.createElement('div');
                         card.className = 'bg-ink-dark p-7 rounded-lg ink-border ink-border-hover transition-all duration-500';
 
-                        // topRow 用 items-end + justify-between：左邊放照片＋姓名，右邊放「查看更多」，
-                        // 兩者底部對齊，讓「查看更多」出現在照片同一水平帶的右下角，而不是卡片最下方
-                        const topRow = document.createElement('div');
-                        topRow.className = 'flex items-end justify-between gap-4';
-
+                        // 照片＋姓名這一列：尺寸適中、間距加大，看起來更寬鬆舒適
                         const identityWrap = document.createElement('div');
-                        identityWrap.className = 'flex items-center gap-5 min-w-0';
+                        identityWrap.className = 'flex items-center gap-6 min-w-0';
 
                         const photoWrap = document.createElement('div');
-                        photoWrap.className = 'w-24 h-24 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
+                        photoWrap.className = 'w-20 h-20 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
                         if (p.photo) {
                             const img = document.createElement('img');
                             img.className = 'w-full h-full object-cover';
@@ -877,44 +881,45 @@
                             photoWrap.appendChild(img);
                         } else {
                             const initial = document.createElement('span');
-                            initial.className = 'text-3xl text-bronze font-bold';
+                            initial.className = 'text-2xl text-bronze font-bold';
                             initial.innerText = (p.name || '').charAt(0);
                             photoWrap.appendChild(initial);
                         }
                         identityWrap.appendChild(photoWrap);
 
                         const nameWrap = document.createElement('div');
-                        nameWrap.className = 'min-w-0 space-y-1.5';
+                        nameWrap.className = 'min-w-0 space-y-2';
                         nameWrap.innerHTML = `
-                            <h3 class="text-xl font-medium text-white tracking-widest truncate"></h3>
-                            <p class="text-base text-pine-light tracking-widest font-semibold truncate"></p>
+                            <h3 class="text-lg font-medium text-white tracking-widest truncate"></h3>
+                            <p class="text-sm text-pine-light tracking-widest font-semibold truncate"></p>
                         `;
                         nameWrap.querySelector('h3').innerText = p.name || '';
                         nameWrap.querySelector('p').innerText = p[subtitleField] || '';
                         identityWrap.appendChild(nameWrap);
 
-                        topRow.appendChild(identityWrap);
+                        card.appendChild(identityWrap);
 
                         // 簡介文字：預設用 hidden 藏起來
                         const descWrap = document.createElement('div');
                         descWrap.className = 'hidden mt-4 text-sm text-cloud/80 leading-relaxed';
                         descWrap.innerText = p.desc || '';
+                        card.appendChild(descWrap);
 
-                        // 只有在有簡介文字時才顯示「查看更多」，沒有簡介就不需要這個按鈕
+                        // 「查看更多」獨立一行、靠右對齊，跟照片列保持一點距離但仍在附近，不會擠在一起
                         if (p.desc && p.desc.trim() !== '') {
+                            const toggleWrap = document.createElement('div');
+                            toggleWrap.className = 'text-right mt-3';
                             const toggleBtn = document.createElement('button');
                             toggleBtn.type = 'button';
-                            toggleBtn.className = 'flex-shrink-0 whitespace-nowrap text-xs text-bronze-light hover:text-white transition-colors';
+                            toggleBtn.className = 'text-xs text-bronze-light hover:text-white transition-colors';
                             toggleBtn.innerText = '查看更多';
                             toggleBtn.addEventListener('click', () => {
                                 const isHidden = descWrap.classList.toggle('hidden');
                                 toggleBtn.innerText = isHidden ? '查看更多' : '收合';
                             });
-                            topRow.appendChild(toggleBtn);
+                            toggleWrap.appendChild(toggleBtn);
+                            card.appendChild(toggleWrap);
                         }
-
-                        card.appendChild(topRow);
-                        card.appendChild(descWrap);
 
                         container.appendChild(card);
                     });
