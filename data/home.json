@@ -63,7 +63,7 @@
       "subtitle": "【 雲遊社遊 】",
       "desc": "暫別喧囂書齋，負笈出走。我們投身山嵐林海，體悟天人合一。在自然的懷抱中舒展筋骨，呼吸大地的靈炁。",
       "background_image": "/assets/uploads/Grasslands-menggu.jpg",
-      "background_opacity": 20
+      "background_opacity": 10
     },
     {
       "roman": "貳",
@@ -82,6 +82,14 @@
       "title": "歲末論劍",
       "subtitle": "【 期末大會 】",
       "desc": "一季修煉，功不唐捐。同門弟子在此分享感悟，印證所學，論功行賞，共同期許下一季的修行之途。"
+    },
+    {
+      "roman": "伍",
+      "title": "測試",
+      "subtitle": "測試",
+      "desc": "測試",
+      "background_image": "",
+      "background_opacity": 20
     }
   ],
   "global_section": {
@@ -124,9 +132,9 @@
         "label": "位持續聯絡"
       }
     ],
-    "badge_label": "道傳寰宇",
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
     "title": "外邦弟子的修真緣分",
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
+    "badge_label": "道傳寰宇"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -182,13 +190,13 @@
     "eyebrow": "VISIT THE TEMPLE",
     "title": "尋訪仙蹤",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
-    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "social_label": "【仙界傳音】",
-    "email_value": "nccutaichi@email.com",
-    "email_label": "【問道法郵】",
+    "location_label": "【道場位置】",
     "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "location_label": "【道場位置】"
+    "email_label": "【問道法郵】",
+    "email_value": "nccutaichi@email.com",
+    "social_label": "【仙界傳音】",
+    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
   },
   "contact": {
     "location_label": "道場位置",
