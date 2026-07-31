@@ -153,7 +153,7 @@ collections:
               - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
               - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
 
-          - label: "幹部介紹 - 幹部列表 (寬版長條，跟師資介紹同樣式)"
+          - label: "幹部介紹 - 現任幹部列表 (電腦版兩人一排、手機版一人一排；簡介預設收合，需點「查看更多」展開)"
             name: "staff"
             widget: "list"
             min: 1
@@ -162,7 +162,18 @@ collections:
               - { label: "職稱 (顯示在姓名下方，如:社長)", name: "role", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
               - { label: "姓名", name: "name", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
               - { label: "照片 (選填)", name: "photo", widget: "image", required: false, hint: "留空則顯示姓名首字" }
-              - { label: "簡介", name: "desc", widget: "text", hint: "建議 60 字以內，超過會被自動截斷顯示" }
+              - { label: "簡介 (選填)", name: "desc", widget: "text", required: false, hint: "點「查看更多」才會展開顯示，字數限制較寬鬆，建議 150 字以內" }
+
+          - label: "幹部介紹 - 歷任幹部列表 (預設整組隱藏，網頁上需點擊「查看歷任幹部」才會展開，樣式跟現任幹部相同)"
+            name: "staff_alumni"
+            widget: "list"
+            required: false
+            summary: "{{fields.name}} - {{fields.role}}"
+            fields:
+              - { label: "職稱/屆別 (如:第12屆社長)", name: "role", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "姓名", name: "name", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "照片 (選填)", name: "photo", widget: "image", required: false, hint: "留空則顯示姓名首字" }
+              - { label: "簡介 (選填)", name: "desc", widget: "text", required: false, hint: "點「查看更多」才會展開顯示，建議 150 字以內" }
 
           - label: "尋訪仙蹤 - 聯絡資訊"
             name: "contact_section"
