@@ -277,8 +277,9 @@
                 <p id="exp-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。</p>
             </div>
 
-            <!-- 空容器 (container)，卡片由下方 JS 依照後台的 experiences 資料筆數，用迴圈自動產生 -->
-            <div id="experience-cards" class="grid md:grid-cols-4 gap-6"></div>
+            <!-- 空容器 (container)，卡片由下方 JS 依照後台的 experiences 資料筆數，用迴圈自動產生；
+                 用 flex + overflow-x-auto 讓卡片固定同一排，超過畫面寬度時可以左右滑動 -->
+            <div id="experience-cards" class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory"></div>
         </div>
     </section>
 
@@ -352,8 +353,16 @@
                 <p id="staff-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">認識本屆核心幹部。</p>
             </div>
 
-            <!-- 空容器，跟師資介紹用同一種長條卡片樣式呈現 -->
-            <div id="staff-list" class="space-y-6"></div>
+            <!-- 空容器：電腦版兩人一排、手機版一人一排；每張卡片預設隱藏簡介，需點「查看更多」展開 -->
+            <div id="staff-list" class="grid md:grid-cols-2 gap-6"></div>
+
+            <!-- 查看歷任幹部：預設隱藏整組歷任幹部列表，點擊右下角文字才展開 -->
+            <div class="text-right mt-6">
+                <button id="staff-alumni-toggle" type="button" class="text-sm text-bronze-light hover:text-white transition-colors">查看歷任幹部</button>
+            </div>
+            <div id="staff-alumni-wrap" class="hidden mt-6">
+                <div id="staff-alumni-list" class="grid md:grid-cols-2 gap-6"></div>
+            </div>
         </div>
     </section>
 
@@ -649,7 +658,7 @@
                         data.experiences.forEach(e => {
                             const card = document.createElement('div');
                             // 加上 relative + overflow-hidden：讓等一下要疊上去的背景圖片不會超出卡片邊框
-                            card.className = 'relative overflow-hidden bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4';
+                            card.className = 'relative overflow-hidden flex-shrink-0 w-64 sm:w-72 snap-start bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4';
 
                             // 如果後台有上傳背景圖片，疊一層淡化過的圖片在卡片最底層
                             if (e.background_image) {
@@ -821,6 +830,73 @@
                     });
                 }
 
+                // 幹部卡片渲染：電腦版兩人一排、手機版一人一排（用 grid 的 md:grid-cols-2 控制）
+                // 簡介文字預設隱藏，只留「查看更多」文字，點擊後才展開該張卡片的簡介
+                function renderStaffList(containerId, list, subtitleField) {
+                    const container = document.getElementById(containerId);
+                    if (!container || !Array.isArray(list)) return;
+                    container.innerHTML = '';
+                    list.forEach(p => {
+                        const card = document.createElement('div');
+                        card.className = 'bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500';
+
+                        const topRow = document.createElement('div');
+                        topRow.className = 'flex items-center gap-5';
+
+                        const photoWrap = document.createElement('div');
+                        photoWrap.className = 'w-20 h-20 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
+                        if (p.photo) {
+                            const img = document.createElement('img');
+                            img.className = 'w-full h-full object-cover';
+                            img.src = resolveImagePath(p.photo);
+                            img.alt = p.name || '';
+                            photoWrap.appendChild(img);
+                        } else {
+                            const initial = document.createElement('span');
+                            initial.className = 'text-2xl text-bronze font-bold';
+                            initial.innerText = (p.name || '').charAt(0);
+                            photoWrap.appendChild(initial);
+                        }
+                        topRow.appendChild(photoWrap);
+
+                        const nameWrap = document.createElement('div');
+                        nameWrap.className = 'min-w-0 flex-1 space-y-1';
+                        nameWrap.innerHTML = `
+                            <h3 class="text-lg font-medium text-white tracking-widest truncate"></h3>
+                            <p class="text-sm text-pine-light tracking-widest font-semibold truncate"></p>
+                        `;
+                        nameWrap.querySelector('h3').innerText = p.name || '';
+                        nameWrap.querySelector('p').innerText = p[subtitleField] || '';
+                        topRow.appendChild(nameWrap);
+
+                        card.appendChild(topRow);
+
+                        // 簡介文字：預設用 hidden 藏起來
+                        const descWrap = document.createElement('div');
+                        descWrap.className = 'hidden mt-4 text-sm text-cloud/80 leading-relaxed';
+                        descWrap.innerText = p.desc || '';
+                        card.appendChild(descWrap);
+
+                        // 只有在有簡介文字時才顯示「查看更多」，沒有簡介就不需要這個按鈕
+                        if (p.desc && p.desc.trim() !== '') {
+                            const toggleWrap = document.createElement('div');
+                            toggleWrap.className = 'text-right mt-3';
+                            const toggleBtn = document.createElement('button');
+                            toggleBtn.type = 'button';
+                            toggleBtn.className = 'text-xs text-bronze-light hover:text-white transition-colors';
+                            toggleBtn.innerText = '查看更多';
+                            toggleBtn.addEventListener('click', () => {
+                                const isHidden = descWrap.classList.toggle('hidden');
+                                toggleBtn.innerText = isHidden ? '查看更多' : '收合';
+                            });
+                            toggleWrap.appendChild(toggleBtn);
+                            card.appendChild(toggleWrap);
+                        }
+
+                        container.appendChild(card);
+                    });
+                }
+
                 // 師資介紹
                 if (data.instructors_section) {
                     setText('instructors-eyebrow', data.instructors_section.eyebrow);
@@ -835,7 +911,18 @@
                     setText('staff-title', data.staff_section.title);
                     setText('staff-desc', data.staff_section.desc);
                 }
-                renderPersonList('staff-list', data.staff, 'role');
+                renderStaffList('staff-list', data.staff, 'role');
+
+                // 歷任幹部：預設整組隱藏，點擊「查看歷任幹部」才展開；卡片樣式跟現任幹部共用同一套
+                renderStaffList('staff-alumni-list', data.staff_alumni, 'role');
+                const alumniToggleBtn = document.getElementById('staff-alumni-toggle');
+                const alumniWrap = document.getElementById('staff-alumni-wrap');
+                if (alumniToggleBtn && alumniWrap) {
+                    alumniToggleBtn.addEventListener('click', () => {
+                        const isHidden = alumniWrap.classList.toggle('hidden');
+                        alumniToggleBtn.innerText = isHidden ? '查看歷任幹部' : '收合歷任幹部';
+                    });
+                }
 
                 // 尋訪仙蹤
                 if (data.contact_section) {
