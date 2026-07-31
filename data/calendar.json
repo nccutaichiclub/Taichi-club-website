@@ -38,9 +38,9 @@
     },
     {
       "month": "first_half",
-      "time": "仲春之期",
+      "time": "10/3（六）",
       "type": "歷練",
-      "title": "山林雲遊（大溪社遊）",
+      "title": "第一次社遊",
       "location": "大溪山水之間",
       "desc": "暫別書齋，前往大溪木藝生態博物館與老街散策，寄情山水，體會天人合一。",
       "note": "",
@@ -50,6 +50,20 @@
       "repeat": "none",
       "repeat_until": "",
       "semester": "115-1"
+    },
+    {
+      "month": "second_half",
+      "time": "11/8（日）",
+      "type": "",
+      "title": "第二次社遊",
+      "location": "敬請期待",
+      "desc": "敬請期待",
+      "note": "",
+      "event_date": "2026-11-08",
+      "start_time": "08:00",
+      "end_time": "16:00",
+      "repeat": "none",
+      "repeat_until": ""
     }
   ]
 }
