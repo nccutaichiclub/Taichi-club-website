@@ -27,6 +27,12 @@
     </script>
 
     <style>
+        /* 全域 box-sizing 修正：Tailwind preflight 關閉後，少了這條關鍵重置，
+           導致所有有 padding 的區塊實際寬度都會比容器多撐出 padding 的量，
+           這正是手機版圖片/文字被切掉、出現橫向溢出的根本原因 */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
         :root {
             --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #1C3A27; --古銅金: #C5A059; --仙氣白: #E5E5E5;
         }
