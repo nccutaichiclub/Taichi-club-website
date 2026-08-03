@@ -89,6 +89,12 @@
             padding: 0;
             cursor: pointer;
         }
+        /* 中英文切換按鈕：同樣因為關閉 preflight，瀏覽器預設的白底樣式會跑出來，這裡重置成透明底＋實線金色框，跟首頁一致 */
+        #lang-toggle-desktop, #lang-toggle-mobile {
+            background: none;
+            border-style: solid;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -100,11 +106,14 @@
     <header class="sticky top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center relative">
 
-            <!-- 左側：道場牌匾 -->
-            <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white no-underline">
-                <span id="nav-badge" class="text-xs border border-solid border-bronze px-1.5 py-0.5 rounded">政大</span>
-                <span id="nav-brand">太極社</span> <span id="nav-brand-sub" class="font-light text-sm text-cloud/70">| 隱逸道場</span>
-            </a>
+            <!-- 左側：道場牌匾 + 手機版語言切換鈕（一直顯示，不用點開漢堡選單） -->
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white no-underline">
+                    <span id="nav-badge" class="text-xs border border-solid border-bronze px-1.5 py-0.5 rounded">政大</span>
+                    <span id="nav-brand">太極社</span> <span id="nav-brand-sub" class="font-light text-sm text-cloud/70">| 隱逸道場</span>
+                </a>
+                <button id="lang-toggle-mobile" type="button" class="md:hidden text-xs tracking-widest text-bronze-light border border-bronze/50 rounded px-2 py-1 hover:bg-bronze/10 transition-colors">EN</button>
+            </div>
 
             <!-- 右側：電腦版跨頁導覽連結 -->
             <nav class="hidden md:flex gap-8 items-center">
@@ -129,7 +138,6 @@
             <a href="gongfa.html" class="nav-link-method no-underline text-sm tracking-widest text-bronze-light font-bold w-full text-center block">法門深造</a>
             <a href="activities.html" class="nav-link-activities no-underline text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">活動介紹</a>
             <a href="calendar.html" class="nav-link-calendar no-underline text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
-            <button id="lang-toggle-mobile" type="button" class="text-sm tracking-widest text-bronze-light border border-bronze/50 rounded px-3 py-1.5 hover:bg-bronze/10 transition-colors">EN</button>
         </nav>
     </header>
 
