@@ -233,6 +233,7 @@
             background: none;
             border-style: solid;
             cursor: pointer;
+            font-family: inherit; /* 按鈕預設不會繼承頁面字體，這裡強制套用跟首頁一樣的宋體 */
         }
     </style>
 </head>
@@ -248,8 +249,8 @@
             <!-- 左側：道場牌匾 + 手機版語言切換鈕（一直顯示，不用點開漢堡選單） -->
             <div class="flex items-center gap-3">
                 <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white no-underline">
-                    <span id="nav-badge" class="text-xs border border-solid border-bronze px-1.5 py-0.5 rounded">政大</span>
-                    <span id="nav-brand">太極社</span> <span id="nav-brand-sub" class="font-light text-sm text-cloud/70">| 隱逸道場</span>
+                    <span id="nav-badge" class="text-xs border border-solid border-bronze px-1.5 py-0.5 rounded whitespace-nowrap">政大</span>
+                    <span id="nav-brand" class="whitespace-nowrap">太極社</span> <span id="nav-brand-sub" class="hidden sm:inline font-light text-sm text-cloud/70 whitespace-nowrap">| 隱逸道場</span>
                 </a>
                 <button id="lang-toggle-mobile" type="button" class="md:hidden text-xs tracking-widest text-bronze-light border border-bronze/50 rounded px-2 py-1 hover:bg-bronze/10 transition-colors">EN</button>
             </div>
