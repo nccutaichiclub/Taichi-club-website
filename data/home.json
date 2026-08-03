@@ -6,65 +6,96 @@
     "brand_en": "Tai Chi",
     "brand_sub": "隱逸道場",
     "brand_sub_en": "Martial Art Dojo",
-    "link_home": "首頁主殿",
+    "link_home": "首頁",
     "link_home_en": "Home",
-    "link_method": "法門深造",
+    "link_method": "功法詳情",
     "link_method_en": "Teachings",
     "link_activities": "活動介紹",
     "link_activities_en": "Events",
-    "link_calendar": "修煉日程",
+    "link_calendar": "學期行事曆",
     "link_calendar_en": "Schedule"
   },
   "methods_section": {
     "eyebrow": "METHODOLOGY",
     "eyebrow_en": "",
-    "title": "四大身心法門",
+    "title": "四大功法課程",
     "title_en": "",
-    "desc": "動靜相兼，形神俱妙。此為本社修行之四大柱石。",
+    "desc": "動靜相兼，形神俱妙。在修練的動與靜中找尋和諧的步調，用身體會、用心感受，以太極調身心。",
     "desc_en": ""
   },
   "methods": [
     {
       "id": "qigong",
       "tab_label": "華陀導引氣功",
+      "tab_label_en": "",
       "tag": "內功心法 ． 吐納歸真",
+      "tag_en": "",
       "title": "華陀導引氣功",
+      "title_en": "",
       "quote": "「運先天之炁，化五穀之精，以調身心、延壽命也。」",
-      "desc": "引導吐納，疏通十二經絡。適合長期熬夜、為課業瑣事精神內耗的大學學子。無須繁複招式，只需靜心專注於一呼一吸，在沉靜中感受體內生生不息之炁。",
-      "difficulty": "修煉難度：入門"
+      "quote_en": "",
+      "desc": "又稱五禽戲，模仿熊、虎、鹿、鶴、猿。動作舒緩，包含多種伸展；導引吐納，疏通十二經絡，是身心俱疲的午後放鬆的好選擇。適合長時間久坐、用眼，作息不規律以致入睡困難的族群，氣功提供適當的拉伸及平和的呼吸，所謂氣好、身好、心好，養好氣才會有好力！",
+      "desc_en": "",
+      "video_url": "",
+      "difficulty": "修煉難度：入門",
+      "difficulty_en": ""
     },
     {
       "id": "taichi",
       "tab_label": "太極拳",
+      "tab_label_en": "",
       "tag": "動靜觀心 ． 借力化勁",
+      "tag_en": "",
       "title": "太極拳",
+      "title_en": "",
       "quote": "「動靜相兼，以柔克剛，先化而發，方能以四兩撥千金。」",
-      "desc": "不與風爭強，不與水奪流。太極拳非防身格鬥之悍術，而是與自身重力、自然定律共處的和諧律動。一式一動皆在磨練定力，讓浮躁的心沉澱，感受圓融之美。",
-      "difficulty": "修煉難度：中等"
+      "quote_en": "",
+      "desc": "不與風爭強，不與水奪流，但借力打力更有勁。別看太極拳看似柔弱不禁、不爭不搶，實則笑裡藏刀、暗藏殺機。除了強身健體的基本功馬步、弓步、後坐步，也有八面玲瓏的防身術折手、斷腳、碎鼻樑。適合只是想輕鬆運動稍微流汗的族群，也適合想學點技巧防身以備不時之需的族群。練拳練好不生煩惱、掤捋擠按惡人退散！",
+      "desc_en": "",
+      "video_url": "",
+      "difficulty": "修煉難度：中等",
+      "difficulty_en": ""
     },
     {
       "id": "staff",
       "tab_label": "太祖棍",
+      "tab_label_en": "",
       "tag": "借物修身 ． 身棍合一",
+      "tag_en": "",
       "title": "太祖棍",
+      "title_en": "",
       "quote": "「借物修身，身棍合一。腰、棍、腳俱為一體。」",
+      "quote_en": "",
       "desc": "長兵之祖，勢如破竹。太祖棍旨在訓練脊椎旋轉之核心爆發力，使手、足、身、步協調一致。棍身舞動之際，非唯破敵，實乃掃除心中雜念與懈怠。",
-      "difficulty": "修煉難度：進階"
+      "desc_en": "",
+      "video_url": "",
+      "difficulty": "修煉難度：進階",
+      "difficulty_en": ""
     },
     {
       "id": "sword",
       "tab_label": "太極劍",
+      "tab_label_en": "",
       "tag": "形神俱妙 ． 劍行行雲",
+      "tag_en": "",
       "title": "太極劍",
+      "title_en": "",
       "quote": "「以意御劍，瀟灑飄逸，形神俱妙而不失其防身之效。」",
+      "quote_en": "",
       "desc": "劍隨身走，瀟灑似風。太極劍要求神態飄逸、步法靈動，非純剛猛，而以圓轉輕靈取勝。劍尖所指，皆是太極圓圈之化境，令身心如行雲流水，自在自得。",
-      "difficulty": "修煉難度：高階"
+      "desc_en": "",
+      "video_url": "",
+      "difficulty": "修煉難度：高階",
+      "difficulty_en": ""
     }
   ],
   "experience_section": {
     "eyebrow": "MORTAL EXPERIENCES",
+    "eyebrow_en": "",
     "title": "紅塵歷練",
-    "desc": "修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。"
+    "title_en": "",
+    "desc": "修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。",
+    "desc_en": ""
   },
   "experiences": [
     {
@@ -142,9 +173,9 @@
         "label": "位持續聯絡"
       }
     ],
-    "badge_label": "道傳寰宇",
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
     "title": "外邦弟子的修真緣分",
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
+    "badge_label": "道傳寰宇"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -200,13 +231,13 @@
     "eyebrow": "VISIT THE TEMPLE",
     "title": "尋訪仙蹤",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
-    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "social_label": "【仙界傳音】",
-    "email_value": "nccutaichi@email.com",
-    "email_label": "【問道法郵】",
+    "location_label": "【道場位置】",
     "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "location_label": "【道場位置】"
+    "email_label": "【問道法郵】",
+    "email_value": "nccutaichi@email.com",
+    "social_label": "【仙界傳音】",
+    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
   },
   "contact": {
     "location_label": "道場位置",
