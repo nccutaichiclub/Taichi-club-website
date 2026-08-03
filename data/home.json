@@ -90,9 +90,9 @@
     }
   ],
   "experience_section": {
-    "eyebrow": "MORTAL EXPERIENCES",
+    "eyebrow": "SPOTLIGHT",
     "eyebrow_en": "",
-    "title": "紅塵歷練",
+    "title": "重要活動大賞",
     "title_en": "",
     "desc": "修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。",
     "desc_en": ""
@@ -100,33 +100,51 @@
   "experiences": [
     {
       "roman": "壹",
-      "title": "寄情山水",
-      "subtitle": "【 雲遊社遊 】",
-      "desc": "暫別喧囂書齋，負笈出走。我們投身山嵐林海，體悟天人合一。在自然的懷抱中舒展筋骨，呼吸大地的靈炁。",
+      "roman_en": "I",
+      "title": "初來乍到",
+      "title_en": "",
+      "subtitle": "【初體驗及表演欣賞】",
+      "subtitle_en": "",
+      "desc": "學期開始的第一堂社課會舉辦迎新活動，新成員在欣賞節目後，可以跟著舊成員的引領，參與小遊戲體驗太極魅力。",
+      "desc_en": "",
       "background_image": "/assets/uploads/Grasslands-menggu.jpg",
       "background_opacity": 10
     },
     {
       "roman": "貳",
-      "title": "圍爐論道",
-      "subtitle": "【 同修聚餐 】",
-      "desc": "仙人亦需人間煙火。同修齊聚一堂，在融洽溫暖的香氣中，大口吃肉，細細品茗，暢談修煉日常與生活百態。"
+      "roman_en": "II",
+      "title": "心靈手巧",
+      "title_en": "",
+      "subtitle": "【傳統春捲DIY】",
+      "subtitle_en": "",
+      "desc": "仙人亦需人間煙火。同修齊聚一堂，在融洽溫暖的香氣中，大口吃肉，細細品茗，暢談修煉日常與生活百態。",
+      "desc_en": ""
     },
     {
       "roman": "參",
+      "roman_en": "III",
       "title": "手藝修持",
+      "title_en": "",
       "subtitle": "【 傳統包春捲 】",
-      "desc": "動與靜在指尖的交織。藉由親手包製傳統春捲，調和五味，考驗心靈與指尖的定力，在美味中感知傳統美學。"
+      "subtitle_en": "",
+      "desc": "動與靜在指尖的交織。藉由親手包製傳統春捲，調和五味，考驗心靈與指尖的定力，在美味中感知傳統美學。",
+      "desc_en": ""
     },
     {
       "roman": "肆",
+      "roman_en": "IIII",
       "title": "歲末論劍",
+      "title_en": "",
       "subtitle": "【 期末大會 】",
-      "desc": "一季修煉，功不唐捐。同門弟子在此分享感悟，印證所學，論功行賞，共同期許下一季的修行之途。"
+      "subtitle_en": "",
+      "desc": "一季修煉，功不唐捐。同門弟子在此分享感悟，印證所學，論功行賞，共同期許下一季的修行之途。",
+      "desc_en": ""
     },
     {
       "roman": "伍",
+      "roman_en": "V",
       "title": "測試",
+      "title_en": "",
       "subtitle": "測試",
       "desc": "測試",
       "background_image": "",
