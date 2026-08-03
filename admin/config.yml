@@ -19,12 +19,19 @@ collections:
             widget: "object"
             fields:
               - { label: "角標文字 (如:政大)", name: "badge", widget: "string", hint: "建議 4 字以內，超過會擠到旁邊的社團名稱", pattern: ['^.{1,4}$', '請控制在 4 字以內'] }
+              - { label: "角標文字 (English，選填，沒填會顯示中文版)", name: "badge_en", widget: "string", required: false }
               - { label: "社團名稱", name: "brand", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "社團名稱 (English，選填，沒填會顯示中文版)", name: "brand_en", widget: "string", required: false }
               - { label: "副標 (如:隱逸道場)", name: "brand_sub", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "副標 (English，選填，沒填會顯示中文版)", name: "brand_sub_en", widget: "string", required: false }
               - { label: "選單-首頁", name: "link_home", widget: "string", hint: "建議 6 字以內，避免手機版選單跑版", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "選單-首頁 (English，選填，沒填會顯示中文版)", name: "link_home_en", widget: "string", required: false }
               - { label: "選單-法門深造", name: "link_method", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "選單-法門深造 (English，選填，沒填會顯示中文版)", name: "link_method_en", widget: "string", required: false }
               - { label: "選單-活動介紹", name: "link_activities", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "選單-活動介紹 (English，選填，沒填會顯示中文版)", name: "link_activities_en", widget: "string", required: false }
               - { label: "選單-修煉日程", name: "link_calendar", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "選單-修煉日程 (English，選填，沒填會顯示中文版)", name: "link_calendar_en", widget: "string", required: false }
 
           - label: "Hero 主視覺區"
             name: "hero"
@@ -38,6 +45,7 @@ collections:
                 fields:
                   - { label: "圖片", name: "image", widget: "image", hint: "請上傳橫式(寬>高)的照片，避免電腦版寬螢幕顯示時被裁切過多" }
                   - { label: "圖片說明 (畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
+                  - { label: "圖片說明 (English，選填)", name: "alt_en", widget: "string", required: false }
               - label: "手機版輪播圖片 (建議使用直式，高 > 寬；若留空，手機版會自動沿用電腦版圖片)"
                 name: "carousel_mobile"
                 widget: "list"
@@ -46,14 +54,18 @@ collections:
                 fields:
                   - { label: "圖片", name: "image", widget: "image", hint: "請上傳直式(高>寬)的照片，避免手機直式螢幕顯示時被裁切過多" }
                   - { label: "圖片說明 (畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
+                  - { label: "圖片說明 (English，選填)", name: "alt_en", widget: "string", required: false }
 
           - label: "四大法門 - 區塊標題"
             name: "methods_section"
             widget: "object"
             fields:
               - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "英文小標 (English，選填，沒填會顯示中文版)", name: "eyebrow_en", widget: "string", required: false }
               - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "區塊標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內，一行內顯示完畢較美觀" }
+              - { label: "區塊說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "string", required: false }
 
           - label: "四大法門 - 內容"
             name: "methods"
@@ -62,20 +74,29 @@ collections:
             fields:
               - { label: "法門代號 (勿隨意更改, 對應網頁程式碼)", name: "id", widget: "select", options: ["qigong", "taichi", "staff", "sword"] }
               - { label: "頁籤按鈕文字", name: "tab_label", widget: "string", hint: "建議 8 字以內，太長按鈕會被擠壓變形", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "頁籤按鈕文字 (English，選填，沒填會顯示中文版)", name: "tab_label_en", widget: "string", required: false }
               - { label: "小標籤 (如:內功心法．吐納歸真)", name: "tag", widget: "string", hint: "建議 14 字以內", pattern: ['^.{1,14}$', '請控制在 14 字以內'] }
+              - { label: "小標籤 (English，選填，沒填會顯示中文版)", name: "tag_en", widget: "string", required: false }
               - { label: "法門標題", name: "title", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "法門標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "引言", name: "quote", widget: "string", hint: "建議 40 字以內，太長會佔用太多版面" }
+              - { label: "引言 (English，選填，沒填會顯示中文版)", name: "quote_en", widget: "string", required: false }
               - { label: "詳細說明", name: "desc", widget: "text", hint: "建議 120 字以內，超過會被自動截斷顯示" }
+              - { label: "詳細說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
               - { label: "YouTube 影片網址 (選填)", name: "video_url", widget: "string", required: false, hint: "直接貼上完整的 YouTube 影片網址即可 (例如 https://www.youtube.com/watch?v=xxxxxxx)，留空則畫面顯示「演示影像預留區」提示" }
               - { label: "難度標示", name: "difficulty", widget: "string", hint: "建議 10 字以內，例如「修煉難度：入門」", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "難度標示 (English，選填，沒填會顯示中文版)", name: "difficulty_en", widget: "string", required: false }
 
           - label: "紅塵歷練 - 區塊標題"
             name: "experience_section"
             widget: "object"
             fields:
               - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "英文小標 (English，選填，沒填會顯示中文版)", name: "eyebrow_en", widget: "string", required: false }
               - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "區塊標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
+              - { label: "區塊說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "string", required: false }
 
           - label: "紅塵歷練 - 卡片列表 (可自由新增/刪除/排序)"
             name: "experiences"
@@ -84,9 +105,13 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "編號 (壹/貳/參/肆...)", name: "roman", widget: "string", hint: "建議 1-2 字", pattern: ['^.{1,2}$', '請控制在 2 字以內'] }
+              - { label: "編號 (English，選填，例如 I/II/III，沒填會顯示中文版)", name: "roman_en", widget: "string", required: false }
               - { label: "卡片標題", name: "title", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "卡片標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "卡片副標", name: "subtitle", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "卡片副標 (English，選填，沒填會顯示中文版)", name: "subtitle_en", widget: "string", required: false }
               - { label: "說明文字", name: "desc", widget: "text", hint: "建議 90 字以內，超過會被自動截斷顯示，4 張卡片高度才能對齊" }
+              - { label: "說明文字 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
               - { label: "卡片背景圖片 (選填)", name: "background_image", widget: "image", required: false, hint: "留空則維持原本的深色卡片背景；上傳後可用下面的透明度調整淡化程度" }
               - { label: "背景圖片透明度", name: "background_opacity", widget: "select", default: 20, options: [10, 20, 30, 40, 50, 60, 70], hint: "數字越小圖片越淡、文字越清楚好讀；數字越大圖片越明顯。建議先從 20 開始試" }
 
@@ -95,16 +120,22 @@ collections:
             widget: "object"
             fields:
               - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "英文小標 (English，選填，沒填會顯示中文版)", name: "eyebrow_en", widget: "string", required: false }
               - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "區塊標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
+              - { label: "區塊說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "string", required: false }
 
           - label: "道傳寰宇 - 內容"
             name: "global"
             widget: "object"
             fields:
               - { label: "副標文字 (如:外邦弟子的修真緣分)", name: "subtitle", widget: "string", hint: "建議 14 字以內", pattern: ['^.{1,14}$', '請控制在 14 字以內'] }
+              - { label: "副標文字 (English，選填，沒填會顯示中文版)", name: "subtitle_en", widget: "string", required: false }
               - { label: "段落一", name: "para1", widget: "text", hint: "建議 80 字以內" }
+              - { label: "段落一 (English，選填，沒填會顯示中文版)", name: "para1_en", widget: "text", required: false }
               - { label: "段落二", name: "para2", widget: "text", hint: "建議 100 字以內" }
+              - { label: "段落二 (English，選填，沒填會顯示中文版)", name: "para2_en", widget: "text", required: false }
               - label: "國家標籤 (可自由新增/刪除/排序)"
                 name: "country_tags"
                 widget: "list"
@@ -112,6 +143,7 @@ collections:
                 fields:
                   - { label: "國碼 (如:JP)", name: "code", widget: "string", hint: "建議 2-3 個英文字母", pattern: ['^.{1,3}$', '請控制在 3 字以內'] }
                   - { label: "國家名稱 (如:日本)", name: "name", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+                  - { label: "國家名稱 (English，選填，沒填會顯示中文版)", name: "name_en", widget: "string", required: false }
                   - { label: "人數", name: "count", widget: "number", value_type: "int", min: 0 }
               - label: "統計數字 (建議 3 筆)"
                 name: "stats"
@@ -120,6 +152,7 @@ collections:
                 fields:
                   - { label: "數字 (如:67+)", name: "number", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
                   - { label: "說明文字 (如:位國際同道)", name: "label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+                  - { label: "說明文字 (English，選填，沒填會顯示中文版)", name: "label_en", widget: "string", required: false }
               - label: "寰宇同道地圖 (貼上 Google My Maps 的嵌入連結)"
                 name: "google_map_embed_url"
                 widget: "string"
@@ -131,8 +164,11 @@ collections:
             widget: "object"
             fields:
               - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "英文小標 (English，選填，沒填會顯示中文版)", name: "eyebrow_en", widget: "string", required: false }
               - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "區塊標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
+              - { label: "區塊說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "string", required: false }
 
           - label: "師資介紹 - 老師列表 (寬版長條，一排一位)"
             name: "instructors"
@@ -142,16 +178,22 @@ collections:
             fields:
               - { label: "照片 (選填)", name: "photo", widget: "image", required: false, hint: "建議使用方形或接近方形的大頭照，畫面會裁切成圓形顯示；留空則顯示姓名首字" }
               - { label: "姓名/稱謂", name: "name", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "姓名/稱謂 (English，選填，沒填會顯示中文版)", name: "name_en", widget: "string", required: false }
               - { label: "副標 (如:太極拳教練．十年教學經驗)", name: "subtitle", widget: "string", hint: "建議 20 字以內", pattern: ['^.{1,20}$', '請控制在 20 字以內'] }
+              - { label: "副標 (English，選填，沒填會顯示中文版)", name: "subtitle_en", widget: "string", required: false }
               - { label: "簡介", name: "desc", widget: "text", hint: "建議 60 字以內，超過會被自動截斷顯示" }
+              - { label: "簡介 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
 
           - label: "幹部介紹 - 區塊標題"
             name: "staff_section"
             widget: "object"
             fields:
               - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "英文小標 (English，選填，沒填會顯示中文版)", name: "eyebrow_en", widget: "string", required: false }
               - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "區塊標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "區塊說明", name: "desc", widget: "string", hint: "建議 40 字以內" }
+              - { label: "區塊說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "string", required: false }
 
           - label: "幹部介紹 - 現任幹部列表 (電腦版兩人一排、手機版一人一排；簡介預設收合，需點「查看更多」展開)"
             name: "staff"
@@ -160,9 +202,12 @@ collections:
             summary: "{{fields.name}} - {{fields.role}}"
             fields:
               - { label: "職稱 (顯示在姓名下方，如:社長)", name: "role", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "職稱 (English，選填，沒填會顯示中文版)", name: "role_en", widget: "string", required: false }
               - { label: "姓名", name: "name", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "姓名 (English，選填，沒填會顯示中文版)", name: "name_en", widget: "string", required: false }
               - { label: "照片 (選填)", name: "photo", widget: "image", required: false, hint: "留空則顯示姓名首字" }
               - { label: "簡介 (選填)", name: "desc", widget: "text", required: false, hint: "點「查看更多」才會展開顯示，字數限制較寬鬆，建議 150 字以內" }
+              - { label: "簡介 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
 
           - label: "幹部介紹 - 歷任幹部列表 (預設整組隱藏，網頁上需點擊「查看歷任幹部」才會展開，樣式跟現任幹部相同)"
             name: "staff_alumni"
@@ -171,51 +216,70 @@ collections:
             summary: "{{fields.name}} - {{fields.role}}"
             fields:
               - { label: "職稱/屆別 (如:第12屆社長)", name: "role", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "職稱/屆別 (English，選填，沒填會顯示中文版)", name: "role_en", widget: "string", required: false }
               - { label: "姓名", name: "name", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "姓名 (English，選填，沒填會顯示中文版)", name: "name_en", widget: "string", required: false }
               - { label: "照片 (選填)", name: "photo", widget: "image", required: false, hint: "留空則顯示姓名首字" }
               - { label: "簡介 (選填)", name: "desc", widget: "text", required: false, hint: "點「查看更多」才會展開顯示，建議 150 字以內" }
+              - { label: "簡介 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
 
           - label: "尋訪仙蹤 - 聯絡資訊"
             name: "contact_section"
             widget: "object"
             fields:
               - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "英文小標 (English，選填，沒填會顯示中文版)", name: "eyebrow_en", widget: "string", required: false }
               - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+              - { label: "區塊標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "簡介文字", name: "intro", widget: "text", hint: "建議 60 字以內" }
+              - { label: "簡介文字 (English，選填，沒填會顯示中文版)", name: "intro_en", widget: "text", required: false }
 
           - label: "尋訪仙蹤 - 詳細內容"
             name: "contact"
             widget: "object"
             fields:
               - { label: "道場位置標籤", name: "location_label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "道場位置標籤 (English，選填，沒填會顯示中文版)", name: "location_label_en", widget: "string", required: false }
               - { label: "道場位置內容", name: "location_value", widget: "string", hint: "建議 30 字以內" }
+              - { label: "道場位置內容 (English，選填，沒填會顯示中文版)", name: "location_value_en", widget: "string", required: false }
               - { label: "問道法郵標籤", name: "email_label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "問道法郵標籤 (English，選填，沒填會顯示中文版)", name: "email_label_en", widget: "string", required: false }
               - { label: "問道法郵內容", name: "email_value", widget: "string" }
               - { label: "仙界傳音標籤", name: "social_label", widget: "string", hint: "建議 8 字以內", pattern: ['^.{1,8}$', '請控制在 8 字以內'] }
+              - { label: "仙界傳音標籤 (English，選填，沒填會顯示中文版)", name: "social_label_en", widget: "string", required: false }
               - { label: "仙界傳音內容", name: "social_value", widget: "string" }
+              - { label: "仙界傳音內容 (English，選填，沒填會顯示中文版)", name: "social_value_en", widget: "string", required: false }
               - { label: "頁尾小語", name: "footer_quote", widget: "text", hint: "建議 60 字以內" }
+              - { label: "頁尾小語 (English，選填，沒填會顯示中文版)", name: "footer_quote_en", widget: "text", required: false }
 
           - label: "每週修煉行事曆"
             name: "schedule"
             widget: "object"
             fields:
               - { label: "表格標題", name: "title", widget: "string", hint: "建議 20 字以內" }
+              - { label: "表格標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - label: "課表列表"
                 name: "rows"
                 widget: "list"
                 summary: "{{fields.time}} - {{fields.content}}"
                 fields:
                   - { label: "修行時辰", name: "time", widget: "string", hint: "建議 14 字以內，太長表格會被壓縮" }
+                  - { label: "修行時辰 (English，選填，沒填會顯示中文版)", name: "time_en", widget: "string", required: false }
                   - { label: "修煉法門", name: "content", widget: "string", hint: "建議 20 字以內" }
+                  - { label: "修煉法門 (English，選填，沒填會顯示中文版)", name: "content_en", widget: "string", required: false }
                   - { label: "道場處所", name: "location", widget: "string", hint: "建議 16 字以內" }
+                  - { label: "道場處所 (English，選填，沒填會顯示中文版)", name: "location_en", widget: "string", required: false }
               - { label: "道門提點文字", name: "note", widget: "text", hint: "建議 80 字以內" }
+              - { label: "道門提點文字 (English，選填，沒填會顯示中文版)", name: "note_en", widget: "text", required: false }
 
           - label: "頁尾"
             name: "footer"
             widget: "object"
             fields:
               - { label: "版權文字", name: "copyright", widget: "string", hint: "建議 60 字以內" }
+              - { label: "版權文字 (English，選填，沒填會顯示中文版)", name: "copyright_en", widget: "string", required: false }
               - { label: "小字標語", name: "sub", widget: "string", hint: "建議 30 字以內" }
+              - { label: "小字標語 (English，選填，沒填會顯示中文版)", name: "sub_en", widget: "string", required: false }
 
   - name: "gongfa_settings"
     label: "🥋 法門深造頁管理"
@@ -225,7 +289,9 @@ collections:
         name: "gongfa"
         fields:
           - { label: "頁面主標題", name: "page_title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+          - { label: "頁面主標題 (English，選填，沒填會顯示中文版)", name: "page_title_en", widget: "string", required: false }
           - { label: "頁面引言 / 副標", name: "page_subtitle", widget: "string", hint: "建議 50 字以內" }
+          - { label: "頁面引言 / 副標 (English，選填，沒填會顯示中文版)", name: "page_subtitle_en", widget: "string", required: false }
           - label: "法門詳解列表 (可自由新增/刪除/排序)"
             name: "methods"
             widget: "list"
@@ -233,7 +299,9 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "法門標題", name: "title", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "法門標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "詳細內容", name: "desc", widget: "text", hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段" }
+              - { label: "詳細內容 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
               - { label: "YouTube 影片網址 (選填)", name: "video_url", widget: "string", required: false, hint: "直接貼上完整的 YouTube 影片網址即可 (例如 https://www.youtube.com/watch?v=xxxxxxx)，留空則畫面顯示「準備中」提示" }
 
   - name: "activities_settings"
@@ -244,7 +312,9 @@ collections:
         name: "activities"
         fields:
           - { label: "頁面主標題", name: "page_title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+          - { label: "頁面主標題 (English，選填，沒填會顯示中文版)", name: "page_title_en", widget: "string", required: false }
           - { label: "頁面引言 / 副標", name: "page_subtitle", widget: "string", hint: "建議 50 字以內" }
+          - { label: "頁面引言 / 副標 (English，選填，沒填會顯示中文版)", name: "page_subtitle_en", widget: "string", required: false }
           - label: "活動列表 (可自由新增/刪除/排序)"
             name: "activities"
             widget: "list"
@@ -252,7 +322,9 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "活動標題", name: "title", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "活動標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "活動詳細介紹", name: "desc", widget: "text", hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段" }
+              - { label: "活動詳細介紹 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
               - label: "照片集列表 (可自由新增/刪除/排序，一個活動可以放好幾組照片集，會並排顯示成好幾個小縮圖)"
                 name: "albums"
                 widget: "list"
@@ -260,12 +332,14 @@ collections:
                 summary: "{{fields.name}}"
                 fields:
                   - { label: "照片集名稱 (選填)", name: "name", widget: "string", required: false, hint: "建議 12 字以內，例如「社課花絮」「幹部合照」；填了會取代畫面上預設的「共N張，點擊查看」文字，留空則顯示預設文字", pattern: ['^.{0,12}$', '請控制在 12 字以內'] }
+                  - { label: "照片集名稱 (English，選填)", name: "name_en", widget: "string", required: false }
                   - label: "這組照片集的照片 (可自由新增/刪除/排序)"
                     name: "photos"
                     widget: "list"
                     fields:
                       - { label: "照片", name: "image", widget: "image" }
                       - { label: "照片說明 (選填，如:2025年秋季社遊)", name: "caption", widget: "string", required: false, hint: "建議 20 字以內" }
+                      - { label: "照片說明 (English，選填)", name: "caption_en", widget: "string", required: false }
 
   - name: "calendar_settings"
     label: "📅 修煉行事曆管理"
@@ -280,6 +354,7 @@ collections:
             required: false
             fields:
               - { label: "區塊標題 (選填，顯示在圖片上方)", name: "title", widget: "string", required: false, default: "本學期行事曆", hint: "建議 16 字以內" }
+              - { label: "區塊標題 (English，選填)", name: "title_en", widget: "string", required: false }
               - label: "行事曆版本列表 (可自由新增/刪除/排序，例如新增「中文版」「English」兩筆，會自動並排顯示)"
                 name: "items"
                 widget: "list"
@@ -290,6 +365,7 @@ collections:
                   - { label: "行事曆圖片", name: "display_image", widget: "image", hint: "建議使用直式或接近A4比例的圖片，會以小圖並排顯示，點擊可看全螢幕大圖" }
                   - { label: "下載檔案 (選填，如 PDF 版本)", name: "download_file", widget: "file", required: false, hint: "上傳後畫面上會出現一個下載按鈕，方便社員存檔或列印" }
                   - { label: "下載按鈕文字", name: "download_label", widget: "string", required: false, default: "下載行事曆", hint: "建議 12 字以內" }
+                  - { label: "下載按鈕文字 (English，選填)", name: "download_label_en", widget: "string", required: false }
           - { label: "目前學期標題 (如:115-1)，一次只會有一個學期在使用，畫面上方會顯示成「115-1 學期行事曆」", name: "semester_title", widget: "string", hint: "換學期時只要改這一個欄位就好，不用逐筆活動修改", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
           - label: "行事曆活動列表"
             name: "events"
@@ -307,9 +383,13 @@ collections:
               - {label: "日期文字 (顯示用)", name: "time", widget: "string", hint: "顯示在活動標題前面的日期文字，例如「10/18」"}
               - {label: "活動類型 (如:常課/歷練，僅供內部參考，畫面上不會顯示)", name: "type", widget: "string", required: false}
               - {label: "活動標題", name: "title", widget: "string"}
+              - { label: "活動標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - {label: "修煉據點 (選填)", name: "location", widget: "string", required: false}
+              - { label: "修煉據點 (English，選填，沒填會顯示中文版)", name: "location_en", widget: "string", required: false }
               - {label: "詳細說明 (選填)", name: "desc", widget: "text", required: false}
+              - { label: "詳細說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
               - { label: "異動註記 (選填，如:停課、活動異動；會用醒目的暖紅色顯示在說明文字下方)", name: "note", widget: "string", required: false, hint: "建議 40 字以內，例如「因場地維修，本週暫停一次」" }
+              - { label: "異動註記 (English，選填，沒填會顯示中文版)", name: "note_en", widget: "string", required: false }
               - { label: "起始日期 (選填，填了才會出現「加入日曆」按鈕)", name: "event_date", widget: "datetime", time_format: false, required: false, hint: "選這個活動最近一次(或第一次)舉行的日期" }
               - { label: "開始時間 (選填，24小時制，如 19:00)，會同時顯示在畫面上的活動時間", name: "start_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 19:00'] }
               - { label: "結束時間 (選填，24小時制，如 21:00)，會同時顯示在畫面上的活動時間", name: "end_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 21:00'] }
