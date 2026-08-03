@@ -1,17 +1,27 @@
 {
   "nav": {
     "badge": "政大",
+    "badge_en": "NCCU",
     "brand": "太極社",
+    "brand_en": "TAICHI",
     "brand_sub": "隱逸道場",
+    "brand_sub_en": "Martial Art Dojo",
     "link_home": "首頁主殿",
+    "link_home_en": "Home",
     "link_method": "法門深造",
+    "link_method_en": "Teachings",
     "link_activities": "活動介紹",
-    "link_calendar": "修煉日程"
+    "link_activities_en": "Activities",
+    "link_calendar": "修煉日程",
+    "link_calendar_en": "Calendar"
   },
   "methods_section": {
     "eyebrow": "METHODOLOGY",
+    "eyebrow_en": "",
     "title": "四大身心法門",
-    "desc": "動靜相兼，形神俱妙。此為本社修行之四大柱石。"
+    "title_en": "",
+    "desc": "動靜相兼，形神俱妙。此為本社修行之四大柱石。",
+    "desc_en": ""
   },
   "methods": [
     {
@@ -132,9 +142,9 @@
         "label": "位持續聯絡"
       }
     ],
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
+    "badge_label": "道傳寰宇",
     "title": "外邦弟子的修真緣分",
-    "badge_label": "道傳寰宇"
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -190,13 +200,13 @@
     "eyebrow": "VISIT THE TEMPLE",
     "title": "尋訪仙蹤",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
-    "location_label": "【道場位置】",
-    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "email_label": "【問道法郵】",
-    "email_value": "nccutaichi@email.com",
-    "social_label": "【仙界傳音】",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
     "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
+    "social_label": "【仙界傳音】",
+    "email_value": "nccutaichi@email.com",
+    "email_label": "【問道法郵】",
+    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
+    "location_label": "【道場位置】"
   },
   "contact": {
     "location_label": "道場位置",
