@@ -232,6 +232,9 @@
 </head>
 <body>
 
+    <!-- 全站共用的語言切換邏輯，要在其他腳本之前載入 -->
+    <script src="lang.js"></script>
+
     <!-- 整合版：頂部道門天際導覽（含手機版漢堡選單），與首頁共用同一套設計 -->
     <header class="sticky top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center relative">
@@ -248,6 +251,7 @@
                 <a href="gongfa.html" class="nav-link-method no-underline text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">法門深造</a>
                 <a href="activities.html" class="nav-link-activities no-underline text-sm tracking-widest text-bronze-light font-bold">活動介紹</a>
                 <a href="calendar.html" class="nav-link-calendar no-underline text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">修煉日程</a>
+                <button id="lang-toggle-desktop" type="button" class="text-xs tracking-widest text-bronze-light border border-bronze/50 rounded px-2.5 py-1 hover:bg-bronze/10 transition-colors">EN</button>
             </nav>
 
             <!-- 右側：手機版漢堡選單按鈕 -->
@@ -264,10 +268,11 @@
             <a href="gongfa.html" class="nav-link-method no-underline text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">法門深造</a>
             <a href="activities.html" class="nav-link-activities no-underline text-sm tracking-widest text-bronze-light font-bold w-full text-center block">活動介紹</a>
             <a href="calendar.html" class="nav-link-calendar no-underline text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
+            <button id="lang-toggle-mobile" type="button" class="text-sm tracking-widest text-bronze-light border border-bronze/50 rounded px-3 py-1.5 hover:bg-bronze/10 transition-colors">EN</button>
         </nav>
     </header>
 
-    <!-- 手機版選單開關腳本 -->
+    <!-- 手機版選單開關腳本 + 語言切換按鈕初始化 -->
     <script>
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
@@ -275,7 +280,10 @@
             menu.classList.toggle('hidden');
             menu.classList.toggle('flex');
         });
+        initLangSwitcher('lang-toggle-desktop');
+        initLangSwitcher('lang-toggle-mobile');
     </script>
+
 
     <div class="container">
         <h1 id="page-title">活動點點滴滴</h1>
@@ -401,6 +409,7 @@
             fetch('data/home.json?v=' + Date.now())
                 .then(response => response.json())
                 .then(data => {
+                    data = applyLangToData(data); // 依目前語言整批轉換文字內容
                     if (!data.nav) return;
                     setText('nav-badge', data.nav.badge);
                     setText('nav-brand', data.nav.brand);
@@ -416,6 +425,7 @@
             fetch('data/activities.json?v=' + Date.now())
                 .then(response => response.json())
                 .then(data => {
+                    data = applyLangToData(data); // 依目前語言整批轉換文字內容
                     if (data.page_title) {
                         document.getElementById('page-title').innerText = data.page_title;
                     }
