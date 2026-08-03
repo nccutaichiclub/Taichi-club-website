@@ -1,0 +1,82 @@
+// ========================================================================
+// 全站共用的語言切換邏輯（中文／English）
+// 四個頁面（index/gongfa/activities/calendar）都會引入這支檔案
+//
+// 運作方式：
+// 1. 語言偏好存在瀏覽器的 localStorage，跨頁面切換時會記住選擇
+// 2. 後台每個文字欄位旁邊會多一個「欄位名_en」的英文版欄位
+// 3. pickText() 會依目前語言自動挑欄位；英文模式下若該欄位還沒填英文翻譯，
+//    會自動 fallback 顯示中文，不會開天窗
+// ========================================================================
+
+const SITE_LANG_KEY = 'nccu_taichi_lang';
+
+function getLang() {
+    return localStorage.getItem(SITE_LANG_KEY) || 'zh';
+}
+
+function setLang(lang) {
+    localStorage.setItem(SITE_LANG_KEY, lang);
+}
+
+// 依目前語言，從資料物件裡取出對應欄位文字（單一欄位用）
+// obj: 資料物件（例如 data.nav）；fieldName: 欄位名稱（例如 'badge'）
+// 英文版欄位命名規則固定是「欄位名 + _en」，例如 badge_en
+function pickText(obj, fieldName) {
+    if (!obj) return '';
+    if (getLang() === 'en') {
+        const enVal = obj[fieldName + '_en'];
+        if (enVal !== undefined && enVal !== null && String(enVal).trim() !== '') {
+            return enVal;
+        }
+    }
+    const zhVal = obj[fieldName];
+    return (zhVal !== undefined && zhVal !== null) ? zhVal : '';
+}
+
+// 整批轉換：遞迴走訪整個 JSON 資料，把每個「欄位_en」的英文版本套用回對應欄位本身
+// （只在英文模式、且該筆有填英文翻譯時才替換；沒填就維持中文，不會開天窗）
+// 套用這個函式之後，後面所有讀取 data.xxx.yyy 的渲染程式碼完全不用更動，
+// 因為欄位裡已經是正確語言的文字了；圖片/檔案欄位因為沒有 "_en" 版本，天生就不會被動到
+function applyLangToData(data) {
+    if (getLang() !== 'en') return data; // 中文模式不用處理，原始資料本來就是中文
+    function walk(node) {
+        if (Array.isArray(node)) {
+            node.forEach(walk);
+            return;
+        }
+        if (node && typeof node === 'object') {
+            Object.keys(node).forEach(key => {
+                if (key.endsWith('_en')) return; // 英文欄位本身不用再處理
+                const enKey = key + '_en';
+                if (Object.prototype.hasOwnProperty.call(node, enKey)) {
+                    const enVal = node[enKey];
+                    if (typeof enVal === 'string' && enVal.trim() !== '') {
+                        node[key] = enVal; // 覆蓋成英文版本
+                    }
+                }
+                walk(node[key]);
+            });
+        }
+    }
+    walk(data);
+    return data;
+}
+
+// 初始化語言切換按鈕：綁定點擊事件、顯示目前應該顯示的按鈕文字
+// 點擊後切換語言並重新整理頁面，讓所有內容套用新語言
+function initLangSwitcher(buttonId) {
+    const btn = document.getElementById(buttonId);
+    if (!btn) return;
+    function render() {
+        btn.innerText = getLang() === 'en' ? '中文' : 'EN';
+    }
+    render();
+    btn.addEventListener('click', () => {
+        setLang(getLang() === 'en' ? 'zh' : 'en');
+        location.reload();
+    });
+}
+
+// 網頁最上層的語言標示（對 SEO、螢幕報讀器、瀏覽器內建翻譯功能都有幫助）
+document.documentElement.lang = (getLang() === 'en') ? 'en' : 'zh-TW';
