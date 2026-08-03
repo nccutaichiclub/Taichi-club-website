@@ -3,7 +3,7 @@
     "badge": "政大",
     "badge_en": "NCCU",
     "brand": "太極社",
-    "brand_en": "TAICHI",
+    "brand_en": "Tai Chi Club",
     "brand_sub": "隱逸道場",
     "brand_sub_en": "Martial Art Dojo",
     "link_home": "首頁主殿",
@@ -11,9 +11,9 @@
     "link_method": "法門深造",
     "link_method_en": "Teachings",
     "link_activities": "活動介紹",
-    "link_activities_en": "Activities",
+    "link_activities_en": "Events",
     "link_calendar": "修煉日程",
-    "link_calendar_en": "Calendar"
+    "link_calendar_en": "Schedule"
   },
   "methods_section": {
     "eyebrow": "METHODOLOGY",
