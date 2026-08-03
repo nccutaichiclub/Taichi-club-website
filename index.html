@@ -105,11 +105,14 @@
     <header class="fixed top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center relative">
 
-            <!-- 左側：道場牌匾 -->
-            <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white">
-                <span id="nav-badge" class="text-xs border border-bronze px-1.5 py-0.5 rounded">政大</span>
-                <span id="nav-brand">太極社</span> <span id="nav-brand-sub" class="font-light text-sm text-cloud/70">| 隱逸道場</span>
-            </a>
+            <!-- 左側：道場牌匾 + 手機版語言切換鈕（一直顯示，不用點開漢堡選單） -->
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white">
+                    <span id="nav-badge" class="text-xs border border-bronze px-1.5 py-0.5 rounded">政大</span>
+                    <span id="nav-brand">太極社</span> <span id="nav-brand-sub" class="font-light text-sm text-cloud/70">| 隱逸道場</span>
+                </a>
+                <button id="lang-toggle-mobile" type="button" class="md:hidden text-xs tracking-widest text-bronze-light border border-bronze/50 rounded px-2 py-1 hover:bg-bronze/10 transition-colors">EN</button>
+            </div>
 
             <!-- 右側：電腦版跨頁導覽連結 -->
             <nav class="hidden md:flex gap-8 items-center">
@@ -128,13 +131,12 @@
             </button>
         </div>
 
-        <!-- 手機版下拉選單區塊 -->
+        <!-- 手機版下拉選單區塊：只放頁面連結，語言切換鈕已經移到牌匾旁邊 -->
         <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-ink-deep/95 backdrop-blur-lg border-b border-white/10 flex-col items-center py-6 space-y-6 shadow-2xl transition-all duration-300 z-40">
             <a href="index.html" class="nav-link-home text-sm tracking-widest text-bronze-light font-bold w-full text-center block">首頁主殿</a>
             <a href="gongfa.html" class="nav-link-method text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">法門深造</a>
             <a href="activities.html" class="nav-link-activities text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">活動介紹</a>
             <a href="calendar.html" class="nav-link-calendar text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
-            <button id="lang-toggle-mobile" type="button" class="text-sm tracking-widest text-bronze-light border border-bronze/50 rounded px-3 py-1.5 hover:bg-bronze/10 transition-colors">EN</button>
         </nav>
     </header>
 
