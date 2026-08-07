@@ -32,6 +32,8 @@ collections:
               - { label: "選單-活動介紹 (English，選填，沒填會顯示中文版)", name: "link_activities_en", widget: "string", required: false }
               - { label: "選單-修煉日程", name: "link_calendar", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
               - { label: "選單-修煉日程 (English，選填，沒填會顯示中文版)", name: "link_calendar_en", widget: "string", required: false }
+              - { label: "選單-常見問題", name: "link_faq", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "選單-常見問題 (English，選填，沒填會顯示中文版)", name: "link_faq_en", widget: "string", required: false }
 
           - label: "Hero 主視覺區"
             name: "hero"
@@ -395,3 +397,25 @@ collections:
               - { label: "結束時間 (選填，24小時制，如 21:00)，會同時顯示在畫面上的活動時間", name: "end_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 21:00'] }
               - { label: "重複頻率 (選填)", name: "repeat", widget: "select", required: false, options: [{label: "不重複 (單次活動)", value: "none"}, {label: "每週重複", value: "weekly"}, {label: "隔週重複", value: "biweekly"}], default: "none" }
               - { label: "重複結束日期 (選填，只有「重複頻率」設定為每週或隔週時才有作用)", name: "repeat_until", widget: "datetime", time_format: false, required: false, hint: "設定後，加入 Google 日曆的重複活動只會重複到這一天為止，不會無限重複下去" }
+
+  - name: "faq_settings"
+    label: "❓ 常見問題頁管理"
+    files:
+      - file: "data/faq.json"
+        label: "編輯常見問題內容"
+        name: "faq"
+        fields:
+          - { label: "頁面主標題", name: "page_title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
+          - { label: "頁面主標題 (English，選填，沒填會顯示中文版)", name: "page_title_en", widget: "string", required: false }
+          - { label: "頁面引言 / 副標", name: "page_subtitle", widget: "string", hint: "建議 50 字以內" }
+          - { label: "頁面引言 / 副標 (English，選填，沒填會顯示中文版)", name: "page_subtitle_en", widget: "string", required: false }
+          - label: "常見問題列表 (可自由新增/刪除/排序，點擊問題會展開答案)"
+            name: "faqs"
+            widget: "list"
+            min: 1
+            summary: "{{fields.question}}"
+            fields:
+              - { label: "問題", name: "question", widget: "string", hint: "建議 30 字以內" }
+              - { label: "問題 (English，選填，沒填會顯示中文版)", name: "question_en", widget: "string", required: false }
+              - { label: "答案", name: "answer", widget: "text", hint: "直接打文字即可，建議 150 字以內" }
+              - { label: "答案 (English，選填，沒填會顯示中文版)", name: "answer_en", widget: "text", required: false }
