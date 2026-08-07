@@ -415,6 +415,7 @@ collections:
             min: 1
             summary: "{{fields.question}}"
             fields:
+              - { label: "分類 (如:入門類、課程類、行政類，自由填寫；同分類的問題會自動分在同一組)", name: "category", widget: "string", hint: "同一分類請填寫完全相同的文字，系統才能正確分組", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
               - { label: "問題", name: "question", widget: "string", hint: "建議 30 字以內" }
               - { label: "問題 (English，選填，沒填會顯示中文版)", name: "question_en", widget: "string", required: false }
               - { label: "答案", name: "answer", widget: "text", hint: "直接打文字即可，建議 150 字以內" }
