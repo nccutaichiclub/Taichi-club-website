@@ -122,6 +122,41 @@
             font-size: 0.85rem;
         }
 
+        /* 問題分類群組：灰色小字標籤放在該組問題左上方，點擊可整組收合/展開 */
+        .faq-category {
+            margin-bottom: 36px;
+        }
+        .faq-category:last-child {
+            margin-bottom: 0;
+        }
+        .faq-category-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0 0 12px 4px;
+            color: var(--霧霾灰);
+            font-size: 0.78rem;
+            letter-spacing: 3px;
+            font-family: inherit;
+        }
+        .faq-category-header .category-chevron {
+            font-size: 0.65rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        .faq-category.collapsed .category-chevron {
+            transform: rotate(-90deg);
+        }
+        .faq-category-items {
+            display: block;
+        }
+        .faq-category.collapsed .faq-category-items {
+            display: none;
+        }
+
         /* 手機版漢堡選單按鈕：因子頁關閉了 Tailwind 的 preflight，瀏覽器預設的按鈕框線/背景會跑出來，這裡手動重置 */
         #mobile-menu-btn {
             background: none;
@@ -260,7 +295,8 @@
                         return;
                     }
 
-                    list.forEach((item, index) => {
+                    // 產生單一問答項目（Q 金色大字／A 白色文字），可點擊展開收合
+                    function renderFaqItem(item, isFirstOverall) {
                         const wrap = document.createElement('div');
                         wrap.className = 'faq-item';
 
@@ -283,10 +319,47 @@
                         answerWrap.appendChild(answerP);
                         wrap.appendChild(answerWrap);
 
-                        // 第一題預設展開，讓訪客一進頁面就知道是可以點的
-                        if (index === 0) wrap.classList.add('open');
+                        // 全部問題裡的第一題預設展開，讓訪客一進頁面就知道是可以點的
+                        if (isFirstOverall) wrap.classList.add('open');
 
-                        container.appendChild(wrap);
+                        return wrap;
+                    }
+
+                    // 依「分類」把問題分組（灰色小字標籤），維持後台輸入的先後順序；分類標題可點擊整組收合/展開
+                    const groupOrder = [];
+                    const groupMap = {};
+                    list.forEach(item => {
+                        const cat = (item.category && item.category.trim() !== '') ? item.category.trim() : '其他';
+                        if (!groupMap[cat]) {
+                            groupMap[cat] = [];
+                            groupOrder.push(cat);
+                        }
+                        groupMap[cat].push(item);
+                    });
+
+                    let isFirstOverall = true;
+                    groupOrder.forEach(cat => {
+                        const categoryWrap = document.createElement('div');
+                        categoryWrap.className = 'faq-category';
+
+                        const header = document.createElement('button');
+                        header.type = 'button';
+                        header.className = 'faq-category-header';
+                        header.innerHTML = `<span class="category-chevron">▾</span><span></span>`;
+                        header.querySelector('span:last-child').innerText = cat;
+                        header.addEventListener('click', () => categoryWrap.classList.toggle('collapsed'));
+                        categoryWrap.appendChild(header);
+
+                        const itemsWrap = document.createElement('div');
+                        itemsWrap.className = 'faq-category-items';
+                        groupMap[cat].forEach(item => {
+                            const itemEl = renderFaqItem(item, isFirstOverall);
+                            isFirstOverall = false;
+                            itemsWrap.appendChild(itemEl);
+                        });
+                        categoryWrap.appendChild(itemsWrap);
+
+                        container.appendChild(categoryWrap);
                     });
                 })
                 .catch(error => {
