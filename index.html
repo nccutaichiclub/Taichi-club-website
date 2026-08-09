@@ -78,6 +78,10 @@
             color: #B89742;
             font-weight: 600;
         }
+        .hl-green {
+            color: #427A5B;
+            font-weight: 600;
+        }
         /* 紅塵歷練橫向滑動列的捲軸配色：黑底灰拉桿，取代瀏覽器預設的白底灰拉桿 */
         #experience-cards {
             scrollbar-width: thin; /* Firefox */
@@ -423,7 +427,7 @@
                 </div>
 
                 <div class="bg-pine/10 p-4 rounded border border-pine/30 text-xs leading-relaxed">
-                    <strong class="text-pine-light">道門提點：</strong> <span id="schedule-note" class="text-white">本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。</span>
+                    <strong id="schedule-note-label" class="text-pine-light">道門提點：</strong> <span id="schedule-note" class="text-white">本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。</span>
                 </div>
             </div>
 
@@ -913,6 +917,7 @@
                 // 每週修煉行事曆（精簡卡片格式：項目/時間/地點）
                 if (data.schedule) {
                     setText('schedule-title', data.schedule.title);
+                    setText('schedule-note-label', data.schedule.note_label || '道門提點：');
                     setHtml('schedule-note', data.schedule.note);
                     if (Array.isArray(data.schedule.rows)) {
                         const list = document.getElementById('schedule-list');
