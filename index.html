@@ -73,6 +73,11 @@
             border-color: rgba(184, 151, 66, 0.4);
             box-shadow: 0 0 15px rgba(30, 61, 47, 0.2);
         }
+        /* 內文標記語法對應樣式：[[文字]] 顯示成金色標註 */
+        .hl-gold {
+            color: #B89742;
+            font-weight: 600;
+        }
         /* 紅塵歷練橫向滑動列的捲軸配色：黑底灰拉桿，取代瀏覽器預設的白底灰拉桿 */
         #experience-cards {
             scrollbar-width: thin; /* Firefox */
@@ -464,6 +469,11 @@
             const el = document.getElementById(id);
             if (el && value !== undefined && value !== null) el.innerText = value;
         }
+        // 用於支援標記語法（**加粗**、[[金色標註]]）的內文欄位，取代 setText
+        function setHtml(id, value) {
+            const el = document.getElementById(id);
+            if (el && value !== undefined && value !== null) el.innerHTML = parseInlineMarkup(value);
+        }
         // 圖片路徑防呆：因為本網站是放在 .../Taichi-club-website/ 這個子路徑下，
         // 如果圖片路徑意外帶了開頭的 "/"（會被瀏覽器當成網域根目錄的絕對路徑），
         // 這裡統一把開頭的 "/" 拿掉，改成正確的相對路徑，圖片才抓得到
@@ -618,7 +628,7 @@
                         setText(`content-${m.id}-tag`, m.tag);
                         setText(`content-${m.id}-title`, m.title);
                         setText(`content-${m.id}-quote`, m.quote);
-                        setText(`content-${m.id}-desc`, m.desc);
+                        setHtml(`content-${m.id}-desc`, m.desc);
                         setText(`content-${m.id}-difficulty`, m.difficulty);
                         renderMethodVideo(m.id, m.video_url, m.title);
                     });
@@ -666,7 +676,7 @@
                             content.children[0].innerText = e.roman || '';
                             content.children[1].innerText = e.title || '';
                             content.children[2].innerText = e.subtitle || '';
-                            content.children[3].innerText = e.desc || '';
+                            content.children[3].innerHTML = parseInlineMarkup(e.desc || '');
                             card.appendChild(content);
 
                             expContainer.appendChild(card);
@@ -677,8 +687,8 @@
                 // 道傳寰宇
                 if (data.global) {
                     setText('global-subtitle', data.global.subtitle);
-                    setText('global-para1', data.global.para1);
-                    setText('global-para2', data.global.para2);
+                    setHtml('global-para1', data.global.para1);
+                    setHtml('global-para2', data.global.para2);
 
                     // 地圖：嵌入後台設定的 Google My Maps 連結
                     renderGoogleMapEmbed(data.global.google_map_embed_url);
@@ -765,7 +775,7 @@
                         `;
                         desktopTextWrap.querySelector('h3').innerText = p.name || '';
                         desktopTextWrap.querySelector('p.text-pine-light').innerText = p[subtitleField] || '';
-                        desktopTextWrap.querySelector('p.text-cloud\\/80').innerText = p.desc || '';
+                        desktopTextWrap.querySelector('p.text-cloud\\/80').innerHTML = parseInlineMarkup(p.desc || '');
                         desktopCard.appendChild(desktopTextWrap);
 
                         wrapper.appendChild(desktopCard);
@@ -802,7 +812,7 @@
 
                         const mobileDescWrap = document.createElement('div');
                         mobileDescWrap.className = 'w-full mt-1 text-sm text-cloud/80 leading-relaxed';
-                        mobileDescWrap.innerText = p.desc || '';
+                        mobileDescWrap.innerHTML = parseInlineMarkup(p.desc || '');
                         mobileCard.appendChild(mobileDescWrap);
 
                         wrapper.appendChild(mobileCard);
@@ -856,7 +866,7 @@
                         // 簡介文字：預設用 hidden 藏起來
                         const descWrap = document.createElement('div');
                         descWrap.className = 'hidden mt-4 text-sm text-cloud/80 leading-relaxed';
-                        descWrap.innerText = p.desc || '';
+                        descWrap.innerHTML = parseInlineMarkup(p.desc || '');
                         card.appendChild(descWrap);
 
                         // 「查看更多」獨立一行、靠右對齊，跟照片列保持一點距離但仍在附近，不會擠在一起
@@ -910,7 +920,7 @@
                 if (data.contact_section) {
                     setText('contact-eyebrow', data.contact_section.eyebrow);
                     setText('contact-title', data.contact_section.title);
-                    setText('contact-intro', data.contact_section.intro);
+                    setHtml('contact-intro', data.contact_section.intro);
                 }
                 if (data.contact) {
                     setText('contact-location-label', data.contact.location_label);
@@ -919,13 +929,13 @@
                     setText('contact-email-value', data.contact.email_value);
                     setText('contact-social-label', data.contact.social_label);
                     setText('contact-social-value', data.contact.social_value);
-                    setText('contact-footer-quote', data.contact.footer_quote);
+                    setHtml('contact-footer-quote', data.contact.footer_quote);
                 }
 
                 // 每週修煉行事曆（精簡卡片格式：項目/時間/地點）
                 if (data.schedule) {
                     setText('schedule-title', data.schedule.title);
-                    setText('schedule-note', data.schedule.note);
+                    setHtml('schedule-note', data.schedule.note);
                     if (Array.isArray(data.schedule.rows)) {
                         const list = document.getElementById('schedule-list');
                         if (list) {
