@@ -27,6 +27,12 @@
           "answer_en": "Tai Chi and Qigong build physical strength and mental focus, while also offering a way to unwind from academic or work stress. By focusing on movement and breath, practitioners recover energy — making it a great way to relieve stress. Rather than something to pick up in old age, it's a practice young people benefit from starting early."
         },
         {
+          "question": "打太極拳、練氣功可以取代一般運動嗎？",
+          "question_en": "Can Tai Chi or Qigong replace regular exercise?",
+          "answer": "兩者可以相輔相成，不會互相取代。太極拳與氣功講求肢體放鬆與步伐輕盈，很適合作為其他運動前的暖身，也有助提升運動時的身體協調與表現。",
+          "answer_en": "They complement other exercise rather than replace it. Tai Chi and Qigong emphasize relaxed movement and light footwork, making them a great warm-up and helping improve coordination in other sports."
+        },
+        {
           "question": "需要準備什麼裝備或服裝？",
           "question_en": "What should I wear or bring?",
           "answer": "建議穿著寬鬆便服與平底運動鞋，並攜帶個人水壺即可。棍、劍等兵器類器材社團會提供練習用具，之後若想長期練習可再自行添購。",
@@ -37,12 +43,6 @@
           "question_en": "Can I join partway through the semester? Will I fall behind?",
           "answer": "可以依照自己的時間安排於課堂進行中隨時加入或離開。在初階班中，我們的教學基本上是以反覆的動作練習加招式的講解為主，主要要求大家認識與記憶招式，因此只有講解進度的差異，我們在每次上課時都會練習全套功法。加之我們會有依學員個別情形進行單獨指導的時間，所以並不會有跟不上進度的問題。",
           "answer_en": "Yes, you can join anytime. Instructors will help you catch up individually, and Tai Chi is learned through repeated practice, so there's no need to worry."
-        },
-        {
-          "question": "打太極拳、練氣功可以取代一般運動嗎？",
-          "question_en": "Can Tai Chi or Qigong replace regular exercise?",
-          "answer": "兩者可以相輔相成，不會互相取代。太極拳與氣功講求肢體放鬆與步伐輕盈，很適合作為其他運動前的暖身，也有助提升運動時的身體協調與表現。",
-          "answer_en": "They complement other exercise rather than replace it. Tai Chi and Qigong emphasize relaxed movement and light footwork, making them a great warm-up and helping improve coordination in other sports."
         }
       ]
     },
@@ -51,16 +51,22 @@
       "category_en": "Curriculum",
       "questions": [
         {
-          "question": "太極拳跟一般健身房的運動有什麼不同？",
-          "question_en": "How is Tai Chi different from a typical gym workout?",
-          "answer": "太極拳強調的是內在的呼吸調息與身心和諧，而非單純的肌肉鍛鍊；長期練習有助於提升專注力、放鬆壓力，是一種動靜兼備的修行。",
-          "answer_en": "Tai Chi emphasizes internal breath regulation and mind-body harmony rather than pure muscle training. Long-term practice helps improve focus and relieve stress — a discipline of both stillness and motion."
-        },
-        {
           "question": "太極社的學習路徑是怎麼安排的？",
           "question_en": "How is the curriculum structured?",
           "answer": "我們根據社員的情形將課程分為初階班與進階班，採循序漸進的教學。初階班先學氣功，與基礎太極拳，以及簡易的太極劍；進階班於簡單練習完氣功後則學習進階拳法與全套棍法。資深社員還有機會進一步學習太極拳的實戰應用「太極散手」。",
           "answer_en": "Learning progresses step by step: Qigong first, then Tai Chi, followed by weapons like the staff and sword. Senior members may also learn \"Tai Chi Sanshou\" (applied combat techniques). Classes are grouped by level, with beginners and advanced members taught separately."
+        },
+        {
+          "question": "什麼樣的人能上進階班？",
+          "question_en": "",
+          "answer": "我們會在每學期的社課中擇期舉行一到兩次的檢定，主要檢測大家對於氣功及初階太極拳的能力，並由授課老師決定是否通過，通過後即可晉升進階班學習進階的太極拳內容與全套棍法。",
+          "answer_en": ""
+        },
+        {
+          "question": "晨練在練什麼？跟社課有什麼差別？",
+          "question_en": "",
+          "answer": "晨練是每週固定幾天早晨，由幹部帶領參加者進行約半小時的氣功與太極拳練習。晨練時雖然沒有老師指導，但是因為參加的同學較少，幹部更能一對一進行細部動作的調整，一學期下來累積的成果也更明顯。非常適合想要精進自己技藝或沒時間參與社課的同學參加。",
+          "answer_en": ""
         },
         {
           "question": "氣功和太極拳具體的差異是什麼？",
@@ -79,12 +85,6 @@
           "question_en": "Who gets to learn \"Tai Chi Sanshou\"?",
           "answer": "需要是對於太極拳招式已經有相當理解的同學才較能領悟太極散手的真諦。不過平常教授太極拳招式時，老師就會講解動作背後的實際用法，幫助大家理解招式原理，讓動作做得更準確到位。",
           "answer_en": "It's reserved for more senior members. That said, instructors explain the practical application behind each Tai Chi movement during regular classes, helping everyone understand the reasoning and refine their form."
-        },
-        {
-          "question": "晨練在練什麼？跟社課有什麼差別？",
-          "question_en": "",
-          "answer": "晨練是每週固定幾天早晨，由幹部帶領參加者進行約半小時的氣功與太極拳練習。晨練時雖然沒有老師指導，但是因為參加的同學較少，幹部更能一對一進行細部動作的調整，一學期下來累積的成果也更明顯。非常適合想要精進自己技藝或沒時間參與社課的同學參加。",
-          "answer_en": ""
         }
       ]
     },
@@ -131,7 +131,7 @@
         {
           "question": "想加入或有其他問題，該怎麼聯絡社團？",
           "question_en": "How can I contact the club to join or ask more questions?",
-          "answer": "可以在社課日當天直接到場進行現場體驗與詢問，也歡迎於政大太極社的臉書或IG粉專私訓小編，有問題我們都會盡快回覆！",
+          "answer": "可以在社課日當天直接到場進行現場體驗與詢問，也歡迎於政大太極社的臉書或IG粉專私訊小編，有問題我們都會盡快回覆！",
           "answer_en": "Feel free to reach us via the email or Instagram listed on the \"Find Us\" page — we'll get back to you as soon as we can."
         }
       ]
