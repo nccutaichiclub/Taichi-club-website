@@ -425,5 +425,5 @@ collections:
                 fields:
                   - { label: "問題", name: "question", widget: "string", hint: "建議 30 字以內" }
                   - { label: "問題 (English，選填，沒填會顯示中文版)", name: "question_en", widget: "string", required: false }
-                  - { label: "答案", name: "answer", widget: "text", hint: "直接打文字即可，建議 150 字以內" }
+                  - { label: "答案", name: "answer", widget: "text", hint: "建議 150 字以內。想加粗文字請前後加 **，例如 **重要**；想標成金色請前後加 [[ ]]，例如 [[重要]]" }
                   - { label: "答案 (English，選填，沒填會顯示中文版)", name: "answer_en", widget: "text", required: false }
