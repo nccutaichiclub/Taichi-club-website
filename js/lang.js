@@ -100,6 +100,9 @@ function parseInlineMarkup(text) {
     // 「Code」按鈕（本站借用這顆按鈕做金色標註，不是真的程式碼格式）；兩種寫法都支援
     escaped = escaped.replace(/\[\[(.+?)\]\]/g, '<span class="hl-gold">$1</span>');
     escaped = escaped.replace(/`(.+?)`/g, '<span class="hl-gold">$1</span>');
+    // 綠色標註：~~文字~~ 對應後台 markdown 欄位裡的「Strikethrough(刪除線)」按鈕
+    // （本站借用這顆按鈕做綠色標註，不是真的刪除線效果）
+    escaped = escaped.replace(/~~(.+?)~~/g, '<span class="hl-green">$1</span>');
     // 加粗：**文字**，對應後台 markdown 欄位裡的「Bold」按鈕
     escaped = escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     return escaped;
