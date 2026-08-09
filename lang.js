@@ -78,5 +78,29 @@ function initLangSwitcher(buttonId) {
     });
 }
 
+// ========================================================================
+// 簡易文字標記語法：讓後台可以在白色內文裡標記「加粗」或「金色標註」
+// 語法：**文字** 會變成加粗；[[文字]] 會變成金色標註
+// 用法：把原本 el.innerText = value 改成 el.innerHTML = parseInlineMarkup(value)
+// ========================================================================
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function parseInlineMarkup(text) {
+    if (text === undefined || text === null) return '';
+    // 先跳脫特殊字元，避免後台萬一打進奇怪符號被誤判成程式碼
+    let escaped = escapeHtml(text).replace(/\n/g, '<br>');
+    // 金色標註要先處理（[[文字]]），加粗（**文字**）後處理，避免符號互相干擾
+    escaped = escaped.replace(/\[\[(.+?)\]\]/g, '<span class="hl-gold">$1</span>');
+    escaped = escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    return escaped;
+}
+
 // 網頁最上層的語言標示（對 SEO、螢幕報讀器、瀏覽器內建翻譯功能都有幫助）
 document.documentElement.lang = (getLang() === 'en') ? 'en' : 'zh-TW';
