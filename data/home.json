@@ -204,71 +204,101 @@
       },
       {
         "number": "6+",
-        "label": "學期國際交流"
+        "label": "學期國際交流",
+        "label_en": ""
       },
       {
         "number": "10+",
-        "label": "位持續聯絡"
+        "label": "位持續聯絡",
+        "label_en": ""
       }
     ],
+    "google_map_embed_url": "",
     "badge_label": "道傳寰宇",
     "title": "外邦弟子的修真緣分",
     "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
+    "eyebrow_en": "",
     "title": "師資介紹",
-    "desc": "名師引路，薪火相傳。"
+    "title_en": "",
+    "desc": "名師引路，薪火相傳。",
+    "desc_en": ""
   },
   "instructors": [
     {
       "photo": "/assets/uploads/玉清元始天尊.jpg",
-      "name": "元始天尊",
-      "subtitle": "先天至尊 萬物乃生",
-      "desc": "道教最高天神，居三清之首。又稱“玉清大帝”。全稱“玉清聖境虛無自然元始天尊”，在宮觀的“三清殿”中其塑像居中位，大多手執混元寶珠。"
+      "name": "瞿老師",
+      "name_en": "",
+      "subtitle": "氣功教練",
+      "subtitle_en": "",
+      "desc": "道教最高天神，居三清之首。又稱“玉清大帝”。全稱“玉清聖境虛無自然元始天尊”，在宮觀的“三清殿”中其塑像居中位，大多手執混元寶珠。",
+      "desc_en": ""
     },
     {
       "photo": "/assets/uploads/7ec9139ca36256138cc8ead6a19ae3ab.jpg",
-      "name": "道德天尊",
-      "subtitle": "著五千言 曉示大道",
-      "desc": "太上老君，簡稱老君，全稱「一炁化三清太清居火赤天仙登太清境玄氣所成日神寶君道德天尊混元上帝」，為「三清」之一，相傳他化身為周朝的思想家老子。"
+      "name": "阿吉老師",
+      "name_en": "",
+      "subtitle": "負責進階班，太極拳、太祖棍教學。",
+      "subtitle_en": "",
+      "desc": "太上老君，簡稱老君，全稱「一炁化三清太清居火赤天仙登太清境玄氣所成日神寶君道德天尊混元上帝」，為「三清」之一，相傳他化身為周朝的思想家老子。",
+      "desc_en": ""
     }
   ],
   "staff_section": {
     "eyebrow": "OUR TEAM",
+    "eyebrow_en": "",
     "title": "幹部介紹",
-    "desc": "點選頭銜，認識本屆核心幹部。"
+    "title_en": "",
+    "desc": "點選頭銜，認識本屆核心幹部。",
+    "desc_en": ""
   },
   "staff": [
     {
-      "role": "東方",
-      "name": "東方持國天王",
+      "role": "路過社長",
+      "role_en": "leader",
+      "name": "陳兆琪",
+      "name_en": "Jo",
       "photo": "/assets/uploads/北京十方普觉寺_持国天.jfif",
-      "desc": "「持國」意為慈悲為懷，保護眾生，護持國土，在漢傳佛教形象，手持琵琶或阮琴 ，有兩義：一、弦樂器鬆緊要適中，太緊則易斷，太鬆則聲不響，表行中道之法；二、是主樂神，表明他要用音樂來使眾生皈依佛教。"
+      "desc": "本社社長，活潑熱心，樂於解答學員們學習太極時遇到的疑難雜症。",
+      "desc_en": ""
     },
     {
-      "role": "西方",
-      "name": "西方廣目天王",
+      "role": "皮副社長",
+      "role_en": "",
+      "name": "黃豊文",
+      "name_en": "",
       "photo": "/assets/uploads/Guangmutian,_Shifangpujue_Temple,_Beijing,_P.R.China.jfif",
-      "desc": "「廣目」意為能以淨天眼隨時觀察世界，護持人民，在漢傳佛教形象，手纏一條龍或蛇，有兩義：一、表世間多變之意，二、是龍神的首領。"
+      "desc": "本社副社長兼美宣，推陳出新，總有一些創新的點子，是社團裡的開心果。",
+      "desc_en": ""
     },
     {
-      "role": "南方",
-      "name": "南方增長天王",
+      "role": "見習總務",
+      "role_en": "",
+      "name": "陳芸巧",
+      "name_en": "",
       "photo": "/assets/uploads/北京十方普觉寺_增长天.jfif",
-      "desc": "「增長」意為能傳令眾生，增長善根，護持佛法，在漢傳佛教形象，手握寶劍，有兩義：一、寶劍象徵智慧，慧劍斬煩惱；二、為的是保護佛法，不受侵犯。"
+      "desc": "自本學期起擔任本社總務，文靜、認真負責，努力學習各式功法中。",
+      "desc_en": ""
     },
     {
-      "role": "北方",
-      "name": "北方多聞天王",
+      "role": "馬步機動",
+      "role_en": "",
+      "name": "徐浩倫",
+      "name_en": "",
       "photo": "/assets/uploads/北京十方普觉寺_多闻天.jfif",
-      "desc": "又名毗沙門，「多聞」意為頗精通佛法，以福、德聞於四方，在漢傳佛教形象，左手臥銀鼠，右持寶傘（或作寶幡），有兩義：一：傘蓋代表要保護自己的內心不受外面環境染污；二、用以遮蔽世間，避免邪神危害，以護持人民財富。"
+      "desc": "本社前總務變機動長，海納百川，如果要用一個代名詞形容應該是「卡皮巴拉」？",
+      "desc_en": ""
     }
   ],
   "contact_section": {
-    "eyebrow": "VISIT THE TEMPLE",
-    "title": "尋訪仙蹤",
+    "eyebrow": "Contact/ Join Us",
+    "eyebrow_en": "",
+    "title": "聯絡/加入我們",
+    "title_en": "",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
+    "intro_en": "",
     "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
     "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
     "social_label": "【仙界傳音】",
@@ -278,26 +308,31 @@
     "location_label": "【道場位置】"
   },
   "contact": {
-    "location_label": "道場位置",
-    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "email_label": "問道法郵",
-    "email_value": "nccutaichi@email.com",
-    "social_label": "仙界傳音",
-    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」\n期待在指南山下，與你在呼吸吐納中相遇。"
+    "location_label": "活動教室",
+    "location_label_en": "",
+    "location_value": "政大藝文中心722教室",
+    "location_value_en": "NCCU Art & Cultural Center",
+    "email_label": "Gmail",
+    "email_label_en": "",
+    "email_value": "nccutaichiclub@gmail.com",
+    "social_label": "社群帳號",
+    "social_label_en": "",
+    "social_value": "IG: @nccu_taichi / FB：政治大學太極社 (歡迎私訊小編)",
+    "social_value_en": "",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」\n期待在指南山下，與你在呼吸吐納中相遇。",
+    "footer_quote_en": ""
   },
   "schedule": {
-    "title": "每週修煉行事曆 (社課時間)",
+    "title": "每週社課/晨練時間",
+    "title_en": "",
     "rows": [
       {
-        "time": "每週二 19:00 - 21:00",
-        "content": "基礎吐納與華陀導引氣功",
-        "location": "風雩樓二樓"
-      },
-      {
-        "time": "每週四 19:00 - 21:00",
-        "content": "太極拳核心架構與推手",
-        "location": "風雩樓一樓"
+        "time": "每週三 19:30 - 21:00",
+        "time_en": "",
+        "content": "社課",
+        "content_en": "",
+        "location": "藝文中心722教室",
+        "location_en": ""
       },
       {
         "time": "隔週六 09:00 - 11:30",
@@ -305,11 +340,14 @@
         "location": "醉夢溪畔草坪 (雨天移室內)"
       }
     ],
-    "note": "本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。"
+    "note": "參加本社活動無門檻限制，本社會提供所需器材，學員僅需穿著寬鬆易活動的服裝出席即可，藝文中心內設有飲水機請自備水壺。歡迎學生、社區居民、社會人士共襄盛舉。",
+    "note_en": ""
   },
   "footer": {
     "copyright": "© 2026 國立政治大學太極社 NCCU Tai Chi Club. 凡塵無憂，唯道是從。",
-    "sub": "指南天光，水墨太極。本頁面已啟用隨緣修行設定。"
+    "copyright_en": "",
+    "sub": "指南天光，水墨太極。本頁面已啟用隨緣修行設定。",
+    "sub_en": ""
   },
   "hero": {
     "carousel": [
