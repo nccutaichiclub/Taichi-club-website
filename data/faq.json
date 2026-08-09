@@ -11,13 +11,13 @@
         {
           "question": "太極社的教學對初學者友善嗎？",
           "question_en": "Is the club's teaching style beginner-friendly?",
-          "answer": "非常友善。社課分初階班與進階班，一開始會從基礎的氣功與太極拳教起，學長姐與幹部也會主動指導不熟悉的動作。以過去的經驗來看，新加入的同學在一個學期後都能取得不錯的學習成果。",
+          "answer": "非常友善。社課分初階班與進階班，一開始會從基礎的氣功與太極拳教起，學長姐與幹部也會主動指導不熟悉的動作。若是感覺社課的練習不夠，也有晨練可以參加。以過去的經驗來看，新加入的同學在一個學期後都能取得不錯的學習成果。",
           "answer_en": "Very much so. Classes are grouped by skill level, with beginners and advanced members taught separately. Senior members and officers actively help with unfamiliar movements, and many new members — including international students — describe the club as a warm, welcoming community."
         },
         {
           "question": "完全沒有運動細胞，適合練太極拳、氣功嗎？",
           "question_en": "I'm not athletic at all — is Tai Chi or Qigong still for me?",
-          "answer": "非常適合。太極拳與氣功的基本上都是由幾個簡單的手部姿勢與步法所組成，很適合原先不運動的人作為運動的入門。教學會依照個人體型與學習速度調整動作幅度，不要求做到跟老師完全一樣，只需以自身條件盡力伸展即可。持續練習必定對自身運動能力有所增長。",
+          "answer": "是的。太極拳與氣功的基本上都是由幾個簡單的手部姿勢與步法所組成，很適合原先不運動的人作為運動的入門。教學會依照個人體型與學習速度調整動作幅度，不要求做到跟老師完全一樣，只需以自身條件盡力伸展即可。持續練習必定對自身運動能力有所增長。",
           "answer_en": "Absolutely. Instruction adapts to each person's body and pace — you're never expected to match the instructor exactly, just to stretch as far as your own body allows. Consistent practice gradually calms the mind and opens up the body, benefiting focus and daily life."
         },
         {
@@ -77,13 +77,13 @@
         {
           "question": "什麼樣的人可以學到「太極散手」？",
           "question_en": "Who gets to learn \"Tai Chi Sanshou\"?",
-          "answer": "需要是較資深的社員。不過平常教授太極拳招式時，老師就會講解動作背後的實際用法，幫助大家理解招式原理，讓動作做得更準確到位。",
+          "answer": "需要是對於太極拳招式已經有相當理解的同學才較能領悟太極散手的真諦。不過平常教授太極拳招式時，老師就會講解動作背後的實際用法，幫助大家理解招式原理，讓動作做得更準確到位。",
           "answer_en": "It's reserved for more senior members. That said, instructors explain the practical application behind each Tai Chi movement during regular classes, helping everyone understand the reasoning and refine their form."
         },
         {
           "question": "晨練在練什麼？跟社課有什麼差別？",
           "question_en": "",
-          "answer": "１",
+          "answer": "晨練是每週固定幾天早晨，由幹部帶領參加者進行約半小時的氣功與太極拳練習。晨練時雖然沒有老師指導，但是因為參加的同學較少，幹部更能一對一進行細部動作的調整，一學期下來累積的成果也更明顯。非常適合想要精進自己技藝或沒時間參與社課的同學參加。",
           "answer_en": ""
         }
       ]
@@ -113,7 +113,7 @@
         {
           "question": "一定要每次都到嗎？可以只是體驗一次嗎？",
           "question_en": "Do I have to attend every session? Can I just try one class first?",
-          "answer": "沒有強制簽到，歡迎先來體驗一次感受氛圍再決定是否加入。前二次體驗免費，第三次上課起應向本社繳納社費。",
+          "answer": "沒有強制簽到，歡迎先來體驗一次感受氛圍再決定是否加入。前二次體驗免費，第三次上課起應向本社繳納社費。僅參加晨練者不收費。",
           "answer_en": "Attendance isn't mandatory, and you're welcome to try one class first before deciding. That said, regular attendance is recommended for the best learning results once you join."
         },
         {
@@ -125,13 +125,13 @@
         {
           "question": "寒暑假社團還有活動嗎？",
           "question_en": "Are there activities during winter/summer break?",
-          "answer": "當學期社團活動原則上於期末大會當週結束。寒暑假期間視當學期安排，於老師有空檔時可能舉行為期2-3日的寒暑訓，是否舉辦以群組公告為主。",
+          "answer": "社團活動原則上於每學期期末大會當週結束。寒暑假期間視當學期安排，於老師有空檔時可能舉行為期2-3日的寒暑訓，是否舉辦以群組公告為主。",
           "answer_en": "Breaks usually feature club trips or special sessions, with regular classes paused at times. Please check the \"Schedule\" page for exact arrangements."
         },
         {
           "question": "想加入或有其他問題，該怎麼聯絡社團？",
           "question_en": "How can I contact the club to join or ask more questions?",
-          "answer": "歡迎於政大太極社的臉書或IG粉專私訓小編，有問題我們都會盡快回覆！",
+          "answer": "可以在社課日當天直接到場進行現場體驗與詢問，也歡迎於政大太極社的臉書或IG粉專私訓小編，有問題我們都會盡快回覆！",
           "answer_en": "Feel free to reach us via the email or Instagram listed on the \"Find Us\" page — we'll get back to you as soon as we can."
         }
       ]
