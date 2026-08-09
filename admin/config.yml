@@ -83,8 +83,8 @@ collections:
               - { label: "法門標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "引言", name: "quote", widget: "string", hint: "建議 40 字以內，太長會佔用太多版面" }
               - { label: "引言 (English，選填，沒填會顯示中文版)", name: "quote_en", widget: "string", required: false }
-              - { label: "詳細說明", name: "desc", widget: "text", hint: "建議 120 字以內，超過會被自動截斷顯示" }
-              - { label: "詳細說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
+              - { label: "詳細說明", name: "desc", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "建議 120 字以內，超過會被自動截斷顯示；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "詳細說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
               - { label: "YouTube 影片網址 (選填)", name: "video_url", widget: "string", required: false, hint: "直接貼上完整的 YouTube 影片網址即可 (例如 https://www.youtube.com/watch?v=xxxxxxx)，留空則畫面顯示「演示影像預留區」提示" }
               - { label: "難度標示", name: "difficulty", widget: "string", hint: "建議 10 字以內，例如「修煉難度：入門」", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
               - { label: "難度標示 (English，選填，沒填會顯示中文版)", name: "difficulty_en", widget: "string", required: false }
@@ -112,8 +112,8 @@ collections:
               - { label: "卡片標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "卡片副標", name: "subtitle", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
               - { label: "卡片副標 (English，選填，沒填會顯示中文版)", name: "subtitle_en", widget: "string", required: false }
-              - { label: "說明文字", name: "desc", widget: "text", hint: "建議 90 字以內，超過會被自動截斷顯示，4 張卡片高度才能對齊" }
-              - { label: "說明文字 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
+              - { label: "說明文字", name: "desc", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "建議 90 字以內，超過會被自動截斷顯示，4 張卡片高度才能對齊；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "說明文字 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
               - { label: "卡片背景圖片 (選填)", name: "background_image", widget: "image", required: false, hint: "留空則維持原本的深色卡片背景；上傳後可用下面的透明度調整淡化程度" }
               - { label: "背景圖片透明度", name: "background_opacity", widget: "select", default: 20, options: [10, 20, 30, 40, 50, 60, 70], hint: "數字越小圖片越淡、文字越清楚好讀；數字越大圖片越明顯。建議先從 20 開始試" }
 
@@ -134,10 +134,10 @@ collections:
             fields:
               - { label: "副標文字 (如:外邦弟子的修真緣分)", name: "subtitle", widget: "string", hint: "建議 14 字以內", pattern: ['^.{1,14}$', '請控制在 14 字以內'] }
               - { label: "副標文字 (English，選填，沒填會顯示中文版)", name: "subtitle_en", widget: "string", required: false }
-              - { label: "段落一", name: "para1", widget: "text", hint: "建議 80 字以內" }
-              - { label: "段落一 (English，選填，沒填會顯示中文版)", name: "para1_en", widget: "text", required: false }
-              - { label: "段落二", name: "para2", widget: "text", hint: "建議 100 字以內" }
-              - { label: "段落二 (English，選填，沒填會顯示中文版)", name: "para2_en", widget: "text", required: false }
+              - { label: "段落一", name: "para1", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "建議 80 字以內；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "段落一 (English，選填，沒填會顯示中文版)", name: "para1_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
+              - { label: "段落二", name: "para2", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "建議 100 字以內；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "段落二 (English，選填，沒填會顯示中文版)", name: "para2_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
               - label: "國家標籤 (可自由新增/刪除/排序)"
                 name: "country_tags"
                 widget: "list"
@@ -183,8 +183,8 @@ collections:
               - { label: "姓名/稱謂 (English，選填，沒填會顯示中文版)", name: "name_en", widget: "string", required: false }
               - { label: "副標 (如:太極拳教練．十年教學經驗)", name: "subtitle", widget: "string", hint: "建議 20 字以內", pattern: ['^.{1,20}$', '請控制在 20 字以內'] }
               - { label: "副標 (English，選填，沒填會顯示中文版)", name: "subtitle_en", widget: "string", required: false }
-              - { label: "簡介", name: "desc", widget: "text", hint: "建議 60 字以內，超過會被自動截斷顯示" }
-              - { label: "簡介 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
+              - { label: "簡介", name: "desc", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "建議 60 字以內，超過會被自動截斷顯示；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "簡介 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
 
           - label: "幹部介紹 - 區塊標題"
             name: "staff_section"
@@ -208,8 +208,8 @@ collections:
               - { label: "姓名", name: "name", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
               - { label: "姓名 (English，選填，沒填會顯示中文版)", name: "name_en", widget: "string", required: false }
               - { label: "照片 (選填)", name: "photo", widget: "image", required: false, hint: "留空則顯示姓名首字" }
-              - { label: "簡介 (選填)", name: "desc", widget: "text", required: false, hint: "點「查看更多」才會展開顯示，字數限制較寬鬆，建議 150 字以內" }
-              - { label: "簡介 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
+              - { label: "簡介 (選填)", name: "desc", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "點「查看更多」才會展開顯示，字數限制較寬鬆，建議 150 字以內；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "簡介 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
 
           - label: "幹部介紹 - 歷任幹部列表 (預設整組隱藏，網頁上需點擊「查看歷任幹部」才會展開，樣式跟現任幹部相同)"
             name: "staff_alumni"
@@ -222,8 +222,8 @@ collections:
               - { label: "姓名", name: "name", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
               - { label: "姓名 (English，選填，沒填會顯示中文版)", name: "name_en", widget: "string", required: false }
               - { label: "照片 (選填)", name: "photo", widget: "image", required: false, hint: "留空則顯示姓名首字" }
-              - { label: "簡介 (選填)", name: "desc", widget: "text", required: false, hint: "點「查看更多」才會展開顯示，建議 150 字以內" }
-              - { label: "簡介 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
+              - { label: "簡介 (選填)", name: "desc", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "點「查看更多」才會展開顯示，建議 150 字以內；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "簡介 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
 
           - label: "尋訪仙蹤 - 聯絡資訊"
             name: "contact_section"
@@ -233,8 +233,8 @@ collections:
               - { label: "英文小標 (English，選填，沒填會顯示中文版)", name: "eyebrow_en", widget: "string", required: false }
               - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
               - { label: "區塊標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
-              - { label: "簡介文字", name: "intro", widget: "text", hint: "建議 60 字以內" }
-              - { label: "簡介文字 (English，選填，沒填會顯示中文版)", name: "intro_en", widget: "text", required: false }
+              - { label: "簡介文字", name: "intro", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "建議 60 字以內；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "簡介文字 (English，選填，沒填會顯示中文版)", name: "intro_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
 
           - label: "尋訪仙蹤 - 詳細內容"
             name: "contact"
@@ -251,8 +251,8 @@ collections:
               - { label: "仙界傳音標籤 (English，選填，沒填會顯示中文版)", name: "social_label_en", widget: "string", required: false }
               - { label: "仙界傳音內容", name: "social_value", widget: "string" }
               - { label: "仙界傳音內容 (English，選填，沒填會顯示中文版)", name: "social_value_en", widget: "string", required: false }
-              - { label: "頁尾小語", name: "footer_quote", widget: "text", hint: "建議 60 字以內" }
-              - { label: "頁尾小語 (English，選填，沒填會顯示中文版)", name: "footer_quote_en", widget: "text", required: false }
+              - { label: "頁尾小語", name: "footer_quote", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "建議 60 字以內；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "頁尾小語 (English，選填，沒填會顯示中文版)", name: "footer_quote_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
 
           - label: "每週修煉行事曆"
             name: "schedule"
@@ -271,8 +271,8 @@ collections:
                   - { label: "修煉法門 (English，選填，沒填會顯示中文版)", name: "content_en", widget: "string", required: false }
                   - { label: "道場處所", name: "location", widget: "string", hint: "建議 16 字以內" }
                   - { label: "道場處所 (English，選填，沒填會顯示中文版)", name: "location_en", widget: "string", required: false }
-              - { label: "道門提點文字", name: "note", widget: "text", hint: "建議 80 字以內" }
-              - { label: "道門提點文字 (English，選填，沒填會顯示中文版)", name: "note_en", widget: "text", required: false }
+              - { label: "道門提點文字", name: "note", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "建議 80 字以內；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "道門提點文字 (English，選填，沒填會顯示中文版)", name: "note_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
 
           - label: "頁尾"
             name: "footer"
@@ -302,8 +302,8 @@ collections:
             fields:
               - { label: "法門標題", name: "title", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
               - { label: "法門標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
-              - { label: "詳細內容", name: "desc", widget: "text", hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段" }
-              - { label: "詳細內容 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
+              - { label: "詳細內容", name: "desc", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "詳細內容 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
               - { label: "YouTube 影片網址 (選填)", name: "video_url", widget: "string", required: false, hint: "直接貼上完整的 YouTube 影片網址即可 (例如 https://www.youtube.com/watch?v=xxxxxxx)，留空則畫面顯示「準備中」提示" }
 
   - name: "activities_settings"
@@ -325,8 +325,8 @@ collections:
             fields:
               - { label: "活動標題", name: "title", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
               - { label: "活動標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
-              - { label: "活動詳細介紹", name: "desc", widget: "text", hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段" }
-              - { label: "活動詳細介紹 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
+              - { label: "活動詳細介紹", name: "desc", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "活動詳細介紹 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
               - label: "照片集列表 (可自由新增/刪除/排序，一個活動可以放好幾組照片集，會並排顯示成好幾個小縮圖)"
                 name: "albums"
                 widget: "list"
@@ -388,8 +388,8 @@ collections:
               - { label: "活動標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - {label: "修煉據點 (選填)", name: "location", widget: "string", required: false}
               - { label: "修煉據點 (English，選填，沒填會顯示中文版)", name: "location_en", widget: "string", required: false }
-              - {label: "詳細說明 (選填)", name: "desc", widget: "text", required: false}
-              - { label: "詳細說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "text", required: false }
+              - {label: "詳細說明 (選填)", name: "desc", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+              - { label: "詳細說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
               - { label: "異動註記 (選填，如:停課、活動異動；會用醒目的暖紅色顯示在說明文字下方)", name: "note", widget: "string", required: false, hint: "建議 40 字以內，例如「因場地維修，本週暫停一次」" }
               - { label: "異動註記 (English，選填，沒填會顯示中文版)", name: "note_en", widget: "string", required: false }
               - { label: "起始日期 (選填，填了才會出現「加入日曆」按鈕)", name: "event_date", widget: "datetime", time_format: false, required: false, hint: "選這個活動最近一次(或第一次)舉行的日期" }
@@ -425,5 +425,5 @@ collections:
                 fields:
                   - { label: "問題", name: "question", widget: "string", hint: "建議 30 字以內" }
                   - { label: "問題 (English，選填，沒填會顯示中文版)", name: "question_en", widget: "string", required: false }
-                  - { label: "答案", name: "answer", widget: "text", hint: "建議 150 字以內。想加粗文字請前後加 **，例如 **重要**；想標成金色請前後加 [[ ]]，例如 [[重要]]" }
-                  - { label: "答案 (English，選填，沒填會顯示中文版)", name: "answer_en", widget: "text", required: false }
+                  - { label: "答案", name: "answer", widget: "markdown", buttons: ["bold", "code"], minimal: true, hint: "建議 150 字以內。想加粗文字請前後加 **，例如 **重要**；想標成金色請前後加 [[ ]]，例如 [[重要]]；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註" }
+                  - { label: "答案 (English，選填，沒填會顯示中文版)", name: "answer_en", widget: "markdown", buttons: ["bold", "code"], minimal: true, required: false, hint: "同樣可用 Bold／Code 按鈕排版" }
