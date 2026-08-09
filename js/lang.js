@@ -96,8 +96,11 @@ function parseInlineMarkup(text) {
     if (text === undefined || text === null) return '';
     // 先跳脫特殊字元，避免後台萬一打進奇怪符號被誤判成程式碼
     let escaped = escapeHtml(text).replace(/\n/g, '<br>');
-    // 金色標註要先處理（[[文字]]），加粗（**文字**）後處理，避免符號互相干擾
+    // 金色標註：[[文字]] 是手動輸入的寫法；`文字`（反引號）則對應後台 markdown 欄位裡的
+    // 「Code」按鈕（本站借用這顆按鈕做金色標註，不是真的程式碼格式）；兩種寫法都支援
     escaped = escaped.replace(/\[\[(.+?)\]\]/g, '<span class="hl-gold">$1</span>');
+    escaped = escaped.replace(/`(.+?)`/g, '<span class="hl-gold">$1</span>');
+    // 加粗：**文字**，對應後台 markdown 欄位裡的「Bold」按鈕
     escaped = escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     return escaped;
 }
