@@ -13,7 +13,9 @@
     "link_activities": "活動介紹",
     "link_activities_en": "Events",
     "link_calendar": "學期行事曆",
-    "link_calendar_en": "Schedule"
+    "link_calendar_en": "Schedule",
+    "link_faq": "常見問題",
+    "link_faq_en": ""
   },
   "methods_section": {
     "eyebrow": "METHODOLOGY",
@@ -66,7 +68,7 @@
       "title_en": "",
       "quote": "「借物修身，身棍合一。腰、棍、腳俱為一體。」",
       "quote_en": "",
-      "desc": "長兵之祖，勢如破竹。太祖棍旨在訓練脊椎旋轉之核心爆發力，使手、足、身、步協調一致。棍身舞動之際，非唯破敵，實乃掃除心中雜念與懈怠。",
+      "desc": "太極拳四種古兵器之一，所謂一寸長一寸強，在遠處巧妙化解攻擊也從遠處進攻，產生距離優勢。熟練太極拳之手法、身法、步法後，在赤手空拳的基礎上延伸，學習使用太祖棍，更能感受自己對於腰部發力是否熟練。另外，除了招式動作教學以外，也有招式應用練習，在安全的情況下學員與學員、幹部乃至於老師分組對練。棍子間針鋒相對的鏗鏘，鏗鏘有力不絕於耳！",
       "desc_en": "",
       "video_url": "",
       "difficulty": "修煉難度：進階",
@@ -191,9 +193,9 @@
         "label": "位持續聯絡"
       }
     ],
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
+    "badge_label": "道傳寰宇",
     "title": "外邦弟子的修真緣分",
-    "badge_label": "道傳寰宇"
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -249,13 +251,13 @@
     "eyebrow": "VISIT THE TEMPLE",
     "title": "尋訪仙蹤",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
-    "location_label": "【道場位置】",
-    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "email_label": "【問道法郵】",
-    "email_value": "nccutaichi@email.com",
-    "social_label": "【仙界傳音】",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
     "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
+    "social_label": "【仙界傳音】",
+    "email_value": "nccutaichi@email.com",
+    "email_label": "【問道法郵】",
+    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
+    "location_label": "【道場位置】"
   },
   "contact": {
     "location_label": "道場位置",
