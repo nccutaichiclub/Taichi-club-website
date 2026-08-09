@@ -115,6 +115,11 @@
             line-height: 1.9;
             margin: 0;
         }
+        /* 內文標記語法對應樣式：[[文字]] 顯示成金色標註 */
+        .hl-gold {
+            color: var(--古銅金);
+            font-weight: 600;
+        }
 
         .faq-empty-hint {
             text-align: center;
@@ -236,7 +241,7 @@
                         const answerWrap = document.createElement('div');
                         answerWrap.className = 'faq-answer';
                         const answerP = document.createElement('p');
-                        answerP.innerText = item.answer || '';
+                        answerP.innerHTML = parseInlineMarkup(item.answer || '');
                         answerWrap.appendChild(answerP);
                         wrap.appendChild(answerWrap);
 
