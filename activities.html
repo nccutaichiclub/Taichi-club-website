@@ -74,6 +74,11 @@
         .activity-text p:last-child {
             margin-bottom: 0;
         }
+        /* 內文標記語法對應樣式：[[文字]] 顯示成金色標註 */
+        .hl-gold {
+            color: var(--古銅金);
+            font-weight: 600;
+        }
 
         /* 歷年活動照片：小尺寸封面預覽（不管照片幾張，都只佔一個小方塊的版面）
            一個活動可以有多組照片集，用 flex 並排顯示，手機版會自動換行 */
@@ -267,11 +272,12 @@
             }
 
             // 把後台填的「純文字」自動轉成一段一段的 <p>：空一行 = 分段；段落內單純換行 = 換行(<br>)
+            // 同時支援標記語法：**文字** 加粗、[[文字]] 金色標註
             function paragraphize(text) {
                 if (!text) return '';
                 return text
                     .split(/\n\s*\n/)
-                    .map(p => `<p>${p.trim().replace(/\n/g, '<br>')}</p>`)
+                    .map(p => `<p>${parseInlineMarkup(p.trim())}</p>`)
                     .join('');
             }
 
