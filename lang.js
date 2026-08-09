@@ -102,5 +102,44 @@ function parseInlineMarkup(text) {
     return escaped;
 }
 
+// ========================================================================
+// 原本每個頁面各自重複定義的共用小工具，統一搬到這裡，五個頁面共用同一份
+// ========================================================================
+
+// 圖片路徑防呆：本網站放在 .../Taichi-club-website/ 這個子路徑下，
+// 如果圖片路徑意外帶了開頭的 "/"，這裡統一拿掉，改成正確的相對路徑
+function resolveImagePath(path) {
+    if (!path) return '';
+    return path.replace(/^\/+/, '');
+}
+
+// 設定純文字內容（不支援標記語法，用於標題/標籤等短文字）
+function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el && value !== undefined && value !== null) el.innerText = value;
+}
+
+// 設定同一 class 底下所有元素的純文字內容（用於導覽列等重複出現的文字）
+function setTextAll(className, value) {
+    if (value === undefined || value === null) return;
+    document.querySelectorAll('.' + className).forEach(el => el.innerText = value);
+}
+
+// 設定支援標記語法（**加粗**、[[金色標註]]）的內文內容
+function setHtml(id, value) {
+    const el = document.getElementById(id);
+    if (el && value !== undefined && value !== null) el.innerHTML = parseInlineMarkup(value);
+}
+
+// 把後台填的「純文字」自動轉成一段一段的 <p>：空一行 = 分段；段落內單純換行 = 換行(<br>)
+// 同時支援標記語法：**文字** 加粗、[[文字]] 金色標註
+function paragraphize(text) {
+    if (!text) return '';
+    return text
+        .split(/\n\s*\n/)
+        .map(p => `<p>${parseInlineMarkup(p.trim())}</p>`)
+        .join('');
+}
+
 // 網頁最上層的語言標示（對 SEO、螢幕報讀器、瀏覽器內建翻譯功能都有幫助）
 document.documentElement.lang = (getLang() === 'en') ? 'en' : 'zh-TW';
