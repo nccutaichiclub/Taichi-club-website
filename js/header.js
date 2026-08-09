@@ -63,7 +63,7 @@ function renderSiteHeader() {
         }
     </style>
 
-    <header class="fixed top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4">
+    <header class="sticky top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center relative">
 
             <!-- 左側：道場牌匾 + 手機版語言切換鈕（一直顯示，不用點開漢堡選單） -->
