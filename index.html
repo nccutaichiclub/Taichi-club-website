@@ -465,28 +465,6 @@
 
     <!-- 串接後台資料的 JavaScript：讀取 data/home.json 並填入整個首頁 -->
     <script>
-        function setText(id, value) {
-            const el = document.getElementById(id);
-            if (el && value !== undefined && value !== null) el.innerText = value;
-        }
-        // 用於支援標記語法（**加粗**、[[金色標註]]）的內文欄位，取代 setText
-        function setHtml(id, value) {
-            const el = document.getElementById(id);
-            if (el && value !== undefined && value !== null) el.innerHTML = parseInlineMarkup(value);
-        }
-        // 圖片路徑防呆：因為本網站是放在 .../Taichi-club-website/ 這個子路徑下，
-        // 如果圖片路徑意外帶了開頭的 "/"（會被瀏覽器當成網域根目錄的絕對路徑），
-        // 這裡統一把開頭的 "/" 拿掉，改成正確的相對路徑，圖片才抓得到
-        function resolveImagePath(path) {
-            if (!path) return '';
-            return path.replace(/^\/+/, '');
-        }
-
-        function setTextAll(className, value) {
-            if (value === undefined || value === null) return;
-            document.querySelectorAll('.' + className).forEach(el => el.innerText = value);
-        }
-
         // 頁籤文字專用：超過 5 個字時自動縮短字距(tracking)，避免被截斷成「...」
         function setTabLabel(id, value) {
             const el = document.getElementById(id);
