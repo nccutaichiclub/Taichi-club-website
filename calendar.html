@@ -11,10 +11,10 @@
 
     <!-- 引入 Tailwind CSS，與首頁共用同一套配色/字體設定，讓四個頁面視覺統一 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="tailwind-config-sub.js"></script>
+    <script src="js/tailwind-config-sub.js"></script>
 
     <!-- 四個子頁共用的基礎樣式（box-sizing 修正、圖片保護、容器/標題基本樣式等） -->
-    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="css/base.css">
 
     <style>
         /* 本頁專屬的樣式覆蓋：松柏綠用比其他子頁更深的色調，標題間距也略有不同 */
@@ -259,11 +259,11 @@
 <body>
 
     <!-- 全站共用的語言切換邏輯，要在其他腳本之前載入 -->
-    <script src="lang.js"></script>
+    <script src="js/lang.js"></script>
 
     <!-- 頂部導覽列：由 header.js 統一產生，改導覽列只要改那支檔案，不用每頁各改一次 -->
     <div id="site-header"></div>
-    <script src="header.js"></script>
+    <script src="js/header.js"></script>
 
 
     <div class="container">
@@ -400,7 +400,7 @@
                             </div>
                             ${metaParts.length > 0 ? `<div class="event-meta-line">${metaParts.join('　|　')}</div>` : ''}
                             ${ev.desc ? `<div class="event-detail">${parseInlineMarkup(ev.desc)}</div>` : ''}
-                            ${ev.note ? `<div class="event-note">⚠ ${ev.note}</div>` : ''}
+                            ${ev.note ? `<div class="event-note">⚠ ${parseInlineMarkup(ev.note)}</div>` : ''}
                         `;
                         monthBlock.appendChild(row);
                     });
