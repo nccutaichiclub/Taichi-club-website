@@ -82,20 +82,7 @@
         .video-placeholder { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--霧霾灰); }
         .video-placeholder i { font-size: 2rem; margin-bottom: 10px; color: var(--古銅金); }
 
-        /* 手機版漢堡選單按鈕：因子頁關閉了 Tailwind 的 preflight，瀏覽器預設的按鈕框線/背景會跑出來，這裡手動重置 */
-        #mobile-menu-btn {
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-        }
-        /* 中英文切換按鈕：同樣因為關閉 preflight，瀏覽器預設的白底樣式會跑出來，這裡重置成透明底＋實線金色框，跟首頁一致 */
-        #lang-toggle-desktop, #lang-toggle-mobile {
-            background: none;
-            border-style: solid;
-            cursor: pointer;
-            font-family: inherit; /* 按鈕預設不會繼承頁面字體，這裡強制套用跟首頁一樣的宋體 */
-        }
+        /* 手機版漢堡選單按鈕與中英文切換按鈕的樣式重置，已經統一移到 header.js 裡處理 */
     </style>
 </head>
 <body>
@@ -103,58 +90,9 @@
     <!-- 全站共用的語言切換邏輯，要在其他腳本之前載入 -->
     <script src="lang.js"></script>
 
-    <!-- 整合版：頂部道門天際導覽（含手機版漢堡選單），與首頁共用同一套設計 -->
-    <header class="sticky top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center relative">
-
-            <!-- 左側：道場牌匾 + 手機版語言切換鈕（一直顯示，不用點開漢堡選單） -->
-            <div class="flex items-center gap-3">
-                <a href="index.html" class="text-xl font-bold tracking-widest text-bronze-light flex items-center gap-2 transition-colors duration-300 hover:text-white no-underline">
-                    <span id="nav-badge" class="text-xs border border-solid border-bronze px-1.5 py-0.5 rounded whitespace-nowrap">政大</span>
-                    <span id="nav-brand" class="whitespace-nowrap">太極社</span> <span id="nav-brand-sub" class="hidden sm:inline font-light text-sm text-cloud/70 whitespace-nowrap">| 隱逸道場</span>
-                </a>
-                <button id="lang-toggle-mobile" type="button" class="md:hidden text-xs tracking-widest text-bronze-light border border-bronze/50 rounded px-2 py-1 hover:bg-bronze/10 transition-colors">EN</button>
-            </div>
-
-            <!-- 右側：電腦版跨頁導覽連結 -->
-            <nav class="hidden md:flex gap-8 items-center">
-                <a href="index.html" class="nav-link-home no-underline text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">首頁主殿</a>
-                <a href="gongfa.html" class="nav-link-method no-underline text-sm tracking-widest text-bronze-light font-bold">法門深造</a>
-                <a href="activities.html" class="nav-link-activities no-underline text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">活動介紹</a>
-                <a href="calendar.html" class="nav-link-calendar no-underline text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">修煉日程</a>
-                <a href="faq.html" class="nav-link-faq no-underline text-sm tracking-widest text-cloud/70 hover:text-bronze-light transition-colors duration-300">常見問題</a>
-                <button id="lang-toggle-desktop" type="button" class="text-xs tracking-widest text-bronze-light border border-bronze/50 rounded px-2.5 py-1 hover:bg-bronze/10 transition-colors">EN</button>
-            </nav>
-
-            <!-- 右側：手機版漢堡選單按鈕 -->
-            <button id="mobile-menu-btn" class="md:hidden text-bronze-light hover:text-white focus:outline-none transition-colors">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- 手機版下拉選單區塊 -->
-        <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-ink-deep/95 backdrop-blur-lg border-b border-white/10 flex-col items-center py-6 space-y-6 shadow-2xl transition-all duration-300 z-40">
-            <a href="index.html" class="nav-link-home no-underline text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">首頁主殿</a>
-            <a href="gongfa.html" class="nav-link-method no-underline text-sm tracking-widest text-bronze-light font-bold w-full text-center block">法門深造</a>
-            <a href="activities.html" class="nav-link-activities no-underline text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">活動介紹</a>
-            <a href="calendar.html" class="nav-link-calendar no-underline text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">修煉日程</a>
-            <a href="faq.html" class="nav-link-faq no-underline text-sm tracking-widest text-cloud hover:text-bronze-light transition-colors w-full text-center block">常見問題</a>
-        </nav>
-    </header>
-
-    <!-- 手機版選單開關腳本 + 語言切換按鈕初始化 -->
-    <script>
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-        });
-        initLangSwitcher('lang-toggle-desktop');
-        initLangSwitcher('lang-toggle-mobile');
-    </script>
+    <!-- 頂部導覽列：由 header.js 統一產生，改導覽列只要改那支檔案，不用每頁各改一次 -->
+    <div id="site-header"></div>
+    <script src="header.js"></script>
 
 
     <div class="container">
@@ -202,24 +140,6 @@
                 }
                 return null;
             }
-
-            // 導覽列文字與品牌角標：讀取 data/home.json 的 nav 設定，跟首頁與其他子頁共用同一份資料
-            // 網址後面加上 ?v=時間戳記，避免瀏覽器用快取的舊資料
-            fetch('data/home.json?v=' + Date.now())
-                .then(response => response.json())
-                .then(data => {
-                    data = applyLangToData(data); // 依目前語言整批轉換文字內容
-                    if (!data.nav) return;
-                    setText('nav-badge', data.nav.badge);
-                    setText('nav-brand', data.nav.brand);
-                    if (data.nav.brand_sub) setText('nav-brand-sub', '| ' + data.nav.brand_sub);
-                    setTextAll('nav-link-home', data.nav.link_home);
-                    setTextAll('nav-link-method', data.nav.link_method);
-                    setTextAll('nav-link-activities', data.nav.link_activities);
-                    setTextAll('nav-link-calendar', data.nav.link_calendar);
-                    setTextAll('nav-link-faq', data.nav.link_faq);
-                })
-                .catch(error => console.error('讀取 data/home.json 失敗：', error));
 
             // 本頁主要內容：讀取 data/gongfa.json
             // 網址後面加上 ?v=時間戳記，避免瀏覽器用快取的舊資料
