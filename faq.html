@@ -4,48 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>常見問題｜政大太極社</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 引入思源宋體，跟首頁共用同一套字重設定 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
     <!-- 引入 Tailwind CSS，與首頁共用同一套配色/字體設定，讓所有頁面視覺統一 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            // 關閉 preflight（Tailwind 的預設樣式重置），避免影響本頁原本手寫的 CSS
-            corePlugins: { preflight: false },
-            theme: {
-                extend: {
-                    colors: {
-                        ink: { deep: '#08090A', dark: '#111315', card: '#181B1E' },
-                        cloud: '#8E95A0',
-                        pine: { light: '#427A5B', DEFAULT: '#1E3D2F', dark: '#0F2118' },
-                        bronze: { light: '#D9C39E', DEFAULT: '#B89742', dark: '#8C6C30' }
-                    },
-                    fontFamily: { serif: ['Noto Serif TC', 'serif'] }
-                }
-            }
-        }
-    </script>
+    <script src="tailwind-config-sub.js"></script>
+
+    <!-- 四個子頁共用的基礎樣式（box-sizing 修正、圖片保護、容器/標題基本樣式等） -->
+    <link rel="stylesheet" href="base.css">
 
     <style>
-        /* 全域 box-sizing 修正：Tailwind preflight 關閉後，少了這條關鍵重置，
-           導致所有有 padding 的區塊實際寬度都會比容器多撐出 padding 的量，
-           這正是手機版圖片/文字被切掉、出現橫向溢出的根本原因 */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        :root {
-            --玄色: #121212; --霧霾灰: #A0A0A0; --松柏綠: #5C9A6C; --古銅金: #C5A059; --仙氣白: #E5E5E5;
-        }
-        html { overflow-x: hidden; max-width: 100%; }
-        /* 圖片保護：子頁關閉了 preflight，少了瀏覽器預設會有的「圖片自動縮小配合容器寬度」規則，這裡補回來 */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        body { background-color: var(--玄色); color: var(--仙氣白); font-family: 'Noto Serif TC', serif; margin: 0; line-height: 1.8; overflow-x: hidden; }
-        .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-        h1 { color: var(--古銅金); text-align: center; letter-spacing: 4px; font-size: 2.2rem; }
-        .subtitle { text-align: center; color: var(--霧霾灰); font-style: italic; margin-bottom: 60px; font-size: 0.95rem; }
+        /* 本頁專屬的樣式覆蓋：容器寬度比其他子頁窄一點 */
+        .container { max-width: 800px; }
 
         /* FAQ 手風琴：問題金色大字，答案白色，點擊展開/收合 */
         .faq-item {
@@ -115,11 +88,6 @@
             line-height: 1.9;
             margin: 0;
         }
-        /* 內文標記語法對應樣式：[[文字]] 顯示成金色標註 */
-        .hl-gold {
-            color: var(--古銅金);
-            font-weight: 600;
-        }
 
         .faq-empty-hint {
             text-align: center;
@@ -185,15 +153,6 @@
 
         <!-- 串接後台資料的 JavaScript -->
         <script>
-            function setText(id, value) {
-                const el = document.getElementById(id);
-                if (el && value !== undefined && value !== null) el.innerText = value;
-            }
-            function setTextAll(className, value) {
-                if (value === undefined || value === null) return;
-                document.querySelectorAll('.' + className).forEach(el => el.innerText = value);
-            }
-
             // 展開/收合單一 FAQ 項目
             function toggleFaqItem(item) {
                 item.classList.toggle('open');
