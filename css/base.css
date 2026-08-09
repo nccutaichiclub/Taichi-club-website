@@ -67,3 +67,8 @@ h1 {
     color: var(--古銅金);
     font-weight: 600;
 }
+
+.hl-green {
+    color: var(--松柏綠);
+    font-weight: 600;
+}
