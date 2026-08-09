@@ -409,14 +409,21 @@ collections:
           - { label: "頁面主標題 (English，選填，沒填會顯示中文版)", name: "page_title_en", widget: "string", required: false }
           - { label: "頁面引言 / 副標", name: "page_subtitle", widget: "string", hint: "建議 50 字以內" }
           - { label: "頁面引言 / 副標 (English，選填，沒填會顯示中文版)", name: "page_subtitle_en", widget: "string", required: false }
-          - label: "常見問題列表 (可自由新增/刪除/排序，點擊問題會展開答案)"
-            name: "faqs"
+          - label: "常見問題分類 (可自由新增/刪除/拖曳排序；拖曳分類順序時，底下所有問題會整組跟著移動)"
+            name: "categories"
             widget: "list"
             min: 1
-            summary: "{{fields.question}}"
+            summary: "{{fields.category}}"
             fields:
-              - { label: "分類 (如:入門類、課程類、行政類，自由填寫；同分類的問題會自動分在同一組)", name: "category", widget: "string", hint: "同一分類請填寫完全相同的文字，系統才能正確分組", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
-              - { label: "問題", name: "question", widget: "string", hint: "建議 30 字以內" }
-              - { label: "問題 (English，選填，沒填會顯示中文版)", name: "question_en", widget: "string", required: false }
-              - { label: "答案", name: "answer", widget: "text", hint: "直接打文字即可，建議 150 字以內" }
-              - { label: "答案 (English，選填，沒填會顯示中文版)", name: "answer_en", widget: "text", required: false }
+              - { label: "分類名稱 (如:入門類、課程類、行政類)", name: "category", widget: "string", hint: "建議 10 字以內", pattern: ['^.{1,10}$', '請控制在 10 字以內'] }
+              - { label: "分類名稱 (English，選填，沒填會顯示中文版)", name: "category_en", widget: "string", required: false }
+              - label: "這個分類底下的問題 (可自由新增/刪除/排序，點擊問題會展開答案)"
+                name: "questions"
+                widget: "list"
+                min: 1
+                summary: "{{fields.question}}"
+                fields:
+                  - { label: "問題", name: "question", widget: "string", hint: "建議 30 字以內" }
+                  - { label: "問題 (English，選填，沒填會顯示中文版)", name: "question_en", widget: "string", required: false }
+                  - { label: "答案", name: "answer", widget: "text", hint: "直接打文字即可，建議 150 字以內" }
+                  - { label: "答案 (English，選填，沒填會顯示中文版)", name: "answer_en", widget: "text", required: false }
