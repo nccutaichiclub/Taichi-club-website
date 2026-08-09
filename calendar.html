@@ -244,6 +244,11 @@
             font-size: 0.82rem;
             margin-top: 6px;
         }
+        /* 內文標記語法對應樣式：[[文字]] 顯示成金色標註 */
+        .hl-gold {
+            color: var(--古銅金);
+            font-weight: 600;
+        }
         .event-row .event-note {
             /* 停課/活動異動提醒：用不刺眼的暖紅色，醒目但不會讓人不適 */
             color: #E2725B;
@@ -437,7 +442,7 @@
                                 ${gcalHtml}
                             </div>
                             ${metaParts.length > 0 ? `<div class="event-meta-line">${metaParts.join('　|　')}</div>` : ''}
-                            ${ev.desc ? `<div class="event-detail">${ev.desc}</div>` : ''}
+                            ${ev.desc ? `<div class="event-detail">${parseInlineMarkup(ev.desc)}</div>` : ''}
                             ${ev.note ? `<div class="event-note">⚠ ${ev.note}</div>` : ''}
                         `;
                         monthBlock.appendChild(row);
