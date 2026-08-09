@@ -210,8 +210,8 @@
                     const container = document.getElementById('faq-container');
                     container.innerHTML = '';
 
-                    const list = Array.isArray(data.faqs) ? data.faqs : [];
-                    if (list.length === 0) {
+                    const categories = Array.isArray(data.categories) ? data.categories : [];
+                    if (categories.length === 0) {
                         container.innerHTML = '<p class="faq-empty-hint">目前尚無常見問題內容。</p>';
                         return;
                     }
@@ -246,20 +246,10 @@
                         return wrap;
                     }
 
-                    // 依「分類」把問題分組（灰色小字標籤），維持後台輸入的先後順序；分類標題可點擊整組收合/展開
-                    const groupOrder = [];
-                    const groupMap = {};
-                    list.forEach(item => {
-                        const cat = (item.category && item.category.trim() !== '') ? item.category.trim() : '其他';
-                        if (!groupMap[cat]) {
-                            groupMap[cat] = [];
-                            groupOrder.push(cat);
-                        }
-                        groupMap[cat].push(item);
-                    });
-
+                    // 分類本身在後台就是可以直接拖曳排序的清單，這裡直接依資料順序渲染即可，
+                    // 不用再自己額外分組——拖曳分類順序時，底下所有問題自然整組跟著移動
                     let isFirstOverall = true;
-                    groupOrder.forEach(cat => {
+                    categories.forEach(cat => {
                         const categoryWrap = document.createElement('div');
                         categoryWrap.className = 'faq-category';
 
@@ -267,13 +257,14 @@
                         header.type = 'button';
                         header.className = 'faq-category-header';
                         header.innerHTML = `<span class="category-chevron">▾</span><span></span>`;
-                        header.querySelector('span:last-child').innerText = cat;
+                        header.querySelector('span:last-child').innerText = cat.category || '';
                         header.addEventListener('click', () => categoryWrap.classList.toggle('collapsed'));
                         categoryWrap.appendChild(header);
 
                         const itemsWrap = document.createElement('div');
                         itemsWrap.className = 'faq-category-items';
-                        groupMap[cat].forEach(item => {
+                        const questions = Array.isArray(cat.questions) ? cat.questions : [];
+                        questions.forEach(item => {
                             const itemEl = renderFaqItem(item, isFirstOverall);
                             isFirstOverall = false;
                             itemsWrap.appendChild(itemEl);
