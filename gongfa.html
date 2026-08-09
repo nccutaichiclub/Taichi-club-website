@@ -76,6 +76,11 @@
         .gongfa-text p:last-child {
             margin-bottom: 0;
         }
+        /* 內文標記語法對應樣式：[[文字]] 顯示成金色標註 */
+        .hl-gold {
+            color: var(--古銅金);
+            font-weight: 600;
+        }
 
         /* 影片預留區樣式：margin-top 讓說明文字跟影片框之間留出呼吸空間，比照全站其他區塊的間距慣例 */
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #1A1A1A; border: 1px solid #333; margin-top: 28px; }
@@ -117,12 +122,12 @@
 
             // 把後台填的「純文字」自動轉成一段一段的 <p>：
             // 空一行 = 分段；段落內單純換行 = 換行(<br>)。
-            // 這樣後台不用寫任何 HTML 標籤，打字習慣照打就好。
+            // 同時支援標記語法：**文字** 加粗、[[文字]] 金色標註
             function paragraphize(text) {
                 if (!text) return '';
                 return text
                     .split(/\n\s*\n/)
-                    .map(p => `<p>${p.trim().replace(/\n/g, '<br>')}</p>`)
+                    .map(p => `<p>${parseInlineMarkup(p.trim())}</p>`)
                     .join('');
             }
 
