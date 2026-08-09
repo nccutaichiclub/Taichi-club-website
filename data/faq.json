@@ -3,76 +3,138 @@
   "page_subtitle": "初入道場，難免心有疑惑。此處為你解惑，助你安心踏上修煉之路。",
   "page_title_en": "FAQ",
   "page_subtitle_en": "New to the path? Here are answers to help you begin with confidence.",
-  "faqs": [
+  "categories": [
     {
       "category": "入門類",
-      "question": "完全沒有武術或運動基礎，可以加入嗎？",
-      "answer": "當然可以。本社的社課是特別設計給零基礎新生的，會由淺入深、從基本呼吸與站樁開始教起，不需要任何武術經驗。",
-      "question_en": "I have zero martial arts or exercise background — can I still join?",
-      "answer_en": "Absolutely. Our classes are designed for complete beginners, starting from basic breathing and stances. No prior experience is needed."
-    },
-    {
-      "category": "入門類",
-      "question": "太極拳強度會不會很激烈？適合女生或平常不運動的人嗎？",
-      "answer": "太極拳與氣功的運動強度溫和，著重呼吸與身體協調，男女皆宜，也很適合平常沒有運動習慣的同學慢慢建立體能。",
-      "question_en": "Is Tai Chi intense? Is it suitable for those who don't usually exercise?",
-      "answer_en": "Tai Chi and Qigong are gentle in intensity, focusing on breath and coordination. They're suitable for everyone, including those without a regular exercise habit."
-    },
-    {
-      "category": "入門類",
-      "question": "需要準備什麼裝備或服裝？",
-      "answer": "建議穿著寬鬆便服與平底運動鞋，並攜帶個人水壺即可。棍、劍等兵器類器材社團會提供練習用具，之後若想長期練習可再自行添購。",
-      "question_en": "What should I wear or bring?",
-      "answer_en": "Loose, comfortable clothing and flat athletic shoes are recommended, along with a water bottle. Practice staffs and swords are provided by the club; you can purchase your own later if you continue long-term."
-    },
-    {
-      "category": "入門類",
-      "question": "可以中途加入嗎？會不會跟不上進度？",
-      "answer": "可以隨時加入，老師會依據你的程度個別協助，太極拳的招式也是重複練習漸進累積，不用擔心跟不上。",
-      "question_en": "Can I join partway through the semester? Will I fall behind?",
-      "answer_en": "Yes, you can join anytime. Instructors will help you catch up individually, and Tai Chi is learned through repeated practice, so there's no need to worry."
+      "questions": [
+        {
+          "question": "完全沒有武術或運動基礎，可以加入嗎？",
+          "answer": "當然可以。本社的社課是特別設計給零基礎新生的，會由淺入深、從基本呼吸與站樁開始教起，不需要任何武術經驗。",
+          "question_en": "I have zero martial arts or exercise background — can I still join?",
+          "answer_en": "Absolutely. Our classes are designed for complete beginners, starting from basic breathing and stances. No prior experience is needed."
+        },
+        {
+          "question": "太極拳強度會不會很激烈？適合女生或平常不運動的人嗎？",
+          "answer": "太極拳與氣功的運動強度溫和，著重呼吸與身體協調，男女皆宜，也很適合平常沒有運動習慣的同學慢慢建立體能。",
+          "question_en": "Is Tai Chi intense? Is it suitable for those who don't usually exercise?",
+          "answer_en": "Tai Chi and Qigong are gentle in intensity, focusing on breath and coordination. They're suitable for everyone, including those without a regular exercise habit."
+        },
+        {
+          "question": "需要準備什麼裝備或服裝？",
+          "answer": "建議穿著寬鬆便服與平底運動鞋，並攜帶個人水壺即可。棍、劍等兵器類器材社團會提供練習用具，之後若想長期練習可再自行添購。",
+          "question_en": "What should I wear or bring?",
+          "answer_en": "Loose, comfortable clothing and flat athletic shoes are recommended, along with a water bottle. Practice staffs and swords are provided by the club; you can purchase your own later if you continue long-term."
+        },
+        {
+          "question": "可以中途加入嗎？會不會跟不上進度？",
+          "answer": "可以隨時加入，老師會依據你的程度個別協助，太極拳的招式也是重複練習漸進累積，不用擔心跟不上。",
+          "question_en": "Can I join partway through the semester? Will I fall behind?",
+          "answer_en": "Yes, you can join anytime. Instructors will help you catch up individually, and Tai Chi is learned through repeated practice, so there's no need to worry."
+        },
+        {
+          "question": "太極拳是老年人的運動，年輕人不太需要打太極？",
+          "answer": "太極拳與氣功不僅能強身健體、令精神專注，也能讓大家在課業或工作壓力之餘得到休息與釋放，透過專注於肢體動作與呼吸調理，從練功中回復精力，是很好的紓壓方式。與其說太極拳是老年才要開始的保養，不如說年輕人更應該及早練習。",
+          "question_en": "Isn't Tai Chi just for older people? Do young people really need it?",
+          "answer_en": "Tai Chi and Qigong build physical strength and mental focus, while also offering a way to unwind from academic or work stress. By focusing on movement and breath, practitioners recover energy — making it a great way to relieve stress. Rather than something to pick up in old age, it's a practice young people benefit from starting early."
+        },
+        {
+          "question": "打太極拳、練氣功可以取代一般運動嗎？",
+          "answer": "兩者可以相輔相成，不會互相取代。太極拳與氣功講求肢體放鬆與步伐輕盈，很適合作為其他運動前的暖身，也有助提升運動時的身體協調與表現。",
+          "question_en": "Can Tai Chi or Qigong replace regular exercise?",
+          "answer_en": "They complement other exercise rather than replace it. Tai Chi and Qigong emphasize relaxed movement and light footwork, making them a great warm-up and helping improve coordination in other sports."
+        },
+        {
+          "question": "完全沒有運動細胞，適合練太極拳、氣功嗎？",
+          "answer": "非常適合。教學會依照個人體型與學習速度調整動作幅度，不要求做到跟老師完全一樣，只需以自身條件盡力伸展即可。持續練習能讓身心逐漸沉靜、肢體逐漸開展，對專注力與日常生活也有幫助。",
+          "question_en": "I'm not athletic at all — is Tai Chi or Qigong still for me?",
+          "answer_en": "Absolutely. Instruction adapts to each person's body and pace — you're never expected to match the instructor exactly, just to stretch as far as your own body allows. Consistent practice gradually calms the mind and opens up the body, benefiting focus and daily life."
+        },
+        {
+          "question": "太極社的教學對初學者友善嗎？",
+          "answer": "非常友善。社課採能力分班，新生與資深社員分開授課；學長姐與幹部也會主動指導不熟悉的動作，許多新加入的同學（包含外籍生）都反映太極社像個溫暖的大家庭。",
+          "question_en": "Is the club's teaching style beginner-friendly?",
+          "answer_en": "Very much so. Classes are grouped by skill level, with beginners and advanced members taught separately. Senior members and officers actively help with unfamiliar movements, and many new members — including international students — describe the club as a warm, welcoming community."
+        }
+      ],
+      "category_en": "Getting Started"
     },
     {
       "category": "課程類",
-      "question": "太極拳跟一般健身房的運動有什麼不同？",
-      "answer": "太極拳強調的是內在的呼吸調息與身心和諧，而非單純的肌肉鍛鍊；長期練習有助於提升專注力、放鬆壓力，是一種動靜兼備的修行。",
-      "question_en": "How is Tai Chi different from a typical gym workout?",
-      "answer_en": "Tai Chi emphasizes internal breath regulation and mind-body harmony rather than pure muscle training. Long-term practice helps improve focus and relieve stress — a discipline of both stillness and motion."
+      "questions": [
+        {
+          "question": "太極拳跟一般健身房的運動有什麼不同？",
+          "answer": "太極拳強調的是內在的呼吸調息與身心和諧，而非單純的肌肉鍛鍊；長期練習有助於提升專注力、放鬆壓力，是一種動靜兼備的修行。",
+          "question_en": "How is Tai Chi different from a typical gym workout?",
+          "answer_en": "Tai Chi emphasizes internal breath regulation and mind-body harmony rather than pure muscle training. Long-term practice helps improve focus and relieve stress — a discipline of both stillness and motion."
+        },
+        {
+          "question": "太極社的學習路徑是怎麼安排的？",
+          "answer": "採循序漸進的教學：先學氣功，再學太極拳，接著學習兵器（如太祖棍、太極劍），資深社員還有機會進一步學習太極拳的實戰應用「太極散手」。課程依程度分班，新生與進階社員分開授課。",
+          "question_en": "How is the curriculum structured?",
+          "answer_en": "Learning progresses step by step: Qigong first, then Tai Chi, followed by weapons like the staff and sword. Senior members may also learn \"Tai Chi Sanshou\" (applied combat techniques). Classes are grouped by level, with beginners and advanced members taught separately."
+        },
+        {
+          "question": "氣功和太極拳具體的差異是什麼？",
+          "answer": "氣功分靜功（如打坐）與動功，社課練習的是動功「華陀導引氣功」，強調肢體前後左右伸展，依個人體型調整幅度。太極拳則強調「立身中正」，動作講求身體安定，源自搏擊攻防概念，後演變為緩慢均勻的套路，也蘊含沉穩處事的哲理。",
+          "question_en": "What's the actual difference between Qigong and Tai Chi?",
+          "answer_en": "Qigong includes both still forms (like meditation) and moving forms — the club practices \"Hua Tuo Qigong,\" a moving form emphasizing full-body stretches adapted to each body. Tai Chi emphasizes an upright, centered posture and originated from combat principles, later evolving into slow, even-paced forms that also embody a philosophy of steady, composed conduct."
+        },
+        {
+          "question": "太極拳真的可以用來對打防身嗎？",
+          "answer": "可以，進階的「太極散手」核心概念是化開對方來勁、順勢反擊。不過現代教學重心已從實戰轉為內在修養與護身自衛，讓大家在遇到突發狀況時多一分應對能力，而非鼓勵以武力解決問題。",
+          "question_en": "Can Tai Chi actually be used for self-defense?",
+          "answer_en": "Yes — the advanced \"Tai Chi Sanshou\" focuses on deflecting an opponent's force and countering. That said, modern teaching emphasizes inner cultivation and personal safety awareness rather than combat, giving practitioners more composure in unexpected situations rather than encouraging physical confrontation."
+        },
+        {
+          "question": "什麼樣的人可以學到「太極散手」？",
+          "answer": "需要是較資深的社員。不過平常教授太極拳招式時，老師就會講解動作背後的實際用法，幫助大家理解招式原理，讓動作做得更準確到位。",
+          "question_en": "Who gets to learn \"Tai Chi Sanshou\"?",
+          "answer_en": "It's reserved for more senior members. That said, instructors explain the practical application behind each Tai Chi movement during regular classes, helping everyone understand the reasoning and refine their form."
+        },
+        {
+          "question": "政大太極社的國際交流狀況如何？",
+          "answer": "社員來自世界各地，包含歐洲、美洲、東南亞、東北亞等地的交換學生與留學生。社團也曾安排海外交流旅遊，未來也期望能號召在校生與校友一起組團到各國交流。",
+          "question_en": "What's the club's international exchange like?",
+          "answer_en": "Members come from all over the world, including exchange and international students from Europe, the Americas, Southeast Asia, and Northeast Asia. The club has also organized overseas exchange trips, and hopes to organize more group trips with current members and alumni in the future."
+        }
+      ],
+      "category_en": "Curriculum"
     },
     {
       "category": "行政類",
-      "question": "社費怎麼收？包含哪些項目？",
-      "answer": "【請幹部至後台填寫實際金額與內容，例如：每學期 OOO 元，包含場地費與教學耗材】",
-      "question_en": "How much are the membership dues, and what do they cover?",
-      "answer_en": "[Officers: please fill in the actual amount and coverage here, e.g. NT$OOO per semester, covering venue and teaching materials]"
-    },
-    {
-      "category": "行政類",
-      "question": "社課的時間與地點在哪裡？",
-      "answer": "詳細時間地點請參考「修煉日程」頁面，會依學期公告每週的固定社課時段與場地。",
-      "question_en": "When and where are the classes held?",
-      "answer_en": "Please check the \"Schedule\" page for the current semester's weekly class times and locations."
-    },
-    {
-      "category": "行政類",
-      "question": "一定要每次都到嗎？可以只是體驗一次嗎？",
-      "answer": "沒有強制簽到，歡迎先來體驗一次感受氛圍再決定是否加入；不過建議加入後盡量固定出席，學習效果會更好。",
-      "question_en": "Do I have to attend every session? Can I just try one class first?",
-      "answer_en": "Attendance isn't mandatory, and you're welcome to try one class first before deciding. That said, regular attendance is recommended for the best learning results once you join."
-    },
-    {
-      "category": "行政類",
-      "question": "寒暑假社團還有活動嗎？",
-      "answer": "寒暑假期間多為社遊或特別課程，部分時段會暫停例行社課，詳細安排請以「修煉日程」頁面的公告為準。",
-      "question_en": "Are there activities during winter/summer break?",
-      "answer_en": "Breaks usually feature club trips or special sessions, with regular classes paused at times. Please check the \"Schedule\" page for exact arrangements."
-    },
-    {
-      "category": "行政類",
-      "question": "想加入或有其他問題，該怎麼聯絡社團？",
-      "answer": "歡迎透過「尋訪仙蹤」頁面上的 Email 或 Instagram 私訊我們，小編會盡快回覆你的問題。",
-      "question_en": "How can I contact the club to join or ask more questions?",
-      "answer_en": "Feel free to reach us via the email or Instagram listed on the \"Find Us\" page — we'll get back to you as soon as we can."
+      "questions": [
+        {
+          "question": "社費怎麼收？包含哪些項目？",
+          "answer": "【請幹部至後台填寫實際金額與內容，例如：每學期 OOO 元，包含場地費與教學耗材】",
+          "question_en": "How much are the membership dues, and what do they cover?",
+          "answer_en": "[Officers: please fill in the actual amount and coverage here, e.g. NT$OOO per semester, covering venue and teaching materials]"
+        },
+        {
+          "question": "社課的時間與地點在哪裡？",
+          "answer": "詳細時間地點請參考「修煉日程」頁面，會依學期公告每週的固定社課時段與場地。",
+          "question_en": "When and where are the classes held?",
+          "answer_en": "Please check the \"Schedule\" page for the current semester's weekly class times and locations."
+        },
+        {
+          "question": "一定要每次都到嗎？可以只是體驗一次嗎？",
+          "answer": "沒有強制簽到，歡迎先來體驗一次感受氛圍再決定是否加入；不過建議加入後盡量固定出席，學習效果會更好。",
+          "question_en": "Do I have to attend every session? Can I just try one class first?",
+          "answer_en": "Attendance isn't mandatory, and you're welcome to try one class first before deciding. That said, regular attendance is recommended for the best learning results once you join."
+        },
+        {
+          "question": "寒暑假社團還有活動嗎？",
+          "answer": "寒暑假期間多為社遊或特別課程，部分時段會暫停例行社課，詳細安排請以「修煉日程」頁面的公告為準。",
+          "question_en": "Are there activities during winter/summer break?",
+          "answer_en": "Breaks usually feature club trips or special sessions, with regular classes paused at times. Please check the \"Schedule\" page for exact arrangements."
+        },
+        {
+          "question": "想加入或有其他問題，該怎麼聯絡社團？",
+          "answer": "歡迎透過「尋訪仙蹤」頁面上的 Email 或 Instagram 私訊我們，小編會盡快回覆你的問題。",
+          "question_en": "How can I contact the club to join or ask more questions?",
+          "answer_en": "Feel free to reach us via the email or Instagram listed on the \"Find Us\" page — we'll get back to you as soon as we can."
+        }
+      ],
+      "category_en": "Administrative"
     }
   ]
 }
