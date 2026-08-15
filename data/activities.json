@@ -1,56 +1,75 @@
 {
   "page_title": "活動介紹",
+  "page_title_en": "",
   "page_subtitle": "練功之餘，也要 Work out-Life Balance",
+  "page_subtitle_en": "",
   "activities": [
     {
       "title": "迎新",
-      "desc": "迎接新人",
+      "title_en": "welcome party",
+      "desc": "為第一次接觸太極的人精心準備，以表演及體驗兩大項目為主軸。其中，「表演」是四種功法完整動作示範，搭配音樂展現太極的柔美與力量。而另一重頭戲「體驗」則是結合一些互動小遊戲，幫助初學者初步認識太極基本步伐。我們相信節目欣賞與實際體驗相輔相成，透過觀察再到嘗試更能理解所學。",
+      "desc_en": "",
       "albums": [
         {
           "name": "測試一",
+          "name_en": "",
           "photos": [
             {
               "image": "/assets/uploads/玉清元始天尊.jpg",
-              "caption": ""
+              "caption": "",
+              "caption_en": ""
             },
             {
               "image": "/assets/uploads/7ec9139ca36256138cc8ead6a19ae3ab.jpg",
-              "caption": ""
+              "caption": "",
+              "caption_en": ""
             }
           ]
         },
         {
           "name": "測試二",
+          "name_en": "",
           "photos": [
             {
               "image": "/assets/uploads/北京十方普觉寺_多闻天.jfif",
-              "caption": ""
+              "caption": "",
+              "caption_en": ""
             },
             {
               "image": "/assets/uploads/北京十方普觉寺_持国天.jfif",
-              "caption": ""
+              "caption": "",
+              "caption_en": ""
             },
             {
               "image": "/assets/uploads/北京十方普觉寺_增长天.jfif",
-              "caption": ""
+              "caption": "",
+              "caption_en": ""
             },
             {
               "image": "/assets/uploads/Guangmutian,_Shifangpujue_Temple,_Beijing,_P.R.China.jfif",
-              "caption": ""
+              "caption": "",
+              "caption_en": ""
             }
           ]
         }
       ],
       "photos": [
         {
-          "caption": "新人",
-          "image": "/assets/uploads/朋.png"
+          "image": "/assets/uploads/朋.png",
+          "caption": "新人"
         },
         {
-          "caption": "草地",
-          "image": "/assets/uploads/Grasslands-menggu.jpg"
+          "image": "/assets/uploads/Grasslands-menggu.jpg",
+          "caption": "草地"
         }
       ]
+    },
+    {
+      "title": "期末大會",
+      "title_en": "Final assembly & Performance",
+      "desc": "每到期末大會代表學期將要結束，當天不會教學新動作，而是由幹部及舊成員帶領當學期剛加入的新成員協手表演，向指導老師及太極協會的師兄們展示學習成果。與其說這是一個考驗，不如說是一場交流會。至此之後，新成員們將完成蛻變成為引領下一批新人的夥伴。",
+      "desc_en": "",
+      "albums": []
     }
   ]
 }
