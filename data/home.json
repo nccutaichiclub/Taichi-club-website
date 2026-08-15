@@ -17,6 +17,32 @@
     "link_faq": "常見問題",
     "link_faq_en": ""
   },
+  "hero": {
+    "carousel_desktop": [
+      {
+        "image": "/assets/uploads/Grasslands-menggu.jpg",
+        "alt": "",
+        "alt_en": ""
+      }
+    ],
+    "carousel_mobile": [],
+    "carousel": [
+      {
+        "image": "/assets/uploads/Gemini_Generated_Image_lctaojlctaojlcta.png",
+        "alt": "社課練習剪影"
+      },
+      {
+        "image": "/assets/uploads/ChatGPT Image 2026年7月19日 下午04_13_59.png",
+        "alt": "社遊活動剪影"
+      },
+      {
+        "image": "/assets/uploads/colorful-winding-autumn-road.jpg",
+        "alt": "太極劍演練剪影"
+      }
+    ],
+    "btn_methods": "窺探法門",
+    "btn_contact": "結緣問道"
+  },
   "methods_section": {
     "eyebrow": "METHODOLOGY",
     "eyebrow_en": "",
@@ -120,7 +146,9 @@
       "subtitle": "【傳統春捲DIY】",
       "subtitle_en": "",
       "desc": "為本社的特色活動，成員們親力親為製作春捲，本地生與外籍生共同體驗傳統文化、享用單純美味。",
-      "desc_en": ""
+      "desc_en": "",
+      "background_image": "",
+      "background_opacity": 20
     },
     {
       "roman": "參",
@@ -130,7 +158,9 @@
       "subtitle": "【社團旅遊】",
       "subtitle_en": "",
       "desc": "社課之餘每學期會有一到兩次社團旅遊，可能是親近自然的踏青活動，又或是造訪附近博物館了解人文歷史，為成員們緊湊的生活安排一個忙裡偷閒的特別行程。",
-      "desc_en": ""
+      "desc_en": "",
+      "background_image": "",
+      "background_opacity": 20
     },
     {
       "roman": "肆",
@@ -140,7 +170,9 @@
       "subtitle": "【社團聚餐—素食料理】",
       "subtitle_en": "",
       "desc": "學期間舉辦一次社團聚餐，所有成員在餐桌上分享交流課程收穫、閒聊一些日常，互相熟絡增進彼此感情。",
-      "desc_en": ""
+      "desc_en": "",
+      "background_image": "",
+      "background_opacity": 20
     },
     {
       "roman": "伍",
@@ -214,9 +246,9 @@
       }
     ],
     "google_map_embed_url": "",
-    "badge_label": "道傳寰宇",
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
     "title": "外邦弟子的修真緣分",
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
+    "badge_label": "道傳寰宇"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -231,18 +263,18 @@
       "photo": "/assets/uploads/玉清元始天尊.jpg",
       "name": "瞿老師",
       "name_en": "",
-      "subtitle": "基礎班，氣功、太極拳、太極劍教學",
+      "subtitle": "基礎班指導老師",
       "subtitle_en": "",
-      "desc": "道教最高天神，居三清之首。又稱“玉清大帝”。全稱“玉清聖境虛無自然元始天尊”，在宮觀的“三清殿”中其塑像居中位，大多手執混元寶珠。",
+      "desc": "華陀導引氣功、太極拳、太極劍教學。",
       "desc_en": ""
     },
     {
       "photo": "/assets/uploads/7ec9139ca36256138cc8ead6a19ae3ab.jpg",
       "name": "阿吉老師",
       "name_en": "",
-      "subtitle": "負責進階班，太極拳、太祖棍教學。",
+      "subtitle": "進階班指導老師",
       "subtitle_en": "",
-      "desc": "太上老君，簡稱老君，全稱「一炁化三清太清居火赤天仙登太清境玄氣所成日神寶君道德天尊混元上帝」，為「三清」之一，相傳他化身為周朝的思想家老子。",
+      "desc": "太極拳、太祖棍教學。",
       "desc_en": ""
     }
   ],
@@ -292,6 +324,7 @@
       "desc_en": ""
     }
   ],
+  "staff_alumni": [],
   "contact_section": {
     "eyebrow": "Contact/ Join Us",
     "eyebrow_en": "",
@@ -299,13 +332,13 @@
     "title_en": "",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
     "intro_en": "",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
-    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "social_label": "【仙界傳音】",
-    "email_value": "nccutaichi@email.com",
-    "email_label": "【問道法郵】",
+    "location_label": "【道場位置】",
     "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "location_label": "【道場位置】"
+    "email_label": "【問道法郵】",
+    "email_value": "nccutaichi@email.com",
+    "social_label": "【仙界傳音】",
+    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
   },
   "contact": {
     "location_label": "活動教室",
@@ -353,23 +386,5 @@
     "copyright_en": "",
     "sub": "指南天光，水墨太極。本頁面已啟用隨緣修行設定。",
     "sub_en": ""
-  },
-  "hero": {
-    "carousel": [
-      {
-        "image": "/assets/uploads/Gemini_Generated_Image_lctaojlctaojlcta.png",
-        "alt": "社課練習剪影"
-      },
-      {
-        "image": "/assets/uploads/ChatGPT Image 2026年7月19日 下午04_13_59.png",
-        "alt": "社遊活動剪影"
-      },
-      {
-        "image": "/assets/uploads/colorful-winding-autumn-road.jpg",
-        "alt": "太極劍演練剪影"
-      }
-    ],
-    "btn_methods": "窺探法門",
-    "btn_contact": "結緣問道"
   }
 }
