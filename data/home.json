@@ -246,9 +246,9 @@
       }
     ],
     "google_map_embed_url": "",
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
+    "badge_label": "道傳寰宇",
     "title": "外邦弟子的修真緣分",
-    "badge_label": "道傳寰宇"
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -260,12 +260,12 @@
   },
   "instructors": [
     {
-      "photo": "/assets/uploads/玉清元始天尊.jpg",
+      "photo": "/assets/uploads/496311953_3157412557745802_5682965436209363767_n.jpg",
       "name": "瞿老師",
       "name_en": "",
       "subtitle": "基礎班指導老師",
       "subtitle_en": "",
-      "desc": "華陀導引氣功、太極拳、太極劍教學。",
+      "desc": "華陀導引氣功、太極拳、太極劍教學。\n\n曾任元富證券債券部副總經理，在金融界表現優異。她因練太極改善健康，積極推廣太極事業，擔任台灣傳統武學太極拳刀劍桿散手協會要角，並熱心參與政大太極社與政大EMBA太極拳社交流，以太極心法結合職場管理，推廣身心養生。",
       "desc_en": ""
     },
     {
@@ -332,13 +332,13 @@
     "title_en": "",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
     "intro_en": "",
-    "location_label": "【道場位置】",
-    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "email_label": "【問道法郵】",
-    "email_value": "nccutaichi@email.com",
-    "social_label": "【仙界傳音】",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
     "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
+    "social_label": "【仙界傳音】",
+    "email_value": "nccutaichi@email.com",
+    "email_label": "【問道法郵】",
+    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
+    "location_label": "【道場位置】"
   },
   "contact": {
     "location_label": "活動教室",
