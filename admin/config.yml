@@ -251,6 +251,8 @@ collections:
               - { label: "仙界傳音標籤 (English，選填，沒填會顯示中文版)", name: "social_label_en", widget: "string", required: false }
               - { label: "仙界傳音內容", name: "social_value", widget: "string" }
               - { label: "仙界傳音內容 (English，選填，沒填會顯示中文版)", name: "social_value_en", widget: "string", required: false }
+              - { label: "Facebook 粉專網址 (選填，填了才會顯示 FB 按鈕)", name: "fb_url", widget: "string", required: false, hint: "貼上完整網址，例如 https://www.facebook.com/nccutaichi" }
+              - { label: "Instagram 帳號網址 (選填，填了才會顯示 IG 按鈕)", name: "ig_url", widget: "string", required: false, hint: "貼上完整網址，例如 https://www.instagram.com/nccu_taichi" }
               - { label: "頁尾小語", name: "footer_quote", widget: "markdown", buttons: ["bold", "code", "strikethrough"], minimal: true, hint: "建議 60 字以內；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註；Strikethrough 按鈕(刪除線圖示)＝綠色標註" }
               - { label: "頁尾小語 (English，選填，沒填會顯示中文版)", name: "footer_quote_en", widget: "markdown", buttons: ["bold", "code", "strikethrough"], minimal: true, required: false, hint: "同樣可用 Bold／Code／Strikethrough 按鈕排版" }
 
