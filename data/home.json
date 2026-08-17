@@ -246,9 +246,9 @@
       }
     ],
     "google_map_embed_url": "",
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
+    "badge_label": "道傳寰宇",
     "title": "外邦弟子的修真緣分",
-    "badge_label": "道傳寰宇"
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -332,13 +332,13 @@
     "title_en": "",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
     "intro_en": "",
-    "location_label": "【道場位置】",
-    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "email_label": "【問道法郵】",
-    "email_value": "nccutaichi@email.com",
-    "social_label": "【仙界傳音】",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
     "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
+    "social_label": "【仙界傳音】",
+    "email_value": "nccutaichi@email.com",
+    "email_label": "【問道法郵】",
+    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
+    "location_label": "【道場位置】"
   },
   "contact": {
     "location_label": "活動教室",
@@ -352,6 +352,8 @@
     "social_label_en": "",
     "social_value": "IG: @nccu_taichi / FB：政治大學太極社 (歡迎私訊小編)",
     "social_value_en": "",
+    "fb_url": "https://www.facebook.com/NCCUTaichi",
+    "ig_url": "https://www.instagram.com/nccu_taichiclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
     "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」\n期待在指南山下，與你在呼吸吐納中相遇。",
     "footer_quote_en": ""
   },
