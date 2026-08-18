@@ -35,12 +35,12 @@
       ],
       "photos": [
         {
-          "image": "/assets/uploads/朋.png",
-          "caption": "新人"
+          "caption": "新人",
+          "image": "/assets/uploads/朋.png"
         },
         {
-          "image": "/assets/uploads/Grasslands-menggu.jpg",
-          "caption": "草地"
+          "caption": "草地",
+          "image": "/assets/uploads/Grasslands-menggu.jpg"
         }
       ]
     },
@@ -48,6 +48,13 @@
       "title": "期末大會",
       "title_en": "Final assembly & Performance",
       "desc": "每到期末大會代表學期將要結束，當天不會教學新動作，而是由幹部及舊成員帶領當學期剛加入的新成員協手表演，向指導老師及太極協會的師兄們展示學習成果。與其說這是一個考驗，不如說是一場交流會。至此之後，新成員們將完成蛻變成為引領下一批新人的夥伴。",
+      "desc_en": "",
+      "albums": []
+    },
+    {
+      "title": "聯展",
+      "title_en": "",
+      "desc": "這是大部分的人接觸到政大太極社的起點，在攤位除了介紹及簡單的動作示範，甚至還有一些有趣的小互動，其中每個細節都是歷屆及當屆幹部用心規劃的痕跡。而攤位上除了幹部，偶爾也會有一些新舊成員一起宣傳，整體氛圍十分融洽。",
       "desc_en": "",
       "albums": []
     }
