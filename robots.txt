@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nccutaichiclub.github.io/Taichi-club-website/sitemap.xml
