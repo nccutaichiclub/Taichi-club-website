@@ -205,7 +205,7 @@
     "subtitle_en": "",
     "para1": "政大太極社歷年來接待了無數自歐美、日韓、東南亞等地慕名而來的交換學生。\n\n課程中，我們跨越語言藩籬，以拳會友。五湖四海皆兄弟來者是客，不求依樣畫葫蘆完整學會全套功法，而是希望每位來此的學員，留下珍貴的回憶。",
     "para1_en": "",
-    "para2": "隨著越來越多的交換生散佈在世界各地，使我們每次的海外出行都充滿了與眾不同的回憶，而交換生偶爾回台的探訪也無不令我們驚喜萬分。交換期間的結束只是暫時道別，而絕不會是我們交流的終點。",
+    "para2": "隨著越來越多的交換生散佈在世界各地，使我們每次的海外出行都充滿了與眾不同的回憶，而交換生偶爾回台的探訪也無不令我們驚喜萬分。\n\n交換期間的結束只是暫時道別，而絕不會是我們交流的終點。",
     "para2_en": "",
     "country_tags": [
       {
@@ -251,9 +251,9 @@
       }
     ],
     "google_map_embed_url": "",
-    "badge_label": "道傳寰宇",
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
     "title": "外邦弟子的修真緣分",
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
+    "badge_label": "道傳寰宇"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -337,13 +337,13 @@
     "title_en": "",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
     "intro_en": "",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
-    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "social_label": "【仙界傳音】",
-    "email_value": "nccutaichi@email.com",
-    "email_label": "【問道法郵】",
+    "location_label": "【道場位置】",
     "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "location_label": "【道場位置】"
+    "email_label": "【問道法郵】",
+    "email_value": "nccutaichi@email.com",
+    "social_label": "【仙界傳音】",
+    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
   },
   "contact": {
     "location_label": "活動教室",
