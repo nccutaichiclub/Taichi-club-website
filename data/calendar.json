@@ -1,4 +1,8 @@
 {
+  "page_title": "學期行事曆",
+  "page_title_en": "Calendar of the Semester",
+  "page_subtitle": "想不到的課程，想不到的活動，通通都在這裡",
+  "page_subtitle_en": "",
   "semester_schedule": {
     "title": "",
     "title_en": "",
@@ -26,12 +30,13 @@
   "events": [
     {
       "month": "recurring",
-      "time": "每週三 (Wednesday)",
+      "time": "每週三",
+      "time_en": "Wednesday",
       "type": "常課",
       "title": "晨練",
       "title_en": "Morning Practice",
       "location": "資訊大樓1F平台",
-      "location_en": "",
+      "location_en": "1F Platform, Information Building",
       "desc": "與幹部一同練習氣功與太極拳，藉以達複習與養生之效",
       "desc_en": "",
       "note": "註：10/19-10/30 期中週停練",
@@ -40,12 +45,14 @@
       "start_time": "07:40",
       "end_time": "08:10",
       "repeat": "weekly",
+      "repeat_days": [],
       "repeat_until": "2026-12-11",
       "semester": "115-1"
     },
     {
       "month": "recurring",
-      "time": "每週三 (Wednesday)",
+      "time": "每週三",
+      "time_en": "Wednesday",
       "type": "",
       "title": "社課",
       "title_en": "Club Class",
@@ -59,11 +66,13 @@
       "start_time": "19:30",
       "end_time": "21:00",
       "repeat": "weekly",
+      "repeat_days": [],
       "repeat_until": "2026-12-09"
     },
     {
       "month": "first_half",
       "time": "10/7",
+      "time_en": "",
       "type": "",
       "title": "包春捲DIY",
       "title_en": "Spring Roll DIY",
@@ -77,11 +86,13 @@
       "start_time": "18:00",
       "end_time": "20:00",
       "repeat": "none",
+      "repeat_days": [],
       "repeat_until": ""
     },
     {
       "month": "first_half",
       "time": "待定",
+      "time_en": "",
       "type": "歷練",
       "title": "第一次社遊",
       "title_en": "",
@@ -95,12 +106,14 @@
       "start_time": "00:00",
       "end_time": "00:00",
       "repeat": "none",
+      "repeat_days": [],
       "repeat_until": "",
       "semester": "115-1"
     },
     {
       "month": "second_half",
       "time": "待定",
+      "time_en": "",
       "type": "",
       "title": "第二次社遊",
       "title_en": "",
@@ -114,11 +127,13 @@
       "start_time": "00:00",
       "end_time": "00:00",
       "repeat": "none",
+      "repeat_days": [],
       "repeat_until": ""
     },
     {
       "month": "second_half",
       "time": "11/26",
+      "time_en": "",
       "type": "",
       "title": "社團聚餐",
       "title_en": "Dinner Party (Taiwanese Vegetarian Cuisine)",
@@ -132,11 +147,13 @@
       "start_time": "18:00",
       "end_time": "20:30",
       "repeat": "none",
+      "repeat_days": [],
       "repeat_until": ""
     },
     {
       "month": "second_half",
       "time": "12/9",
+      "time_en": "",
       "type": "",
       "title": "期末大會",
       "title_en": "Final assembly & Performance",
@@ -150,11 +167,13 @@
       "start_time": "19:30",
       "end_time": "21:30",
       "repeat": "none",
+      "repeat_days": [],
       "repeat_until": ""
     },
     {
       "month": "second_half",
       "time": "Maybe",
+      "time_en": "",
       "type": "",
       "title": "寒訓",
       "title_en": "Winter Traing",
@@ -168,6 +187,7 @@
       "start_time": "00:00",
       "end_time": "00:00",
       "repeat": "none",
+      "repeat_days": [],
       "repeat_until": ""
     }
   ]
