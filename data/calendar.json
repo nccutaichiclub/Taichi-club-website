@@ -1,7 +1,7 @@
 {
   "semester_schedule": {
-    "title": "學期行事曆",
-    "title_en": "Calendar of the Semester",
+    "title": "",
+    "title_en": "",
     "items": [
       {
         "label": "中文版",
@@ -105,9 +105,9 @@
       "title": "第二次社遊",
       "title_en": "",
       "location": "敬請期待",
-      "location_en": "",
+      "location_en": "Coming Soon",
       "desc": "敬請期待",
-      "desc_en": "",
+      "desc_en": "Coming Soon",
       "note": "",
       "note_en": "",
       "event_date": "",
