@@ -196,6 +196,12 @@
             border-left: 3px solid rgba(197, 160, 89, 0.5);
             transition: background-color 0.2s ease;
         }
+        /* 雙數活動（第2、4...筆）金色細線改到右側，避免整排連續的活動看起來像同一條貫穿到底的緞帶 */
+        .event-row:nth-child(even) {
+            border-left: none;
+            padding: 14px 16px 14px 18px;
+            border-right: 3px solid rgba(197, 160, 89, 0.5);
+        }
         .event-row:hover {
             background-color: rgba(255,255,255,0.06);
         }
@@ -216,11 +222,6 @@
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-        }
-        /* 雙數活動（第2、4...筆）把日期標題那組改到最右邊，加入日曆按鈕改到最左邊，
-           避免每一列的金色元素（標題文字、按鈕外框）都集中在同一側，讀起來連成一片 */
-        .event-row:nth-child(even) .event-title-line {
-            flex-direction: row-reverse;
         }
         .event-row .event-meta-line {
             color: var(--霧霾灰);
