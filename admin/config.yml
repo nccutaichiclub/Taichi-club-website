@@ -354,6 +354,10 @@ collections:
         label: "編輯活動列表"
         name: "calendar"
         fields:
+          - { label: "頁面主標題", name: "page_title", widget: "string", required: false, default: "四時曆法", hint: "建議 12 字以內" }
+          - { label: "頁面主標題 (English，選填，沒填會顯示中文版)", name: "page_title_en", widget: "string", required: false }
+          - { label: "頁面引言", name: "page_subtitle", widget: "string", required: false, default: "「順應天時，不期而遇。此乃本門弟子紅塵與山林修煉之引導。」", hint: "建議 50 字以內" }
+          - { label: "頁面引言 (English，選填，沒填會顯示中文版)", name: "page_subtitle_en", widget: "string", required: false }
           - label: "本學期行事曆 (可上傳中/英文等多語言版本，並排顯示)"
             name: "semester_schedule"
             widget: "object"
@@ -386,7 +390,8 @@ collections:
                   {label: "上半學期活動 (期中前)", value: "first_half"},
                   {label: "下半學期活動 (期中後)", value: "second_half"}
                 ]
-              - {label: "日期文字 (顯示用)", name: "time", widget: "string", hint: "顯示在活動標題前面的日期文字，例如「10/18」"}
+              - {label: "日期文字 (顯示用)", name: "time", widget: "string", hint: "顯示在活動標題前面的日期文字，例如「10/18」或「每週三」"}
+              - {label: "日期文字 (English，選填，沒填會顯示中文版)", name: "time_en", widget: "string", required: false}
               - {label: "活動類型 (如:常課/歷練，僅供內部參考，畫面上不會顯示)", name: "type", widget: "string", required: false}
               - {label: "活動標題", name: "title", widget: "string"}
               - { label: "活動標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
@@ -400,6 +405,7 @@ collections:
               - { label: "開始時間 (選填，24小時制，如 19:00)，會同時顯示在畫面上的活動時間", name: "start_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 19:00'] }
               - { label: "結束時間 (選填，24小時制，如 21:00)，會同時顯示在畫面上的活動時間", name: "end_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 21:00'] }
               - { label: "重複頻率 (選填)", name: "repeat", widget: "select", required: false, options: [{label: "不重複 (單次活動)", value: "none"}, {label: "每週重複", value: "weekly"}, {label: "隔週重複", value: "biweekly"}], default: "none" }
+              - { label: "重複星期 (選填，一週要重複好幾天才需要選，例如晨練週一週三都有)", name: "repeat_days", widget: "select", multiple: true, required: false, options: [{label: "星期一", value: "MO"}, {label: "星期二", value: "TU"}, {label: "星期三", value: "WE"}, {label: "星期四", value: "TH"}, {label: "星期五", value: "FR"}, {label: "星期六", value: "SA"}, {label: "星期日", value: "SU"}], hint: "只有「重複頻率」設定為每週或隔週時才有作用；不選的話，就只會依照「起始日期」那天的星期重複" }
               - { label: "重複結束日期 (選填，只有「重複頻率」設定為每週或隔週時才有作用)", name: "repeat_until", widget: "datetime", time_format: false, required: false, hint: "設定後，加入 Google 日曆的重複活動只會重複到這一天為止，不會無限重複下去" }
 
   - name: "faq_settings"
