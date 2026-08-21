@@ -26,7 +26,7 @@
   "events": [
     {
       "month": "recurring",
-      "time": "每週三",
+      "time": "每週三 (Wednesday)",
       "type": "常課",
       "title": "晨練",
       "title_en": "Morning Practice",
@@ -45,7 +45,7 @@
     },
     {
       "month": "recurring",
-      "time": "每週三",
+      "time": "每週三 (Wednesday)",
       "type": "",
       "title": "社課",
       "title_en": "Club Class",
