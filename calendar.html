@@ -217,6 +217,11 @@
             justify-content: space-between;
             gap: 8px;
         }
+        /* 雙數活動（第2、4...筆）把日期標題那組改到最右邊，加入日曆按鈕改到最左邊，
+           避免每一列的金色元素（標題文字、按鈕外框）都集中在同一側，讀起來連成一片 */
+        .event-row:nth-child(even) .event-title-line {
+            flex-direction: row-reverse;
+        }
         .event-row .event-meta-line {
             color: var(--霧霾灰);
             font-size: 0.85rem;
@@ -275,8 +280,8 @@
 
 
     <div class="container">
-        <h1>四時曆法</h1>
-        <div class="subtitle">「順應天時，不期而遇。此乃本門弟子紅塵與山林修煉之引導。」</div>
+        <h1 id="page-title">四時曆法</h1>
+        <div class="subtitle" id="page-subtitle">「順應天時，不期而遇。此乃本門弟子紅塵與山林修煉之引導。」</div>
 
         <!-- 本學期行事曆：中英雙語並排小圖預覽，由後台資料決定顯示筆數與內容 -->
         <div id="semester-schedule" class="semester-schedule" style="display:none;">
@@ -319,6 +324,10 @@
 
                 if (event.repeat === 'weekly' || event.repeat === 'biweekly') {
                     let rrule = event.repeat === 'weekly' ? 'RRULE:FREQ=WEEKLY' : 'RRULE:FREQ=WEEKLY;INTERVAL=2';
+                    // 有勾選「重複星期」就加上 BYDAY，讓活動可以一週重複好幾天（例如晨練週一週三都有）
+                    if (Array.isArray(event.repeat_days) && event.repeat_days.length > 0) {
+                        rrule += `;BYDAY=${event.repeat_days.join(',')}`;
+                    }
                     // 有設定「重複結束日期」就加上 UNTIL，讓重複活動到那天為止就停止，不會無限重複下去
                     if (event.repeat_until) {
                         const untilStr = event.repeat_until.slice(0, 10).replace(/-/g, '');
@@ -330,12 +339,14 @@
                 return `https://www.google.com/calendar/render?${params.toString()}`;
             }
 
-            // 分類標題轉換：recurring -> 例行活動；first_half -> 上半學期活動(期中前)；second_half -> 下半學期活動(期中後)
+            // 分類標題轉換：這些是固定選項（不是後台自由輸入的文字），所以中英文直接寫在這裡，
+            // 依照目前語言顯示對應版本，不會再切成英文後還是顯示中文
             function monthLabel(monthValue) {
-                if (monthValue === 'recurring') return '例行活動';
-                if (monthValue === 'first_half') return '上半學期活動（期中前）';
-                if (monthValue === 'second_half') return '下半學期活動（期中後）';
-                return '未分類活動';
+                const isEn = (typeof getLang === 'function' && getLang() === 'en');
+                if (monthValue === 'recurring') return isEn ? 'Regular Activities' : '例行活動';
+                if (monthValue === 'first_half') return isEn ? 'First Half of Semester (Before Midterms)' : '上半學期活動（期中前）';
+                if (monthValue === 'second_half') return isEn ? 'Second Half of Semester (After Midterms)' : '下半學期活動（期中後）';
+                return isEn ? 'Uncategorized' : '未分類活動';
             }
 
             // 三層行事曆渲染：最上方是單一的學期標題（一次只會有一個學期在使用），
@@ -355,7 +366,11 @@
                 // 第一層：學期，綠底金字、直角獨立框框
                 const badge = document.createElement('div');
                 badge.className = 'semester-badge';
-                badge.innerText = (semesterTitle && semesterTitle.trim() !== '') ? `${semesterTitle.trim()} 學期行事曆` : '學期行事曆';
+                const isEnBadge = (typeof getLang === 'function' && getLang() === 'en');
+                const semesterSuffix = isEnBadge ? ' Semester Calendar' : ' 學期行事曆';
+                badge.innerText = (semesterTitle && semesterTitle.trim() !== '')
+                    ? `${semesterTitle.trim()}${semesterSuffix}`
+                    : (isEnBadge ? 'Semester Calendar' : '學期行事曆');
                 semesterGroup.appendChild(badge);
 
                 // 依「月份／例行活動」分組，維持後台輸入的先後順序
@@ -377,7 +392,7 @@
 
                     const monthHeader = document.createElement('div');
                     monthHeader.className = 'month-header';
-                    monthHeader.innerText = key === '未分類' ? '未分類活動' : monthLabel(key);
+                    monthHeader.innerText = monthLabel(key);
                     monthBlock.appendChild(monthHeader);
 
                     // 第三層：活動，透明底白字
@@ -447,6 +462,14 @@
                 .then(response => response.json())
                 .then(data => {
                     data = applyLangToData(data); // 依目前語言整批轉換文字內容
+
+                    // 頁面主標題與引言
+                    if (data.page_title) {
+                        document.getElementById('page-title').innerText = data.page_title;
+                    }
+                    if (data.page_subtitle) {
+                        document.getElementById('page-subtitle').innerText = data.page_subtitle;
+                    }
 
                     // 本學期行事曆：支援多筆（例如中文版 + 英文版）並排小圖預覽
                     if (data.semester_schedule) {
