@@ -149,3 +149,15 @@ function paragraphize(text) {
 
 // 網頁最上層的語言標示（對 SEO、螢幕報讀器、瀏覽器內建翻譯功能都有幫助）
 document.documentElement.lang = (getLang() === 'en') ? 'en' : 'zh-TW';
+
+// ========================================================================
+// 頁面載入遮罩：在資料還沒從 data/*.json 抓回來、內容還是預留文字的這段期間，
+// 用一層全螢幕遮罩蓋住畫面，避免訪客先看到預留文字、資料抓回來才「跳成」正確內容的閃爍感。
+// 每個頁面的資料抓取完成後（不管成功或失敗）都要呼叫這個函式把遮罩淡出移除。
+// ========================================================================
+function hidePageLoadingOverlay() {
+    const el = document.getElementById('page-loading-overlay');
+    if (!el) return;
+    el.style.opacity = '0';
+    setTimeout(() => el.remove(), 300);
+}
