@@ -34,6 +34,8 @@ collections:
               - { label: "選單-修煉日程 (English，選填，沒填會顯示中文版)", name: "link_calendar_en", widget: "string", required: false }
               - { label: "選單-常見問題", name: "link_faq", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
               - { label: "選單-常見問題 (English，選填，沒填會顯示中文版)", name: "link_faq_en", widget: "string", required: false }
+              - { label: "頁面載入提示文字 (顯示在網頁開啟時的過場畫面)", name: "loading_text", widget: "string", required: false, default: "道場開啟中...", hint: "建議 10 字以內。因為這段文字是在資料抓回來「之前」就要顯示的，改了之後不會馬上生效，要等訪客瀏覽過一次網站、瀏覽器記住新文字後，下一頁或下次造訪才會顯示新版本" }
+              - { label: "頁面載入提示文字 (English，選填)", name: "loading_text_en", widget: "string", required: false, default: "Entering the Dojo..." }
 
           - label: "Hero 主視覺區"
             name: "hero"
