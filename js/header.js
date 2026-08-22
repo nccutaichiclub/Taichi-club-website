@@ -135,6 +135,11 @@ function renderSiteHeader() {
             setTextAll('nav-link-activities', data.nav.link_activities);
             setTextAll('nav-link-calendar', data.nav.link_calendar);
             setTextAll('nav-link-faq', data.nav.link_faq);
+
+            // 把這次抓到的「道場開啟中」文字存起來，下一頁（或下次造訪）的遮罩就會顯示這個版本
+            if (data.nav.loading_text && typeof setCachedLoadingText === 'function') {
+                setCachedLoadingText(data.nav.loading_text);
+            }
         })
         .catch(error => console.error('讀取 data/home.json 失敗：', error));
 }
