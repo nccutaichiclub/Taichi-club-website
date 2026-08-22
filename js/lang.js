@@ -161,3 +161,25 @@ function hidePageLoadingOverlay() {
     el.style.opacity = '0';
     setTimeout(() => el.remove(), 300);
 }
+
+// 「道場開啟中...」這段遮罩文字：因為遮罩本來就是在資料抓回來「之前」顯示的，
+// 沒辦法讓它在第一次顯示的當下就抓到後台文字（資料還在路上），所以改用瀏覽器儲存空間
+// 快取上一次成功抓到的文字，這樣訪客逛到下一頁（或下次造訪）時就會顯示後台設定的版本。
+const LOADING_TEXT_CACHE_KEY = 'nccu_taichi_loading_text';
+
+function getCachedLoadingText() {
+    try {
+        return localStorage.getItem(LOADING_TEXT_CACHE_KEY);
+    } catch (e) {
+        return null;
+    }
+}
+
+function setCachedLoadingText(text) {
+    if (!text) return;
+    try {
+        localStorage.setItem(LOADING_TEXT_CACHE_KEY, text);
+    } catch (e) {
+        // 瀏覽器擋掉儲存功能時就放棄快取，不影響其他功能
+    }
+}
