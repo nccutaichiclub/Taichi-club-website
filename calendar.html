@@ -275,6 +275,11 @@
     <!-- 全站共用的語言切換邏輯，要在其他腳本之前載入 -->
     <script src="js/lang.js"></script>
 
+    <!-- 頁面載入遮罩：資料抓回來、內容都填好之前先蓋住畫面，避免看到預留文字閃一下才變成正確內容 -->
+    <div id="page-loading-overlay" style="position:fixed;inset:0;background:#121212;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.3s ease;">
+        <div style="color:#C5A059;font-family:'Noto Serif TC',serif;letter-spacing:4px;font-size:0.9rem;">道場開啟中...</div>
+    </div>
+
     <!-- 頂部導覽列：由 header.js 統一產生，改導覽列只要改那支檔案，不用每頁各改一次 -->
     <div id="site-header"></div>
     <script src="js/header.js"></script>
@@ -538,9 +543,12 @@
 
                     // 三層行事曆：學期 → 月份 → 活動
                     renderScheduleEvents(data.semester_title, data.events);
+
+                    hidePageLoadingOverlay();
                 })
                 .catch(error => {
                     document.getElementById('calendar-events-container').innerHTML = '<p style="text-align:center; color:red;">曆法載入失敗，請確認資料庫陣法。</p>';
+                    hidePageLoadingOverlay();
                 });
         </script>
     </div>
