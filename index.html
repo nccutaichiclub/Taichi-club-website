@@ -129,8 +129,15 @@
 
     <!-- 頁面載入遮罩：資料抓回來、內容都填好之前先蓋住畫面，避免看到預留文字閃一下才變成正確內容 -->
     <div id="page-loading-overlay" style="position:fixed;inset:0;background:#08090A;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.3s ease;">
-        <div style="color:#B89742;font-family:'Noto Serif TC',serif;letter-spacing:4px;font-size:0.9rem;">道場開啟中...</div>
+        <div id="page-loading-text" style="color:#B89742;font-family:'Noto Serif TC',serif;letter-spacing:4px;font-size:0.9rem;">道場開啟中...</div>
     </div>
+    <script>
+        (function() {
+            // 立刻套用上次快取的「道場開啟中」文字（如果有的話），比等資料抓回來還快
+            var cached = (typeof getCachedLoadingText === 'function') ? getCachedLoadingText() : null;
+            if (cached) document.getElementById('page-loading-text').innerText = cached;
+        })();
+    </script>
 
     <div class="mist-bg"></div>
 
