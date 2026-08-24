@@ -226,7 +226,19 @@
       "title_en": "",
       "desc": "每學期依照需求不定期舉辦。起初以幹部訓練為目的舉辦，加強太極系列兵器之完整教學，後開放給所有有意願精進動作的學員自由報名參加。",
       "desc_en": "",
-      "albums": []
+      "albums": [
+        {
+          "name": "2025寒訓",
+          "name_en": "",
+          "photos": [
+            {
+              "image": "/assets/uploads/LINE_ALBUM_20250112太極社寒訓_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
