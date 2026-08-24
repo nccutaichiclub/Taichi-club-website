@@ -75,7 +75,41 @@
       "title_en": "",
       "desc": "本社社課以往由兩位指導老師共同帶領，參考過去幾屆社員的學習反饋，為避免新舊成員學習進度不一導致教學內容重複，本社決定於115學年度起試實施程度分班，由瞿老師負責初階班、阿吉老師負責進階班。剛加入之成員會先分配在初階班，想升班的學員則可以透過檢定轉入進階班。",
       "desc_en": "",
-      "albums": []
+      "albums": [
+        {
+          "name": "太極拳",
+          "name_en": "",
+          "photos": [
+            {
+              "image": "/assets/uploads/LINE_ALBUM_Lesson 7 Keep Going Even in Small Step🤸🏽‍♀️_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            }
+          ]
+        },
+        {
+          "name": "氣功",
+          "name_en": "",
+          "photos": [
+            {
+              "image": "/assets/uploads/LINE_ALBUM_Lesson8_ 持之以恆Stick to it🐛🦋_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            }
+          ]
+        },
+        {
+          "name": "太極沾粘棍",
+          "name_en": "",
+          "photos": [
+            {
+              "image": "/assets/uploads/LINE_ALBUM_2025.09.17 Lesson Two_Use Waist boost Power💪🌠_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "title": "檢定",
