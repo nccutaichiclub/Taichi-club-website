@@ -70,12 +70,12 @@
       ],
       "photos": [
         {
-          "caption": "新人",
-          "image": "/assets/uploads/朋.png"
+          "image": "/assets/uploads/朋.png",
+          "caption": "新人"
         },
         {
-          "caption": "草地",
-          "image": "/assets/uploads/Grasslands-menggu.jpg"
+          "image": "/assets/uploads/Grasslands-menggu.jpg",
+          "caption": "草地"
         }
       ]
     },
@@ -380,6 +380,26 @@
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_2026617餐聚❤️‍🔥🥢_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_14-5-2026 晚餐😋_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_🥢Sweet Dinner Time😋❤️_260817_5.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_112-1 Taichi Club dinner party_1 (2023.10.5)_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_2025.05.22 Dinner Party🍴😋❤️_260825_1.jpg",
               "caption": "",
               "caption_en": ""
             }
