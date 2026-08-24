@@ -22,7 +22,7 @@
           ]
         },
         {
-          "name": "測試二",
+          "name": "體驗集錦",
           "name_en": "",
           "photos": [
             {
@@ -35,12 +35,12 @@
       ],
       "photos": [
         {
-          "caption": "新人",
-          "image": "/assets/uploads/朋.png"
+          "image": "/assets/uploads/朋.png",
+          "caption": "新人"
         },
         {
-          "caption": "草地",
-          "image": "/assets/uploads/Grasslands-menggu.jpg"
+          "image": "/assets/uploads/Grasslands-menggu.jpg",
+          "caption": "草地"
         }
       ]
     },
@@ -49,7 +49,19 @@
       "title_en": "Final assembly & Performance",
       "desc": "每到期末大會代表學期將要結束，當天不會教學新動作，而是由幹部及舊成員帶領當學期剛加入的新成員協手表演，向指導老師及太極協會的師兄們展示學習成果。與其說這是一個考驗，不如說是一場交流會。至此之後，新成員們將完成蛻變成為引領下一批新人的夥伴。",
       "desc_en": "",
-      "albums": []
+      "albums": [
+        {
+          "name": "前前社長與前社長",
+          "name_en": "",
+          "photos": [
+            {
+              "image": "/assets/uploads/LINE_ALBUM_114-2 期末大會🌟2026527_260824_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "title": "聯展",
