@@ -253,9 +253,9 @@
       }
     ],
     "google_map_embed_url": "",
-    "badge_label": "道傳寰宇",
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
     "title": "外邦弟子的修真緣分",
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
+    "badge_label": "道傳寰宇"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -317,8 +317,8 @@
       "role_en": "",
       "name": "陳芸巧",
       "name_en": "",
-      "photo": "/assets/uploads/北京十方普觉寺_增长天.jfif",
-      "desc": "自本學期起擔任本社總務，文靜、認真負責，努力學習各式功法中。",
+      "photo": "/assets/uploads/Screenshot_20260813_165309_Gallery.jpg",
+      "desc": "自本學期起擔任本社總務，極致`I`人，客家小炒推廣者。",
       "desc_en": ""
     },
     {
@@ -339,13 +339,13 @@
     "title_en": "",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
     "intro_en": "",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
-    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "social_label": "【仙界傳音】",
-    "email_value": "nccutaichi@email.com",
-    "email_label": "【問道法郵】",
+    "location_label": "【道場位置】",
     "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "location_label": "【道場位置】"
+    "email_label": "【問道法郵】",
+    "email_value": "nccutaichi@email.com",
+    "social_label": "【仙界傳音】",
+    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
   },
   "contact": {
     "location_label": "活動教室",
