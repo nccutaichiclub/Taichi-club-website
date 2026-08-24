@@ -202,7 +202,24 @@
       "title_en": "",
       "desc": "每學期固定舉辦一到兩次的社團旅遊，以往多以博物館、美術館、名勝古蹟參觀為主。截至目前去過林安泰古厝、林家花園、中正紀念堂、蒙藏文化館、貓空、朱銘美術館等等，頗具參觀價值與教育意義的景點。",
       "desc_en": "",
-      "albums": []
+      "albums": [
+        {
+          "name": "大溪 2026524",
+          "name_en": "",
+          "photos": [
+            {
+              "image": "/assets/uploads/LINE_ALBUM_2026524 我在大溪天氣晴_260825_2.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_2026524 我在大溪天氣晴_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "title": "寒暑訓",
