@@ -135,7 +135,19 @@
       "title_en": "",
       "desc": "一日之計在於晨，練習氣功的最佳時間為早晨，而對於動作記憶最好的解方是複習。要在一週一次的社課記住所有動作實屬困難，為此本社幹部自發性的發起晨練，讓社員們可以在課前複習幫助記憶。",
       "desc_en": "",
-      "albums": []
+      "albums": [
+        {
+          "name": "早起的鳥兒有武練",
+          "name_en": "",
+          "photos": [
+            {
+              "image": "/assets/uploads/LINE_ALBUM_112-1 Taichi Morning exercise 🐿_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            }
+          ]
+        }
+      ]
     },
     {
       "title": "聚餐",
