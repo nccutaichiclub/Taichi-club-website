@@ -70,12 +70,12 @@
       ],
       "photos": [
         {
-          "image": "/assets/uploads/朋.png",
-          "caption": "新人"
+          "caption": "新人",
+          "image": "/assets/uploads/朋.png"
         },
         {
-          "image": "/assets/uploads/Grasslands-menggu.jpg",
-          "caption": "草地"
+          "caption": "草地",
+          "image": "/assets/uploads/Grasslands-menggu.jpg"
         }
       ]
     },
@@ -245,6 +245,26 @@
               "image": "/assets/uploads/LINE_ALBUM_Lesson8_ 持之以恆Stick to it🐛🦋_260825_1.jpg",
               "caption": "",
               "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_Lesson 6 Body Memory 🧠_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_Lesson 10 練心💪❤️‍🔥_251203_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_Lesson 10 練心💪❤️‍🔥_260825_2.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_113_2 First Class 🫸💨_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
             }
           ]
         },
@@ -254,6 +274,47 @@
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_2025.09.17 Lesson Two_Use Waist boost Power💪🌠_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_Third week_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_113_2 First Class 🫸💨_260825_2.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_113-2 Class 2_260825_2.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_113-2 Class 2_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_Third week_260825_2.jpg",
+              "caption": "",
+              "caption_en": ""
+            }
+          ]
+        },
+        {
+          "name": "太極劍",
+          "name_en": "",
+          "photos": [
+            {
+              "image": "/assets/uploads/LINE_ALBUM_112-1 Taichi Class_1_260825_1.jpg",
+              "caption": "",
+              "caption_en": ""
+            },
+            {
+              "image": "/assets/uploads/LINE_ALBUM_112-1 Taichi Class_1_260825_3.jpg",
               "caption": "",
               "caption_en": ""
             }
