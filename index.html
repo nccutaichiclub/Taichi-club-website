@@ -116,7 +116,7 @@
                 margin-bottom: 2px;
             }
         }
-        /* 紅塵歷練橫向滑動列的捲軸配色：黑底灰拉桿，取代瀏覽器預設的白底灰拉桿 */
+        /* 紅塵歷練橫向滑動列的捲軸配色：黑底灰拉桿，取代瀏覽器預設的白底灰拉桿（電腦版） */
         #experience-cards {
             scrollbar-width: thin; /* Firefox */
             scrollbar-color: #8E95A0 #08090A; /* Firefox: 拉桿色 / 底色 */
@@ -134,6 +134,16 @@
         }
         #experience-cards::-webkit-scrollbar-thumb:hover {
             background-color: #B89742;
+        }
+        /* 手機版：隱藏拖曳橫桿，改用左右箭頭導覽，仍保留手指滑動的功能 */
+        @media (max-width: 767px) {
+            #experience-cards {
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            #experience-cards::-webkit-scrollbar {
+                display: none;
+            }
         }
         /* 紅塵歷練卡片內文（手機版）：文字太多時可上下滑動查看，捲軸配色跟卡片列一致 */
         .exp-desc-scroll::-webkit-scrollbar {
@@ -182,6 +192,10 @@
         <!-- 半透明黑色遮罩，讓上面的按鈕文字在任何照片背景下都看得清楚 -->
         <div class="absolute inset-0 bg-black/45 z-[1]"></div>
 
+        <!-- 輪播左右切換箭頭：半透明深色圓底，滑鼠移過去會加深，不會蓋掉照片本身的可視度 -->
+        <button id="hero-prev-btn" type="button" aria-label="上一張" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-black/55 border border-white/30 text-white flex items-center justify-center text-xl transition-colors">‹</button>
+        <button id="hero-next-btn" type="button" aria-label="下一張" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-black/55 border border-white/30 text-white flex items-center justify-center text-xl transition-colors">›</button>
+
         <!-- 輪播指示點 (dots)，顯示目前是第幾張圖片，可點擊切換 -->
         <div id="hero-carousel-dots" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10"></div>
     </section>
@@ -195,20 +209,24 @@
             <p id="methods-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">動靜相兼，形神俱妙。此為本社修行之四大柱石。</p>
         </div>
 
-        <!-- 動態分頁頁籤 (Tabs) -->
-        <div class="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-4 mb-8 overflow-x-auto md:overflow-visible pb-2 md:pb-0 tab-scroll-row">
-            <button onclick="switchTab('qigong')" id="tab-qigong" class="tab-btn flex-shrink-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-bronze bg-pine text-white">
-                <span id="tab-qigong-label" class="inline-block align-middle whitespace-nowrap">華陀導引氣功</span>
-            </button>
-            <button onclick="switchTab('taichi')" id="tab-taichi" class="tab-btn flex-shrink-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                <span id="tab-taichi-label" class="inline-block align-middle whitespace-nowrap">太極拳</span>
-            </button>
-            <button onclick="switchTab('staff')" id="tab-staff" class="tab-btn flex-shrink-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                <span id="tab-staff-label" class="inline-block align-middle whitespace-nowrap">太祖棍</span>
-            </button>
-            <button onclick="switchTab('sword')" id="tab-sword" class="tab-btn flex-shrink-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
-                <span id="tab-sword-label" class="inline-block align-middle whitespace-nowrap">太極劍</span>
-            </button>
+        <!-- 動態分頁頁籤 (Tabs)：手機版加上左右箭頭方便滑動，並保留手指直接拖曳的功能 -->
+        <div class="relative mb-8">
+            <button id="tabs-prev-btn" type="button" aria-label="上一組" class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-ink-deep/80 border border-bronze/50 text-bronze-light flex items-center justify-center transition-opacity">‹</button>
+            <div id="methods-tab-row" class="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-4 overflow-x-auto md:overflow-visible pb-2 md:pb-0 tab-scroll-row px-10 md:px-0">
+                <button onclick="switchTab('qigong')" id="tab-qigong" class="tab-btn flex-shrink-0 min-w-[130px] md:min-w-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-bronze bg-pine text-white">
+                    <span id="tab-qigong-label" class="inline-block align-middle whitespace-nowrap">華陀導引氣功</span>
+                </button>
+                <button onclick="switchTab('taichi')" id="tab-taichi" class="tab-btn flex-shrink-0 min-w-[130px] md:min-w-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+                    <span id="tab-taichi-label" class="inline-block align-middle whitespace-nowrap">太極拳</span>
+                </button>
+                <button onclick="switchTab('staff')" id="tab-staff" class="tab-btn flex-shrink-0 min-w-[130px] md:min-w-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+                    <span id="tab-staff-label" class="inline-block align-middle whitespace-nowrap">太祖棍</span>
+                </button>
+                <button onclick="switchTab('sword')" id="tab-sword" class="tab-btn flex-shrink-0 min-w-[130px] md:min-w-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+                    <span id="tab-sword-label" class="inline-block align-middle whitespace-nowrap">太極劍</span>
+                </button>
+            </div>
+            <button id="tabs-next-btn" type="button" aria-label="下一組" class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-ink-deep/80 border border-bronze/50 text-bronze-light flex items-center justify-center transition-opacity">›</button>
         </div>
 
         <!-- 法門展示卡片內容 -->
@@ -331,9 +349,12 @@
                 <p id="exp-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。</p>
             </div>
 
-            <!-- 空容器 (container)，卡片由下方 JS 依照後台的 experiences 資料筆數，用迴圈自動產生；
-                 用 flex + overflow-x-auto 讓卡片固定同一排，超過畫面寬度時可以左右滑動 -->
-            <div id="experience-cards" class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory"></div>
+            <!-- 手機版加上左右箭頭方便切換，一次只顯示一張卡片；電腦版維持原本同排橫向滑動 -->
+            <div class="relative">
+                <button id="exp-prev-btn" type="button" aria-label="上一則" class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-ink-deep/80 border border-bronze/50 text-bronze-light flex items-center justify-center transition-opacity">‹</button>
+                <div id="experience-cards" class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory px-11 md:px-0"></div>
+                <button id="exp-next-btn" type="button" aria-label="下一則" class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-ink-deep/80 border border-bronze/50 text-bronze-light flex items-center justify-center transition-opacity">›</button>
+            </div>
         </div>
     </section>
 
@@ -539,6 +560,42 @@
                 activeBtn.classList.add('bg-pine', 'text-white', 'border-bronze');
             }
         }
+
+        // 共用的「橫向滑動列 + 左右箭頭」控制：點箭頭時滑動一個項目的寬度（含間距），
+        // 同時保留手指直接拖曳滑動的原生功能；捲到頭尾時箭頭會變淡並停用，提示已經到底了
+        function setupScrollArrows(containerId, prevBtnId, nextBtnId) {
+            const container = document.getElementById(containerId);
+            const prevBtn = document.getElementById(prevBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+            if (!container || !prevBtn || !nextBtn) return;
+
+            function scrollByOneItem(direction) {
+                const firstItem = container.firstElementChild;
+                if (!firstItem) return;
+                const style = getComputedStyle(container);
+                const gap = parseFloat(style.columnGap || style.gap || '0') || 0;
+                const amount = firstItem.getBoundingClientRect().width + gap;
+                container.scrollBy({ left: direction * amount, behavior: 'smooth' });
+            }
+
+            function updateArrowState() {
+                const maxScroll = container.scrollWidth - container.clientWidth;
+                const atStart = container.scrollLeft <= 4;
+                const atEnd = container.scrollLeft >= maxScroll - 4;
+                prevBtn.style.opacity = atStart ? '0.3' : '1';
+                nextBtn.style.opacity = atEnd ? '0.3' : '1';
+                prevBtn.disabled = atStart;
+                nextBtn.disabled = atEnd;
+            }
+
+            prevBtn.addEventListener('click', () => scrollByOneItem(-1));
+            nextBtn.addEventListener('click', () => scrollByOneItem(1));
+            container.addEventListener('scroll', updateArrowState);
+            updateArrowState();
+        }
+
+        // 四大功法頁籤是固定存在的靜態元素，頁面一載入就可以綁定箭頭
+        setupScrollArrows('methods-tab-row', 'tabs-prev-btn', 'tabs-next-btn');
     </script>
 
     <!-- 串接後台資料的 JavaScript：讀取 data/home.json 並填入整個首頁 -->
@@ -597,6 +654,17 @@
                     dots[i].classList.toggle('bg-white/40', i !== index);
                 }
                 current = index;
+            }
+
+            // 左右箭頭：手動切到上一張／下一張；只有一張圖片時箭頭沒有意義，直接隱藏
+            const prevBtn = document.getElementById('hero-prev-btn');
+            const nextBtn = document.getElementById('hero-next-btn');
+            if (images.length > 1) {
+                if (prevBtn) prevBtn.addEventListener('click', () => showSlide((current - 1 + slides.length) % slides.length));
+                if (nextBtn) nextBtn.addEventListener('click', () => showSlide((current + 1) % slides.length));
+            } else {
+                if (prevBtn) prevBtn.classList.add('hidden');
+                if (nextBtn) nextBtn.classList.add('hidden');
             }
 
             // 每 5 秒 (5000 毫秒) 自動切換到下一張圖片，超過最後一張就跳回第一張
@@ -705,7 +773,7 @@
                         data.experiences.forEach(e => {
                             const card = document.createElement('div');
                             // 加上 relative + overflow-hidden：讓等一下要疊上去的背景圖片不會超出卡片邊框
-                            card.className = 'relative overflow-hidden flex-shrink-0 w-64 sm:w-72 snap-start bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4';
+                            card.className = 'relative overflow-hidden flex-shrink-0 w-[78vw] sm:w-64 md:w-72 snap-start bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4';
 
                             // 如果後台有上傳背景圖片，疊一層淡化過的圖片在卡片最底層
                             if (e.background_image) {
@@ -737,6 +805,8 @@
 
                             expContainer.appendChild(card);
                         });
+
+                        setupScrollArrows('experience-cards', 'exp-prev-btn', 'exp-next-btn');
                     }
                 }
 
