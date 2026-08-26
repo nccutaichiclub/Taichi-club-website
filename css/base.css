@@ -71,4 +71,14 @@ h1 {
 .hl-green {
     color: var(--松柏綠);
     font-weight: 600;
+    display: block;
+    margin-top: 6px;
+}
+
+/* 手機版 + 英文模式：頁面主標題字級縮小、行距加大，減少換行時畫面過於擁擠的情形 */
+@media (max-width: 767px) {
+    body.lang-en h1 {
+        font-size: 1.6rem;
+        line-height: 1.35;
+    }
 }
