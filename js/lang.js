@@ -183,3 +183,9 @@ function setCachedLoadingText(text) {
         // 瀏覽器擋掉儲存功能時就放棄快取，不影響其他功能
     }
 }
+
+// 在 <body> 加上語言標記 class，讓 CSS 可以針對「手機版 + 英文模式」單獨調整標題字級/行距，
+// 不會影響電腦版跟中文模式
+if (document.body) {
+    document.body.classList.toggle('lang-en', getLang() === 'en');
+}
