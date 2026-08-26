@@ -81,16 +81,13 @@
             border-color: rgba(184, 151, 66, 0.4);
             box-shadow: 0 0 15px rgba(30, 61, 47, 0.2);
         }
-        /* 手機版四大法門頁籤橫向滑動列的捲軸配色 */
+        /* 手機版四大法門頁籤橫向滑動列：隱藏捲軸，仍可用手指直接拖曳滑動 */
+        .tab-scroll-row {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* 舊版 Edge/IE */
+        }
         .tab-scroll-row::-webkit-scrollbar {
-            height: 4px;
-        }
-        .tab-scroll-row::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .tab-scroll-row::-webkit-scrollbar-thumb {
-            background-color: #8E95A0;
-            border-radius: 4px;
+            display: none; /* Chrome/Safari */
         }
         /* 內文標記語法對應樣式：[[文字]] 顯示成金色標註 */
         .hl-gold {
@@ -112,6 +109,11 @@
             body.lang-en .section-subtitle {
                 font-size: 1.15rem;
                 line-height: 1.4;
+            }
+            /* 「Time:」「Location:」這類欄位標籤，只在手機+英文模式改成獨立一行，中文版跟電腦版維持同一行 */
+            body.lang-en .field-label {
+                display: block;
+                margin-bottom: 2px;
             }
         }
         /* 紅塵歷練橫向滑動列的捲軸配色：黑底灰拉桿，取代瀏覽器預設的白底灰拉桿 */
@@ -482,23 +484,24 @@
                 <div id="schedule-list" class="space-y-3">
                     <div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors">
                         <div class="text-bronze font-bold tracking-widest text-base mb-1.5">基礎吐納與華陀導引氣功</div>
-                        <div class="text-sm text-cloud/90">時間：<span class="text-white">每週二 19:00 - 21:00</span></div>
-                        <div class="text-sm text-cloud/90">地點：<span class="text-white">風雩樓二樓</span></div>
+                        <div class="text-sm text-cloud/90"><span class="field-label">時間：</span><span class="text-white">每週二 19:00 - 21:00</span></div>
+                        <div class="text-sm text-cloud/90"><span class="field-label">地點：</span><span class="text-white">風雩樓二樓</span></div>
                     </div>
                     <div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors">
                         <div class="text-bronze font-bold tracking-widest text-base mb-1.5">太極拳核心架構與推手</div>
-                        <div class="text-sm text-cloud/90">時間：<span class="text-white">每週四 19:00 - 21:00</span></div>
-                        <div class="text-sm text-cloud/90">地點：<span class="text-white">風雩樓一樓</span></div>
+                        <div class="text-sm text-cloud/90"><span class="field-label">時間：</span><span class="text-white">每週四 19:00 - 21:00</span></div>
+                        <div class="text-sm text-cloud/90"><span class="field-label">地點：</span><span class="text-white">風雩樓一樓</span></div>
                     </div>
                     <div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors">
                         <div class="text-bronze font-bold tracking-widest text-base mb-1.5">太祖棍與太極劍兵刃修行</div>
-                        <div class="text-sm text-cloud/90">時間：<span class="text-white">隔週六 09:00 - 11:30</span></div>
-                        <div class="text-sm text-cloud/90">地點：<span class="text-white">醉夢溪畔草坪 (雨天移室內)</span></div>
+                        <div class="text-sm text-cloud/90"><span class="field-label">時間：</span><span class="text-white">隔週六 09:00 - 11:30</span></div>
+                        <div class="text-sm text-cloud/90"><span class="field-label">地點：</span><span class="text-white">醉夢溪畔草坪 (雨天移室內)</span></div>
                     </div>
                 </div>
 
                 <div class="bg-pine/10 p-4 rounded border border-pine/30 text-xs leading-relaxed">
-                    <strong id="schedule-note-label" class="text-pine-light">道門提點：</strong> <span id="schedule-note" class="text-white">本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。</span>
+                    <strong id="schedule-note-label" class="text-pine-light block mb-1">道門提點：</strong>
+                    <span id="schedule-note" class="text-white">本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。</span>
                 </div>
             </div>
 
@@ -721,17 +724,15 @@
                             const content = document.createElement('div');
                             content.className = 'relative z-10 space-y-4';
                             content.innerHTML = `
-                                <div class="flex items-baseline gap-3 md:block md:space-y-4">
-                                    <div class="roman-num text-bronze text-3xl font-light truncate"></div>
-                                    <h3 class="exp-title-text text-xl font-medium text-white tracking-widest truncate"></h3>
-                                </div>
+                                <div class="text-bronze text-3xl font-light truncate"></div>
+                                <h3 class="text-xl font-medium text-white tracking-widest truncate"></h3>
                                 <p class="text-xs text-pine-light tracking-widest font-semibold truncate"></p>
                                 <p class="exp-desc-scroll text-sm text-cloud/80 leading-relaxed max-h-24 md:max-h-28 overflow-y-auto pr-1"></p>
                             `;
-                            content.querySelector('.roman-num').innerText = e.roman || '';
-                            content.querySelector('.exp-title-text').innerText = e.title || '';
-                            content.children[1].innerText = e.subtitle || '';
-                            content.children[2].innerHTML = parseInlineMarkup(e.desc || '');
+                            content.children[0].innerText = e.roman || '';
+                            content.children[1].innerText = e.title || '';
+                            content.children[2].innerText = e.subtitle || '';
+                            content.children[3].innerHTML = parseInlineMarkup(e.desc || '');
                             card.appendChild(content);
 
                             expContainer.appendChild(card);
@@ -903,7 +904,7 @@
                     container.innerHTML = '';
                     list.forEach(p => {
                         const card = document.createElement('div');
-                        card.className = 'bg-ink-dark p-7 rounded-lg ink-border ink-border-hover transition-all duration-500';
+                        card.className = 'min-w-0 bg-ink-dark p-7 rounded-lg ink-border ink-border-hover transition-all duration-500';
 
                         // 照片＋姓名這一列：尺寸適中、間距加大，看起來更寬鬆舒適
                         const identityWrap = document.createElement('div');
@@ -1038,14 +1039,19 @@
                             data.schedule.rows.forEach(row => {
                                 const item = document.createElement('div');
                                 item.className = 'bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors';
+                                const isEnSchedule = (typeof getLang === 'function' && getLang() === 'en');
+                                const timeLabelText = isEnSchedule ? 'Time: ' : '時間：';
+                                const locationLabelText = isEnSchedule ? 'Location: ' : '地點：';
                                 item.innerHTML = `
                                     <div class="text-bronze font-bold tracking-widest text-base mb-1.5"></div>
-                                    <div class="text-sm text-cloud/90">時間：<span class="text-white"></span></div>
-                                    <div class="text-sm text-cloud/90">地點：<span class="text-white"></span></div>
+                                    <div class="text-sm text-cloud/90"><span class="field-label"></span><span class="text-white"></span></div>
+                                    <div class="text-sm text-cloud/90"><span class="field-label"></span><span class="text-white"></span></div>
                                 `;
                                 item.children[0].innerText = row.content || '';
-                                item.children[1].querySelector('span').innerText = row.time || '';
-                                item.children[2].querySelector('span').innerText = row.location || '';
+                                item.children[1].querySelector('.field-label').innerText = timeLabelText;
+                                item.children[1].querySelector('.text-white').innerText = row.time || '';
+                                item.children[2].querySelector('.field-label').innerText = locationLabelText;
+                                item.children[2].querySelector('.text-white').innerText = row.location || '';
                                 list.appendChild(item);
                             });
                         }
