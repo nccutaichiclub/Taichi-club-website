@@ -70,12 +70,12 @@
       ],
       "photos": [
         {
-          "image": "/assets/uploads/朋.png",
-          "caption": "新人"
+          "caption": "新人",
+          "image": "/assets/uploads/朋.png"
         },
         {
-          "image": "/assets/uploads/Grasslands-menggu.jpg",
-          "caption": "草地"
+          "caption": "草地",
+          "image": "/assets/uploads/Grasslands-menggu.jpg"
         }
       ]
     },
@@ -617,7 +617,7 @@
           ]
         },
         {
-          "name": "2025323",
+          "name": "蒙藏 2025323",
           "name_en": "",
           "photos": [
             {
