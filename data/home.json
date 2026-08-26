@@ -126,11 +126,11 @@
   ],
   "experience_section": {
     "eyebrow": "SPOTLIGHT",
-    "eyebrow_en": "",
+    "eyebrow_en": "重要活動大賞",
     "title": "重要活動大賞",
-    "title_en": "",
-    "desc": "修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。",
-    "desc_en": ""
+    "title_en": "Featured Events",
+    "desc": "以拳會友，以心相聚。在太極之外，一起探索更多精彩。",
+    "desc_en": "Make Friends Through Tai Chi. Discover More Beyond the Practice."
   },
   "experiences": [
     {
@@ -196,19 +196,19 @@
   ],
   "global_section": {
     "eyebrow": "GLOBAL CONNECTION",
-    "eyebrow_en": "",
+    "eyebrow_en": "太極無國界",
     "title": "太極無國界",
-    "title_en": "",
-    "desc": "也許語言會築起溝通的牆但肢體動作不分國界，來自各地的學子，對於學習太極樂此不疲。",
-    "desc_en": ""
+    "title_en": "GLOBAL CONNECTION",
+    "desc": "也許語言會築起溝通的牆，但肢體動作不分國界，來自各地的學子，對於學習太極樂此不疲。",
+    "desc_en": "Language may build walls between us, but movement knows no borders."
   },
   "global": {
     "subtitle": "外籍生的到訪",
-    "subtitle_en": "",
+    "subtitle_en": "International Students & Cultural Exchange",
     "para1": "政大太極社歷年來接待了無數自歐美、日韓、東南亞等地慕名而來的交換學生。\n\n課程中，我們跨越語言藩籬，以拳會友。五湖四海皆兄弟來者是客，不求依樣畫葫蘆完整學會全套功法，而是希望每位來此的學員，留下珍貴的回憶。",
-    "para1_en": "",
+    "para1_en": "Over the years, the NCCU Tai Chi Club has welcomed exchange students from Europe, the Americas, Japan, Korea, Southeast Asia, and many other parts of the world.\n\nIn our classes, we cross language barriers and make friends through Tai Chi. No matter where you come from, you are always welcome here. We hope that everyone who joins us can enjoy the experience and take home some wonderful memories.",
     "para2": "隨著越來越多的交換生散佈在世界各地，使我們每次的海外出行都充滿了與眾不同的回憶，而交換生偶爾回台的探訪也無不令我們驚喜萬分。\n\n交換期間的結束只是暫時道別，而絕不會是我們交流的終點。",
-    "para2_en": "",
+    "para2_en": "Our friendships continue beyond the exchange. We are always delighted to reconnect with our friends abroad—and to welcome them back when they visit Taiwan.\n\n**The end of an exchange is only a temporary farewell—it is never the end of our friendship.**",
     "country_tags": [
       {
         "code": "JP",
@@ -253,142 +253,142 @@
       }
     ],
     "google_map_embed_url": "",
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
+    "badge_label": "道傳寰宇",
     "title": "外邦弟子的修真緣分",
-    "badge_label": "道傳寰宇"
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
-    "eyebrow_en": "",
+    "eyebrow_en": "師資介紹",
     "title": "師資介紹",
-    "title_en": "",
+    "title_en": "OUR MASTERS",
     "desc": "名師引路，薪火相傳。",
-    "desc_en": ""
+    "desc_en": "Learn from Masters, Carry the Tradition Forward."
   },
   "instructors": [
     {
       "photo": "/assets/uploads/496311953_3157412557745802_5682965436209363767_n~2.jpg",
       "name": "瞿老師",
-      "name_en": "",
+      "name_en": "Coach Yvonne",
       "subtitle": "基礎班指導老師",
-      "subtitle_en": "",
+      "subtitle_en": "Beginner Class Instructor",
       "desc": "**華陀導引氣功、太極拳、太極劍教學**     |     教學風格穩健，對於初學者相當友好\n\n曾任元富證券債券部副總經理，在金融界表現優異的瞿老師，原先因忙於工作，導致身體狀況出現警訊，後因長期練習氣功與太極拳而改善健康，連帶於事業的表現上也有所提升，可說是因功法受益的最佳例子。\n\n瞿老師積極推廣太極事業，於台灣傳統武學太極拳刀劍桿散手協會擔任要角，並熱心參與政大太極社與政大EMBA太極拳社交流。亦以太極心法結合職場管理，推廣身心養生，將太極精神充分發揮在生活之中。",
-      "desc_en": ""
+      "desc_en": "**Huatuo Qigong, Tai Chi & Tai Chi Sword**\nSteady and beginner-friendly teaching style\n\nCoach Yvonne initially experienced health issues due to the demands of her work. After improving her health through long-term practice of Qigong and Tai Chi, she decided to dedicate herself to promoting both practices.\n\nShe believes that Tai Chi is not only a martial art, but also a way to improve physical and mental well-being and bring greater balance to everyday life."
     },
     {
       "photo": "/assets/uploads/C3B9D3D7-605B-4343-BAC1-A268973F30F1.jpg",
       "name": "阿吉老師",
-      "name_en": "",
+      "name_en": "Coach A-Ji",
       "subtitle": "進階班指導老師",
-      "subtitle_en": "",
+      "subtitle_en": "Advanced Class Instructor",
       "desc": "**進階太極拳、太祖棍教學**     |     擅於將功法與實戰結合，內容扎實\n\n阿吉老師擁有二十餘年的太極拳學習與教學經驗，曾拿下海內外武術比賽的多個獎項。不僅擔任政大太極社的指導老師，亦在企業太極社教學中創造口碑。\n\n阿吉老師整合自己多年學習經驗，對於太極教學有一套自己的方法，並且相當重視同學於動作上的細節是否正確，同學於阿吉老師的指導下練習功法，必定會坐收顯著的功效。",
-      "desc_en": ""
+      "desc_en": "**Advanced Tai Chi & Taizu Staff**\nSolid training with a focus on practical applications\n\nWith more than 20 years of experience in Tai Chi training and instruction, Teacher A-Ji has received numerous awards in martial arts competitions in Taiwan and abroad. \n\nHis teaching emphasizes precise movements, solid fundamentals, and practical applications, giving students a deeper understanding of how Tai Chi techniques can be applied in real situations."
     }
   ],
   "staff_section": {
     "eyebrow": "OUR TEAM",
-    "eyebrow_en": "",
+    "eyebrow_en": "幹部介紹",
     "title": "幹部介紹",
-    "title_en": "",
+    "title_en": "OUR TEAM",
     "desc": "點選頭銜，認識本屆核心幹部。",
-    "desc_en": ""
+    "desc_en": "Click on each title to meet this year's core team."
   },
   "staff": [
     {
       "role": "路過社長",
-      "role_en": "leader",
+      "role_en": "President",
       "name": "陳兆琪",
       "name_en": "Jo",
       "photo": "/assets/uploads/北京十方普觉寺_持国天.jfif",
       "desc": "本社社長，活潑熱心，樂於解答學員們學習太極時遇到的疑難雜症。",
-      "desc_en": ""
+      "desc_en": "Our club president is lively and enthusiastic, and is always happy to help members with any questions or difficulties they encounter while learning Tai Chi."
     },
     {
       "role": "皮副社長",
-      "role_en": "",
+      "role_en": "Vice President",
       "name": "黃豊文",
       "name_en": "",
       "photo": "/assets/uploads/Guangmutian,_Shifangpujue_Temple,_Beijing,_P.R.China.jfif",
       "desc": "本社副社長兼美宣，推陳出新，總有一些創新的點子，是社團裡的開心果。",
-      "desc_en": ""
+      "desc_en": "Our vice president and publicity coordinator is full of fresh ideas and creativity, and always brings plenty of laughter to the club."
     },
     {
       "role": "見習總務",
       "role_en": "",
       "name": "陳芸巧",
-      "name_en": "",
+      "name_en": "General affairs officer",
       "photo": "/assets/uploads/Screenshot_20260813_165309_Gallery.jpg",
-      "desc": "自本學期起擔任本社總務，極致I人，客家小炒推廣者。",
-      "desc_en": ""
+      "desc": "自本學期起擔任本社總務，極致I人，`客家小炒推廣者`。",
+      "desc_en": "Our general affairs officer, who took on the role this semester, is an extreme introvert and a passionate promoter of Hakka stir-fry."
     },
     {
       "role": "馬步機動",
-      "role_en": "",
+      "role_en": "Events Coordinator",
       "name": "徐浩倫",
       "name_en": "",
       "photo": "/assets/uploads/1781543089282 (1).jpg",
       "desc": "本社前總務變機動長，海納百川，如果要用一個代名詞形容應該是「卡皮巴拉」？",
-      "desc_en": ""
+      "desc_en": "Our former general affairs officer, now turned activities coordinator, is calm and easygoing, embracing everything with an open mind. If there were one word to describe him, it would probably be “capybara.”"
     }
   ],
   "staff_alumni": [],
   "contact_section": {
     "eyebrow": "Contact/ Join Us",
-    "eyebrow_en": "",
+    "eyebrow_en": "聯絡/加入我們",
     "title": "聯絡/加入我們",
-    "title_en": "",
+    "title_en": "Contact/ Join Us",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
-    "intro_en": "",
-    "location_label": "【道場位置】",
-    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "email_label": "【問道法郵】",
-    "email_value": "nccutaichi@email.com",
-    "social_label": "【仙界傳音】",
+    "intro_en": "If you are interested in our club, please feel free to contact us through the following channels:",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
     "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。"
+    "social_label": "【仙界傳音】",
+    "email_value": "nccutaichi@email.com",
+    "email_label": "【問道法郵】",
+    "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
+    "location_label": "【道場位置】"
   },
   "contact": {
     "location_label": "活動教室",
-    "location_label_en": "",
+    "location_label_en": "Place",
     "location_value": "政大藝文中心722教室",
     "location_value_en": "NCCU Art & Cultural Center",
     "email_label": "Gmail",
     "email_label_en": "",
     "email_value": "nccutaichiclub@gmail.com",
     "social_label": "社群帳號",
-    "social_label_en": "",
+    "social_label_en": "Social media",
     "social_value": "IG: @nccu_taichi / FB：政治大學太極社 (歡迎私訊小編)",
-    "social_value_en": "",
+    "social_value_en": "IG: @nccu_taichi / FB：NCCU TAICHI",
     "fb_url": "https://www.facebook.com/NCCUTaichi",
     "ig_url": "https://www.instagram.com/nccu_taichiclub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
     "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」\n期待在指南山下，與你在呼吸吐納中相遇。",
-    "footer_quote_en": ""
+    "footer_quote_en": "Welcome to join NCCU Tai Chi Club and have a wonderful Chinese martial art experience in Taiwan"
   },
   "schedule": {
     "title": "每週社課/晨練時間",
-    "title_en": "",
+    "title_en": "Evening Class/ Morning Practice Time",
     "rows": [
       {
         "time": "每週三 19:30 - 21:00",
-        "time_en": "",
+        "time_en": "Every Wednesday 19:30 - 21:00",
         "content": "社課",
-        "content_en": "",
+        "content_en": "Evening Class",
         "location": "藝文中心722教室",
-        "location_en": ""
+        "location_en": "Room 722, Art & Cultural Center"
       },
       {
         "time": "敬請期待",
-        "time_en": "",
+        "time_en": "Coming Soon",
         "content": "晨練",
-        "content_en": "",
+        "content_en": "Morning Practice",
         "location": "敬請期待",
-        "location_en": ""
+        "location_en": "Coming Soon"
       }
     ],
     "note_label": "小叮嚀：",
-    "note_label_en": "",
+    "note_label_en": "Note:",
     "note": "參加本社活動無門檻限制，本社會提供所需器材，學員僅需穿著寬鬆易活動的服裝出席即可，藝文中心內設有飲水機請自備水壺。歡迎學生、社區居民、社會人士共襄盛舉。",
-    "note_en": ""
+    "note_en": "Participation in our club activities is open to everyone, with no prerequisites or entry requirements. We provide all the necessary equipment, so participants only need to wear loose, comfortable clothing suitable for movement. There is a water dispenser in the Arts and Culture Center, so please bring your own water bottle."
   },
   "footer": {
     "copyright": "© 2026 國立政治大學太極社 NCCU Tai Chi Club",
