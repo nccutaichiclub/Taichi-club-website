@@ -49,6 +49,13 @@
             border-left: 4px solid var(--古銅金);
             border-right: 4px solid var(--古銅金);
         }
+        /* 手機版：法門標題字級縮小、行距加大，避免英文名稱過長時擁擠換行；中英文版都套用 */
+        @media (max-width: 767px) {
+            .gongfa-detail h2 {
+                font-size: 1.25rem;
+                line-height: 1.4;
+            }
+        }
 
         /* 內文段落間距：文字現在會被自動包成一段一段的 <p>，這裡統一控制段落間的留白 */
         .gongfa-text p {
