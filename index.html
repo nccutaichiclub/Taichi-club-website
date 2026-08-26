@@ -81,6 +81,17 @@
             border-color: rgba(184, 151, 66, 0.4);
             box-shadow: 0 0 15px rgba(30, 61, 47, 0.2);
         }
+        /* 手機版四大法門頁籤橫向滑動列的捲軸配色 */
+        .tab-scroll-row::-webkit-scrollbar {
+            height: 4px;
+        }
+        .tab-scroll-row::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .tab-scroll-row::-webkit-scrollbar-thumb {
+            background-color: #8E95A0;
+            border-radius: 4px;
+        }
         /* 內文標記語法對應樣式：[[文字]] 顯示成金色標註 */
         .hl-gold {
             color: #B89742;
@@ -89,6 +100,19 @@
         .hl-green {
             color: #427A5B;
             font-weight: 600;
+            display: block;
+            margin-top: 6px;
+        }
+        /* 手機版 + 英文模式：主要標題字級縮小、行距加大，減少換行時畫面過於擁擠的情形，電腦版與中文模式不受影響 */
+        @media (max-width: 767px) {
+            body.lang-en .section-title {
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            body.lang-en .section-subtitle {
+                font-size: 1.15rem;
+                line-height: 1.4;
+            }
         }
         /* 紅塵歷練橫向滑動列的捲軸配色：黑底灰拉桿，取代瀏覽器預設的白底灰拉桿 */
         #experience-cards {
@@ -164,23 +188,23 @@
     <section id="methods" class="py-24 px-6 max-w-6xl mx-auto relative z-10 scroll-mt-20">
         <div class="text-center space-y-2 mb-16">
             <p id="methods-eyebrow" class="text-bronze tracking-[0.3em] text-xs">METHODOLOGY</p>
-            <h2 id="methods-title" class="text-3xl font-bold text-white tracking-widest">四大身心法門</h2>
-            <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
+            <h2 id="methods-title" class="text-3xl font-bold text-white tracking-widest section-title">四大身心法門</h2>
+            <div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div>
             <p id="methods-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">動靜相兼，形神俱妙。此為本社修行之四大柱石。</p>
         </div>
 
         <!-- 動態分頁頁籤 (Tabs) -->
-        <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
-            <button onclick="switchTab('qigong')" id="tab-qigong" class="tab-btn px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-bronze bg-pine text-white">
+        <div class="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-4 mb-8 overflow-x-auto md:overflow-visible pb-2 md:pb-0 tab-scroll-row">
+            <button onclick="switchTab('qigong')" id="tab-qigong" class="tab-btn flex-shrink-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-bronze bg-pine text-white">
                 <span id="tab-qigong-label" class="inline-block align-middle whitespace-nowrap">華陀導引氣功</span>
             </button>
-            <button onclick="switchTab('taichi')" id="tab-taichi" class="tab-btn px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+            <button onclick="switchTab('taichi')" id="tab-taichi" class="tab-btn flex-shrink-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
                 <span id="tab-taichi-label" class="inline-block align-middle whitespace-nowrap">太極拳</span>
             </button>
-            <button onclick="switchTab('staff')" id="tab-staff" class="tab-btn px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+            <button onclick="switchTab('staff')" id="tab-staff" class="tab-btn flex-shrink-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
                 <span id="tab-staff-label" class="inline-block align-middle whitespace-nowrap">太祖棍</span>
             </button>
-            <button onclick="switchTab('sword')" id="tab-sword" class="tab-btn px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
+            <button onclick="switchTab('sword')" id="tab-sword" class="tab-btn flex-shrink-0 px-4 sm:px-6 py-2.5 rounded text-sm tracking-wider transition-all border border-white/5 hover:border-bronze/40 text-cloud">
                 <span id="tab-sword-label" class="inline-block align-middle whitespace-nowrap">太極劍</span>
             </button>
         </div>
@@ -300,8 +324,8 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center space-y-2 mb-16">
                 <p id="exp-eyebrow" class="text-bronze tracking-[0.3em] text-xs">MORTAL EXPERIENCES</p>
-                <h2 id="exp-title" class="text-3xl font-bold text-white tracking-widest">紅塵歷練</h2>
-                <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
+                <h2 id="exp-title" class="text-3xl font-bold text-white tracking-widest section-title">紅塵歷練</h2>
+                <div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div>
                 <p id="exp-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。</p>
             </div>
 
@@ -315,8 +339,8 @@
     <section id="global" class="py-24 px-6 max-w-6xl mx-auto scroll-mt-20">
         <div class="text-center space-y-2 mb-16">
             <p id="global-eyebrow" class="text-bronze tracking-[0.3em] text-xs">GLOBAL CONNECTION</p>
-            <h2 id="global-section-title" class="text-3xl font-bold text-white tracking-widest">道傳寰宇</h2>
-            <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
+            <h2 id="global-section-title" class="text-3xl font-bold text-white tracking-widest section-title">道傳寰宇</h2>
+            <div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div>
             <p id="global-section-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">天涯咫尺，萬法歸一。前來問道的外邦同修，足跡早已遍及五洲。</p>
         </div>
 
@@ -341,7 +365,7 @@
 
             <!-- 右側：副標文字 + 段落 + 國家標籤 + 統計數字 -->
             <div class="md:col-span-7 space-y-6">
-                <h3 id="global-subtitle" class="text-2xl font-semibold text-white tracking-widest">外邦弟子的修真緣分</h3>
+                <h3 id="global-subtitle" class="text-2xl font-semibold text-white tracking-widest section-subtitle">外邦弟子的修真緣分</h3>
                 <p id="global-para1" class="text-sm leading-relaxed text-cloud/90">
                     歷年來，政大太極社迎接來自世界各地的交換學生與訪客。無論語言與膚色，太極的圓融之道跨越文化疆界，成為連結人心的橋樑。
                 </p>
@@ -362,8 +386,8 @@
     <section id="instructors" class="py-24 px-6 max-w-6xl mx-auto scroll-mt-20">
         <div class="text-center space-y-2 mb-16">
             <p id="instructors-eyebrow" class="text-bronze tracking-[0.3em] text-xs">OUR MASTERS</p>
-            <h2 id="instructors-title" class="text-3xl font-bold text-white tracking-widest">師資介紹</h2>
-            <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
+            <h2 id="instructors-title" class="text-3xl font-bold text-white tracking-widest section-title">師資介紹</h2>
+            <div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div>
             <p id="instructors-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">名師引路，薪火相傳。</p>
         </div>
 
@@ -376,8 +400,8 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center space-y-2 mb-16">
                 <p id="staff-eyebrow" class="text-bronze tracking-[0.3em] text-xs">OUR TEAM</p>
-                <h2 id="staff-title" class="text-3xl font-bold text-white tracking-widest">幹部介紹</h2>
-                <div class="w-12 h-0.5 bg-bronze mx-auto mt-4"></div>
+                <h2 id="staff-title" class="text-3xl font-bold text-white tracking-widest section-title">幹部介紹</h2>
+                <div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div>
                 <p id="staff-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">認識本屆核心幹部。</p>
             </div>
 
@@ -402,8 +426,8 @@
             <div class="md:col-span-5 space-y-8 order-2 md:order-1">
                 <div class="space-y-2">
                     <p id="contact-eyebrow" class="text-bronze tracking-[0.3em] text-xs">VISIT THE TEMPLE</p>
-                    <h2 id="contact-title" class="text-3xl font-bold text-white tracking-widest">尋訪仙蹤</h2>
-                    <div class="w-12 h-0.5 bg-bronze mt-4"></div>
+                    <h2 id="contact-title" class="text-3xl font-bold text-white tracking-widest section-title">尋訪仙蹤</h2>
+                    <div class="w-12 h-0.5 bg-bronze mt-6"></div>
                 </div>
 
                 <p id="contact-intro" class="text-sm leading-relaxed text-cloud/80">
@@ -411,16 +435,16 @@
                 </p>
 
                 <div class="space-y-4 text-sm">
-                    <div class="flex items-start gap-3">
-                        <span id="contact-location-label" class="text-bronze font-bold">【道場位置】</span>
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-3">
+                        <span id="contact-location-label" class="text-bronze font-bold flex-shrink-0">【道場位置】</span>
                         <span id="contact-location-value" class="text-cloud">國立政治大學 風雩樓／醉夢溪畔山路</span>
                     </div>
-                    <div class="flex items-start gap-3">
-                        <span id="contact-email-label" class="text-bronze font-bold">【問道法郵】</span>
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-3">
+                        <span id="contact-email-label" class="text-bronze font-bold flex-shrink-0">【問道法郵】</span>
                         <span id="contact-email-value" class="text-cloud">nccutaichi@email.com</span>
                     </div>
-                    <div class="flex items-start gap-3">
-                        <span id="contact-social-label" class="text-bronze font-bold">【仙界傳音】</span>
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-3">
+                        <span id="contact-social-label" class="text-bronze font-bold flex-shrink-0">【仙界傳音】</span>
                         <span id="contact-social-value" class="text-cloud">IG: @nccu_taichi (歡迎私訊小編結緣)</span>
                     </div>
                 </div>
@@ -697,15 +721,17 @@
                             const content = document.createElement('div');
                             content.className = 'relative z-10 space-y-4';
                             content.innerHTML = `
-                                <div class="text-bronze text-3xl font-light truncate"></div>
-                                <h3 class="text-xl font-medium text-white tracking-widest truncate"></h3>
+                                <div class="flex items-baseline gap-3 md:block md:space-y-4">
+                                    <div class="roman-num text-bronze text-3xl font-light truncate"></div>
+                                    <h3 class="exp-title-text text-xl font-medium text-white tracking-widest truncate"></h3>
+                                </div>
                                 <p class="text-xs text-pine-light tracking-widest font-semibold truncate"></p>
                                 <p class="exp-desc-scroll text-sm text-cloud/80 leading-relaxed max-h-24 md:max-h-28 overflow-y-auto pr-1"></p>
                             `;
-                            content.children[0].innerText = e.roman || '';
-                            content.children[1].innerText = e.title || '';
-                            content.children[2].innerText = e.subtitle || '';
-                            content.children[3].innerHTML = parseInlineMarkup(e.desc || '');
+                            content.querySelector('.roman-num').innerText = e.roman || '';
+                            content.querySelector('.exp-title-text').innerText = e.title || '';
+                            content.children[1].innerText = e.subtitle || '';
+                            content.children[2].innerHTML = parseInlineMarkup(e.desc || '');
                             card.appendChild(content);
 
                             expContainer.appendChild(card);
