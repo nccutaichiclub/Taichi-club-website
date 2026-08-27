@@ -230,7 +230,7 @@
         </div>
 
         <!-- 法門展示卡片內容 -->
-        <div class="bg-ink-dark/60 rounded-xl p-6 md:p-10 ink-border min-h-[400px]">
+        <div class="p-0 md:bg-ink-dark/60 md:rounded-xl md:p-10 md:border md:border-bronze/15 min-h-[400px]">
 
             <!-- 1. 華陀導引氣功 -->
             <div id="content-qigong" class="tab-content grid md:grid-cols-12 gap-8 items-center">
@@ -349,12 +349,11 @@
                 <p id="exp-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。</p>
             </div>
 
-            <!-- 手機版加上左右箭頭方便切換，一次只顯示一張卡片；電腦版維持原本同排橫向滑動 -->
+            <!-- 手機版拿掉箭頭改用文字提示滑動；電腦版維持原本同排橫向滑動 -->
             <div class="relative">
-                <button id="exp-prev-btn" type="button" aria-label="上一則" class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-ink-deep/80 border border-bronze/50 text-bronze-light flex items-center justify-center transition-opacity">‹</button>
-                <div id="experience-cards" class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory px-11 md:px-0"></div>
-                <button id="exp-next-btn" type="button" aria-label="下一則" class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-ink-deep/80 border border-bronze/50 text-bronze-light flex items-center justify-center transition-opacity">›</button>
+                <div id="experience-cards" class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory"></div>
             </div>
+            <p class="md:hidden text-right text-xs text-bronze-light tracking-widest mt-1 pr-1">右滑看更多 →</p>
         </div>
     </section>
 
@@ -595,7 +594,34 @@
         }
 
         // 四大功法頁籤是固定存在的靜態元素，頁面一載入就可以綁定箭頭
-        setupScrollArrows('methods-tab-row', 'tabs-prev-btn', 'tabs-next-btn');
+        // 四大功法頁籤箭頭：點一下直接切換到左邊或右邊那一個功法的介紹內容，
+        // 同時把該頁籤按鈕捲動到可視範圍內，不用先滑動看到按鈕、再另外點擊
+        function setupTabArrows(rowId, prevBtnId, nextBtnId, tabOrder) {
+            const row = document.getElementById(rowId);
+            const prevBtn = document.getElementById(prevBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+            if (!row || !prevBtn || !nextBtn) return;
+
+            function currentIndex() {
+                const activeBtn = row.querySelector('.tab-btn.bg-pine');
+                const id = activeBtn ? activeBtn.id.replace('tab-', '') : tabOrder[0];
+                const idx = tabOrder.indexOf(id);
+                return idx === -1 ? 0 : idx;
+            }
+
+            function goTo(direction) {
+                const idx = currentIndex();
+                const nextIdx = (idx + direction + tabOrder.length) % tabOrder.length;
+                const nextId = tabOrder[nextIdx];
+                switchTab(nextId);
+                const btn = document.getElementById(`tab-${nextId}`);
+                if (btn) btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+
+            prevBtn.addEventListener('click', () => goTo(-1));
+            nextBtn.addEventListener('click', () => goTo(1));
+        }
+        setupTabArrows('methods-tab-row', 'tabs-prev-btn', 'tabs-next-btn', ['qigong', 'taichi', 'staff', 'sword']);
     </script>
 
     <!-- 串接後台資料的 JavaScript：讀取 data/home.json 並填入整個首頁 -->
@@ -805,8 +831,6 @@
 
                             expContainer.appendChild(card);
                         });
-
-                        setupScrollArrows('experience-cards', 'exp-prev-btn', 'exp-next-btn');
                     }
                 }
 
