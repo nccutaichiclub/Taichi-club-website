@@ -539,6 +539,7 @@
                                     const thumbWrap = document.createElement('div');
                                     thumbWrap.className = 'schedule-thumb-wrap';
                                     const img = document.createElement('img');
+                                    img.loading = 'lazy';
                                     img.src = resolveImagePath(item.display_image);
                                     img.alt = item.label || '本學期行事曆';
                                     thumbWrap.appendChild(img);
