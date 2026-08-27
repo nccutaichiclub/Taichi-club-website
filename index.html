@@ -904,6 +904,7 @@
                         desktopPhotoWrap.className = 'w-32 h-32 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
                         if (p.photo) {
                             const dImg = document.createElement('img');
+                            dImg.loading = 'lazy';
                             dImg.className = 'w-full h-full object-cover';
                             dImg.src = resolveImagePath(p.photo);
                             dImg.alt = p.name || '';
@@ -957,6 +958,7 @@
                         mobilePhotoWrap.className = 'w-20 h-20 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
                         if (p.photo) {
                             const mImg = document.createElement('img');
+                            mImg.loading = 'lazy';
                             mImg.className = 'w-full h-full object-cover';
                             mImg.src = resolveImagePath(p.photo);
                             mImg.alt = p.name || '';
@@ -1008,6 +1010,7 @@
                         photoWrap.className = 'w-20 h-20 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
                         if (p.photo) {
                             const img = document.createElement('img');
+                            img.loading = 'lazy';
                             img.className = 'w-full h-full object-cover';
                             img.src = resolveImagePath(p.photo);
                             img.alt = p.name || '';
