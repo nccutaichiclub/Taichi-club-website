@@ -63,7 +63,7 @@ function renderSiteHeader() {
         }
     </style>
 
-    <header class="sticky top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4">
+    <header id="site-header-bar" class="sticky top-0 left-0 w-full z-50 bg-ink-deep/90 backdrop-blur-md border-b border-white/5 py-4" style="transition: transform 0.3s ease;">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center relative">
 
             <!-- 左側：道場牌匾 + 手機版語言切換鈕（一直顯示，不用點開漢堡選單） -->
@@ -100,10 +100,37 @@ function renderSiteHeader() {
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     if (btn && menu) {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
             menu.classList.toggle('hidden');
             menu.classList.toggle('flex');
         });
+
+        // 點選單以外的地方（畫面空白處）自動收合選單
+        document.addEventListener('click', (e) => {
+            if (menu.classList.contains('hidden')) return;
+            if (menu.contains(e.target) || btn.contains(e.target)) return;
+            menu.classList.add('hidden');
+            menu.classList.remove('flex');
+        });
+    }
+
+    // 導覽列會跟著滑動方向移動：往下滑（往下捲動看內容）導覽列往上滑出畫面讓出空間，
+    // 往上滑（想回頭找選單）導覽列立刻滑回來；一開始在頁面最頂端時固定顯示，不會忽隱忽現
+    const headerBar = document.getElementById('site-header-bar');
+    if (headerBar) {
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            const currentY = window.scrollY;
+            // 選單開著的時候不要跟著隱藏，避免選單被切一半
+            const menuOpen = menu && !menu.classList.contains('hidden');
+            if (!menuOpen && currentY > lastScrollY && currentY > 80) {
+                headerBar.style.transform = 'translateY(-100%)';
+            } else {
+                headerBar.style.transform = 'translateY(0)';
+            }
+            lastScrollY = currentY;
+        }, { passive: true });
     }
 
     // 初始化語言切換按鈕（initLangSwitcher 定義在 lang.js，要確保 lang.js 比這支檔案先載入）
