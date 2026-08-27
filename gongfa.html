@@ -36,6 +36,17 @@
             margin-bottom: 60px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+        /* 手機版：拿掉外框、底色與大內距，讓文字不那麼擁擠；電腦版維持原本卡片樣式 */
+        @media (max-width: 767px) {
+            .gongfa-detail {
+                background-color: transparent;
+                border: none;
+                padding: 0;
+                border-radius: 0;
+                box-shadow: none;
+                margin-bottom: 48px;
+            }
+        }
 
         /* 修復後的標題樣式 */
         .gongfa-detail h2 {
