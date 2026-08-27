@@ -373,6 +373,7 @@
                                 cover.className = 'gallery-cover';
 
                                 const img = document.createElement('img');
+                                img.loading = 'lazy';
                                 img.src = resolveImagePath(photos[0].image);
                                 img.alt = album.name || activity.title || '';
                                 cover.appendChild(img);
