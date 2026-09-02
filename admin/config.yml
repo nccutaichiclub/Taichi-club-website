@@ -28,7 +28,7 @@ collections:
               - { label: "選單-首頁 (English，選填，沒填會顯示中文版)", name: "link_home_en", widget: "string", required: false }
               - { label: "選單-法門深造", name: "link_method", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
               - { label: "選單-法門深造 (English，選填，沒填會顯示中文版)", name: "link_method_en", widget: "string", required: false }
-              - { label: "選單-活動介紹", name: "link_activities", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
+              - { label: "選單-活動介紹", name: "link_activities", widget: "string", hint: "建議 6 字以內，避免手機版選單跑版", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
               - { label: "選單-活動介紹 (English，選填，沒填會顯示中文版)", name: "link_activities_en", widget: "string", required: false }
               - { label: "選單-修煉日程", name: "link_calendar", widget: "string", hint: "建議 6 字以內", pattern: ['^.{1,6}$', '請控制在 6 字以內'] }
               - { label: "選單-修煉日程 (English，選填，沒填會顯示中文版)", name: "link_calendar_en", widget: "string", required: false }
@@ -192,7 +192,7 @@ collections:
             name: "staff_section"
             widget: "object"
             fields:
-              - { label: "英文小標", name: "eyebrow", widget: "string", hint: "建議 20 字以內" }
+              - { label: "英文小標", name: "eyebrow", widget: "string" }
               - { label: "英文小標 (English，選填，沒填會顯示中文版)", name: "eyebrow_en", widget: "string", required: false }
               - { label: "區塊標題", name: "title", widget: "string", hint: "建議 12 字以內", pattern: ['^.{1,12}$', '請控制在 12 字以內'] }
               - { label: "區塊標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
@@ -310,6 +310,8 @@ collections:
               - { label: "法門標題 (English，選填，沒填會顯示中文版)", name: "title_en", widget: "string", required: false }
               - { label: "詳細內容", name: "desc", widget: "markdown", buttons: ["bold", "code", "strikethrough"], minimal: true, hint: "直接打文字即可，不用輸入任何 HTML 標籤；段落之間空一行會自動分段；工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註；Strikethrough 按鈕(刪除線圖示)＝綠色標註" }
               - { label: "詳細內容 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "markdown", buttons: ["bold", "code", "strikethrough"], minimal: true, required: false, hint: "同樣可用 Bold／Code／Strikethrough 按鈕排版" }
+              - { label: "白話翻譯 (選填)", name: "plain_desc", widget: "markdown", buttons: ["bold", "code", "strikethrough"], minimal: true, required: false, hint: "會顯示在「查看白話翻譯」展開區塊；段落之間空一行會自動分段。可使用 Bold／Code／Strikethrough 進行排版。" }
+              - { label: "白話翻譯 (English，選填，沒填會顯示中文版)", name: "plain_desc_en", widget: "markdown", buttons: ["bold", "code", "strikethrough"], minimal: true, required: false, hint: "英文版白話翻譯；沒填時英文網站會自動顯示中文版。" }
               - { label: "YouTube 影片網址 (選填)", name: "video_url", widget: "string", required: false, hint: "直接貼上完整的 YouTube 影片網址即可 (例如 https://www.youtube.com/watch?v=xxxxxxx)，留空則畫面顯示「準備中」提示" }
 
   - name: "activities_settings"
