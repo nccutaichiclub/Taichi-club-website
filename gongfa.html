@@ -79,13 +79,55 @@
          * 手機版原本曾縮小至 0.875rem，
          * 現恢復為原本的 1rem。
          */
-        .gongfa-text p {
+        .gongfa-text p,
+        .plain-translation-text p {
             font-size: 1rem;
             margin: 0 0 16px 0;
         }
 
-        .gongfa-text p:last-child {
+        .gongfa-text p:last-child,
+        .plain-translation-text p:last-child {
             margin-bottom: 0;
+        }
+
+        /* 白話翻譯：沿用首頁「查看更多」的文字按鈕風格 */
+        .plain-translation-toggle-wrap {
+            margin-top: 4px;
+            text-align: right;
+        }
+
+        .plain-translation-toggle {
+            border: 0;
+            background: transparent;
+            padding: 0;
+            font-family: inherit;
+            font-size: 0.75rem;
+            color: #D9C39E;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .plain-translation-toggle:hover {
+            color: #fff;
+        }
+
+        .plain-translation {
+            display: none;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(184, 151, 66, 0.35);
+        }
+
+        .plain-translation.is-open {
+            display: block;
+        }
+
+        .plain-translation-title {
+            margin: 0 0 14px 0;
+            color: #B89742;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -157,7 +199,15 @@
                     const container = document.getElementById('gongfa-container');
                     container.innerHTML = '';
 
-                    (data.methods || []).forEach(method => {
+                    const isEnglish = getLang() === 'en';
+                    const toggleOpenText = isEnglish ? 'View Plain-Language Translation' : '查看白話翻譯';
+                    const toggleCloseText = isEnglish ? 'Hide Plain-Language Translation' : '收起白話翻譯';
+                    const translationTitle = isEnglish ? 'Plain-Language Translation' : '白話翻譯';
+
+                    (data.methods || []).forEach((method, index) => {
+
+                        const hasPlainTranslation = method.plain_desc && method.plain_desc.trim() !== '';
+                        const translationId = 'plain-translation-' + index;
 
                         const methodHTML = `
                             <div class="gongfa-detail">
@@ -165,10 +215,37 @@
                                 <div class="gongfa-text">
                                     ${paragraphize(method.desc)}
                                 </div>
+                                ${hasPlainTranslation ? `
+                                    <div class="plain-translation-toggle-wrap">
+                                        <button
+                                            type="button"
+                                            class="plain-translation-toggle"
+                                            aria-expanded="false"
+                                            aria-controls="${translationId}"
+                                        >${toggleOpenText}</button>
+                                    </div>
+                                    <div id="${translationId}" class="plain-translation">
+                                        <div class="plain-translation-title">${translationTitle}</div>
+                                        <div class="plain-translation-text">
+                                            ${paragraphize(method.plain_desc)}
+                                        </div>
+                                    </div>
+                                ` : ''}
                             </div>
                         `;
 
                         container.innerHTML += methodHTML;
+                    });
+
+                    container.querySelectorAll('.plain-translation-toggle').forEach(button => {
+                        button.addEventListener('click', () => {
+                            const translation = document.getElementById(button.getAttribute('aria-controls'));
+                            if (!translation) return;
+
+                            const isOpen = translation.classList.toggle('is-open');
+                            button.setAttribute('aria-expanded', String(isOpen));
+                            button.innerText = isOpen ? toggleCloseText : toggleOpenText;
+                        });
                     });
 
                     hidePageLoadingOverlay();
