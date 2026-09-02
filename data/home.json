@@ -33,22 +33,22 @@
       }
     ],
     "carousel_mobile": [],
+    "btn_contact": "結緣問道",
+    "btn_methods": "窺探法門",
     "carousel": [
       {
-        "image": "/assets/uploads/Gemini_Generated_Image_lctaojlctaojlcta.png",
-        "alt": "社課練習剪影"
+        "alt": "社課練習剪影",
+        "image": "/assets/uploads/Gemini_Generated_Image_lctaojlctaojlcta.png"
       },
       {
-        "image": "/assets/uploads/ChatGPT Image 2026年7月19日 下午04_13_59.png",
-        "alt": "社遊活動剪影"
+        "alt": "社遊活動剪影",
+        "image": "/assets/uploads/ChatGPT Image 2026年7月19日 下午04_13_59.png"
       },
       {
-        "image": "/assets/uploads/colorful-winding-autumn-road.jpg",
-        "alt": "太極劍演練剪影"
+        "alt": "太極劍演練剪影",
+        "image": "/assets/uploads/colorful-winding-autumn-road.jpg"
       }
-    ],
-    "btn_methods": "窺探法門",
-    "btn_contact": "結緣問道"
+    ]
   },
   "methods_section": {
     "eyebrow": "METHODOLOGY",
@@ -254,8 +254,8 @@
     ],
     "google_map_embed_url": "",
     "badge_label": "道傳寰宇",
-    "title": "外邦弟子的修真緣分",
-    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」"
+    "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
+    "title": "外邦弟子的修真緣分"
   },
   "instructors_section": {
     "eyebrow": "OUR MASTERS",
@@ -299,7 +299,7 @@
       "role_en": "President",
       "name": "陳兆琪",
       "name_en": "Jo",
-      "photo": "/assets/uploads/北京十方普觉寺_持国天.jfif",
+      "photo": "/assets/uploads/58299.jpg",
       "desc": "本社社長，活潑熱心，樂於解答學員們學習太極時遇到的疑難雜症。",
       "desc_en": "Our club president is lively and enthusiastic, and is always happy to help members with any questions or difficulties they encounter while learning Tai Chi."
     },
@@ -339,13 +339,13 @@
     "title_en": "Contact/ Join Us",
     "intro": "道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。",
     "intro_en": "If you are interested in our club, please feel free to contact us through the following channels:",
-    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
-    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)",
-    "social_label": "【仙界傳音】",
-    "email_value": "nccutaichi@email.com",
     "email_label": "【問道法郵】",
+    "email_value": "nccutaichi@email.com",
+    "footer_quote": "「山不在高，有仙則名。水不在深，有龍則靈。」期待在指南山下，與你在呼吸吐納中相遇。",
+    "location_label": "【道場位置】",
     "location_value": "國立政治大學 風雩樓／醉夢溪畔山路",
-    "location_label": "【道場位置】"
+    "social_label": "【仙界傳音】",
+    "social_value": "IG: @nccu_taichi (歡迎私訊小編結緣)"
   },
   "contact": {
     "location_label": "活動教室",
