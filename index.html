@@ -24,20 +24,20 @@
                 extend: {
                     colors: {
                         ink: {
-                            deep: '#08090A',    /* 飽和水墨黑 */
-                            dark: '#111315',    /* 沉澱墨色 */
-                            card: '#181B1E',    /* 紙墨微光 */
+                            deep: '#08090A',
+                            dark: '#111315',
+                            card: '#181B1E',
                         },
-                        cloud: '#8E95A0',       /* 霧霾灰 */
+                        cloud: '#8E95A0',
                         pine: {
-                            light: '#427A5B',   /* 嫩松綠 */
-                            DEFAULT: '#1E3D2F', /* 深松柏綠 */
-                            dark: '#0F2118',    /* 幽松綠 */
+                            light: '#427A5B',
+                            DEFAULT: '#1E3D2F',
+                            dark: '#0F2118',
                         },
                         bronze: {
-                            light: '#D9C39E',   /* 浮雕金 */
-                            DEFAULT: '#B89742', /* 古銅金 */
-                            dark: '#8C6C30',    /* 歲月暗金 */
+                            light: '#D9C39E',
+                            DEFAULT: '#B89742',
+                            dark: '#8C6C30',
                         }
                     },
                     fontFamily: {
@@ -48,9 +48,6 @@
         }
     </script>
     <style>
-        /* html 也加上 overflow-x hidden：body 的 overflow-x-hidden 對 position:fixed 的元素(例如導覽列)
-           不一定完全有效，因為 fixed 元素是以整個瀏覽器視窗為基準定位，不受 body 的 overflow 裁切影響。
-           連 html 一起設定，才能確保手機版不會出現橫向拖曳橫桿 */
         html {
             overflow-x: hidden;
             max-width: 100%;
@@ -61,7 +58,6 @@
             background-image: radial-gradient(circle at 50% 30%, rgba(30, 61, 47, 0.1) 0%, rgba(8, 9, 10, 1) 70%);
             max-width: 100%;
         }
-        /* 山嵐霧氣飄動特效 */
         .mist-bg {
             position: absolute;
             width: 100%;
@@ -73,7 +69,6 @@
             pointer-events: none;
             z-index: 1;
         }
-        /* 自訂細線描邊，更有東方宣紙感 */
         .ink-border {
             border: 1px solid rgba(184, 151, 66, 0.15);
         }
@@ -81,15 +76,13 @@
             border-color: rgba(184, 151, 66, 0.4);
             box-shadow: 0 0 15px rgba(30, 61, 47, 0.2);
         }
-        /* 手機版四大法門頁籤橫向滑動列：隱藏捲軸，仍可用手指直接拖曳滑動 */
         .tab-scroll-row {
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* 舊版 Edge/IE */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
         .tab-scroll-row::-webkit-scrollbar {
-            display: none; /* Chrome/Safari */
+            display: none;
         }
-        /* 內文標記語法對應樣式：[[文字]] 顯示成金色標註 */
         .hl-gold {
             color: #B89742;
             font-weight: 600;
@@ -100,7 +93,6 @@
             display: block;
             margin-top: 6px;
         }
-        /* 手機版 + 英文模式：主要標題字級縮小、行距加大，減少換行時畫面過於擁擠的情形，電腦版與中文模式不受影響 */
         @media (max-width: 767px) {
             body.lang-en .section-title {
                 font-size: 1.5rem;
@@ -110,16 +102,14 @@
                 font-size: 1.15rem;
                 line-height: 1.4;
             }
-            /* 「Time:」「Location:」這類欄位標籤，只在手機+英文模式改成獨立一行，中文版跟電腦版維持同一行 */
             body.lang-en .field-label {
                 display: block;
                 margin-bottom: 2px;
             }
         }
-        /* 紅塵歷練橫向滑動列的捲軸配色：黑底灰拉桿，取代瀏覽器預設的白底灰拉桿（電腦版） */
         #experience-cards {
-            scrollbar-width: thin; /* Firefox */
-            scrollbar-color: #8E95A0 #08090A; /* Firefox: 拉桿色 / 底色 */
+            scrollbar-width: thin;
+            scrollbar-color: #8E95A0 #08090A;
         }
         #experience-cards::-webkit-scrollbar {
             height: 8px;
@@ -135,7 +125,6 @@
         #experience-cards::-webkit-scrollbar-thumb:hover {
             background-color: #B89742;
         }
-        /* 手機版：隱藏拖曳橫桿，改用左右箭頭導覽，仍保留手指滑動的功能 */
         @media (max-width: 767px) {
             #experience-cards {
                 scrollbar-width: none;
@@ -145,7 +134,6 @@
                 display: none;
             }
         }
-        /* 紅塵歷練卡片內文（手機版）：文字太多時可上下滑動查看，捲軸配色跟卡片列一致 */
         .exp-desc-scroll::-webkit-scrollbar {
             width: 4px;
         }
@@ -160,47 +148,31 @@
 </head>
 <body class="text-cloud overflow-x-hidden">
 
-    <!-- 全站共用的語言切換邏輯，要在其他腳本之前載入 -->
     <script src="js/lang.js"></script>
 
-    <!-- 頁面載入遮罩：資料抓回來、內容都填好之前先蓋住畫面，避免看到預留文字閃一下才變成正確內容 -->
     <div id="page-loading-overlay" style="position:fixed;inset:0;background:#08090A;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.3s ease;">
         <div id="page-loading-text" style="color:#B89742;font-family:'Noto Serif TC',serif;letter-spacing:4px;font-size:0.9rem;">道場開啟中...</div>
     </div>
     <script>
         (function() {
-            // 立刻套用上次快取的「道場開啟中」文字（如果有的話），比等資料抓回來還快
             var cached = (typeof getCachedLoadingText === 'function') ? getCachedLoadingText() : null;
             if (cached) document.getElementById('page-loading-text').innerText = cached;
         })();
     </script>
 
     <div class="mist-bg"></div>
-
-    <!-- 頂部導覽列：由 header.js 統一產生，改導覽列只要改那支檔案，不用每頁各改一次 -->
     <div id="site-header"></div>
     <script src="js/header.js"></script>
 
-    <!-- 1. 隱仙首頁 (Hero Section) -->
-    <!-- 原本的文字全部拿掉，改成照片輪播 (carousel)；#hero-carousel 是空容器，圖片由下方 JS 迴圈動態塞入 -->
     <section id="hero" class="min-h-screen flex items-center justify-center relative px-4 overflow-hidden">
-        <!-- sr-only：畫面上看不到，但保留給搜尋引擎/螢幕報讀軟體辨識網站標題用 -->
         <h1 class="sr-only">政大太極社</h1>
-
-        <!-- 輪播圖片容器：JS 會把每張圖片變成一個絕對定位 (absolute，疊在同一個位置) 的圖層，並定時切換透明度 -->
         <div id="hero-carousel" class="absolute inset-0 w-full h-full z-0"></div>
-        <!-- 半透明黑色遮罩，讓上面的按鈕文字在任何照片背景下都看得清楚 -->
         <div class="absolute inset-0 bg-black/45 z-[1]"></div>
-
-        <!-- 輪播左右切換箭頭：半透明深色圓底，滑鼠移過去會加深，不會蓋掉照片本身的可視度 -->
         <button id="hero-prev-btn" type="button" aria-label="上一張" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-black/55 border border-white/30 text-white flex items-center justify-center text-xl transition-colors">‹</button>
         <button id="hero-next-btn" type="button" aria-label="下一張" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-black/55 border border-white/30 text-white flex items-center justify-center text-xl transition-colors">›</button>
-
-        <!-- 輪播指示點 (dots)，顯示目前是第幾張圖片，可點擊切換 -->
         <div id="hero-carousel-dots" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10"></div>
     </section>
 
-    <!-- 2. 四大道門法門 (身心法門 Section) -->
     <section id="methods" class="py-24 px-6 max-w-6xl mx-auto relative z-10 scroll-mt-20">
         <div class="text-center space-y-2 mb-16">
             <p id="methods-eyebrow" class="text-bronze tracking-[0.3em] text-xs">METHODOLOGY</p>
@@ -209,7 +181,6 @@
             <p id="methods-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">動靜相兼，形神俱妙。此為本社修行之四大柱石。</p>
         </div>
 
-        <!-- 動態分頁頁籤 (Tabs)：手機版加上左右箭頭方便滑動，並保留手指直接拖曳的功能 -->
         <div class="relative mb-8">
             <button id="tabs-prev-btn" type="button" aria-label="上一組" class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-ink-deep/80 border border-bronze/50 text-bronze-light flex items-center justify-center transition-opacity">‹</button>
             <div id="methods-tab-row" class="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-4 overflow-x-auto md:overflow-visible pb-2 md:pb-0 tab-scroll-row px-10 md:px-0">
@@ -229,345 +200,88 @@
             <button id="tabs-next-btn" type="button" aria-label="下一組" class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-ink-deep/80 border border-bronze/50 text-bronze-light flex items-center justify-center transition-opacity">›</button>
         </div>
 
-        <!-- 法門展示卡片內容 -->
         <div class="p-0 md:bg-ink-dark/60 md:rounded-xl md:p-10 md:border md:border-bronze/15 min-h-[400px]">
-
-            <!-- 1. 華陀導引氣功 -->
             <div id="content-qigong" class="tab-content grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-5 space-y-6">
                     <span id="content-qigong-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">內功心法 ． 吐納歸真</span>
                     <h3 id="content-qigong-title" class="text-2xl font-semibold text-white tracking-widest truncate">華陀導引氣功</h3>
-                    <p id="content-qigong-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
-                        「運先天之炁，化五穀之精，以調身心、延壽命也。」
-                    </p>
-                    <p id="content-qigong-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
-                        引導吐納，疏通十二經絡。適合長期熬夜、為課業瑣事精神內耗的大學學子。無須繁複招式，只需靜心專注於一呼一吸，在沉靜中感受體內生生不息之炁。
-                    </p>
-                    <div class="pt-2">
-                        <span id="content-qigong-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：入門</span>
-                    </div>
+                    <p id="content-qigong-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">「運先天之炁，化五穀之精，以調身心、延壽命也。」</p>
+                    <p id="content-qigong-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">引導吐納，疏通十二經絡。適合長期熬夜、為課業瑣事精神內耗的大學學子。無須繁複招式，只需靜心專注於一呼一吸，在沉靜中感受體內生生不息之炁。</p>
+                    <div class="pt-2"><span id="content-qigong-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：入門</span></div>
                 </div>
-                <div class="md:col-span-7">
-                    <div id="content-qigong-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center group">
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
-                        <div class="text-center z-10 p-4">
-                            <p class="text-bronze text-sm mb-2 tracking-widest">【 華陀導引氣功 ． 演示影像預留區 】</p>
-                            <p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="md:col-span-7"><div id="content-qigong-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center group"><div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div><div class="text-center z-10 p-4"><p class="text-bronze text-sm mb-2 tracking-widest">【 華陀導引氣功 ． 演示影像預留區 】</p><p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p></div></div></div>
             </div>
-
-            <!-- 2. 太極拳 (預設隱藏) -->
             <div id="content-taichi" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
-                <div class="md:col-span-5 space-y-6">
-                    <span id="content-taichi-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">動靜觀心 ． 借力化勁</span>
-                    <h3 id="content-taichi-title" class="text-2xl font-semibold text-white tracking-widest truncate">太極拳</h3>
-                    <p id="content-taichi-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
-                        「動靜相兼，以柔克剛，先化而發，方能以四兩撥千金。」
-                    </p>
-                    <p id="content-taichi-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
-                        不與風爭強，不與水奪流。太極拳非防身格鬥之悍術，而是與自身重力、自然定律共處的和諧律動。一式一動皆在磨練定力，讓浮躁的心沉澱，感受圓融之美。
-                    </p>
-                    <div class="pt-2">
-                        <span id="content-taichi-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：中等</span>
-                    </div>
-                </div>
-                <div class="md:col-span-7">
-                    <div id="content-taichi-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
-                        <div class="text-center z-10 p-4">
-                            <p class="text-bronze text-sm mb-2 tracking-widest">【 太極拳 ． 演示影像預留區 】</p>
-                            <p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="md:col-span-5 space-y-6"><span id="content-taichi-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">動靜觀心 ． 借力化勁</span><h3 id="content-taichi-title" class="text-2xl font-semibold text-white tracking-widest truncate">太極拳</h3><p id="content-taichi-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">「動靜相兼，以柔克剛，先化而發，方能以四兩撥千金。」</p><p id="content-taichi-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">不與風爭強，不與水奪流。太極拳非防身格鬥之悍術，而是與自身重力、自然定律共處的和諧律動。一式一動皆在磨練定力，讓浮躁的心沉澱，感受圓融之美。</p><div class="pt-2"><span id="content-taichi-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：中等</span></div></div>
+                <div class="md:col-span-7"><div id="content-taichi-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center"><div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div><div class="text-center z-10 p-4"><p class="text-bronze text-sm mb-2 tracking-widest">【 太極拳 ． 演示影像預留區 】</p><p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p></div></div></div>
             </div>
-
-            <!-- 3. 太祖棍 (預設隱藏) -->
             <div id="content-staff" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
-                <div class="md:col-span-5 space-y-6">
-                    <span id="content-staff-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">借物修身 ． 身棍合一</span>
-                    <h3 id="content-staff-title" class="text-2xl font-semibold text-white tracking-widest truncate">太祖棍</h3>
-                    <p id="content-staff-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
-                        「借物修身，身棍合一。腰、棍、腳俱為一體。」
-                    </p>
-                    <p id="content-staff-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
-                        長兵之祖，勢如破竹。太祖棍旨在訓練脊椎旋轉之核心爆發力，使手、足、身、步協調一致。棍身舞動之際，非唯破敵，實乃掃除心中雜念與懈怠。
-                    </p>
-                    <div class="pt-2">
-                        <span id="content-staff-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：進階</span>
-                    </div>
-                </div>
-                <div class="md:col-span-7">
-                    <div id="content-staff-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
-                        <div class="text-center z-10 p-4">
-                            <p class="text-bronze text-sm mb-2 tracking-widest">【 太祖棍 ． 演示影像預留區 】</p>
-                            <p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="md:col-span-5 space-y-6"><span id="content-staff-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">借物修身 ． 身棍合一</span><h3 id="content-staff-title" class="text-2xl font-semibold text-white tracking-widest truncate">太祖棍</h3><p id="content-staff-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">「借物修身，身棍合一。腰、棍、腳俱為一體。」</p><p id="content-staff-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">長兵之祖，勢如破竹。太祖棍旨在訓練脊椎旋轉之核心爆發力，使手、足、身、步協調一致。棍身舞動之際，非唯破敵，實乃掃除心中雜念與懈怠。</p><div class="pt-2"><span id="content-staff-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：進階</span></div></div>
+                <div class="md:col-span-7"><div id="content-staff-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center"><div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div><div class="text-center z-10 p-4"><p class="text-bronze text-sm mb-2 tracking-widest">【 太祖棍 ． 演示影像預留區 】</p><p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p></div></div></div>
             </div>
-
-            <!-- 4. 太極劍 (預設隱藏) -->
             <div id="content-sword" class="tab-content hidden grid md:grid-cols-12 gap-8 items-center">
-                <div class="md:col-span-5 space-y-6">
-                    <span id="content-sword-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">形神俱妙 ． 劍行行雲</span>
-                    <h3 id="content-sword-title" class="text-2xl font-semibold text-white tracking-widest truncate">太極劍</h3>
-                    <p id="content-sword-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
-                        「以意御劍，瀟灑飄逸，形神俱妙而不失其防身之效。」
-                    </p>
-                    <p id="content-sword-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
-                        劍隨身走，瀟灑似風。太極劍要求神態飄逸、步法靈動，非純剛猛，而以圓轉輕靈取勝。劍尖所指，皆是太極圓圈之化境，令身心如行雲流水，自在自得。
-                    </p>
-                    <div class="pt-2">
-                        <span id="content-sword-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：高階</span>
-                    </div>
-                </div>
-                <div class="md:col-span-7">
-                    <div id="content-sword-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center">
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
-                        <div class="text-center z-10 p-4">
-                            <p class="text-bronze text-sm mb-2 tracking-widest">【 太極劍 ． 演示影像預留區 】</p>
-                            <p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="md:col-span-5 space-y-6"><span id="content-sword-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">形神俱妙 ． 劍行行雲</span><h3 id="content-sword-title" class="text-2xl font-semibold text-white tracking-widest truncate">太極劍</h3><p id="content-sword-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">「以意御劍，瀟灑飄逸，形神俱妙而不失其防身之效。」</p><p id="content-sword-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">劍隨身走，瀟灑似風。太極劍要求神態飄逸、步法靈動，非純剛猛，而以圓轉輕靈取勝。劍尖所指，皆是太極圓圈之化境，令身心如行雲流水，自在自得。</p><div class="pt-2"><span id="content-sword-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：高階</span></div></div>
+                <div class="md:col-span-7"><div id="content-sword-video" class="aspect-video w-full rounded-lg overflow-hidden bg-ink-deep relative ink-border flex items-center justify-center"><div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div><div class="text-center z-10 p-4"><p class="text-bronze text-sm mb-2 tracking-widest">【 太極劍 ． 演示影像預留區 】</p><p class="text-xs text-cloud/50">請於原始碼中將此處替換為 YouTube 嵌入程式碼</p></div></div></div>
             </div>
-
         </div>
     </section>
 
-    <!-- 3. 紅塵歷練 (課外活動 Section) -->
     <section id="experience" class="py-24 bg-ink-dark/30 border-y border-white/5 px-6 scroll-mt-20">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center space-y-2 mb-16">
-                <p id="exp-eyebrow" class="text-bronze tracking-[0.3em] text-xs">MORTAL EXPERIENCES</p>
-                <h2 id="exp-title" class="text-3xl font-bold text-white tracking-widest section-title">紅塵歷練</h2>
-                <div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div>
-                <p id="exp-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。</p>
-            </div>
-
-            <!-- 手機版拿掉箭頭改用文字提示滑動；電腦版維持原本同排橫向滑動 -->
-            <div class="relative">
-                <div id="experience-cards" class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory"></div>
-            </div>
+            <div class="text-center space-y-2 mb-16"><p id="exp-eyebrow" class="text-bronze tracking-[0.3em] text-xs">MORTAL EXPERIENCES</p><h2 id="exp-title" class="text-3xl font-bold text-white tracking-widest section-title">紅塵歷練</h2><div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div><p id="exp-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">修真不離紅塵，動靜皆是道。我們與同修共賞人間煙火。</p></div>
+            <div class="relative"><div id="experience-cards" class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory"></div></div>
             <p class="md:hidden text-right text-xs text-bronze-light tracking-widest mt-1 pr-1">右滑看更多 →</p>
         </div>
     </section>
 
-    <!-- 4. 道傳寰宇 (歷年成果 Section) -->
     <section id="global" class="py-24 px-6 max-w-6xl mx-auto scroll-mt-20">
-        <div class="text-center space-y-2 mb-16">
-            <p id="global-eyebrow" class="text-bronze tracking-[0.3em] text-xs">GLOBAL CONNECTION</p>
-            <h2 id="global-section-title" class="text-3xl font-bold text-white tracking-widest section-title">道傳寰宇</h2>
-            <div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div>
-            <p id="global-section-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">天涯咫尺，萬法歸一。前來問道的外邦同修，足跡早已遍及五洲。</p>
-        </div>
-
+        <div class="text-center space-y-2 mb-16"><p id="global-eyebrow" class="text-bronze tracking-[0.3em] text-xs">GLOBAL CONNECTION</p><h2 id="global-section-title" class="text-3xl font-bold text-white tracking-widest section-title">道傳寰宇</h2><div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div><p id="global-section-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">天涯咫尺，萬法歸一。前來問道的外邦同修，足跡早已遍及五洲。</p></div>
         <div class="grid md:grid-cols-12 gap-10 items-start">
-
-            <!-- 左側：地圖區塊，會嵌入後台設定的 Google My Maps -->
-            <div class="md:col-span-5">
-                <div class="bg-ink-dark rounded-xl p-6 ink-border relative overflow-hidden min-h-[350px] flex flex-col justify-between">
-                    <div class="text-xs text-bronze tracking-widest flex justify-between items-center mb-3">
-                        <span>【 寰宇同道地圖 】</span>
-                    </div>
-
-                    <!-- 地圖嵌入區：有設定後台的 Google 地圖連結就顯示地圖，沒有就顯示提示文字 -->
-                    <div id="global-map-embed-wrap" class="w-full h-[260px] rounded-lg overflow-hidden border border-white/10 bg-ink-deep flex items-center justify-center">
-                        <div class="text-center p-4">
-                            <p class="text-bronze text-sm mb-2 tracking-widest">尚未設定地圖</p>
-                            <p class="text-xs text-cloud/50">請於後台「道傳寰宇」貼上 Google My Maps 嵌入連結</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 右側：副標文字 + 段落 + 國家標籤 + 統計數字 -->
-            <div class="md:col-span-7 space-y-6">
-                <h3 id="global-subtitle" class="text-2xl font-semibold text-white tracking-widest section-subtitle">外邦弟子的修真緣分</h3>
-                <p id="global-para1" class="text-sm leading-relaxed text-cloud/90">
-                    歷年來，政大太極社迎接來自世界各地的交換學生與訪客。無論語言與膚色，太極的圓融之道跨越文化疆界，成為連結人心的橋樑。
-                </p>
-                <p id="global-para2" class="text-sm leading-relaxed text-cloud/90">
-                    我們與日本、韓國、美國、德國、法國、泰國、馬來西亞、澳洲等國的太極愛好者持續交流，共同探討東方身心哲學的現代價值。
-                </p>
-
-                <!-- 國家標籤：由後台資料動態產生 -->
-                <div id="global-country-tags" class="flex flex-wrap gap-3 pt-2"></div>
-
-                <!-- 統計數字：由後台資料動態產生 -->
-                <div id="global-stats" class="flex flex-wrap gap-8 pt-6 mt-2 border-t border-white/10"></div>
-            </div>
+            <div class="md:col-span-5"><div class="bg-ink-dark rounded-xl p-6 ink-border relative overflow-hidden min-h-[350px] flex flex-col justify-between"><div class="text-xs text-bronze tracking-widest flex justify-between items-center mb-3"><span>【 寰宇同道地圖 】</span></div><div id="global-map-embed-wrap" class="w-full h-[260px] rounded-lg overflow-hidden border border-white/10 bg-ink-deep flex items-center justify-center"><div class="text-center p-4"><p class="text-bronze text-sm mb-2 tracking-widest">尚未設定地圖</p><p class="text-xs text-cloud/50">請於後台「道傳寰宇」貼上 Google My Maps 嵌入連結</p></div></div></div></div>
+            <div class="md:col-span-7 space-y-6"><h3 id="global-subtitle" class="text-2xl font-semibold text-white tracking-widest section-subtitle">外邦弟子的修真緣分</h3><p id="global-para1" class="text-sm leading-relaxed text-cloud/90">歷年來，政大太極社迎接來自世界各地的交換學生與訪客。無論語言與膚色，太極的圓融之道跨越文化疆界，成為連結人心的橋樑。</p><p id="global-para2" class="text-sm leading-relaxed text-cloud/90">我們與日本、韓國、美國、德國、法國、泰國、馬來西亞、澳洲等國的太極愛好者持續交流，共同探討東方身心哲學的現代價值。</p><div id="global-country-tags" class="flex flex-wrap gap-3 pt-2"></div><div id="global-stats" class="flex flex-wrap gap-8 pt-6 mt-2 border-t border-white/10"></div></div>
         </div>
     </section>
 
-    <!-- 5. 師資介紹 -->
     <section id="instructors" class="py-24 px-6 max-w-6xl mx-auto scroll-mt-20">
-        <div class="text-center space-y-2 mb-16">
-            <p id="instructors-eyebrow" class="text-bronze tracking-[0.3em] text-xs">OUR MASTERS</p>
-            <h2 id="instructors-title" class="text-3xl font-bold text-white tracking-widest section-title">師資介紹</h2>
-            <div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div>
-            <p id="instructors-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">名師引路，薪火相傳。</p>
-        </div>
-
-        <!-- 空容器，由 JS 依照後台資料筆數動態產生「左側照片＋右側介紹」的長條，一排一位、寬版呈現 -->
+        <div class="text-center space-y-2 mb-16"><p id="instructors-eyebrow" class="text-bronze tracking-[0.3em] text-xs">OUR MASTERS</p><h2 id="instructors-title" class="text-3xl font-bold text-white tracking-widest section-title">師資介紹</h2><div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div><p id="instructors-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">名師引路，薪火相傳。</p></div>
         <div id="instructors-list" class="space-y-6"></div>
     </section>
 
-    <!-- 6. 幹部介紹 -->
     <section id="staff" class="py-24 bg-ink-dark/30 border-y border-white/5 px-6 scroll-mt-20">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center space-y-2 mb-16">
-                <p id="staff-eyebrow" class="text-bronze tracking-[0.3em] text-xs">OUR TEAM</p>
-                <h2 id="staff-title" class="text-3xl font-bold text-white tracking-widest section-title">幹部介紹</h2>
-                <div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div>
-                <p id="staff-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">認識本屆核心幹部。</p>
-            </div>
-
-            <!-- 空容器：電腦版兩人一排、手機版一人一排；每張卡片預設隱藏簡介，需點「查看更多」展開 -->
+            <div class="text-center space-y-2 mb-16"><p id="staff-eyebrow" class="text-bronze tracking-[0.3em] text-xs">OUR TEAM</p><h2 id="staff-title" class="text-3xl font-bold text-white tracking-widest section-title">幹部介紹</h2><div class="w-12 h-0.5 bg-bronze mx-auto mt-6"></div><p id="staff-desc" class="text-sm text-cloud/80 max-w-md mx-auto pt-2">認識本屆核心幹部。</p></div>
             <div id="staff-list" class="grid md:grid-cols-2 gap-6"></div>
-
-            <!-- 查看歷任幹部：預設隱藏整組歷任幹部列表，點擊右下角文字才展開 -->
-            <div class="text-right mt-6">
-                <button id="staff-alumni-toggle" type="button" class="text-sm text-bronze-light hover:text-white transition-colors">查看歷任幹部</button>
-            </div>
-            <div id="staff-alumni-wrap" class="hidden mt-6">
-                <div id="staff-alumni-list" class="grid md:grid-cols-2 gap-6"></div>
-            </div>
+            <div class="text-right mt-6"><button id="staff-alumni-toggle" type="button" class="text-sm text-bronze-light hover:text-white transition-colors">查看歷任幹部</button></div>
+            <div id="staff-alumni-wrap" class="hidden mt-6"><div id="staff-alumni-list" class="grid md:grid-cols-2 gap-6"></div></div>
         </div>
     </section>
 
-    <!-- 5. 尋訪仙蹤 (聯絡方式與行事曆 Section) -->
     <section id="contact" class="py-24 bg-ink-dark/50 border-t border-white/5 px-6 scroll-mt-20">
         <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-12">
-
-            <!-- 聯絡與社群：手機版排序在後(order-2)，電腦版維持在左側(md:order-1) -->
-            <div class="md:col-span-5 space-y-8 order-2 md:order-1">
-                <div class="space-y-2">
-                    <p id="contact-eyebrow" class="text-bronze tracking-[0.3em] text-xs">VISIT THE TEMPLE</p>
-                    <h2 id="contact-title" class="text-3xl font-bold text-white tracking-widest section-title">尋訪仙蹤</h2>
-                    <div class="w-12 h-0.5 bg-bronze mt-6"></div>
-                </div>
-
-                <p id="contact-intro" class="text-sm leading-relaxed text-cloud/80">
-                    道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。
-                </p>
-
-                <div class="space-y-4 text-sm">
-                    <div class="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-3">
-                        <span id="contact-location-label" class="text-bronze font-bold flex-shrink-0">【道場位置】</span>
-                        <span id="contact-location-value" class="text-cloud">國立政治大學 風雩樓／醉夢溪畔山路</span>
-                    </div>
-                    <div class="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-3">
-                        <span id="contact-email-label" class="text-bronze font-bold flex-shrink-0">【問道法郵】</span>
-                        <span id="contact-email-value" class="text-cloud">nccutaichi@email.com</span>
-                    </div>
-                    <div class="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-3">
-                        <span id="contact-social-label" class="text-bronze font-bold flex-shrink-0">【仙界傳音】</span>
-                        <span id="contact-social-value" class="text-cloud">IG: @nccu_taichi (歡迎私訊小編結緣)</span>
-                    </div>
-                </div>
-
-                <!-- 社群連結按鈕：後台沒填對應網址時會自動隱藏該按鈕 -->
-                <div class="flex gap-4 pt-2">
-                    <a id="social-fb-link" href="#" target="_blank" rel="noopener" class="hidden w-11 h-11 rounded-full border border-bronze/40 flex items-center justify-center text-bronze-light hover:bg-bronze hover:text-ink-deep hover:border-bronze transition-all duration-300" aria-label="Facebook">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.86c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/>
-                        </svg>
-                    </a>
-                    <a id="social-ig-link" href="#" target="_blank" rel="noopener" class="hidden w-11 h-11 rounded-full border border-bronze/40 flex items-center justify-center text-bronze-light hover:bg-bronze hover:text-ink-deep hover:border-bronze transition-all duration-300" aria-label="Instagram">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <rect x="3" y="3" width="18" height="18" rx="5"/>
-                            <circle cx="12" cy="12" r="4"/>
-                            <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/>
-                        </svg>
-                    </a>
-                </div>
-
-                <div class="pt-4">
-                    <p id="contact-footer-quote" class="text-xs text-cloud/50 italic">
-                        「山不在高，有仙則名。水不在深，有龍則靈。」<br>
-                        期待在指南山下，與你在呼吸吐納中相遇。
-                    </p>
-                </div>
-            </div>
-
-            <!-- 行事曆：手機版排序在前(order-1)，電腦版維持在右側(md:order-2)；拿掉外層大邊框，直接顯示內層各卡片，減少套盒感 -->
-            <div class="md:col-span-7 space-y-6 order-1 md:order-2">
-                <h3 id="schedule-title" class="text-xl font-semibold text-white tracking-widest text-center md:text-left">
-                    每週修煉行事曆 (社課時間)
-                </h3>
-
-                <div id="schedule-list" class="space-y-3">
-                    <div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors">
-                        <div class="text-bronze font-bold tracking-widest text-base mb-1.5">基礎吐納與華陀導引氣功</div>
-                        <div class="text-sm text-cloud/90"><span class="field-label">時間：</span><span class="text-white">每週二 19:00 - 21:00</span></div>
-                        <div class="text-sm text-cloud/90"><span class="field-label">地點：</span><span class="text-white">風雩樓二樓</span></div>
-                    </div>
-                    <div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors">
-                        <div class="text-bronze font-bold tracking-widest text-base mb-1.5">太極拳核心架構與推手</div>
-                        <div class="text-sm text-cloud/90"><span class="field-label">時間：</span><span class="text-white">每週四 19:00 - 21:00</span></div>
-                        <div class="text-sm text-cloud/90"><span class="field-label">地點：</span><span class="text-white">風雩樓一樓</span></div>
-                    </div>
-                    <div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors">
-                        <div class="text-bronze font-bold tracking-widest text-base mb-1.5">太祖棍與太極劍兵刃修行</div>
-                        <div class="text-sm text-cloud/90"><span class="field-label">時間：</span><span class="text-white">隔週六 09:00 - 11:30</span></div>
-                        <div class="text-sm text-cloud/90"><span class="field-label">地點：</span><span class="text-white">醉夢溪畔草坪 (雨天移室內)</span></div>
-                    </div>
-                </div>
-
-                <div class="bg-pine/10 p-4 rounded border border-pine/30 text-xs leading-relaxed">
-                    <strong id="schedule-note-label" class="text-pine-light block mb-1">道門提點：</strong>
-                    <span id="schedule-note" class="text-white">本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。</span>
-                </div>
-            </div>
-
+            <div class="md:col-span-5 space-y-8 order-2 md:order-1"><div class="space-y-2"><p id="contact-eyebrow" class="text-bronze tracking-[0.3em] text-xs">VISIT THE TEMPLE</p><h2 id="contact-title" class="text-3xl font-bold text-white tracking-widest section-title">尋訪仙蹤</h2><div class="w-12 h-0.5 bg-bronze mt-6"></div></div><p id="contact-intro" class="text-sm leading-relaxed text-cloud/80">道法因緣，隨風而至。若您有意撥開塵網，前來體驗太極的和諧動靜，歡迎透過以下方式，與我們締結法緣。</p><div class="space-y-4 text-sm"><div class="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-3"><span id="contact-location-label" class="text-bronze font-bold flex-shrink-0">【道場位置】</span><span id="contact-location-value" class="text-cloud">國立政治大學 風雩樓／醉夢溪畔山路</span></div><div class="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-3"><span id="contact-email-label" class="text-bronze font-bold flex-shrink-0">【問道法郵】</span><span id="contact-email-value" class="text-cloud">nccutaichi@email.com</span></div><div class="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-3"><span id="contact-social-label" class="text-bronze font-bold flex-shrink-0">【仙界傳音】</span><span id="contact-social-value" class="text-cloud">IG: @nccu_taichi (歡迎私訊小編結緣)</span></div></div><div class="flex gap-4 pt-2"><a id="social-fb-link" href="#" target="_blank" rel="noopener" class="hidden w-11 h-11 rounded-full border border-bronze/40 flex items-center justify-center text-bronze-light hover:bg-bronze hover:text-ink-deep hover:border-bronze transition-all duration-300" aria-label="Facebook"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.86c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg></a><a id="social-ig-link" href="#" target="_blank" rel="noopener" class="hidden w-11 h-11 rounded-full border border-bronze/40 flex items-center justify-center text-bronze-light hover:bg-bronze hover:text-ink-deep hover:border-bronze transition-all duration-300" aria-label="Instagram"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a></div><div class="pt-4"><p id="contact-footer-quote" class="text-xs text-cloud/50 italic">「山不在高，有仙則名。水不在深，有龍則靈。」<br>期待在指南山下，與你在呼吸吐納中相遇。</p></div></div>
+            <div class="md:col-span-7 space-y-6 order-1 md:order-2"><h3 id="schedule-title" class="text-xl font-semibold text-white tracking-widest text-center md:text-left">每週修煉行事曆 (社課時間)</h3><div id="schedule-list" class="space-y-3"><div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors"><div class="text-bronze font-bold tracking-widest text-base mb-1.5">基礎吐納與華陀導引氣功</div><div class="text-sm text-cloud/90"><span class="field-label">時間：</span><span class="text-white">每週二 19:00 - 21:00</span></div><div class="text-sm text-cloud/90"><span class="field-label">地點：</span><span class="text-white">風雩樓二樓</span></div></div><div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors"><div class="text-bronze font-bold tracking-widest text-base mb-1.5">太極拳核心架構與推手</div><div class="text-sm text-cloud/90"><span class="field-label">時間：</span><span class="text-white">每週四 19:00 - 21:00</span></div><div class="text-sm text-cloud/90"><span class="field-label">地點：</span><span class="text-white">風雩樓一樓</span></div></div><div class="bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors"><div class="text-bronze font-bold tracking-widest text-base mb-1.5">太祖棍與太極劍兵刃修行</div><div class="text-sm text-cloud/90"><span class="field-label">時間：</span><span class="text-white">隔週六 09:00 - 11:30</span></div><div class="text-sm text-cloud/90"><span class="field-label">地點：</span><span class="text-white">醉夢溪畔草坪 (雨天移室內)</span></div></div></div><div class="bg-pine/10 p-4 rounded border border-pine/30 text-xs leading-relaxed"><strong id="schedule-note-label" class="text-pine-light block mb-1">道門提點：</strong><span id="schedule-note" class="text-white">本社活動不設門檻，無須武術底子，隨緣入座。首次觀摩同修，建議著寬鬆便服與平底運動鞋，攜帶隨身水壺即可。</span></div></div>
         </div>
     </section>
 
-    <!-- 頁尾宣告 -->
-    <footer class="bg-ink-deep border-t border-white/5 py-8 text-center text-xs text-cloud/40 tracking-widest">
-        <p id="footer-copyright">© 2026 國立政治大學太極社 NCCU Tai Chi Club. 凡塵無憂，唯道是從。</p>
-        <p id="footer-sub" class="mt-2 text-[10px] text-bronze/30">指南天光，水墨太極。本頁面已啟用隨緣修行設定。</p>
-    </footer>
+    <footer class="bg-ink-deep border-t border-white/5 py-8 text-center text-xs text-cloud/40 tracking-widest"><p id="footer-copyright">© 2026 國立政治大學太極社 NCCU Tai Chi Club. 凡塵無憂，唯道是從。</p><p id="footer-sub" class="mt-2 text-[10px] text-bronze/30">指南天光，水墨太極。本頁面已啟用隨緣修行設定。</p></footer>
 
-    <!-- Tab 切換動態邏輯 -->
     <script>
         function switchTab(tabId) {
             const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => {
-                content.classList.add('hidden');
-            });
-
+            contents.forEach(content => content.classList.add('hidden'));
             const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-pine', 'text-white', 'border-bronze');
-                btn.classList.add('border-white/5', 'text-cloud');
-            });
-
+            buttons.forEach(btn => { btn.classList.remove('bg-pine', 'text-white', 'border-bronze'); btn.classList.add('border-white/5', 'text-cloud'); });
             const activeContent = document.getElementById(`content-${tabId}`);
-            if (activeContent) {
-                activeContent.classList.remove('hidden');
-            }
-
+            if (activeContent) activeContent.classList.remove('hidden');
             const activeBtn = document.getElementById(`tab-${tabId}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('border-white/5', 'text-cloud');
-                activeBtn.classList.add('bg-pine', 'text-white', 'border-bronze');
-            }
+            if (activeBtn) { activeBtn.classList.remove('border-white/5', 'text-cloud'); activeBtn.classList.add('bg-pine', 'text-white', 'border-bronze'); }
         }
 
-        // 共用的「橫向滑動列 + 左右箭頭」控制：點箭頭時滑動一個項目的寬度（含間距），
-        // 同時保留手指直接拖曳滑動的原生功能；捲到頭尾時箭頭會變淡並停用，提示已經到底了
         function setupScrollArrows(containerId, prevBtnId, nextBtnId) {
             const container = document.getElementById(containerId);
             const prevBtn = document.getElementById(prevBtnId);
             const nextBtn = document.getElementById(nextBtnId);
             if (!container || !prevBtn || !nextBtn) return;
-
             function scrollByOneItem(direction) {
                 const firstItem = container.firstElementChild;
                 if (!firstItem) return;
@@ -576,597 +290,105 @@
                 const amount = firstItem.getBoundingClientRect().width + gap;
                 container.scrollBy({ left: direction * amount, behavior: 'smooth' });
             }
-
             function updateArrowState() {
                 const maxScroll = container.scrollWidth - container.clientWidth;
                 const atStart = container.scrollLeft <= 4;
                 const atEnd = container.scrollLeft >= maxScroll - 4;
-                prevBtn.style.opacity = atStart ? '0.3' : '1';
-                nextBtn.style.opacity = atEnd ? '0.3' : '1';
-                prevBtn.disabled = atStart;
-                nextBtn.disabled = atEnd;
+                prevBtn.style.opacity = atStart ? '0.3' : '1'; nextBtn.style.opacity = atEnd ? '0.3' : '1';
+                prevBtn.disabled = atStart; nextBtn.disabled = atEnd;
             }
-
-            prevBtn.addEventListener('click', () => scrollByOneItem(-1));
-            nextBtn.addEventListener('click', () => scrollByOneItem(1));
-            container.addEventListener('scroll', updateArrowState);
-            updateArrowState();
+            prevBtn.addEventListener('click', () => scrollByOneItem(-1)); nextBtn.addEventListener('click', () => scrollByOneItem(1)); container.addEventListener('scroll', updateArrowState); updateArrowState();
         }
 
-        // 四大功法頁籤是固定存在的靜態元素，頁面一載入就可以綁定箭頭
-        // 四大功法頁籤箭頭：點一下直接切換到左邊或右邊那一個功法的介紹內容，
-        // 同時把該頁籤按鈕捲動到可視範圍內，不用先滑動看到按鈕、再另外點擊
         function setupTabArrows(rowId, prevBtnId, nextBtnId, tabOrder) {
-            const row = document.getElementById(rowId);
-            const prevBtn = document.getElementById(prevBtnId);
-            const nextBtn = document.getElementById(nextBtnId);
+            const row = document.getElementById(rowId); const prevBtn = document.getElementById(prevBtnId); const nextBtn = document.getElementById(nextBtnId);
             if (!row || !prevBtn || !nextBtn) return;
-
-            function currentIndex() {
-                const activeBtn = row.querySelector('.tab-btn.bg-pine');
-                const id = activeBtn ? activeBtn.id.replace('tab-', '') : tabOrder[0];
-                const idx = tabOrder.indexOf(id);
-                return idx === -1 ? 0 : idx;
-            }
-
-            function goTo(direction) {
-                const idx = currentIndex();
-                const nextIdx = (idx + direction + tabOrder.length) % tabOrder.length;
-                const nextId = tabOrder[nextIdx];
-                switchTab(nextId);
-                const btn = document.getElementById(`tab-${nextId}`);
-                if (btn) btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            }
-
-            prevBtn.addEventListener('click', () => goTo(-1));
-            nextBtn.addEventListener('click', () => goTo(1));
+            function currentIndex() { const activeBtn = row.querySelector('.tab-btn.bg-pine'); const id = activeBtn ? activeBtn.id.replace('tab-', '') : tabOrder[0]; const idx = tabOrder.indexOf(id); return idx === -1 ? 0 : idx; }
+            function goTo(direction) { const idx = currentIndex(); const nextIdx = (idx + direction + tabOrder.length) % tabOrder.length; const nextId = tabOrder[nextIdx]; switchTab(nextId); const btn = document.getElementById(`tab-${nextId}`); if (btn) btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); }
+            prevBtn.addEventListener('click', () => goTo(-1)); nextBtn.addEventListener('click', () => goTo(1));
         }
         setupTabArrows('methods-tab-row', 'tabs-prev-btn', 'tabs-next-btn', ['qigong', 'taichi', 'staff', 'sword']);
     </script>
 
-    <!-- 串接後台資料的 JavaScript：讀取 data/home.json 並填入整個首頁 -->
     <script>
-        // 頁籤文字專用：超過 5 個字時自動縮短字距(tracking)，避免被截斷成「...」
         function setTabLabel(id, value) {
-            const el = document.getElementById(id);
-            if (!el || value === undefined || value === null) return;
-            el.innerText = value;
-            if (value.length > 5) {
-                el.classList.remove('tracking-wider');
-                el.classList.add('tracking-tight');
-            } else {
-                el.classList.add('tracking-wider');
-                el.classList.remove('tracking-tight');
-            }
+            const el = document.getElementById(id); if (!el || value === undefined || value === null) return; el.innerText = value;
+            if (value.length > 5) { el.classList.remove('tracking-wider'); el.classList.add('tracking-tight'); } else { el.classList.add('tracking-wider'); el.classList.remove('tracking-tight'); }
         }
 
-        // 初始化 Hero 照片輪播：desktopImages/mobileImages 是陣列 (array)，每一筆是 {image, alt}
-        // 手機版若後台沒填圖片，會自動沿用電腦版的圖片，確保不會開天窗
         function initHeroCarousel(desktopImages, mobileImages) {
-            const container = document.getElementById('hero-carousel');
-            const dotsContainer = document.getElementById('hero-carousel-dots');
-            if (!container || !dotsContainer) return;
-
+            const container = document.getElementById('hero-carousel'); const dotsContainer = document.getElementById('hero-carousel-dots'); if (!container || !dotsContainer) return;
             const isMobile = window.matchMedia('(max-width: 767px)').matches;
-            const images = (isMobile && Array.isArray(mobileImages) && mobileImages.length > 0)
-                ? mobileImages
-                : desktopImages;
-
+            const images = (isMobile && Array.isArray(mobileImages) && mobileImages.length > 0) ? mobileImages : desktopImages;
             if (!Array.isArray(images) || images.length === 0) return;
-
-            // 迴圈 (loop)：陣列裡有幾張圖片，就重複執行「建立一個圖層」這件事幾次
-            images.forEach((img, i) => {
-                const slide = document.createElement('div');
-                slide.className = 'absolute inset-0 bg-cover bg-center transition-opacity duration-1000';
-                slide.style.backgroundImage = `url('${resolveImagePath(img.image)}')`;
-                slide.style.opacity = i === 0 ? '1' : '0';
-                if (img.alt) slide.setAttribute('aria-label', img.alt);
-                container.appendChild(slide);
-
-                const dot = document.createElement('button');
-                dot.className = 'w-2 h-2 rounded-full transition-colors ' + (i === 0 ? 'bg-bronze' : 'bg-white/40');
-                dot.addEventListener('click', () => showSlide(i));
-                dotsContainer.appendChild(dot);
-            });
-
-            const slides = container.children;
-            const dots = dotsContainer.children;
-            let current = 0;
-
-            function showSlide(index) {
-                for (let i = 0; i < slides.length; i++) {
-                    slides[i].style.opacity = i === index ? '1' : '0';
-                    dots[i].classList.toggle('bg-bronze', i === index);
-                    dots[i].classList.toggle('bg-white/40', i !== index);
-                }
-                current = index;
-            }
-
-            // 左右箭頭：手動切到上一張／下一張；只有一張圖片時箭頭沒有意義，直接隱藏
-            const prevBtn = document.getElementById('hero-prev-btn');
-            const nextBtn = document.getElementById('hero-next-btn');
-            if (images.length > 1) {
-                if (prevBtn) prevBtn.addEventListener('click', () => showSlide((current - 1 + slides.length) % slides.length));
-                if (nextBtn) nextBtn.addEventListener('click', () => showSlide((current + 1) % slides.length));
-            } else {
-                if (prevBtn) prevBtn.classList.add('hidden');
-                if (nextBtn) nextBtn.classList.add('hidden');
-            }
-
-            // 每 5 秒 (5000 毫秒) 自動切換到下一張圖片，超過最後一張就跳回第一張
-            if (images.length > 1) {
-                setInterval(() => showSlide((current + 1) % slides.length), 5000);
-            }
+            images.forEach((img, i) => { const slide = document.createElement('div'); slide.className = 'absolute inset-0 bg-cover bg-center transition-opacity duration-1000'; slide.style.backgroundImage = `url('${resolveImagePath(img.image)}')`; slide.style.opacity = i === 0 ? '1' : '0'; if (img.alt) slide.setAttribute('aria-label', img.alt); container.appendChild(slide); const dot = document.createElement('button'); dot.className = 'w-2 h-2 rounded-full transition-colors ' + (i === 0 ? 'bg-bronze' : 'bg-white/40'); dot.addEventListener('click', () => showSlide(i)); dotsContainer.appendChild(dot); });
+            const slides = container.children; const dots = dotsContainer.children; let current = 0;
+            function showSlide(index) { for (let i = 0; i < slides.length; i++) { slides[i].style.opacity = i === index ? '1' : '0'; dots[i].classList.toggle('bg-bronze', i === index); dots[i].classList.toggle('bg-white/40', i !== index); } current = index; }
+            const prevBtn = document.getElementById('hero-prev-btn'); const nextBtn = document.getElementById('hero-next-btn');
+            if (images.length > 1) { if (prevBtn) prevBtn.addEventListener('click', () => showSlide((current - 1 + slides.length) % slides.length)); if (nextBtn) nextBtn.addEventListener('click', () => showSlide((current + 1) % slides.length)); } else { if (prevBtn) prevBtn.classList.add('hidden'); if (nextBtn) nextBtn.classList.add('hidden'); }
+            if (images.length > 1) setInterval(() => showSlide((current + 1) % slides.length), 5000);
         }
 
-        // 嵌入後台設定的 Google My Maps：embedUrl 是「分享 → 在我的網站上嵌入」裡 <iframe> 標籤 src="..." 的網址
-        function renderGoogleMapEmbed(embedUrl) {
-            const wrap = document.getElementById('global-map-embed-wrap');
-            if (!wrap) return;
-            if (embedUrl) {
-                wrap.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`;
-            } else {
-                wrap.innerHTML = `
-                    <div class="text-center p-4">
-                        <p class="text-bronze text-sm mb-2 tracking-widest">尚未設定地圖</p>
-                        <p class="text-xs text-cloud/50">請於後台「道傳寰宇」貼上 Google My Maps 嵌入連結</p>
-                    </div>
-                `;
+        function renderGoogleMapEmbed(embedUrl) { const wrap = document.getElementById('global-map-embed-wrap'); if (!wrap) return; if (embedUrl) wrap.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`; else wrap.innerHTML = `<div class="text-center p-4"><p class="text-bronze text-sm mb-2 tracking-widest">尚未設定地圖</p><p class="text-xs text-cloud/50">請於後台「道傳寰宇」貼上 Google My Maps 嵌入連結</p></div>`; }
+        function extractYouTubeId(url) { if (!url) return null; const patterns = [/youtube\.com\/watch\?v=([\w-]{11})/, /youtu\.be\/([\w-]{11})/, /youtube\.com\/embed\/([\w-]{11})/]; for (const pattern of patterns) { const match = url.match(pattern); if (match) return match[1]; } return null; }
+        function renderMethodVideo(id, videoUrl, title) { const wrap = document.getElementById(`content-${id}-video`); if (!wrap) return; const videoId = extractYouTubeId(videoUrl); if (videoId) wrap.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" title="${title || ''}" class="absolute inset-0 w-full h-full" style="border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`; else wrap.innerHTML = `<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div><div class="text-center z-10 p-4 relative"><p class="text-bronze text-sm mb-2 tracking-widest">【 ${title || ''} ． 演示影像預留區 】</p><p class="text-xs text-cloud/50">尚未設定影片，請於後台上傳 YouTube 連結</p></div>`; }
+
+        fetch('data/home.json?v=' + Date.now()).then(response => response.json()).then(data => {
+            data = applyLangToData(data);
+            if (data.hero) initHeroCarousel(data.hero.carousel_desktop, data.hero.carousel_mobile);
+            if (data.methods_section) { setText('methods-eyebrow', data.methods_section.eyebrow); setText('methods-title', data.methods_section.title); setText('methods-desc', data.methods_section.desc); }
+            if (Array.isArray(data.methods)) data.methods.forEach(m => { setTabLabel(`tab-${m.id}-label`, m.tab_label); setText(`content-${m.id}-tag`, m.tag); setText(`content-${m.id}-title`, m.title); setText(`content-${m.id}-quote`, m.quote); setHtml(`content-${m.id}-desc`, m.desc); setText(`content-${m.id}-difficulty`, m.difficulty); renderMethodVideo(m.id, m.video_url, m.title); });
+            if (data.experience_section) { setText('exp-eyebrow', data.experience_section.eyebrow); setText('exp-title', data.experience_section.title); setText('exp-desc', data.experience_section.desc); }
+            if (Array.isArray(data.experiences)) { const expContainer = document.getElementById('experience-cards'); if (expContainer) { expContainer.innerHTML = ''; data.experiences.forEach(e => { const card = document.createElement('div'); card.className = 'relative overflow-hidden flex-shrink-0 w-[78vw] sm:w-64 md:w-72 snap-start bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4'; if (e.background_image) { const bg = document.createElement('div'); bg.className = 'absolute inset-0 bg-cover bg-center pointer-events-none'; bg.style.backgroundImage = `url('${resolveImagePath(e.background_image)}')`; const opacityValue = (e.background_opacity !== undefined && e.background_opacity !== null) ? e.background_opacity / 100 : 0.2; bg.style.opacity = opacityValue; card.appendChild(bg); } const content = document.createElement('div'); content.className = 'relative z-10 space-y-4'; content.innerHTML = `<div class="text-bronze text-3xl font-light truncate"></div><h3 class="text-xl font-medium text-white tracking-widest truncate"></h3><p class="text-xs text-pine-light tracking-widest font-semibold truncate"></p><p class="exp-desc-scroll text-sm text-cloud/80 leading-relaxed max-h-24 md:max-h-28 overflow-y-auto pr-1"></p>`; content.children[0].innerText = e.roman || ''; content.children[1].innerText = e.title || ''; content.children[2].innerText = e.subtitle || ''; content.children[3].innerHTML = parseInlineMarkup(e.desc || ''); card.appendChild(content); expContainer.appendChild(card); }); } }
+            if (data.global) { setText('global-subtitle', data.global.subtitle); setHtml('global-para1', data.global.para1); setHtml('global-para2', data.global.para2); renderGoogleMapEmbed(data.global.google_map_embed_url); const tagsContainer = document.getElementById('global-country-tags'); if (tagsContainer && Array.isArray(data.global.country_tags)) { tagsContainer.innerHTML = ''; data.global.country_tags.forEach(tag => { const chip = document.createElement('span'); chip.className = 'inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink-dark ink-border text-xs text-cloud'; chip.innerHTML = `<span class="text-bronze font-bold tracking-widest"></span><span></span><span class="text-pine-light font-semibold"></span>`; chip.children[0].innerText = (tag.code || '').toUpperCase(); chip.children[1].innerText = tag.name || ''; chip.children[2].innerText = (tag.count !== undefined && tag.count !== null) ? `+${tag.count}` : ''; tagsContainer.appendChild(chip); }); } const statsContainer = document.getElementById('global-stats'); if (statsContainer && Array.isArray(data.global.stats)) { statsContainer.innerHTML = ''; data.global.stats.forEach(stat => { const item = document.createElement('div'); item.innerHTML = `<div class="text-3xl font-bold text-bronze"></div><div class="text-xs text-cloud/70 tracking-widest mt-1"></div>`; item.children[0].innerText = stat.number || ''; item.children[1].innerText = stat.label || ''; statsContainer.appendChild(item); }); } }
+            if (data.global_section) { setText('global-eyebrow', data.global_section.eyebrow); setText('global-section-title', data.global_section.title); setText('global-section-desc', data.global_section.desc); }
+
+            function renderPersonList(containerId, list, subtitleField) {
+                const container = document.getElementById(containerId); if (!container || !Array.isArray(list)) return; container.innerHTML = '';
+                list.forEach(p => {
+                    const wrapper = document.createElement('div');
+                    const desktopCard = document.createElement('div'); desktopCard.className = 'hidden md:flex items-center gap-10 bg-ink-dark p-8 rounded-lg ink-border ink-border-hover transition-all duration-500';
+                    const desktopPhotoWrap = document.createElement('div'); desktopPhotoWrap.className = 'w-32 h-32 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
+                    if (p.photo) { const dImg = document.createElement('img'); dImg.loading = 'lazy'; dImg.className = 'w-full h-full object-cover'; dImg.src = resolveImagePath(p.photo); dImg.alt = p.name || ''; desktopPhotoWrap.appendChild(dImg); } else { const dInitial = document.createElement('span'); dInitial.className = 'text-3xl text-bronze font-bold'; dInitial.innerText = (p.name || '').charAt(0); desktopPhotoWrap.appendChild(dInitial); }
+                    desktopCard.appendChild(desktopPhotoWrap);
+                    const desktopTextWrap = document.createElement('div'); desktopTextWrap.className = 'space-y-1.5 min-w-0'; desktopTextWrap.innerHTML = `<h3 class="text-xl font-medium text-white tracking-widest truncate"></h3><p class="text-sm text-pine-light tracking-widest font-semibold truncate"></p><p class="text-sm text-cloud/80 leading-relaxed line-clamp-1"></p>`; desktopTextWrap.querySelector('h3').innerText = p.name || ''; desktopTextWrap.querySelector('p.text-pine-light').innerText = p[subtitleField] || ''; const desktopDescP = desktopTextWrap.querySelector('p.text-cloud\\/80'); desktopDescP.innerHTML = parseInlineMarkup(p.desc || ''); desktopCard.appendChild(desktopTextWrap);
+                    if (p.desc && p.desc.trim() !== '') { let expanded = false; const toggleWrap = document.createElement('div'); toggleWrap.className = 'mt-1'; const toggleBtn = document.createElement('button'); toggleBtn.type = 'button'; toggleBtn.className = 'text-xs text-bronze font-bold hover:text-white transition-colors'; toggleBtn.innerText = '查看更多'; toggleBtn.addEventListener('click', () => { expanded = !expanded; desktopDescP.classList.toggle('line-clamp-1', !expanded); toggleBtn.innerText = expanded ? '收合' : '查看更多'; }); toggleWrap.appendChild(toggleBtn); desktopTextWrap.appendChild(toggleWrap); }
+                    wrapper.appendChild(desktopCard);
+                    const mobileCard = document.createElement('div'); mobileCard.className = 'flex md:hidden flex-wrap items-center gap-4 bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500';
+                    const mobilePhotoWrap = document.createElement('div'); mobilePhotoWrap.className = 'w-20 h-20 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
+                    if (p.photo) { const mImg = document.createElement('img'); mImg.loading = 'lazy'; mImg.className = 'w-full h-full object-cover'; mImg.src = resolveImagePath(p.photo); mImg.alt = p.name || ''; mobilePhotoWrap.appendChild(mImg); } else { const mInitial = document.createElement('span'); mInitial.className = 'text-2xl text-bronze font-bold'; mInitial.innerText = (p.name || '').charAt(0); mobilePhotoWrap.appendChild(mInitial); }
+                    mobileCard.appendChild(mobilePhotoWrap);
+                    const mobileNameWrap = document.createElement('div'); mobileNameWrap.className = 'flex-1 min-w-0 space-y-1'; mobileNameWrap.innerHTML = `<h3 class="text-xl font-medium text-white tracking-widest"></h3><p class="text-sm text-pine-light tracking-widest font-semibold"></p>`; mobileNameWrap.querySelector('h3').innerText = p.name || ''; mobileNameWrap.querySelector('p').innerText = p[subtitleField] || ''; mobileCard.appendChild(mobileNameWrap);
+                    const mobileDescWrap = document.createElement('div'); mobileDescWrap.className = 'w-full mt-1 text-sm text-cloud/80 leading-relaxed'; mobileDescWrap.innerHTML = parseInlineMarkup(p.desc || ''); mobileCard.appendChild(mobileDescWrap); wrapper.appendChild(mobileCard); container.appendChild(wrapper);
+                });
             }
-        }
 
-        // 從常見的 YouTube 網址格式（分享連結、短網址、embed 連結）擷取出影片 ID
-        function extractYouTubeId(url) {
-            if (!url) return null;
-            const patterns = [
-                /youtube\.com\/watch\?v=([\w-]{11})/,
-                /youtu\.be\/([\w-]{11})/,
-                /youtube\.com\/embed\/([\w-]{11})/
-            ];
-            for (const pattern of patterns) {
-                const match = url.match(pattern);
-                if (match) return match[1];
+            function renderStaffList(containerId, list, subtitleField) {
+                const container = document.getElementById(containerId); if (!container || !Array.isArray(list)) return; container.innerHTML = '';
+                list.forEach(p => {
+                    const card = document.createElement('div'); card.className = 'min-w-0 bg-ink-dark p-7 rounded-lg ink-border ink-border-hover transition-all duration-500';
+                    const identityWrap = document.createElement('div'); identityWrap.className = 'flex items-center gap-6 min-w-0';
+                    const photoWrap = document.createElement('div'); photoWrap.className = 'w-20 h-20 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
+                    if (p.photo) { const img = document.createElement('img'); img.loading = 'lazy'; img.className = 'w-full h-full object-cover'; img.src = resolveImagePath(p.photo); img.alt = p.name || ''; photoWrap.appendChild(img); } else { const initial = document.createElement('span'); initial.className = 'text-2xl text-bronze font-bold'; initial.innerText = (p.name || '').charAt(0); photoWrap.appendChild(initial); }
+                    identityWrap.appendChild(photoWrap);
+                    const nameWrap = document.createElement('div'); nameWrap.className = 'min-w-0 space-y-2'; nameWrap.innerHTML = `<h3 class="text-lg font-medium text-white tracking-widest truncate"></h3><p class="text-sm text-pine-light tracking-widest font-semibold truncate"></p>`; nameWrap.querySelector('h3').innerText = p.name || ''; nameWrap.querySelector('p').innerText = p[subtitleField] || ''; identityWrap.appendChild(nameWrap); card.appendChild(identityWrap);
+                    const descWrap = document.createElement('div'); descWrap.className = 'hidden mt-4 text-sm text-cloud/80 leading-relaxed'; descWrap.innerHTML = parseInlineMarkup(p.desc || ''); card.appendChild(descWrap);
+                    if (p.desc && p.desc.trim() !== '') { const toggleWrap = document.createElement('div'); toggleWrap.className = 'text-right mt-3'; const toggleBtn = document.createElement('button'); toggleBtn.type = 'button'; toggleBtn.className = 'text-xs text-bronze font-bold hover:text-white transition-colors'; toggleBtn.innerText = '查看更多'; toggleBtn.addEventListener('click', () => { const isHidden = descWrap.classList.toggle('hidden'); toggleBtn.innerText = isHidden ? '查看更多' : '收合'; }); toggleWrap.appendChild(toggleBtn); card.appendChild(toggleWrap); }
+                    container.appendChild(card);
+                });
             }
-            return null;
-        }
 
-        // 四大法門的影片預留區：有填 YouTube 網址就嵌入影片，沒有就顯示「演示影像預留區」提示
-        function renderMethodVideo(id, videoUrl, title) {
-            const wrap = document.getElementById(`content-${id}-video`);
-            if (!wrap) return;
-            const videoId = extractYouTubeId(videoUrl);
-            if (videoId) {
-                wrap.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" title="${title || ''}"
-                    class="absolute inset-0 w-full h-full" style="border:0;"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>`;
-            } else {
-                wrap.innerHTML = `
-                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(30,61,47,0.3),_transparent)] opacity-40"></div>
-                    <div class="text-center z-10 p-4 relative">
-                        <p class="text-bronze text-sm mb-2 tracking-widest">【 ${title || ''} ． 演示影像預留區 】</p>
-                        <p class="text-xs text-cloud/50">尚未設定影片，請於後台上傳 YouTube 連結</p>
-                    </div>
-                `;
-            }
-        }
-
-        // 網址後面加上 ?v=時間戳記，強迫瀏覽器每次都跟伺服器要最新版本，不要用瀏覽器裡快取的舊資料
-        fetch('data/home.json?v=' + Date.now())
-            .then(response => response.json())
-            .then(data => {
-                data = applyLangToData(data); // 依目前語言整批轉換文字內容
-
-                // 導覽列文字已改由 header.js 統一處理，這裡不用再重複抓一次
-
-                // Hero：文字改成照片輪播，電腦版與手機版分開讀取
-                if (data.hero) {
-                    initHeroCarousel(data.hero.carousel_desktop, data.hero.carousel_mobile);
-                }
-
-                // 四大法門 - 區塊標題
-                if (data.methods_section) {
-                    setText('methods-eyebrow', data.methods_section.eyebrow);
-                    setText('methods-title', data.methods_section.title);
-                    setText('methods-desc', data.methods_section.desc);
-                }
-
-                // 四大法門 - 內容（依 id 對應到既有的四個固定區塊）
-                if (Array.isArray(data.methods)) {
-                    data.methods.forEach(m => {
-                        setTabLabel(`tab-${m.id}-label`, m.tab_label);
-                        setText(`content-${m.id}-tag`, m.tag);
-                        setText(`content-${m.id}-title`, m.title);
-                        setText(`content-${m.id}-quote`, m.quote);
-                        setHtml(`content-${m.id}-desc`, m.desc);
-                        setText(`content-${m.id}-difficulty`, m.difficulty);
-                        renderMethodVideo(m.id, m.video_url, m.title);
-                    });
-                }
-
-                // 紅塵歷練 - 區塊標題
-                if (data.experience_section) {
-                    setText('exp-eyebrow', data.experience_section.eyebrow);
-                    setText('exp-title', data.experience_section.title);
-                    setText('exp-desc', data.experience_section.desc);
-                }
-
-                // 紅塵歷練 - 卡片：用迴圈依照後台資料筆數動態產生 DOM，數量可自由增減
-                if (Array.isArray(data.experiences)) {
-                    const expContainer = document.getElementById('experience-cards');
-                    if (expContainer) {
-                        expContainer.innerHTML = ''; // 先清空，避免重複
-                        data.experiences.forEach(e => {
-                            const card = document.createElement('div');
-                            // 加上 relative + overflow-hidden：讓等一下要疊上去的背景圖片不會超出卡片邊框
-                            card.className = 'relative overflow-hidden flex-shrink-0 w-[78vw] sm:w-64 md:w-72 snap-start bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500 space-y-4';
-
-                            // 如果後台有上傳背景圖片，疊一層淡化過的圖片在卡片最底層
-                            if (e.background_image) {
-                                const bg = document.createElement('div');
-                                bg.className = 'absolute inset-0 bg-cover bg-center pointer-events-none';
-                                bg.style.backgroundImage = `url('${resolveImagePath(e.background_image)}')`;
-                                // 透明度 (opacity) 數值範圍是 0~1，後台存的是 0~100 的百分比數字，這裡除以 100 換算
-                                const opacityValue = (e.background_opacity !== undefined && e.background_opacity !== null)
-                                    ? e.background_opacity / 100
-                                    : 0.2;
-                                bg.style.opacity = opacityValue;
-                                card.appendChild(bg);
-                            }
-
-                            // 文字內容包在一個獨立的層，並設定 relative + z-10，確保永遠疊在背景圖片「上面」
-                            const content = document.createElement('div');
-                            content.className = 'relative z-10 space-y-4';
-                            content.innerHTML = `
-                                <div class="text-bronze text-3xl font-light truncate"></div>
-                                <h3 class="text-xl font-medium text-white tracking-widest truncate"></h3>
-                                <p class="text-xs text-pine-light tracking-widest font-semibold truncate"></p>
-                                <p class="exp-desc-scroll text-sm text-cloud/80 leading-relaxed max-h-24 md:max-h-28 overflow-y-auto pr-1"></p>
-                            `;
-                            content.children[0].innerText = e.roman || '';
-                            content.children[1].innerText = e.title || '';
-                            content.children[2].innerText = e.subtitle || '';
-                            content.children[3].innerHTML = parseInlineMarkup(e.desc || '');
-                            card.appendChild(content);
-
-                            expContainer.appendChild(card);
-                        });
-                    }
-                }
-
-                // 道傳寰宇
-                if (data.global) {
-                    setText('global-subtitle', data.global.subtitle);
-                    setHtml('global-para1', data.global.para1);
-                    setHtml('global-para2', data.global.para2);
-
-                    // 地圖：嵌入後台設定的 Google My Maps 連結
-                    renderGoogleMapEmbed(data.global.google_map_embed_url);
-
-                    // 國家標籤：例如「JP 日本 +12」
-                    const tagsContainer = document.getElementById('global-country-tags');
-                    if (tagsContainer && Array.isArray(data.global.country_tags)) {
-                        tagsContainer.innerHTML = '';
-                        data.global.country_tags.forEach(tag => {
-                            const chip = document.createElement('span');
-                            chip.className = 'inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ink-dark ink-border text-xs text-cloud';
-                            chip.innerHTML = `
-                                <span class="text-bronze font-bold tracking-widest"></span>
-                                <span></span>
-                                <span class="text-pine-light font-semibold"></span>
-                            `;
-                            chip.children[0].innerText = (tag.code || '').toUpperCase();
-                            chip.children[1].innerText = tag.name || '';
-                            chip.children[2].innerText = (tag.count !== undefined && tag.count !== null) ? `+${tag.count}` : '';
-                            tagsContainer.appendChild(chip);
-                        });
-                    }
-
-                    // 統計數字：例如「67+ 位國際同道」
-                    const statsContainer = document.getElementById('global-stats');
-                    if (statsContainer && Array.isArray(data.global.stats)) {
-                        statsContainer.innerHTML = '';
-                        data.global.stats.forEach(stat => {
-                            const item = document.createElement('div');
-                            item.innerHTML = `
-                                <div class="text-3xl font-bold text-bronze"></div>
-                                <div class="text-xs text-cloud/70 tracking-widest mt-1"></div>
-                            `;
-                            item.children[0].innerText = stat.number || '';
-                            item.children[1].innerText = stat.label || '';
-                            statsContainer.appendChild(item);
-                        });
-                    }
-                }
-                if (data.global_section) {
-                    setText('global-eyebrow', data.global_section.eyebrow);
-                    setText('global-section-title', data.global_section.title);
-                    setText('global-section-desc', data.global_section.desc);
-                }
-
-                // 共用的「長條卡片」渲染函式：左側照片、右側文字，師資介紹跟幹部介紹共用同一套樣式
-                // subtitleField：要顯示在名字下方那一行的欄位名稱（師資用 subtitle，幹部用 role）
-                // 共用的「長條卡片」渲染函式：師資介紹跟幹部介紹共用同一套樣式
-                // subtitleField：要顯示在名字下方那一行的欄位名稱（師資用 subtitle，幹部用 role）
-                // 電腦版與手機版是完全獨立的兩張卡片（各自產生、各自控制顯示/隱藏），互不影響
-                function renderPersonList(containerId, list, subtitleField) {
-                    const container = document.getElementById(containerId);
-                    if (!container || !Array.isArray(list)) return;
-                    container.innerHTML = '';
-                    list.forEach(p => {
-                        const wrapper = document.createElement('div');
-
-                        // ===== 電腦版卡片：與原本樣式完全一致，只在 md(768px) 以上顯示 =====
-                        const desktopCard = document.createElement('div');
-                        desktopCard.className = 'hidden md:flex items-center gap-10 bg-ink-dark p-8 rounded-lg ink-border ink-border-hover transition-all duration-500';
-
-                        const desktopPhotoWrap = document.createElement('div');
-                        desktopPhotoWrap.className = 'w-32 h-32 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
-                        if (p.photo) {
-                            const dImg = document.createElement('img');
-                            dImg.loading = 'lazy';
-                            dImg.className = 'w-full h-full object-cover';
-                            dImg.src = resolveImagePath(p.photo);
-                            dImg.alt = p.name || '';
-                            desktopPhotoWrap.appendChild(dImg);
-                        } else {
-                            const dInitial = document.createElement('span');
-                            dInitial.className = 'text-3xl text-bronze font-bold';
-                            dInitial.innerText = (p.name || '').charAt(0);
-                            desktopPhotoWrap.appendChild(dInitial);
-                        }
-                        desktopCard.appendChild(desktopPhotoWrap);
-
-                        const desktopTextWrap = document.createElement('div');
-                        desktopTextWrap.className = 'space-y-1.5 min-w-0';
-                        desktopTextWrap.innerHTML = `
-                            <h3 class="text-xl font-medium text-white tracking-widest truncate"></h3>
-                            <p class="text-sm text-pine-light tracking-widest font-semibold truncate"></p>
-                            <p class="text-sm text-cloud/80 leading-relaxed line-clamp-1"></p>
-                        `;
-                        desktopTextWrap.querySelector('h3').innerText = p.name || '';
-                        desktopTextWrap.querySelector('p.text-pine-light').innerText = p[subtitleField] || '';
-                        const desktopDescP = desktopTextWrap.querySelector('p.text-cloud\\/80');
-                        desktopDescP.innerHTML = parseInlineMarkup(p.desc || '');
-                        desktopCard.appendChild(desktopTextWrap);
-
-                        // 只有在有簡介文字時才顯示「查看更多」，點擊展開/收合完整簡介
-                        if (p.desc && p.desc.trim() !== '') {
-                            let expanded = false;
-                            const toggleWrap = document.createElement('div');
-                            toggleWrap.className = 'mt-1';
-                            const toggleBtn = document.createElement('button');
-                            toggleBtn.type = 'button';
-                            toggleBtn.className = 'text-xs text-bronze-light hover:text-white transition-colors';
-                            toggleBtn.innerText = '查看更多';
-                            toggleBtn.addEventListener('click', () => {
-                                expanded = !expanded;
-                                desktopDescP.classList.toggle('line-clamp-1', !expanded);
-                                toggleBtn.innerText = expanded ? '收合' : '查看更多';
-                            });
-                            toggleWrap.appendChild(toggleBtn);
-                            desktopTextWrap.appendChild(toggleWrap);
-                        }
-
-                        wrapper.appendChild(desktopCard);
-
-                        // ===== 手機版卡片：肖像固定＋姓名放大在右側＋簡介滿版顯示於下方，只在 md 以下顯示 =====
-                        const mobileCard = document.createElement('div');
-                        mobileCard.className = 'flex md:hidden flex-wrap items-center gap-4 bg-ink-dark p-6 rounded-lg ink-border ink-border-hover transition-all duration-500';
-
-                        const mobilePhotoWrap = document.createElement('div');
-                        mobilePhotoWrap.className = 'w-20 h-20 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
-                        if (p.photo) {
-                            const mImg = document.createElement('img');
-                            mImg.loading = 'lazy';
-                            mImg.className = 'w-full h-full object-cover';
-                            mImg.src = resolveImagePath(p.photo);
-                            mImg.alt = p.name || '';
-                            mobilePhotoWrap.appendChild(mImg);
-                        } else {
-                            const mInitial = document.createElement('span');
-                            mInitial.className = 'text-2xl text-bronze font-bold';
-                            mInitial.innerText = (p.name || '').charAt(0);
-                            mobilePhotoWrap.appendChild(mInitial);
-                        }
-                        mobileCard.appendChild(mobilePhotoWrap);
-
-                        const mobileNameWrap = document.createElement('div');
-                        mobileNameWrap.className = 'flex-1 min-w-0 space-y-1';
-                        mobileNameWrap.innerHTML = `
-                            <h3 class="text-xl font-medium text-white tracking-widest"></h3>
-                            <p class="text-sm text-pine-light tracking-widest font-semibold"></p>
-                        `;
-                        mobileNameWrap.querySelector('h3').innerText = p.name || '';
-                        mobileNameWrap.querySelector('p').innerText = p[subtitleField] || '';
-                        mobileCard.appendChild(mobileNameWrap);
-
-                        const mobileDescWrap = document.createElement('div');
-                        mobileDescWrap.className = 'w-full mt-1 text-sm text-cloud/80 leading-relaxed';
-                        mobileDescWrap.innerHTML = parseInlineMarkup(p.desc || '');
-                        mobileCard.appendChild(mobileDescWrap);
-
-                        wrapper.appendChild(mobileCard);
-
-                        container.appendChild(wrapper);
-                    });
-                }
-
-                // 幹部卡片渲染：電腦版兩人一排、手機版一人一排（用 grid 的 md:grid-cols-2 控制）
-                // 簡介文字預設隱藏，只留「查看更多」文字，點擊後才展開該張卡片的簡介
-                function renderStaffList(containerId, list, subtitleField) {
-                    const container = document.getElementById(containerId);
-                    if (!container || !Array.isArray(list)) return;
-                    container.innerHTML = '';
-                    list.forEach(p => {
-                        const card = document.createElement('div');
-                        card.className = 'min-w-0 bg-ink-dark p-7 rounded-lg ink-border ink-border-hover transition-all duration-500';
-
-                        // 照片＋姓名這一列：尺寸適中、間距加大，看起來更寬鬆舒適
-                        const identityWrap = document.createElement('div');
-                        identityWrap.className = 'flex items-center gap-6 min-w-0';
-
-                        const photoWrap = document.createElement('div');
-                        photoWrap.className = 'w-20 h-20 rounded-full overflow-hidden border-2 border-bronze/40 flex-shrink-0 bg-ink-deep flex items-center justify-center';
-                        if (p.photo) {
-                            const img = document.createElement('img');
-                            img.loading = 'lazy';
-                            img.className = 'w-full h-full object-cover';
-                            img.src = resolveImagePath(p.photo);
-                            img.alt = p.name || '';
-                            photoWrap.appendChild(img);
-                        } else {
-                            const initial = document.createElement('span');
-                            initial.className = 'text-2xl text-bronze font-bold';
-                            initial.innerText = (p.name || '').charAt(0);
-                            photoWrap.appendChild(initial);
-                        }
-                        identityWrap.appendChild(photoWrap);
-
-                        const nameWrap = document.createElement('div');
-                        nameWrap.className = 'min-w-0 space-y-2';
-                        nameWrap.innerHTML = `
-                            <h3 class="text-lg font-medium text-white tracking-widest truncate"></h3>
-                            <p class="text-sm text-pine-light tracking-widest font-semibold truncate"></p>
-                        `;
-                        nameWrap.querySelector('h3').innerText = p.name || '';
-                        nameWrap.querySelector('p').innerText = p[subtitleField] || '';
-                        identityWrap.appendChild(nameWrap);
-
-                        card.appendChild(identityWrap);
-
-                        // 簡介文字：預設用 hidden 藏起來
-                        const descWrap = document.createElement('div');
-                        descWrap.className = 'hidden mt-4 text-sm text-cloud/80 leading-relaxed';
-                        descWrap.innerHTML = parseInlineMarkup(p.desc || '');
-                        card.appendChild(descWrap);
-
-                        // 「查看更多」獨立一行、靠右對齊，跟照片列保持一點距離但仍在附近，不會擠在一起
-                        if (p.desc && p.desc.trim() !== '') {
-                            const toggleWrap = document.createElement('div');
-                            toggleWrap.className = 'text-right mt-3';
-                            const toggleBtn = document.createElement('button');
-                            toggleBtn.type = 'button';
-                            toggleBtn.className = 'text-xs text-bronze-light hover:text-white transition-colors';
-                            toggleBtn.innerText = '查看更多';
-                            toggleBtn.addEventListener('click', () => {
-                                const isHidden = descWrap.classList.toggle('hidden');
-                                toggleBtn.innerText = isHidden ? '查看更多' : '收合';
-                            });
-                            toggleWrap.appendChild(toggleBtn);
-                            card.appendChild(toggleWrap);
-                        }
-
-                        container.appendChild(card);
-                    });
-                }
-
-                // 師資介紹
-                if (data.instructors_section) {
-                    setText('instructors-eyebrow', data.instructors_section.eyebrow);
-                    setText('instructors-title', data.instructors_section.title);
-                    setText('instructors-desc', data.instructors_section.desc);
-                }
-                renderPersonList('instructors-list', data.instructors, 'subtitle');
-
-                // 幹部介紹
-                if (data.staff_section) {
-                    setText('staff-eyebrow', data.staff_section.eyebrow);
-                    setText('staff-title', data.staff_section.title);
-                    setText('staff-desc', data.staff_section.desc);
-                }
-                renderStaffList('staff-list', data.staff, 'role');
-
-                // 歷任幹部：預設整組隱藏，點擊「查看歷任幹部」才展開；卡片樣式跟現任幹部共用同一套
-                renderStaffList('staff-alumni-list', data.staff_alumni, 'role');
-                const alumniToggleBtn = document.getElementById('staff-alumni-toggle');
-                const alumniWrap = document.getElementById('staff-alumni-wrap');
-                if (alumniToggleBtn && alumniWrap) {
-                    alumniToggleBtn.addEventListener('click', () => {
-                        const isHidden = alumniWrap.classList.toggle('hidden');
-                        alumniToggleBtn.innerText = isHidden ? '查看歷任幹部' : '收合歷任幹部';
-                    });
-                }
-
-                // 尋訪仙蹤
-                if (data.contact_section) {
-                    setText('contact-eyebrow', data.contact_section.eyebrow);
-                    setText('contact-title', data.contact_section.title);
-                    setHtml('contact-intro', data.contact_section.intro);
-                }
-                if (data.contact) {
-                    setText('contact-location-label', data.contact.location_label);
-                    setText('contact-location-value', data.contact.location_value);
-                    setText('contact-email-label', data.contact.email_label);
-                    setText('contact-email-value', data.contact.email_value);
-                    setText('contact-social-label', data.contact.social_label);
-                    setText('contact-social-value', data.contact.social_value);
-
-                    // 社群連結按鈕：有填網址才顯示對應按鈕，沒填就維持隱藏
-                    const fbLink = document.getElementById('social-fb-link');
-                    if (fbLink) {
-                        if (data.contact.fb_url) {
-                            fbLink.href = data.contact.fb_url;
-                            fbLink.classList.remove('hidden');
-                        } else {
-                            fbLink.classList.add('hidden');
-                        }
-                    }
-                    const igLink = document.getElementById('social-ig-link');
-                    if (igLink) {
-                        if (data.contact.ig_url) {
-                            igLink.href = data.contact.ig_url;
-                            igLink.classList.remove('hidden');
-                        } else {
-                            igLink.classList.add('hidden');
-                        }
-                    }
-                    setHtml('contact-footer-quote', data.contact.footer_quote);
-                }
-
-                // 每週修煉行事曆（精簡卡片格式：項目/時間/地點）
-                if (data.schedule) {
-                    setText('schedule-title', data.schedule.title);
-                    setText('schedule-note-label', data.schedule.note_label || '道門提點：');
-                    setHtml('schedule-note', data.schedule.note);
-                    if (Array.isArray(data.schedule.rows)) {
-                        const list = document.getElementById('schedule-list');
-                        if (list) {
-                            list.innerHTML = '';
-                            data.schedule.rows.forEach(row => {
-                                const item = document.createElement('div');
-                                item.className = 'bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors';
-                                const isEnSchedule = (typeof getLang === 'function' && getLang() === 'en');
-                                const timeLabelText = isEnSchedule ? 'Time: ' : '時間：';
-                                const locationLabelText = isEnSchedule ? 'Location: ' : '地點：';
-                                item.innerHTML = `
-                                    <div class="text-bronze font-bold tracking-widest text-base mb-1.5"></div>
-                                    <div class="text-sm text-cloud/90"><span class="field-label"></span><span class="text-white"></span></div>
-                                    <div class="text-sm text-cloud/90"><span class="field-label"></span><span class="text-white"></span></div>
-                                `;
-                                item.children[0].innerText = row.content || '';
-                                item.children[1].querySelector('.field-label').innerText = timeLabelText;
-                                item.children[1].querySelector('.text-white').innerText = row.time || '';
-                                item.children[2].querySelector('.field-label').innerText = locationLabelText;
-                                item.children[2].querySelector('.text-white').innerText = row.location || '';
-                                list.appendChild(item);
-                            });
-                        }
-                    }
-                }
-
-                // 頁尾
-                if (data.footer) {
-                    setText('footer-copyright', data.footer.copyright);
-                    setText('footer-sub', data.footer.sub);
-                }
-
-                hidePageLoadingOverlay();
-            })
-            .catch(err => {
-                console.error('讀取 data/home.json 失敗：', err);
-                hidePageLoadingOverlay();
-            });
+            if (data.instructors_section) { setText('instructors-eyebrow', data.instructors_section.eyebrow); setText('instructors-title', data.instructors_section.title); setText('instructors-desc', data.instructors_section.desc); }
+            renderPersonList('instructors-list', data.instructors, 'subtitle');
+            if (data.staff_section) { setText('staff-eyebrow', data.staff_section.eyebrow); setText('staff-title', data.staff_section.title); setText('staff-desc', data.staff_section.desc); }
+            renderStaffList('staff-list', data.staff, 'role'); renderStaffList('staff-alumni-list', data.staff_alumni, 'role');
+            const alumniToggleBtn = document.getElementById('staff-alumni-toggle'); const alumniWrap = document.getElementById('staff-alumni-wrap'); if (alumniToggleBtn && alumniWrap) alumniToggleBtn.addEventListener('click', () => { const isHidden = alumniWrap.classList.toggle('hidden'); alumniToggleBtn.innerText = isHidden ? '查看歷任幹部' : '收合歷任幹部'; });
+            if (data.contact_section) { setText('contact-eyebrow', data.contact_section.eyebrow); setText('contact-title', data.contact_section.title); setHtml('contact-intro', data.contact_section.intro); }
+            if (data.contact) { setText('contact-location-label', data.contact.location_label); setText('contact-location-value', data.contact.location_value); setText('contact-email-label', data.contact.email_label); setText('contact-email-value', data.contact.email_value); setText('contact-social-label', data.contact.social_label); setText('contact-social-value', data.contact.social_value); const fbLink = document.getElementById('social-fb-link'); if (fbLink) { if (data.contact.fb_url) { fbLink.href = data.contact.fb_url; fbLink.classList.remove('hidden'); } else fbLink.classList.add('hidden'); } const igLink = document.getElementById('social-ig-link'); if (igLink) { if (data.contact.ig_url) { igLink.href = data.contact.ig_url; igLink.classList.remove('hidden'); } else igLink.classList.add('hidden'); } setHtml('contact-footer-quote', data.contact.footer_quote); }
+            if (data.schedule) { setText('schedule-title', data.schedule.title); setText('schedule-note-label', data.schedule.note_label || '道門提點：'); setHtml('schedule-note', data.schedule.note); if (Array.isArray(data.schedule.rows)) { const list = document.getElementById('schedule-list'); if (list) { list.innerHTML = ''; data.schedule.rows.forEach(row => { const item = document.createElement('div'); item.className = 'bg-ink-deep/60 rounded-lg p-4 border border-white/5 hover:border-bronze/30 transition-colors'; const isEnSchedule = (typeof getLang === 'function' && getLang() === 'en'); const timeLabelText = isEnSchedule ? 'Time: ' : '時間：'; const locationLabelText = isEnSchedule ? 'Location: ' : '地點：'; item.innerHTML = `<div class="text-bronze font-bold tracking-widest text-base mb-1.5"></div><div class="text-sm text-cloud/90"><span class="field-label"></span><span class="text-white"></span></div><div class="text-sm text-cloud/90"><span class="field-label"></span><span class="text-white"></span></div>`; item.children[0].innerText = row.content || ''; item.children[1].querySelector('.field-label').innerText = timeLabelText; item.children[1].querySelector('.text-white').innerText = row.time || ''; item.children[2].querySelector('.field-label').innerText = locationLabelText; item.children[2].querySelector('.text-white').innerText = row.location || ''; list.appendChild(item); }); } } }
+            if (data.footer) { setText('footer-copyright', data.footer.copyright); setText('footer-sub', data.footer.sub); }
+            hidePageLoadingOverlay();
+        }).catch(err => { console.error('讀取 data/home.json 失敗：', err); hidePageLoadingOverlay(); });
     </script>
 </body>
 </html>
