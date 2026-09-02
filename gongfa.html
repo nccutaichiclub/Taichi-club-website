@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -6,27 +7,31 @@
     <title>法門深造｜政大太極社</title>
     <meta name="description" content="政大太極社四大法門深探：華陀導引氣功、太極拳、太祖棍、太極劍，詳細介紹各項功法的內涵與修煉方式。">
     <link rel="canonical" href="https://nccutaichiclub.github.io/Taichi-club-website/gongfa.html">
+
     <!-- Open Graph 標籤：讓 LINE／FB／IG 分享連結時顯示漂亮的預覽卡片 -->
     <meta property="og:title" content="法門深造｜政大太極社">
     <meta property="og:description" content="政大太極社四大法門深探：華陀導引氣功、太極拳、太祖棍、太極劍，詳細介紹各項功法的內涵與修煉方式。">
     <meta property="og:url" content="https://nccutaichiclub.github.io/Taichi-club-website/gongfa.html">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_TW">
+
     <!-- 引入思源宋體，跟首頁共用同一套字重設定 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-    <!-- 引入 Tailwind CSS，與首頁共用同一套配色/字體設定，讓四個頁面視覺統一 -->
+    <!-- 引入 Tailwind CSS，與首頁共用同一套配色/字體設定 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind-config-sub.js"></script>
 
-    <!-- 四個子頁共用的基礎樣式（box-sizing 修正、圖片保護、容器/標題基本樣式等） -->
+    <!-- 四個子頁共用的基礎樣式 -->
     <link rel="stylesheet" href="css/base.css">
 
     <style>
         /* 本頁專屬的樣式覆蓋：容器寬度比其他子頁窄一點 */
-        .container { max-width: 800px; }
+        .container {
+            max-width: 800px;
+        }
 
         .gongfa-detail {
             background-color: rgba(255, 255, 255, 0.03);
@@ -36,7 +41,8 @@
             margin-bottom: 60px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        /* 手機版：拿掉外框、底色與大內距，讓文字不那麼擁擠；電腦版維持原本卡片樣式 */
+
+        /* 手機版：拿掉外框、底色與大內距，讓文字不那麼擁擠 */
         @media (max-width: 767px) {
             .gongfa-detail {
                 background-color: transparent;
@@ -48,19 +54,20 @@
             }
         }
 
-        /* 修復後的標題樣式 */
+        /* 法門標題樣式 */
         .gongfa-detail h2 {
             color: var(--松柏綠);
-            background-color: rgba(160, 160, 160, 0.15); /* 霧霾灰底框 */
-            display: inline-block; /* 讓框隨文字長度縮放 */
-            padding: 10px 18px; /* 內部留白 */
+            background-color: rgba(160, 160, 160, 0.15);
+            display: inline-block;
+            padding: 10px 18px;
             font-size: 1.6rem;
             letter-spacing: 2px;
             margin-bottom: 20px;
             border-left: 4px solid var(--古銅金);
             border-right: 4px solid var(--古銅金);
         }
-        /* 手機版：法門標題字級縮小、行距加大，避免英文名稱過長時擁擠換行；中英文版都套用 */
+
+        /* 手機版：法門標題字級縮小、行距加大 */
         @media (max-width: 767px) {
             .gongfa-detail h2 {
                 font-size: 1.25rem;
@@ -68,85 +75,82 @@
             }
         }
 
-        /* 內文段落間距：文字現在會被自動包成一段一段的 <p>，這裡統一控制段落間的留白 */
+        /*
+         * 內文段落間距
+         * 手機版原本曾縮小至 0.875rem，
+         * 現恢復為原本的 1rem。
+         */
         .gongfa-text p {
-            font-size: 0.875rem;
+            font-size: 1rem;
             margin: 0 0 16px 0;
         }
-        @media (min-width: 768px) {
-            .gongfa-text p {
-                font-size: 1rem;
-            }
-        }
+
         .gongfa-text p:last-child {
             margin-bottom: 0;
         }
-
-        /* 影片預留區樣式：margin-top 讓說明文字跟影片框之間留出呼吸空間，比照全站其他區塊的間距慣例 */
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #1A1A1A; border: 1px solid #333; margin-top: 28px; }
-        .video-placeholder { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--霧霾灰); }
-        .video-placeholder i { font-size: 2rem; margin-bottom: 10px; color: var(--古銅金); }
-
-        /* 手機版漢堡選單按鈕與中英文切換按鈕的樣式重置，已經統一移到 header.js 裡處理 */
     </style>
 </head>
+
 <body>
 
     <!-- 全站共用的語言切換邏輯，要在其他腳本之前載入 -->
     <script src="js/lang.js"></script>
 
-    <!-- 頁面載入遮罩：資料抓回來、內容都填好之前先蓋住畫面，避免看到預留文字閃一下才變成正確內容 -->
-    <div id="page-loading-overlay" style="position:fixed;inset:0;background:#121212;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.3s ease;">
-        <div id="page-loading-text" style="color:#C5A059;font-family:'Noto Serif TC',serif;letter-spacing:4px;font-size:0.9rem;">道場開啟中...</div>
+    <!-- 頁面載入遮罩 -->
+    <div id="page-loading-overlay"
+         style="position:fixed;inset:0;background:#121212;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.3s ease;">
+        <div id="page-loading-text"
+             style="color:#C5A059;font-family:'Noto Serif TC',serif;letter-spacing:4px;font-size:0.9rem;">
+            道場開啟中...
+        </div>
     </div>
+
     <script>
         (function() {
-            // 立刻套用上次快取的「道場開啟中」文字（如果有的話），比等資料抓回來還快
-            var cached = (typeof getCachedLoadingText === 'function') ? getCachedLoadingText() : null;
-            if (cached) document.getElementById('page-loading-text').innerText = cached;
+            // 立刻套用上次快取的「道場開啟中」文字
+            var cached = (typeof getCachedLoadingText === 'function')
+                ? getCachedLoadingText()
+                : null;
+
+            if (cached) {
+                document.getElementById('page-loading-text').innerText = cached;
+            }
         })();
     </script>
 
-    <!-- 頂部導覽列：由 header.js 統一產生，改導覽列只要改那支檔案，不用每頁各改一次 -->
+    <!-- 頂部導覽列：由 header.js 統一產生 -->
     <div id="site-header"></div>
     <script src="js/header.js"></script>
 
-
     <div class="container">
-        <h1 id="page-title">四大法門深探</h1>
-        <div class="subtitle" id="page-subtitle">「由淺入深，由動入靜。此處記載本門核心武學之微言大義與演武示範。」</div>
 
-       <!-- 動態功法載入區塊 -->
+        <h1 id="page-title">四大法門深探</h1>
+
+        <div class="subtitle" id="page-subtitle">
+            「由淺入深，由動入靜。此處記載本門核心武學之微言大義與演武示範。」
+        </div>
+
+        <!-- 動態功法載入區塊 -->
         <div id="gongfa-container">
-            <div style="text-align:center; color:var(--霧霾灰);">正在翻閱藏經閣，載入法門中...</div>
+            <div style="text-align:center; color:var(--霧霾灰);">
+                正在翻閱藏經閣，載入法門中...
+            </div>
         </div>
 
         <!-- 串接後台資料的 JavaScript -->
         <script>
-            // 從各種常見的 YouTube 網址格式（分享連結、短網址、embed 連結）擷取出影片 ID
-            function extractYouTubeId(url) {
-                if (!url) return null;
-                const patterns = [
-                    /youtube\.com\/watch\?v=([\w-]{11})/,
-                    /youtu\.be\/([\w-]{11})/,
-                    /youtube\.com\/embed\/([\w-]{11})/
-                ];
-                for (const pattern of patterns) {
-                    const match = url.match(pattern);
-                    if (match) return match[1];
-                }
-                return null;
-            }
-
             // 本頁主要內容：讀取 data/gongfa.json
-            // 網址後面加上 ?v=時間戳記，避免瀏覽器用快取的舊資料
+            // 網址後面加上 ?v=時間戳記，避免瀏覽器使用快取的舊資料
             fetch('data/gongfa.json?v=' + Date.now())
                 .then(response => response.json())
                 .then(data => {
-                    data = applyLangToData(data); // 依目前語言整批轉換文字內容
+
+                    data = applyLangToData(data);
+
                     if (data.page_title) {
                         document.getElementById('page-title').innerText = data.page_title;
                     }
+
                     if (data.page_subtitle) {
                         document.getElementById('page-subtitle').innerText = data.page_subtitle;
                     }
@@ -155,32 +159,26 @@
                     container.innerHTML = '';
 
                     (data.methods || []).forEach(method => {
-                        const videoId = extractYouTubeId(method.video_url);
-                        const videoContent = videoId
-                            ? `<iframe src="https://www.youtube.com/embed/${videoId}" title="${method.title}"
-                                   style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                   allowfullscreen></iframe>`
-                            : `<div class="video-placeholder">
-                                   <span>☯️ 功法招式演練．影像準備中 ☯️</span>
-                               </div>`;
 
                         const methodHTML = `
                             <div class="gongfa-detail">
                                 <h2>${method.title}</h2>
-                                <div class="gongfa-text">${paragraphize(method.desc)}</div>
-                                <div class="video-container">
-                                    ${videoContent}
+                                <div class="gongfa-text">
+                                    ${paragraphize(method.desc)}
                                 </div>
                             </div>
                         `;
+
                         container.innerHTML += methodHTML;
                     });
 
                     hidePageLoadingOverlay();
                 })
                 .catch(error => {
-                    document.getElementById('gongfa-container').innerHTML = '<div style="text-align:center; color:red;">藏經閣大門深鎖，載入失敗。</div>';
+
+                    document.getElementById('gongfa-container').innerHTML =
+                        '<div style="text-align:center; color:red;">藏經閣大門深鎖，載入失敗。</div>';
+
                     hidePageLoadingOverlay();
                 });
         </script>
@@ -189,3 +187,4 @@
 
 </body>
 </html>
+```
