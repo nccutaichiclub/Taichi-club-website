@@ -90,9 +90,10 @@
             margin-bottom: 0;
         }
 
-        /* 白話翻譯：沿用首頁「查看更多」的文字按鈕風格 */
+        /* 白話翻譯：與首頁「查看更多」統一為古銅金粗體，並增加與內文的視覺距離；負 margin 抵銷高度變化 */
         .plain-translation-toggle-wrap {
-            margin-top: 4px;
+            margin-top: 16px;
+            margin-bottom: -12px;
             text-align: right;
         }
 
@@ -102,7 +103,8 @@
             padding: 0;
             font-family: inherit;
             font-size: 0.75rem;
-            color: #D9C39E;
+            color: #B89742;
+            font-weight: 700;
             cursor: pointer;
             transition: color 0.2s ease;
         }
@@ -113,7 +115,7 @@
 
         .plain-translation {
             display: none;
-            margin-top: 18px;
+            margin-top: 30px;
             padding-top: 18px;
             border-top: 1px solid rgba(184, 151, 66, 0.35);
         }
