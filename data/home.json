@@ -336,7 +336,7 @@
         "label_en": "Keeping contact"
       }
     ],
-    "google_map_embed_url": "<iframe src=\"https://www.google.com/maps/d/u/2/embed?mid=1fmxzTXNfqlsjDpLTwuBl5wPRyk7zXo0&ehbc=2E312F\" width=\"640\" height=\"480\"></iframe>",
+    "google_map_embed_url": "https://www.google.com/maps/d/u/2/edit?mid=1fmxzTXNfqlsjDpLTwuBl5wPRyk7zXo0&usp=sharing",
     "badge_label": "道傳寰宇",
     "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
     "title": "外邦弟子的修真緣分"
