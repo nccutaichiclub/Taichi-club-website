@@ -237,13 +237,13 @@
       {
         "code": "HB",
         "name": "湖北",
-        "name_en": "Hubei",
+        "name_en": "Hubei (China)",
         "count": 0
       },
       {
         "code": "SD",
         "name": "山東",
-        "name_en": "Shandong",
+        "name_en": "Shandong (China)",
         "count": 0
       },
       {
@@ -297,7 +297,7 @@
       {
         "code": "US",
         "name": "美國",
-        "name_en": "America",
+        "name_en": "United States",
         "count": 0
       },
       {
