@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-    <!-- 引入 Tailwind CSS，與首頁共用同一套配色/字體設定 -->
+    <!-- 引入 Tailwind CSS，與首頁共用同一套配色設定 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind-config-sub.js"></script>
 
@@ -74,11 +74,7 @@
             }
         }
 
-        /*
-         * 內文段落間距
-         * 手機版原本曾縮小至 0.875rem，
-         * 現恢復為原本的 1rem。
-         */
+        /* 內文段落間距 */
         .gongfa-text p,
         .plain-translation-text p {
             font-size: 1rem;
@@ -204,7 +200,7 @@
                     const isEnglish = getLang() === 'en';
                     const toggleOpenText = isEnglish ? 'View Plain-Language Translation' : '查看白話翻譯';
                     const toggleCloseText = isEnglish ? 'Hide Plain-Language Translation' : '收起白話翻譯';
-                    const translationTitle = isEnglish ? 'Plain-Language Translation' : '白話翻譯';
+                    const translationTitle = '白話翻譯';
 
                     (data.methods || []).forEach((method, index) => {
 
