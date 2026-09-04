@@ -213,46 +213,130 @@
       {
         "code": "JP",
         "name": "日本",
-        "name_en": "",
-        "count": 1
+        "name_en": "Japan",
+        "count": 0
       },
       {
         "code": "KR",
         "name": "韓國",
-        "name_en": "",
+        "name_en": "Korea",
         "count": 1
+      },
+      {
+        "code": "HK",
+        "name": "香港",
+        "name_en": "Hong Kong",
+        "count": 0
+      },
+      {
+        "code": "MO",
+        "name": "澳門",
+        "name_en": "Macau",
+        "count": 0
+      },
+      {
+        "code": "HB",
+        "name": "湖北",
+        "name_en": "Hubei",
+        "count": 0
+      },
+      {
+        "code": "SD",
+        "name": "山東",
+        "name_en": "Shandong",
+        "count": 0
       },
       {
         "code": "VN",
         "name": "越南",
-        "name_en": "",
+        "name_en": "Vietnam",
         "count": 2
+      },
+      {
+        "code": "TH",
+        "name": "泰國",
+        "name_en": "Thailand",
+        "count": 0
+      },
+      {
+        "code": "MY",
+        "name": "馬來西亞",
+        "name_en": "Malaysia",
+        "count": 0
       },
       {
         "code": "DE",
         "name": "德國",
-        "name_en": "",
+        "name_en": "Germany",
         "count": 3
+      },
+      {
+        "code": "FR",
+        "name": "法國",
+        "name_en": "France",
+        "count": 0
+      },
+      {
+        "code": "CZ",
+        "name": "捷克",
+        "name_en": "Czech",
+        "count": 0
+      },
+      {
+        "code": "PL",
+        "name": "波蘭",
+        "name_en": "Poland",
+        "count": 0
+      },
+      {
+        "code": "TR",
+        "name": "土耳其",
+        "name_en": "Türkiye",
+        "count": 0
+      },
+      {
+        "code": "US",
+        "name": "美國",
+        "name_en": "America",
+        "count": 0
+      },
+      {
+        "code": "CA",
+        "name": "加拿大",
+        "name_en": "Canada",
+        "count": 0
+      },
+      {
+        "code": "MX",
+        "name": "墨西哥",
+        "name_en": "Mexico",
+        "count": 0
+      },
+      {
+        "code": "NL",
+        "name": "荷蘭",
+        "name_en": "Netherlands",
+        "count": 0
       }
     ],
     "stats": [
       {
-        "number": "12+",
-        "label": "位國際同道",
-        "label_en": ""
+        "number": "45+",
+        "label": "位國際交換生",
+        "label_en": "Exchange students"
       },
       {
         "number": "6+",
         "label": "學期國際交流",
-        "label_en": ""
+        "label_en": "Semester of exchange"
       },
       {
         "number": "10+",
         "label": "位持續聯絡",
-        "label_en": ""
+        "label_en": "Keeping contact"
       }
     ],
-    "google_map_embed_url": "",
+    "google_map_embed_url": "<iframe src=\"https://www.google.com/maps/d/u/2/embed?mid=1fmxzTXNfqlsjDpLTwuBl5wPRyk7zXo0&ehbc=2E312F\" width=\"640\" height=\"480\"></iframe>",
     "badge_label": "道傳寰宇",
     "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
     "title": "外邦弟子的修真緣分"
