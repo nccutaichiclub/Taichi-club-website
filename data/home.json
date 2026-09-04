@@ -52,9 +52,9 @@
   },
   "methods_section": {
     "eyebrow": "METHODOLOGY",
-    "eyebrow_en": "四大功法課程",
+    "eyebrow_en": "",
     "title": "四大功法課程",
-    "title_en": "Four Core Practices",
+    "title_en": "",
     "desc": "在修練的動與靜中找尋和諧的步調，用心感受、用身體會，以太極調身心。",
     "desc_en": "Discover harmony in movement and stillness. Tune your body and mind through Tai Chi."
   },
@@ -64,64 +64,64 @@
       "tab_label": "華陀導引氣功",
       "tab_label_en": "Qigong",
       "tag": "內功心法 ． 吐納歸真",
-      "tag_en": "Inner Cultivation",
+      "tag_en": "",
       "title": "華陀導引氣功",
       "title_en": "Qigong",
       "quote": "「運先天之炁，化五穀之精，以調身心、延壽命也。」",
-      "quote_en": "“Circulate the innate qi, refine the essence of the grains, and thereby cultivate body and mind and prolong life.”",
+      "quote_en": "",
       "desc": "又稱五禽戲，模仿熊、虎、鹿、鶴、猿。動作舒緩，包含多種伸展；導引吐納，疏通十二經絡，是身心俱疲的午後放鬆的好選擇。適合長時間久坐、用眼，作息不規律以致入睡困難的族群，氣功提供適當的拉伸及平和的呼吸，所謂氣好、身好、心好，養好氣才會有好力！",
-      "desc_en": "Also known as the **Five-Animal Play**, this practice mimics the movements of bears, tigers, deer, cranes, and apes. \n\nFeaturing gentle motions and various stretches, it guides your breathing to unblock the twelve meridians—making it a perfect choice to unwind on an exhausting afternoon. \n\nIt is ideal for those who sit or stare at screens for long hours, as well as anyone with an irregular schedule having trouble sleeping. \n\nQigong offers just the right balance of gentle stretching and calming breathwork. As the saying goes, clear Qi leads to a healthy body and mind—cultivating your Qi brings vital energy!",
+      "desc_en": "Also known as the **Five-Animal Play**, this practice mimics the movements of bears, tigers, deer, cranes, and apes. Featuring gentle motions and various stretches, it guides your breathing to unblock the twelve meridians—making it a perfect choice to unwind on an exhausting afternoon. It is ideal for those who sit or stare at screens for long hours, as well as anyone with an irregular schedule having trouble sleeping. Qigong offers just the right balance of gentle stretching and calming breathwork. As the saying goes, clear Qi leads to a healthy body and mind—cultivating your Qi brings vital energy!",
       "video_url": "",
       "difficulty": "修煉難度：入門",
-      "difficulty_en": "Beginner"
+      "difficulty_en": ""
     },
     {
       "id": "taichi",
       "tab_label": "太極拳",
       "tab_label_en": "Tai chi",
       "tag": "動靜觀心 ． 借力化勁",
-      "tag_en": "Mindful Movement",
+      "tag_en": "",
       "title": "太極拳",
       "title_en": "Tai chi",
       "quote": "「動靜相兼，以柔克剛，先化而發，方能以四兩撥千金。」",
-      "quote_en": "“Balance movement with stillness, neutralize before striking, and turn four ounces against a thousand pounds.”",
+      "quote_en": "",
       "desc": "不與風爭強，不與水奪流，但借力打力更有勁。別看太極拳看似柔弱不禁、不爭不搶，實則笑裡藏刀、暗藏殺機。除了強身健體的基本功馬步、弓步、後坐步，也有八面玲瓏的防身術折手、斷腳、碎鼻樑。適合只是想輕鬆運動稍微流汗的族群，也適合想學點技巧防身以備不時之需的族群。練拳練好不生煩惱、掤捋擠按惡人退散！",
-      "desc_en": "Yielding to neither wind nor water, Tai Chi redirects incoming force to strikes with double the power. \n\nWhile it may appear soft and gentle, beneath the calm exterior lies deadly precision. \n\nBeyond foundational stances for health—such as the Horse Stance, Bow Stance, and Sitting Stance—it features versatile self-defense techniques that can break an attacker's wrist, leg, or bridge of the nose. \n\nIt is perfect both for those who simply want a light workout and a good sweat, and for those looking to master practical self-defense skills. \n\nPractice well for peace of mind, and master your Tai Chi techniques to keep bad intentions at bay!",
+      "desc_en": "Yielding to neither wind nor water, Tai Chi redirects incoming force to strikes with double the power. While it may appear soft and gentle, beneath the calm exterior lies deadly precision. Beyond foundational stances for health—such as the Horse Stance, Bow Stance, and Sitting Stance—it features versatile self-defense techniques that can break an attacker's wrist, leg, or bridge of the nose. It is perfect both for those who simply want a light workout and a good sweat, and for those looking to master practical self-defense skills. Practice well for peace of mind, and master your Tai Chi techniques to keep bad intentions at bay!",
       "video_url": "",
       "difficulty": "修煉難度：中等",
-      "difficulty_en": "Intermediate"
+      "difficulty_en": ""
     },
     {
       "id": "staff",
       "tab_label": "太祖棍",
       "tab_label_en": "Taizu stick",
       "tag": "借物修身 ． 身棍合一",
-      "tag_en": "Staff Unity",
+      "tag_en": "",
       "title": "太祖棍",
       "title_en": "Taizu stick",
       "quote": "「借物修身，身棍合一。腰、棍、腳俱為一體。」",
-      "quote_en": "“Cultivate the body through the staff, until waist, staff, and feet move as one.”",
+      "quote_en": "",
       "desc": "太極拳四種古兵器之一，所謂一寸長一寸強，在遠處巧妙化解攻擊也從遠處進攻，產生距離優勢。熟練太極拳之手法、身法、步法後，在赤手空拳的基礎上延伸，學習使用太祖棍，更能感受自己對於腰部發力是否熟練。另外，除了招式動作教學以外，也有招式應用練習，在安全的情況下學員與學員、幹部乃至於老師分組對練。棍子間針鋒相對的鏗鏘，鏗鏘有力不絕於耳！",
-      "desc_en": "As one of the four ancient weapons of Tai Chi, the long pole proves the saying: \"An inch longer, an inch stronger.\" It allows you to deflect attacks and strike from a distance, giving you a distinct reach advantage. \n\nOnce you master the hand techniques, body posture, and footwork of Tai Chi, extending your practice to the Taizu Stick will help you refine your waist force and rotational power. \n\nBeyond form practice, the course includes practical application through safe sparring sessions—partnering students with peers, leaders, and instructors. \n\nExperience the satisfying, rhythmic clashing of sticks as skills clash in action!",
+      "desc_en": "As one of the four ancient weapons of Tai Chi, the long pole proves the saying: \"An inch longer, an inch stronger.\" It allows you to deflect attacks and strike from a distance, giving you a distinct reach advantage. Once you master the hand techniques, body posture, and footwork of Tai Chi, extending your practice to the Taizu Stick will help you refine your waist force and rotational power. Beyond form practice, the course includes practical application through safe sparring sessions—partnering students with peers, leaders, and instructors. Experience the satisfying, rhythmic clashing of sticks as skills clash in action!",
       "video_url": "",
       "difficulty": "修煉難度：進階",
-      "difficulty_en": "Advanced"
+      "difficulty_en": ""
     },
     {
       "id": "sword",
       "tab_label": "太極劍",
-      "tab_label_en": "Taichi sword",
+      "tab_label_en": "Tai chi sword",
       "tag": "形神俱妙 ． 劍行行雲",
-      "tag_en": "Form & Flow",
+      "tag_en": "",
       "title": "太極劍",
-      "title_en": "Taichi sword",
+      "title_en": "Tai chi sword",
       "quote": "「以意御劍，瀟灑飄逸，形神俱妙而不失其防身之效。」",
-      "quote_en": "“Guide the sword with intent, move with grace, and never lose sight of its purpose in self-defense.”",
+      "quote_en": "",
       "desc": "太極拳四種古兵器之一，所謂劍走輕靈，習劍時不可靠蠻力，需要手腳配合。劍法與拳法息息相關，都強調以柔克剛、重意不重力。劍相較於棍更加變化多端，由於有更多轉向及跳躍，手法、身法、步法顯得至關重要。不過就複習來說，練習劍只要隨手一個摺疊傘、保溫杯，就能夠比劃，比起棍更容易找到替代工具。",
-      "desc_en": "As one of the four classic Tai Chi weapons, the sword is defined by the saying, \"The sword moves with lightness and agility.\"\n\nLearning the sword relies on the coordination of hands and feet rather than brute force. \n\nSword techniques are deeply connected to Tai Chi form, both emphasizing overcoming strength with softness and prioritizing intent over raw power. \n\nCompared to the stick, the sword offers far more versatility, making precise hand techniques, body posture, and footwork essential for its frequent turns and jumps. \n\nFortunately, practicing is easy to integrate into daily life—a folded umbrella or a thermos is all you need to rehearse your forms!",
+      "desc_en": "As one of the four classic Tai Chi weapons, the sword is defined by the saying, \"The sword moves with lightness and agility.\" Learning the sword relies on the coordination of hands and feet rather than brute force. Sword techniques are deeply connected to Tai Chi form, both emphasizing overcoming strength with softness and prioritizing intent over raw power. Compared to the stick, the sword offers far more versatility, making precise hand techniques, body posture, and footwork essential for its frequent turns and jumps. Fortunately, practicing is easy to integrate into daily life—a folded umbrella or a thermos is all you need to rehearse your forms!",
       "video_url": "",
       "difficulty": "修煉難度：高階",
-      "difficulty_en": "Advanced"
+      "difficulty_en": ""
     }
   ],
   "experience_section": {
@@ -213,135 +213,46 @@
       {
         "code": "JP",
         "name": "日本",
-        "name_en": "Japan",
-        "count": 0
+        "name_en": "",
+        "count": 1
       },
       {
         "code": "KR",
         "name": "韓國",
-        "name_en": "Korea",
+        "name_en": "",
         "count": 1
-      },
-      {
-        "code": "HK",
-        "name": "香港",
-        "name_en": "Hong Kong",
-        "count": 0
-      },
-      {
-        "code": "MO",
-        "name": "澳門",
-        "name_en": "Macau",
-        "count": 0
-      },
-      {
-        "code": "HB",
-        "name": "湖北",
-        "name_en": "Hubei (China)",
-        "count": 0
-      },
-      {
-        "code": "SD",
-        "name": "山東",
-        "name_en": "Shandong (China)",
-        "count": 0
       },
       {
         "code": "VN",
         "name": "越南",
-        "name_en": "Vietnam",
+        "name_en": "",
         "count": 2
-      },
-      {
-        "code": "TH",
-        "name": "泰國",
-        "name_en": "Thailand",
-        "count": 0
-      },
-      {
-        "code": "MY",
-        "name": "馬來西亞",
-        "name_en": "Malaysia",
-        "count": 0
       },
       {
         "code": "DE",
         "name": "德國",
-        "name_en": "Germany",
+        "name_en": "",
         "count": 3
-      },
-      {
-        "code": "FR",
-        "name": "法國",
-        "name_en": "France",
-        "count": 0
-      },
-      {
-        "code": "CZ",
-        "name": "捷克",
-        "name_en": "Czech",
-        "count": 0
-      },
-      {
-        "code": "PL",
-        "name": "波蘭",
-        "name_en": "Poland",
-        "count": 0
-      },
-      {
-        "code": "TR",
-        "name": "土耳其",
-        "name_en": "Türkiye",
-        "count": 0
-      },
-      {
-        "code": "US",
-        "name": "美國",
-        "name_en": "United States",
-        "count": 0
-      },
-      {
-        "code": "CA",
-        "name": "加拿大",
-        "name_en": "Canada",
-        "count": 0
-      },
-      {
-        "code": "MX",
-        "name": "墨西哥",
-        "name_en": "Mexico",
-        "count": 0
-      },
-      {
-        "code": "NL",
-        "name": "荷蘭",
-        "name_en": "Netherlands",
-        "count": 0
       }
     ],
     "stats": [
       {
-        "number": "45+",
-        "label": "位國際交換生",
-        "label_en": "Exchange students"
-      },
-      {
-        "number": "15+",
-        "label": "地區國際交流",
-        "label_en": "Regional international exchange"
+        "number": "12+",
+        "label": "位國際同道",
+        "label_en": ""
       },
       {
         "number": "6+",
         "label": "學期國際交流",
-        "label_en": "Semester of exchange"
+        "label_en": ""
       },
       {
         "number": "10+",
         "label": "位持續聯絡",
-        "label_en": "Keeping contact"
+        "label_en": ""
       }
     ],
-    "google_map_embed_url": "https://www.google.com/maps/d/u/2/embed?mid=1fmxzTXNfqlsjDpLTwuBl5wPRyk7zXo0&ehbc=2E312F",
+    "google_map_embed_url": "",
     "badge_label": "道傳寰宇",
     "quote": "「道之所在，雖千萬里，心念若一，自能相逢。」",
     "title": "外邦弟子的修真緣分"
