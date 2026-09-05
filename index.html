@@ -633,107 +633,120 @@
         function setupDescPagination(tabId, fullText) {
             const descEl = document.getElementById(`content-${tabId}-desc`);
             const row = document.getElementById(`content-${tabId}-difficulty-row`);
-            const difficultyEl = document.getElementById(`content-${tabId}-difficulty`);
+            const difficultyEl = row && (row._difficultyEl || document.getElementById(`content-${tabId}-difficulty`));
             if (!descEl || !row || !difficultyEl) return;
 
-            // 先把難度列還原成最原始的樣子（避免切換語言/頁籤時疊加出多顆箭頭）
+            // 保留原本的難度標籤與列樣式，讓切換語言、頁籤或視窗寬度時能完整還原。
+            row._difficultyEl = difficultyEl;
+            if (!row.dataset.originalClassName) row.dataset.originalClassName = row.className;
+            row.className = row.dataset.originalClassName;
             row.innerHTML = '';
             row.appendChild(difficultyEl);
 
             const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-            const isEnglish = (typeof getLang === 'function' && getLang() === 'en');
+            const isEnglish = typeof getLang === 'function' && getLang() === 'en';
             if (!isDesktop || !isEnglish || !fullText) {
                 descEl.innerHTML = parseInlineMarkup(fullText);
                 return;
             }
 
-            // 用一個隱藏的量測用複本，測量「完全不截斷」時的實際高度，跟目前 6 行截斷的高度比較
-            function measureHeight(text, clamp) {
+            // getBoundingClientRect() 量的是實際畫面高度；scrollHeight 在 line-clamp 下仍可能
+            // 包含被截掉的文字，會讓原本的溢位判斷失準。
+            function measureRenderedHeight(text, clamp) {
                 const clone = descEl.cloneNode(false);
                 clone.id = '';
-                clone.style.position = 'absolute';
+                clone.style.position = 'fixed';
                 clone.style.visibility = 'hidden';
                 clone.style.pointerEvents = 'none';
                 clone.style.left = '-9999px';
-                clone.style.width = descEl.clientWidth + 'px';
+                clone.style.top = '0';
+                clone.style.width = `${descEl.getBoundingClientRect().width}px`;
+                clone.style.maxHeight = 'none';
+                clone.style.overflow = clamp ? 'hidden' : 'visible';
+                clone.style.webkitBoxOrient = clamp ? 'vertical' : 'initial';
                 clone.style.webkitLineClamp = clamp ? '6' : 'unset';
                 clone.style.display = clamp ? '-webkit-box' : 'block';
-                clone.style.maxHeight = 'none';
                 clone.innerHTML = parseInlineMarkup(text);
                 document.body.appendChild(clone);
-                const h = clone.scrollHeight;
-                document.body.removeChild(clone);
-                return h;
+                const height = clone.getBoundingClientRect().height;
+                clone.remove();
+                return height;
             }
 
-            const clampedHeight = measureHeight(fullText, true);
-            const fullHeight = measureHeight(fullText, false);
+            const sixLineHeight = measureRenderedHeight(fullText, true);
+            const fullHeight = measureRenderedHeight(fullText, false);
 
-            // 沒有溢出（英文內容剛好 6 行內放得下），維持原本樣子，不需要翻頁
-            if (fullHeight <= clampedHeight + 4) {
+            // 英文沒有超出既有六行限制時，保留原本的文字與難度標籤，不顯示翻頁控制項。
+            if (fullHeight <= sixLineHeight + 1) {
                 descEl.innerHTML = parseInlineMarkup(fullText);
                 return;
             }
 
-            // 有溢出：用二分搜尋法，找出第一頁「剛好塞得進 6 行」的最長字數，依此類推切出每一頁
-            const words = fullText.split(' ');
+            // 依「未截斷」的實際高度切頁，確保每一頁都可完整容納在原本六行的空間內。
+            const words = fullText.trim().split(/\s+/);
             const pages = [];
             let startWord = 0;
             while (startWord < words.length) {
-                let lo = startWord + 1, hi = words.length, best = startWord + 1;
-                while (lo <= hi) {
-                    const mid = Math.floor((lo + hi) / 2);
-                    const candidate = words.slice(startWord, mid).join(' ');
-                    const h = measureHeight(candidate, true);
-                    if (h <= clampedHeight + 4) {
-                        best = mid;
-                        lo = mid + 1;
+                let low = startWord + 1;
+                let high = words.length;
+                let best = startWord + 1;
+                while (low <= high) {
+                    const middle = Math.floor((low + high) / 2);
+                    const candidate = words.slice(startWord, middle).join(' ');
+                    if (measureRenderedHeight(candidate, false) <= sixLineHeight + 1) {
+                        best = middle;
+                        low = middle + 1;
                     } else {
-                        hi = mid - 1;
+                        high = middle - 1;
                     }
                 }
                 pages.push(words.slice(startWord, best).join(' '));
                 startWord = best;
-                if (pages.length > 20) break; // 安全防呆，避免極端內容造成無限迴圈
             }
 
             let currentPage = 0;
+            const buttonClass = 'w-8 h-8 rounded-full border border-bronze/50 text-bronze-light flex items-center justify-center flex-shrink-0 hover:border-bronze hover:text-white transition-colors';
+
+            function createArrow(label, symbol, onClick) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.setAttribute('aria-label', label);
+                button.className = buttonClass;
+                button.innerText = symbol;
+                button.addEventListener('click', onClick);
+                return button;
+            }
 
             function renderPage() {
                 descEl.innerHTML = parseInlineMarkup(pages[currentPage]);
-
+                row.className = 'pt-2 grid grid-cols-3 items-center w-full';
                 row.innerHTML = '';
+
+                const left = document.createElement('div');
+                left.className = 'justify-self-start';
                 if (currentPage === 0) {
-                    row.appendChild(difficultyEl);
+                    left.appendChild(difficultyEl);
                 } else {
-                    const prevBtn = document.createElement('button');
-                    prevBtn.type = 'button';
-                    prevBtn.setAttribute('aria-label', 'Previous');
-                    prevBtn.className = 'w-8 h-8 rounded-full border border-bronze/50 text-bronze-light flex items-center justify-center flex-shrink-0';
-                    prevBtn.innerText = '‹';
-                    prevBtn.addEventListener('click', () => { currentPage--; renderPage(); });
-                    row.appendChild(prevBtn);
+                    left.appendChild(createArrow('Previous page', '‹', () => {
+                        currentPage--;
+                        renderPage();
+                    }));
                 }
 
                 const indicator = document.createElement('span');
-                indicator.className = 'text-sm leading-relaxed text-cloud/90';
+                indicator.className = 'justify-self-center text-sm leading-relaxed text-cloud/90';
                 indicator.innerText = `${currentPage + 1}/${pages.length}`;
-                row.appendChild(indicator);
 
+                const right = document.createElement('div');
+                right.className = 'justify-self-end';
                 if (currentPage < pages.length - 1) {
-                    const nextBtn = document.createElement('button');
-                    nextBtn.type = 'button';
-                    nextBtn.setAttribute('aria-label', 'Next');
-                    nextBtn.className = 'w-8 h-8 rounded-full border border-bronze/50 text-bronze-light flex items-center justify-center flex-shrink-0';
-                    nextBtn.innerText = '›';
-                    nextBtn.addEventListener('click', () => { currentPage++; renderPage(); });
-                    row.appendChild(nextBtn);
-                } else {
-                    // 最後一頁：右側留空位置，維持版面對齊
-                    const spacer = document.createElement('span');
-                    spacer.className = 'w-8 h-8 flex-shrink-0';
-                    row.appendChild(spacer);
+                    right.appendChild(createArrow('Next page', '›', () => {
+                        currentPage++;
+                        renderPage();
+                    }));
                 }
+
+                row.append(left, indicator, right);
             }
 
             renderPage();
