@@ -204,7 +204,8 @@
 
                     (data.methods || []).forEach((method, index) => {
 
-                        const hasPlainTranslation = method.plain_desc && method.plain_desc.trim() !== '';
+                        // 白話翻譯功能只在中文模式提供；英文模式一律不顯示這顆按鈕跟對應內容
+                        const hasPlainTranslation = !isEnglish && method.plain_desc && method.plain_desc.trim() !== '';
                         const translationId = 'plain-translation-' + index;
 
                         const methodHTML = `
