@@ -243,7 +243,7 @@
                     <p id="content-qigong-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
                         引導吐納，疏通十二經絡。適合長期熬夜、為課業瑣事精神內耗的大學學子。無須繁複招式，只需靜心專注於一呼一吸，在沉靜中感受體內生生不息之炁。
                     </p>
-                    <div class="pt-2">
+                    <div class="pt-2 flex items-center justify-between" id="content-qigong-difficulty-row">
                         <span id="content-qigong-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：入門</span>
                     </div>
                 </div>
@@ -269,7 +269,7 @@
                     <p id="content-taichi-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
                         不與風爭強，不與水奪流。太極拳非防身格鬥之悍術，而是與自身重力、自然定律共處的和諧律動。一式一動皆在磨練定力，讓浮躁的心沉澱，感受圓融之美。
                     </p>
-                    <div class="pt-2">
+                    <div class="pt-2 flex items-center justify-between" id="content-taichi-difficulty-row">
                         <span id="content-taichi-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：中等</span>
                     </div>
                 </div>
@@ -295,7 +295,7 @@
                     <p id="content-staff-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
                         長兵之祖，勢如破竹。太祖棍旨在訓練脊椎旋轉之核心爆發力，使手、足、身、步協調一致。棍身舞動之際，非唯破敵，實乃掃除心中雜念與懈怠。
                     </p>
-                    <div class="pt-2">
+                    <div class="pt-2 flex items-center justify-between" id="content-staff-difficulty-row">
                         <span id="content-staff-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：進階</span>
                     </div>
                 </div>
@@ -321,7 +321,7 @@
                     <p id="content-sword-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
                         劍隨身走，瀟灑似風。太極劍要求神態飄逸、步法靈動，非純剛猛，而以圓轉輕靈取勝。劍尖所指，皆是太極圓圈之化境，令身心如行雲流水，自在自得。
                     </p>
-                    <div class="pt-2">
+                    <div class="pt-2 flex items-center justify-between" id="content-sword-difficulty-row">
                         <span id="content-sword-difficulty" class="inline-block px-3 py-1 bg-pine/20 border border-pine/40 rounded text-xs text-pine-light truncate max-w-[10rem]">修煉難度：高階</span>
                     </div>
                 </div>
@@ -553,6 +553,11 @@
                 activeContent.classList.remove('hidden');
             }
 
+            // 內容真正顯示出來之後，才進行翻頁判斷（隱藏狀態下量測寬度會是 0，判斷會不準）
+            if (window.methodDescCache && window.methodDescCache[tabId] !== undefined) {
+                setupDescPagination(tabId, window.methodDescCache[tabId]);
+            }
+
             const activeBtn = document.getElementById(`tab-${tabId}`);
             if (activeBtn) {
                 activeBtn.classList.remove('border-white/5', 'text-cloud');
@@ -622,6 +627,117 @@
             nextBtn.addEventListener('click', () => goTo(1));
         }
         setupTabArrows('methods-tab-row', 'tabs-prev-btn', 'tabs-next-btn', ['qigong', 'taichi', 'staff', 'sword']);
+
+        // 功法說明文字翻頁：只在「電腦版 + 英文模式」且內容真的超過 6 行截斷範圍時才會啟用，
+        // 中文版跟手機版完全不受影響，維持原本樣子
+        function setupDescPagination(tabId, fullText) {
+            const descEl = document.getElementById(`content-${tabId}-desc`);
+            const row = document.getElementById(`content-${tabId}-difficulty-row`);
+            const difficultyEl = document.getElementById(`content-${tabId}-difficulty`);
+            if (!descEl || !row || !difficultyEl) return;
+
+            // 先把難度列還原成最原始的樣子（避免切換語言/頁籤時疊加出多顆箭頭）
+            row.innerHTML = '';
+            row.appendChild(difficultyEl);
+
+            const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+            const isEnglish = (typeof getLang === 'function' && getLang() === 'en');
+            if (!isDesktop || !isEnglish || !fullText) {
+                descEl.innerHTML = parseInlineMarkup(fullText);
+                return;
+            }
+
+            // 用一個隱藏的量測用複本，測量「完全不截斷」時的實際高度，跟目前 6 行截斷的高度比較
+            function measureHeight(text, clamp) {
+                const clone = descEl.cloneNode(false);
+                clone.id = '';
+                clone.style.position = 'absolute';
+                clone.style.visibility = 'hidden';
+                clone.style.pointerEvents = 'none';
+                clone.style.left = '-9999px';
+                clone.style.width = descEl.clientWidth + 'px';
+                clone.style.webkitLineClamp = clamp ? '6' : 'unset';
+                clone.style.display = clamp ? '-webkit-box' : 'block';
+                clone.style.maxHeight = 'none';
+                clone.innerHTML = parseInlineMarkup(text);
+                document.body.appendChild(clone);
+                const h = clone.scrollHeight;
+                document.body.removeChild(clone);
+                return h;
+            }
+
+            const clampedHeight = measureHeight(fullText, true);
+            const fullHeight = measureHeight(fullText, false);
+
+            // 沒有溢出（英文內容剛好 6 行內放得下），維持原本樣子，不需要翻頁
+            if (fullHeight <= clampedHeight + 4) {
+                descEl.innerHTML = parseInlineMarkup(fullText);
+                return;
+            }
+
+            // 有溢出：用二分搜尋法，找出第一頁「剛好塞得進 6 行」的最長字數，依此類推切出每一頁
+            const words = fullText.split(' ');
+            const pages = [];
+            let startWord = 0;
+            while (startWord < words.length) {
+                let lo = startWord + 1, hi = words.length, best = startWord + 1;
+                while (lo <= hi) {
+                    const mid = Math.floor((lo + hi) / 2);
+                    const candidate = words.slice(startWord, mid).join(' ');
+                    const h = measureHeight(candidate, true);
+                    if (h <= clampedHeight + 4) {
+                        best = mid;
+                        lo = mid + 1;
+                    } else {
+                        hi = mid - 1;
+                    }
+                }
+                pages.push(words.slice(startWord, best).join(' '));
+                startWord = best;
+                if (pages.length > 20) break; // 安全防呆，避免極端內容造成無限迴圈
+            }
+
+            let currentPage = 0;
+
+            function renderPage() {
+                descEl.innerHTML = parseInlineMarkup(pages[currentPage]);
+
+                row.innerHTML = '';
+                if (currentPage === 0) {
+                    row.appendChild(difficultyEl);
+                } else {
+                    const prevBtn = document.createElement('button');
+                    prevBtn.type = 'button';
+                    prevBtn.setAttribute('aria-label', 'Previous');
+                    prevBtn.className = 'w-8 h-8 rounded-full border border-bronze/50 text-bronze-light flex items-center justify-center flex-shrink-0';
+                    prevBtn.innerText = '‹';
+                    prevBtn.addEventListener('click', () => { currentPage--; renderPage(); });
+                    row.appendChild(prevBtn);
+                }
+
+                const indicator = document.createElement('span');
+                indicator.className = 'text-sm leading-relaxed text-cloud/90';
+                indicator.innerText = `${currentPage + 1}/${pages.length}`;
+                row.appendChild(indicator);
+
+                if (currentPage < pages.length - 1) {
+                    const nextBtn = document.createElement('button');
+                    nextBtn.type = 'button';
+                    nextBtn.setAttribute('aria-label', 'Next');
+                    nextBtn.className = 'w-8 h-8 rounded-full border border-bronze/50 text-bronze-light flex items-center justify-center flex-shrink-0';
+                    nextBtn.innerText = '›';
+                    nextBtn.addEventListener('click', () => { currentPage++; renderPage(); });
+                    row.appendChild(nextBtn);
+                } else {
+                    // 最後一頁：右側留空位置，維持版面對齊
+                    const spacer = document.createElement('span');
+                    spacer.className = 'w-8 h-8 flex-shrink-0';
+                    row.appendChild(spacer);
+                }
+            }
+
+            renderPage();
+        }
     </script>
 
     <!-- 串接後台資料的 JavaScript：讀取 data/home.json 並填入整個首頁 -->
@@ -773,14 +889,24 @@
 
                 // 四大法門 - 內容（依 id 對應到既有的四個固定區塊）
                 if (Array.isArray(data.methods)) {
+                    window.methodDescCache = window.methodDescCache || {};
                     data.methods.forEach(m => {
                         setTabLabel(`tab-${m.id}-label`, m.tab_label);
                         setText(`content-${m.id}-tag`, m.tag);
                         setText(`content-${m.id}-title`, m.title);
                         setText(`content-${m.id}-quote`, m.quote);
-                        setHtml(`content-${m.id}-desc`, m.desc);
                         setText(`content-${m.id}-difficulty`, m.difficulty);
                         renderMethodVideo(m.id, m.video_url, m.title);
+
+                        // 先把原始文字存起來；翻頁判斷需要量測實際寬度，只有頁籤「正在顯示中」才會準確，
+                        // 目前預設顯示的第一個頁籤在這裡就直接判斷，其餘三個等使用者切換過去時才判斷（見 switchTab）
+                        window.methodDescCache[m.id] = m.desc || '';
+                        const contentEl = document.getElementById(`content-${m.id}`);
+                        if (contentEl && !contentEl.classList.contains('hidden')) {
+                            setupDescPagination(m.id, m.desc || '');
+                        } else {
+                            setHtml(`content-${m.id}-desc`, m.desc);
+                        }
                     });
                 }
 
