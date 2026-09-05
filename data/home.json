@@ -265,6 +265,12 @@
         "count": 0
       },
       {
+        "code": "TR",
+        "name": "土耳其",
+        "name_en": "Türkiye",
+        "count": 0
+      },
+      {
         "code": "DE",
         "name": "德國",
         "name_en": "Germany",
@@ -292,12 +298,6 @@
         "code": "NL",
         "name": "荷蘭",
         "name_en": "Netherlands",
-        "count": 0
-      },
-      {
-        "code": "TR",
-        "name": "土耳其",
-        "name_en": "Türkiye",
         "count": 0
       },
       {
