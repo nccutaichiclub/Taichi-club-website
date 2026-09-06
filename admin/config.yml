@@ -41,7 +41,7 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - label: "電腦版輪播圖片 (建議使用橫式，寬 > 高，至少 1600px 寬)"
+              - label: "電腦版輪播圖片（中文版，建議使用橫式，寬 > 高，至少 1600px 寬）"
                 name: "carousel_desktop"
                 widget: "list"
                 min: 1
@@ -50,7 +50,15 @@ collections:
                   - { label: "圖片", name: "image", widget: "image", hint: "請上傳橫式(寬>高)的照片，避免電腦版寬螢幕顯示時被裁切過多" }
                   - { label: "圖片說明 (畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
                   - { label: "圖片說明 (English，選填)", name: "alt_en", widget: "string", required: false }
-              - label: "手機版輪播圖片 (建議使用直式，高 > 寬；若留空，手機版會自動沿用電腦版圖片)"
+              - label: "電腦版輪播圖片（英文版，選填；留空會自動沿用中文版）"
+                name: "carousel_desktop_en"
+                widget: "list"
+                required: false
+                summary: "{{fields.alt}}"
+                fields:
+                  - { label: "圖片", name: "image", widget: "image", hint: "請上傳英文版橫式照片；留空時前台會自動使用中文版圖片" }
+                  - { label: "圖片說明 (English，畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
+              - label: "手機版輪播圖片（中文版，建議使用直式，高 > 寬；若留空，手機版會自動沿用中文版電腦版圖片）"
                 name: "carousel_mobile"
                 widget: "list"
                 required: false
@@ -59,6 +67,14 @@ collections:
                   - { label: "圖片", name: "image", widget: "image", hint: "請上傳直式(高>寬)的照片，避免手機直式螢幕顯示時被裁切過多" }
                   - { label: "圖片說明 (畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
                   - { label: "圖片說明 (English，選填)", name: "alt_en", widget: "string", required: false }
+              - label: "手機版輪播圖片（英文版，選填；留空會自動沿用中文版手機版圖片）"
+                name: "carousel_mobile_en"
+                widget: "list"
+                required: false
+                summary: "{{fields.alt}}"
+                fields:
+                  - { label: "圖片", name: "image", widget: "image", hint: "請上傳英文版直式照片；留空時前台會自動使用中文版手機版圖片" }
+                  - { label: "圖片說明 (English，畫面上不會顯示，給搜尋引擎/視障讀者用)", name: "alt", widget: "string", required: false }
 
           - label: "四大法門 - 區塊標題"
             name: "methods_section"
