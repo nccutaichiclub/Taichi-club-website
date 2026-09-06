@@ -25,16 +25,6 @@
         "image": "/assets/uploads/the big game.jpg",
         "alt": "",
         "alt_en": ""
-      },
-      {
-        "image": "/assets/uploads/LINE_ALBUM_114-1 Lesson ONE 1️⃣ We are so Cool ☯︎🧡 2025.09.10_260817_2.jpg",
-        "alt": "",
-        "alt_en": ""
-      },
-      {
-        "image": "/assets/uploads/57262-1.jpg",
-        "alt": "",
-        "alt_en": ""
       }
     ],
     "carousel_desktop_en": [
@@ -50,7 +40,12 @@
         "alt_en": ""
       }
     ],
-    "carousel_mobile_en": [],
+    "carousel_mobile_en": [
+      {
+        "image": "/assets/uploads/Gemini_Generated_Image_z0l1uz0l1uz0l1uz.jfif",
+        "alt": ""
+      }
+    ],
     "btn_contact": "結緣問道",
     "btn_methods": "窺探法門",
     "carousel": [
