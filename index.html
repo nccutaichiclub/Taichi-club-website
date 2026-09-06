@@ -769,17 +769,20 @@
             }
         }
 
-        // 初始化 Hero 照片輪播：desktopImages/mobileImages 是陣列 (array)，每一筆是 {image, alt}
-        // 手機版若後台沒填圖片，會自動沿用電腦版的圖片，確保不會開天窗
-        function initHeroCarousel(desktopImages, mobileImages) {
+        // 初始化 Hero 照片輪播：中文與英文可分別設定桌面、手機圖片；英文圖片留空時會沿用對應的中文版。
+        function initHeroCarousel(desktopImages, mobileImages, desktopImagesEn, mobileImagesEn) {
             const container = document.getElementById('hero-carousel');
             const dotsContainer = document.getElementById('hero-carousel-dots');
             if (!container || !dotsContainer) return;
 
             const isMobile = window.matchMedia('(max-width: 767px)').matches;
-            const images = (isMobile && Array.isArray(mobileImages) && mobileImages.length > 0)
-                ? mobileImages
-                : desktopImages;
+            const isEnglish = typeof getLang === 'function' && getLang() === 'en';
+            const hasImages = images => Array.isArray(images) && images.length > 0;
+            const chineseDesktop = hasImages(desktopImages) ? desktopImages : [];
+            const chineseMobile = hasImages(mobileImages) ? mobileImages : chineseDesktop;
+            const selectedDesktop = isEnglish && hasImages(desktopImagesEn) ? desktopImagesEn : chineseDesktop;
+            const selectedMobile = isEnglish && hasImages(mobileImagesEn) ? mobileImagesEn : chineseMobile;
+            const images = isMobile ? selectedMobile : selectedDesktop;
 
             if (!Array.isArray(images) || images.length === 0) return;
 
@@ -789,7 +792,8 @@
                 slide.className = 'absolute inset-0 bg-cover bg-center transition-opacity duration-1000';
                 slide.style.backgroundImage = `url('${resolveImagePath(img.image)}')`;
                 slide.style.opacity = i === 0 ? '1' : '0';
-                if (img.alt) slide.setAttribute('aria-label', img.alt);
+                const alt = isEnglish && img.alt_en ? img.alt_en : img.alt;
+                if (alt) slide.setAttribute('aria-label', alt);
                 container.appendChild(slide);
 
                 const dot = document.createElement('button');
@@ -884,14 +888,19 @@
         fetch('data/home.json?v=' + Date.now())
             .then(response => response.json())
             .then(data => {
+                // 輪播圖片先依目前語言選取；之後的 applyLangToData() 會處理其他文字欄位。
+                // 英文圖片欄位保留在這裡使用，避免被語言轉換覆寫掉。
+                if (data.hero) {
+                    initHeroCarousel(
+                        data.hero.carousel_desktop,
+                        data.hero.carousel_mobile,
+                        data.hero.carousel_desktop_en,
+                        data.hero.carousel_mobile_en
+                    );
+                }
                 data = applyLangToData(data); // 依目前語言整批轉換文字內容
 
                 // 導覽列文字已改由 header.js 統一處理，這裡不用再重複抓一次
-
-                // Hero：文字改成照片輪播，電腦版與手機版分開讀取
-                if (data.hero) {
-                    initHeroCarousel(data.hero.carousel_desktop, data.hero.carousel_mobile);
-                }
 
                 // 四大法門 - 區塊標題
                 if (data.methods_section) {
