@@ -37,6 +37,12 @@
         "alt_en": ""
       }
     ],
+    "carousel_desktop_en": [
+      {
+        "image": "/assets/uploads/1.jpg",
+        "alt": ""
+      }
+    ],
     "carousel_mobile": [
       {
         "image": "/assets/uploads/ChatGPT Image 2026年9月6日 下午03_05_53.png",
@@ -44,6 +50,7 @@
         "alt_en": ""
       }
     ],
+    "carousel_mobile_en": [],
     "btn_contact": "結緣問道",
     "btn_methods": "窺探法門",
     "carousel": [
