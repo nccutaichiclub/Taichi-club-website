@@ -12,7 +12,7 @@
       "albums": [
         {
           "name": "表演精選集",
-          "name_en": "",
+          "name_en": "Performance Highlights",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_114-1 Lesson ONE 1️⃣ We are so Cool ☯︎🧡 2025.09.10_260817_1.jpg",
@@ -48,7 +48,7 @@
         },
         {
           "name": "體驗集錦",
-          "name_en": "",
+          "name_en": "Experience Highlights",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_114-1 Lesson ONE 1️⃣ We are so Cool ☯︎🧡 2025.09.10_260817_2.jpg",
@@ -70,12 +70,12 @@
       ],
       "photos": [
         {
-          "image": "/assets/uploads/朋.png",
-          "caption": "新人"
+          "caption": "新人",
+          "image": "/assets/uploads/朋.png"
         },
         {
-          "image": "/assets/uploads/Grasslands-menggu.jpg",
-          "caption": "草地"
+          "caption": "草地",
+          "image": "/assets/uploads/Grasslands-menggu.jpg"
         }
       ]
     },
@@ -87,7 +87,7 @@
       "albums": [
         {
           "name": "前前社長與前社長",
-          "name_en": "",
+          "name_en": "Former Presidents",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_114-2 期末大會🌟2026527_260824_1.jpg",
@@ -98,7 +98,7 @@
         },
         {
           "name": "表演",
-          "name_en": "",
+          "name_en": "Performance",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_114-2 期末大會🌟2026527_260825_1.jpg",
@@ -114,7 +114,7 @@
         },
         {
           "name": "頒獎典禮",
-          "name_en": "",
+          "name_en": "Awards Ceremony",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_114-2 期末大會🌟2026527_260825_4.jpg",
@@ -155,7 +155,7 @@
         },
         {
           "name": "大合照",
-          "name_en": "",
+          "name_en": "Group Photo",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_114-2 期末大會🌟2026527_260825_10.jpg",
@@ -179,7 +179,7 @@
       "albums": [
         {
           "name": "認識的起點",
-          "name_en": "",
+          "name_en": "The Beginning of Our Journey",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_1130307 Club Expo 112-2_260825_1.jpg",
@@ -239,7 +239,7 @@
         },
         {
           "name": "氣功",
-          "name_en": "",
+          "name_en": "Qigong",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_Lesson8_ 持之以恆Stick to it🐛🦋_260825_1.jpg",
@@ -270,7 +270,7 @@
         },
         {
           "name": "太極沾粘棍",
-          "name_en": "",
+          "name_en": "Taizu Stick",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_2025.09.17 Lesson Two_Use Waist boost Power💪🌠_260825_1.jpg",
@@ -306,7 +306,7 @@
         },
         {
           "name": "太極劍",
-          "name_en": "",
+          "name_en": "Taichi Sword",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_112-1 Taichi Class_1_260825_1.jpg",
@@ -342,7 +342,7 @@
       "albums": [
         {
           "name": "早起的鳥兒有武練",
-          "name_en": "",
+          "name_en": "The Early Bird Gets to Train",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_112-1 Taichi Morning exercise 🐿_260825_1.jpg",
@@ -376,7 +376,7 @@
       "albums": [
         {
           "name": "老師家的美味晚餐",
-          "name_en": "",
+          "name_en": "A Delicious Dinner at Our Teacher’s Home",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_2026617餐聚❤️‍🔥🥢_260825_1.jpg",
@@ -415,7 +415,7 @@
       "albums": [
         {
           "name": "花生粉是精髓的所在",
-          "name_en": "",
+          "name_en": "Peanut Powder Is the Secret Ingredient",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_包春捲🥜+第四次社課_260825_1.jpg",
@@ -436,7 +436,7 @@
         },
         {
           "name": "糖粉昇華了其中的意涵",
-          "name_en": "",
+          "name_en": "Powdered Sugar Elevates Its Meaning",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_Lesson4_love-filled spring roll🧡_260825_1.jpg",
@@ -470,7 +470,7 @@
       "albums": [
         {
           "name": "大溪 2026524",
-          "name_en": "",
+          "name_en": "Daxi — May 24, 2026",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_2026524 我在大溪天氣晴_260825_2.jpg",
@@ -536,7 +536,7 @@
         },
         {
           "name": "樟山寺 2026328",
-          "name_en": "",
+          "name_en": "Zhangshan Temple — March 28, 2026",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_20260328 🐱☁️🍵記樟山寺夜遊，把茶話日常。_260817_4.jpg",
@@ -567,7 +567,7 @@
         },
         {
           "name": "新竹 20251102",
-          "name_en": "",
+          "name_en": "Hsinchu — November 2, 2025",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_新竹清新好心情🥰2025.11.2_260825_3.jpg",
@@ -618,7 +618,7 @@
         },
         {
           "name": "蒙藏 2025323",
-          "name_en": "",
+          "name_en": "Mongolia & Tibet — March 23, 2025",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_114.3.23 第一次社遊🧋_260825_10.jpg",
@@ -682,7 +682,7 @@
       "albums": [
         {
           "name": "2025寒訓",
-          "name_en": "",
+          "name_en": "2025 Winter Training Camp",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_20250112太極社寒訓_260825_1.jpg",
@@ -708,7 +708,7 @@
         },
         {
           "name": "2025暑訓",
-          "name_en": "",
+          "name_en": "2025 Summer Training Camp",
           "photos": [
             {
               "image": "/assets/uploads/LINE_ALBUM_77～79 太極社暑訓🦉_260825_3.jpg",
