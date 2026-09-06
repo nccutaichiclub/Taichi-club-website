@@ -22,6 +22,11 @@
   "hero": {
     "carousel_desktop": [
       {
+        "image": "/assets/uploads/the big game.jpg",
+        "alt": "",
+        "alt_en": ""
+      },
+      {
         "image": "/assets/uploads/LINE_ALBUM_114-1 Lesson ONE 1️⃣ We are so Cool ☯︎🧡 2025.09.10_260817_2.jpg",
         "alt": "",
         "alt_en": ""
@@ -30,14 +35,15 @@
         "image": "/assets/uploads/57262-1.jpg",
         "alt": "",
         "alt_en": ""
-      },
+      }
+    ],
+    "carousel_mobile": [
       {
-        "image": "/assets/uploads/the big game.jpg",
+        "image": "/assets/uploads/ChatGPT Image 2026年9月6日 下午02_53_46.png",
         "alt": "",
         "alt_en": ""
       }
     ],
-    "carousel_mobile": [],
     "btn_contact": "結緣問道",
     "btn_methods": "窺探法門",
     "carousel": [
