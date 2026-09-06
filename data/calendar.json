@@ -9,15 +9,15 @@
     "items": [
       {
         "label": "中文版",
-        "display_image": "/assets/uploads/太極社115-1行事曆_page-0001.jpg",
-        "download_file": "/assets/uploads/太極社115-1行事曆.pdf",
+        "display_image": "/assets/uploads/115-1行事曆(正方形).jpg",
+        "download_file": "/assets/uploads/115-1行事曆.pdf",
         "download_label": "下載",
         "download_label_en": ""
       },
       {
         "label": "English",
-        "display_image": "/assets/uploads/NCCU Taichi Club Calender 2026 Fall_page-0001.jpg",
-        "download_file": "/assets/uploads/NCCU Taichi Club Calender 2026 Fall.pdf",
+        "display_image": "/assets/uploads/115-1 行事曆英文版(正方形).jpg",
+        "download_file": "/assets/uploads/NCCU Taichi Calendar 2026 Fall.pdf",
         "download_label": "Download",
         "download_label_en": ""
       }
