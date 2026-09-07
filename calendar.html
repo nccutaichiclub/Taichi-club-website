@@ -476,7 +476,7 @@
                             </div>
                             ${metaParts.length > 0 ? `<div class="event-meta-line">${metaHtml}</div>` : ''}
                             ${ev.desc ? `<div class="event-detail">${parseInlineMarkup(ev.desc)}</div>` : ''}
-                            ${ev.note ? `<div class="event-note">⚠ ${formatEventNote(ev.note)}</div>` : ''}
+                            ${ev.note ? `<div class="event-note">${formatEventNote(ev.note)}</div>` : ''}
                         `;
                         monthBlock.appendChild(row);
                     });
