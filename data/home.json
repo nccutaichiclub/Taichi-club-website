@@ -67,10 +67,6 @@
       {
         "image": "/assets/uploads/5.jpg",
         "alt": ""
-      },
-      {
-        "image": "/assets/uploads/496311953_3157412557745802_5682965436209363767_n~2.jpg",
-        "alt": ""
       }
     ],
     "carousel_mobile": [],
@@ -508,18 +504,18 @@
         "location_en": "Room 722, Art & Cultural Center"
       },
       {
-        "time": "敬請期待",
-        "time_en": "Coming Soon",
+        "time": "每週五",
+        "time_en": "Every Friday",
         "content": "晨練",
         "content_en": "Morning Practice",
-        "location": "敬請期待",
-        "location_en": "Coming Soon"
+        "location": "行政大樓2樓迴廊",
+        "location_en": "2F Corridor, Administration Building"
       }
     ],
     "note_label": "小叮嚀：",
     "note_label_en": "Note:",
-    "note": "參加本社活動無門檻限制，本社會提供所需器材，學員僅需穿著寬鬆易活動的服裝出席即可，藝文中心內設有飲水機請自備水壺。歡迎學生、社區居民、社會人士共襄盛舉。",
-    "note_en": "Participation in our club activities is open to everyone, with no prerequisites or entry requirements. We provide all the necessary equipment, so participants only need to wear loose, comfortable clothing suitable for movement. There is a water dispenser in the Arts and Culture Center, so please bring your own water bottle."
+    "note": "參加本社活動無門檻限制，本社會提供所需器材，學員僅需穿著寬鬆易活動的服裝出席即可，藝文中心內設有飲水機請自備水壺。歡迎學生、社區居民、社會人士共襄盛舉。\n\n晨練時間可能視情況變動，請以粉專公告為準。",
+    "note_en": "Participation in our club activities is open to everyone, with no prerequisites or entry requirements. We provide all the necessary equipment, so participants only need to wear loose, comfortable clothing suitable for movement. There is a water dispenser in the Arts and Culture Center, so please bring your own water bottle.\n\nMorning Practice times are subject to change. Please check our social media for updates."
   },
   "footer": {
     "copyright": "© 2026 國立政治大學太極社 NCCU Tai Chi Club",
