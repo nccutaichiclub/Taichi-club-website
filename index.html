@@ -183,7 +183,7 @@
 
     <!-- 1. 隱仙首頁 (Hero Section) -->
     <!-- 原本的文字全部拿掉，改成照片輪播 (carousel)；#hero-carousel 是空容器，圖片由下方 JS 迴圈動態塞入 -->
-    <section id="hero" class="aspect-video md:aspect-auto md:min-h-screen flex items-center justify-center relative px-4 overflow-hidden">
+    <section id="hero" class="aspect-[9/16] md:aspect-auto md:min-h-screen flex items-center justify-center relative px-4 overflow-hidden">
         <!-- sr-only：畫面上看不到，但保留給搜尋引擎/螢幕報讀軟體辨識網站標題用 -->
         <h1 class="sr-only">政大太極社</h1>
 
@@ -756,17 +756,20 @@
             }
         }
 
-        // 初始化 Hero 照片輪播：desktopImages/mobileImages 是陣列 (array)，每一筆是 {image, alt}
-        // 手機版若後台沒填圖片，會自動沿用電腦版的圖片，確保不會開天窗
-        function initHeroCarousel(desktopImages, mobileImages) {
+        // 初始化 Hero 照片輪播：中文與英文可分別設定桌面、手機圖片；英文圖片留空時會沿用對應的中文版。
+        function initHeroCarousel(desktopImages, mobileImages, desktopImagesEn, mobileImagesEn) {
             const container = document.getElementById('hero-carousel');
             const dotsContainer = document.getElementById('hero-carousel-dots');
             if (!container || !dotsContainer) return;
 
             const isMobile = window.matchMedia('(max-width: 767px)').matches;
-            const images = (isMobile && Array.isArray(mobileImages) && mobileImages.length > 0)
-                ? mobileImages
-                : desktopImages;
+            const isEnglish = typeof getLang === 'function' && getLang() === 'en';
+            const hasImages = images => Array.isArray(images) && images.length > 0;
+            const chineseDesktop = hasImages(desktopImages) ? desktopImages : [];
+            const chineseMobile = hasImages(mobileImages) ? mobileImages : chineseDesktop;
+            const selectedDesktop = isEnglish && hasImages(desktopImagesEn) ? desktopImagesEn : chineseDesktop;
+            const selectedMobile = isEnglish && hasImages(mobileImagesEn) ? mobileImagesEn : chineseMobile;
+            const images = isMobile ? selectedMobile : selectedDesktop;
 
             if (!Array.isArray(images) || images.length === 0) return;
 
@@ -776,7 +779,8 @@
                 slide.className = 'absolute inset-0 bg-cover bg-center transition-opacity duration-1000';
                 slide.style.backgroundImage = `url('${resolveImagePath(img.image)}')`;
                 slide.style.opacity = i === 0 ? '1' : '0';
-                if (img.alt) slide.setAttribute('aria-label', img.alt);
+                const alt = isEnglish && img.alt_en ? img.alt_en : img.alt;
+                if (alt) slide.setAttribute('aria-label', alt);
                 container.appendChild(slide);
 
                 const dot = document.createElement('button');
@@ -871,14 +875,18 @@
         fetch('data/home.json?v=' + Date.now())
             .then(response => response.json())
             .then(data => {
+                // 先選取輪播圖片，避免 applyLangToData() 處理 _en 欄位時覆寫圖片清單。
+                if (data.hero) {
+                    initHeroCarousel(
+                        data.hero.carousel_desktop,
+                        data.hero.carousel_mobile,
+                        data.hero.carousel_desktop_en,
+                        data.hero.carousel_mobile_en
+                    );
+                }
                 data = applyLangToData(data); // 依目前語言整批轉換文字內容
 
                 // 導覽列文字已改由 header.js 統一處理，這裡不用再重複抓一次
-
-                // Hero：文字改成照片輪播，電腦版與手機版分開讀取
-                if (data.hero) {
-                    initHeroCarousel(data.hero.carousel_desktop, data.hero.carousel_mobile);
-                }
 
                 // 四大法門 - 區塊標題
                 if (data.methods_section) {
