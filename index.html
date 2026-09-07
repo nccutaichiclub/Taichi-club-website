@@ -183,7 +183,7 @@
 
     <!-- 1. 隱仙首頁 (Hero Section) -->
     <!-- 原本的文字全部拿掉，改成照片輪播 (carousel)；#hero-carousel 是空容器，圖片由下方 JS 迴圈動態塞入 -->
-    <section id="hero" class="min-h-screen flex items-center justify-center relative px-4 overflow-hidden">
+    <section id="hero" class="aspect-video md:aspect-auto md:min-h-screen flex items-center justify-center relative px-4 overflow-hidden">
         <!-- sr-only：畫面上看不到，但保留給搜尋引擎/螢幕報讀軟體辨識網站標題用 -->
         <h1 class="sr-only">政大太極社</h1>
 
@@ -237,7 +237,7 @@
                 <div class="md:col-span-5 space-y-6">
                     <span id="content-qigong-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">內功心法 ． 吐納歸真</span>
                     <h3 id="content-qigong-title" class="text-2xl font-semibold text-white tracking-widest truncate">華陀導引氣功</h3>
-                    <p id="content-qigong-quote" class="text-sm leading-relaxed text-bronze-light italic md:line-clamp-2">
+                    <p id="content-qigong-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
                         「運先天之炁，化五穀之精，以調身心、延壽命也。」
                     </p>
                     <p id="content-qigong-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
@@ -263,7 +263,7 @@
                 <div class="md:col-span-5 space-y-6">
                     <span id="content-taichi-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">動靜觀心 ． 借力化勁</span>
                     <h3 id="content-taichi-title" class="text-2xl font-semibold text-white tracking-widest truncate">太極拳</h3>
-                    <p id="content-taichi-quote" class="text-sm leading-relaxed text-bronze-light italic md:line-clamp-2">
+                    <p id="content-taichi-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
                         「動靜相兼，以柔克剛，先化而發，方能以四兩撥千金。」
                     </p>
                     <p id="content-taichi-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
@@ -289,7 +289,7 @@
                 <div class="md:col-span-5 space-y-6">
                     <span id="content-staff-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">借物修身 ． 身棍合一</span>
                     <h3 id="content-staff-title" class="text-2xl font-semibold text-white tracking-widest truncate">太祖棍</h3>
-                    <p id="content-staff-quote" class="text-sm leading-relaxed text-bronze-light italic md:line-clamp-2">
+                    <p id="content-staff-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
                         「借物修身，身棍合一。腰、棍、腳俱為一體。」
                     </p>
                     <p id="content-staff-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
@@ -315,7 +315,7 @@
                 <div class="md:col-span-5 space-y-6">
                     <span id="content-sword-tag" class="text-xs text-pine-light tracking-[0.3em] font-bold truncate block">形神俱妙 ． 劍行行雲</span>
                     <h3 id="content-sword-title" class="text-2xl font-semibold text-white tracking-widest truncate">太極劍</h3>
-                    <p id="content-sword-quote" class="text-sm leading-relaxed text-bronze-light italic md:line-clamp-2">
+                    <p id="content-sword-quote" class="text-sm leading-relaxed text-bronze-light italic line-clamp-2">
                         「以意御劍，瀟灑飄逸，形神俱妙而不失其防身之效。」
                     </p>
                     <p id="content-sword-desc" class="text-sm leading-relaxed text-cloud/90 line-clamp-none md:line-clamp-6">
@@ -633,120 +633,107 @@
         function setupDescPagination(tabId, fullText) {
             const descEl = document.getElementById(`content-${tabId}-desc`);
             const row = document.getElementById(`content-${tabId}-difficulty-row`);
-            const difficultyEl = row && (row._difficultyEl || document.getElementById(`content-${tabId}-difficulty`));
+            const difficultyEl = document.getElementById(`content-${tabId}-difficulty`);
             if (!descEl || !row || !difficultyEl) return;
 
-            // 保留原本的難度標籤與列樣式，讓切換語言、頁籤或視窗寬度時能完整還原。
-            row._difficultyEl = difficultyEl;
-            if (!row.dataset.originalClassName) row.dataset.originalClassName = row.className;
-            row.className = row.dataset.originalClassName;
+            // 先把難度列還原成最原始的樣子（避免切換語言/頁籤時疊加出多顆箭頭）
             row.innerHTML = '';
             row.appendChild(difficultyEl);
 
             const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-            const isEnglish = typeof getLang === 'function' && getLang() === 'en';
+            const isEnglish = (typeof getLang === 'function' && getLang() === 'en');
             if (!isDesktop || !isEnglish || !fullText) {
                 descEl.innerHTML = parseInlineMarkup(fullText);
                 return;
             }
 
-            // getBoundingClientRect() 量的是實際畫面高度；scrollHeight 在 line-clamp 下仍可能
-            // 包含被截掉的文字，會讓原本的溢位判斷失準。
-            function measureRenderedHeight(text, clamp) {
+            // 用一個隱藏的量測用複本，測量「完全不截斷」時的實際高度，跟目前 6 行截斷的高度比較
+            function measureHeight(text, clamp) {
                 const clone = descEl.cloneNode(false);
                 clone.id = '';
-                clone.style.position = 'fixed';
+                clone.style.position = 'absolute';
                 clone.style.visibility = 'hidden';
                 clone.style.pointerEvents = 'none';
                 clone.style.left = '-9999px';
-                clone.style.top = '0';
-                clone.style.width = `${descEl.getBoundingClientRect().width}px`;
-                clone.style.maxHeight = 'none';
-                clone.style.overflow = clamp ? 'hidden' : 'visible';
-                clone.style.webkitBoxOrient = clamp ? 'vertical' : 'initial';
+                clone.style.width = descEl.clientWidth + 'px';
                 clone.style.webkitLineClamp = clamp ? '6' : 'unset';
                 clone.style.display = clamp ? '-webkit-box' : 'block';
+                clone.style.maxHeight = 'none';
                 clone.innerHTML = parseInlineMarkup(text);
                 document.body.appendChild(clone);
-                const height = clone.getBoundingClientRect().height;
-                clone.remove();
-                return height;
+                const h = clone.scrollHeight;
+                document.body.removeChild(clone);
+                return h;
             }
 
-            const sixLineHeight = measureRenderedHeight(fullText, true);
-            const fullHeight = measureRenderedHeight(fullText, false);
+            const clampedHeight = measureHeight(fullText, true);
+            const fullHeight = measureHeight(fullText, false);
 
-            // 英文沒有超出既有六行限制時，保留原本的文字與難度標籤，不顯示翻頁控制項。
-            if (fullHeight <= sixLineHeight + 1) {
+            // 沒有溢出（英文內容剛好 6 行內放得下），維持原本樣子，不需要翻頁
+            if (fullHeight <= clampedHeight + 4) {
                 descEl.innerHTML = parseInlineMarkup(fullText);
                 return;
             }
 
-            // 依「未截斷」的實際高度切頁，確保每一頁都可完整容納在原本六行的空間內。
-            const words = fullText.trim().split(/\s+/);
+            // 有溢出：用二分搜尋法，找出第一頁「剛好塞得進 6 行」的最長字數，依此類推切出每一頁
+            const words = fullText.split(' ');
             const pages = [];
             let startWord = 0;
             while (startWord < words.length) {
-                let low = startWord + 1;
-                let high = words.length;
-                let best = startWord + 1;
-                while (low <= high) {
-                    const middle = Math.floor((low + high) / 2);
-                    const candidate = words.slice(startWord, middle).join(' ');
-                    if (measureRenderedHeight(candidate, false) <= sixLineHeight + 1) {
-                        best = middle;
-                        low = middle + 1;
+                let lo = startWord + 1, hi = words.length, best = startWord + 1;
+                while (lo <= hi) {
+                    const mid = Math.floor((lo + hi) / 2);
+                    const candidate = words.slice(startWord, mid).join(' ');
+                    const h = measureHeight(candidate, true);
+                    if (h <= clampedHeight + 4) {
+                        best = mid;
+                        lo = mid + 1;
                     } else {
-                        high = middle - 1;
+                        hi = mid - 1;
                     }
                 }
                 pages.push(words.slice(startWord, best).join(' '));
                 startWord = best;
+                if (pages.length > 20) break; // 安全防呆，避免極端內容造成無限迴圈
             }
 
             let currentPage = 0;
-            const buttonClass = 'w-8 h-8 rounded-full border border-bronze/50 text-bronze-light flex items-center justify-center flex-shrink-0 hover:border-bronze hover:text-white transition-colors';
-
-            function createArrow(label, symbol, onClick) {
-                const button = document.createElement('button');
-                button.type = 'button';
-                button.setAttribute('aria-label', label);
-                button.className = buttonClass;
-                button.innerText = symbol;
-                button.addEventListener('click', onClick);
-                return button;
-            }
 
             function renderPage() {
                 descEl.innerHTML = parseInlineMarkup(pages[currentPage]);
-                row.className = 'pt-2 grid grid-cols-3 items-center w-full';
-                row.innerHTML = '';
 
-                const left = document.createElement('div');
-                left.className = 'justify-self-start';
+                row.innerHTML = '';
                 if (currentPage === 0) {
-                    left.appendChild(difficultyEl);
+                    row.appendChild(difficultyEl);
                 } else {
-                    left.appendChild(createArrow('Previous page', '‹', () => {
-                        currentPage--;
-                        renderPage();
-                    }));
+                    const prevBtn = document.createElement('button');
+                    prevBtn.type = 'button';
+                    prevBtn.setAttribute('aria-label', 'Previous');
+                    prevBtn.className = 'w-8 h-8 rounded-full border border-bronze/50 text-bronze-light flex items-center justify-center flex-shrink-0';
+                    prevBtn.innerText = '‹';
+                    prevBtn.addEventListener('click', () => { currentPage--; renderPage(); });
+                    row.appendChild(prevBtn);
                 }
 
                 const indicator = document.createElement('span');
-                indicator.className = 'justify-self-center text-sm leading-relaxed text-cloud/90';
+                indicator.className = 'text-sm leading-relaxed text-cloud/90';
                 indicator.innerText = `${currentPage + 1}/${pages.length}`;
+                row.appendChild(indicator);
 
-                const right = document.createElement('div');
-                right.className = 'justify-self-end';
                 if (currentPage < pages.length - 1) {
-                    right.appendChild(createArrow('Next page', '›', () => {
-                        currentPage++;
-                        renderPage();
-                    }));
+                    const nextBtn = document.createElement('button');
+                    nextBtn.type = 'button';
+                    nextBtn.setAttribute('aria-label', 'Next');
+                    nextBtn.className = 'w-8 h-8 rounded-full border border-bronze/50 text-bronze-light flex items-center justify-center flex-shrink-0';
+                    nextBtn.innerText = '›';
+                    nextBtn.addEventListener('click', () => { currentPage++; renderPage(); });
+                    row.appendChild(nextBtn);
+                } else {
+                    // 最後一頁：右側留空位置，維持版面對齊
+                    const spacer = document.createElement('span');
+                    spacer.className = 'w-8 h-8 flex-shrink-0';
+                    row.appendChild(spacer);
                 }
-
-                row.append(left, indicator, right);
             }
 
             renderPage();
@@ -769,20 +756,17 @@
             }
         }
 
-        // 初始化 Hero 照片輪播：中文與英文可分別設定桌面、手機圖片；英文圖片留空時會沿用對應的中文版。
-        function initHeroCarousel(desktopImages, mobileImages, desktopImagesEn, mobileImagesEn) {
+        // 初始化 Hero 照片輪播：desktopImages/mobileImages 是陣列 (array)，每一筆是 {image, alt}
+        // 手機版若後台沒填圖片，會自動沿用電腦版的圖片，確保不會開天窗
+        function initHeroCarousel(desktopImages, mobileImages) {
             const container = document.getElementById('hero-carousel');
             const dotsContainer = document.getElementById('hero-carousel-dots');
             if (!container || !dotsContainer) return;
 
             const isMobile = window.matchMedia('(max-width: 767px)').matches;
-            const isEnglish = typeof getLang === 'function' && getLang() === 'en';
-            const hasImages = images => Array.isArray(images) && images.length > 0;
-            const chineseDesktop = hasImages(desktopImages) ? desktopImages : [];
-            const chineseMobile = hasImages(mobileImages) ? mobileImages : chineseDesktop;
-            const selectedDesktop = isEnglish && hasImages(desktopImagesEn) ? desktopImagesEn : chineseDesktop;
-            const selectedMobile = isEnglish && hasImages(mobileImagesEn) ? mobileImagesEn : chineseMobile;
-            const images = isMobile ? selectedMobile : selectedDesktop;
+            const images = (isMobile && Array.isArray(mobileImages) && mobileImages.length > 0)
+                ? mobileImages
+                : desktopImages;
 
             if (!Array.isArray(images) || images.length === 0) return;
 
@@ -792,8 +776,7 @@
                 slide.className = 'absolute inset-0 bg-cover bg-center transition-opacity duration-1000';
                 slide.style.backgroundImage = `url('${resolveImagePath(img.image)}')`;
                 slide.style.opacity = i === 0 ? '1' : '0';
-                const alt = isEnglish && img.alt_en ? img.alt_en : img.alt;
-                if (alt) slide.setAttribute('aria-label', alt);
+                if (img.alt) slide.setAttribute('aria-label', img.alt);
                 container.appendChild(slide);
 
                 const dot = document.createElement('button');
@@ -888,19 +871,14 @@
         fetch('data/home.json?v=' + Date.now())
             .then(response => response.json())
             .then(data => {
-                // 輪播圖片先依目前語言選取；之後的 applyLangToData() 會處理其他文字欄位。
-                // 英文圖片欄位保留在這裡使用，避免被語言轉換覆寫掉。
-                if (data.hero) {
-                    initHeroCarousel(
-                        data.hero.carousel_desktop,
-                        data.hero.carousel_mobile,
-                        data.hero.carousel_desktop_en,
-                        data.hero.carousel_mobile_en
-                    );
-                }
                 data = applyLangToData(data); // 依目前語言整批轉換文字內容
 
                 // 導覽列文字已改由 header.js 統一處理，這裡不用再重複抓一次
+
+                // Hero：文字改成照片輪播，電腦版與手機版分開讀取
+                if (data.hero) {
+                    initHeroCarousel(data.hero.carousel_desktop, data.hero.carousel_mobile);
+                }
 
                 // 四大法門 - 區塊標題
                 if (data.methods_section) {
