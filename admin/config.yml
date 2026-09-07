@@ -419,8 +419,8 @@ collections:
               - { label: "修煉據點 (English，選填，沒填會顯示中文版)", name: "location_en", widget: "string", required: false }
               - {label: "詳細說明 (選填)", name: "desc", widget: "markdown", buttons: ["bold", "code", "strikethrough"], minimal: true, required: false, hint: "工具列的 Bold 按鈕＝粗體；Code 按鈕(反引號圖示)＝金色標註；Strikethrough 按鈕(刪除線圖示)＝綠色標註" }
               - { label: "詳細說明 (English，選填，沒填會顯示中文版)", name: "desc_en", widget: "markdown", buttons: ["bold", "code", "strikethrough"], minimal: true, required: false, hint: "同樣可用 Bold／Code／Strikethrough 按鈕排版" }
-              - { label: "異動註記 (選填，如:停課、活動異動；會用醒目的暖紅色顯示在說明文字下方)", name: "note", widget: "string", required: false, hint: "建議 40 字以內，例如「因場地維修，本週暫停一次」" }
-              - { label: "異動註記 (English，選填，沒填會顯示中文版)", name: "note_en", widget: "string", required: false }
+              - { label: "異動註記 (選填，支援多段文字；會用醒目的暖紅色顯示在說明文字下方)", name: "note", widget: "markdown", buttons: ["bold", "code", "strikethrough"], minimal: true, required: false, hint: "可輸入多段異動資訊；每段之間空一行，前台會分段顯示。工具列的 Bold／Code／Strikethrough 可用於文字排版。" }
+              - { label: "異動註記 (English，選填，支援多段文字；沒填會顯示中文版)", name: "note_en", widget: "markdown", buttons: ["bold", "code", "strikethrough"], minimal: true, required: false, hint: "Each blank line starts a new paragraph on the page." }
               - { label: "起始日期 (選填，填了才會出現「加入日曆」按鈕)", name: "event_date", widget: "datetime", time_format: false, required: false, hint: "選這個活動最近一次(或第一次)舉行的日期" }
               - { label: "開始時間 (選填，24小時制，如 19:00)，會同時顯示在畫面上的活動時間", name: "start_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 19:00'] }
               - { label: "結束時間 (選填，24小時制，如 21:00)，會同時顯示在畫面上的活動時間", name: "end_time", widget: "string", required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', '請用 24 小時制格式，例如 21:00'] }
