@@ -69,19 +69,8 @@
         "alt": ""
       }
     ],
-    "carousel_mobile": [
-      {
-        "image": "/assets/uploads/ChatGPT Image 2026年9月6日 下午03_05_53.png",
-        "alt": "",
-        "alt_en": ""
-      }
-    ],
-    "carousel_mobile_en": [
-      {
-        "image": "/assets/uploads/Gemini_Generated_Image_z0l1uz0l1uz0l1uz.jfif",
-        "alt": ""
-      }
-    ],
+    "carousel_mobile": [],
+    "carousel_mobile_en": [],
     "btn_contact": "結緣問道",
     "btn_methods": "窺探法門",
     "carousel": [
