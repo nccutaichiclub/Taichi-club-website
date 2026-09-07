@@ -258,6 +258,13 @@
             font-size: 0.82rem;
             margin-top: 8px;
         }
+        /* 後台異動註記以空行分段；同一段內的換行則保留成斷行。 */
+        .event-row .event-note p {
+            margin: 0;
+        }
+        .event-row .event-note p + p {
+            margin-top: 6px;
+        }
         .semester-group {
             margin-bottom: 40px;
         }
@@ -380,6 +387,16 @@
                 return isEn ? 'Uncategorized' : '未分類活動';
             }
 
+            // 異動註記可在後台輸入多段文字：空一行會分成不同段落，單一換行則顯示為斷行。
+            function formatEventNote(note) {
+                return String(note || '')
+                    .trim()
+                    .split(/\n\s*\n/)
+                    .filter(Boolean)
+                    .map(paragraph => `<p>${parseInlineMarkup(paragraph).replace(/\n/g, '<br>')}</p>`)
+                    .join('');
+            }
+
             // 三層行事曆渲染：最上方是單一的學期標題（一次只會有一個學期在使用），
             // 底下依「月份／例行活動」分組，維持後台輸入的先後順序
             function renderScheduleEvents(semesterTitle, events) {
@@ -459,7 +476,7 @@
                             </div>
                             ${metaParts.length > 0 ? `<div class="event-meta-line">${metaHtml}</div>` : ''}
                             ${ev.desc ? `<div class="event-detail">${parseInlineMarkup(ev.desc)}</div>` : ''}
-                            ${ev.note ? `<div class="event-note">⚠ ${parseInlineMarkup(ev.note)}</div>` : ''}
+                            ${ev.note ? `<div class="event-note">⚠ ${formatEventNote(ev.note)}</div>` : ''}
                         `;
                         monthBlock.appendChild(row);
                     });
