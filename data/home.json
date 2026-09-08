@@ -45,6 +45,11 @@
         "image": "/assets/uploads/5.jpg",
         "alt": "",
         "alt_en": ""
+      },
+      {
+        "image": "/assets/uploads/7.jpg",
+        "alt": "",
+        "alt_en": ""
       }
     ],
     "carousel_desktop_en": [
@@ -66,6 +71,10 @@
       },
       {
         "image": "/assets/uploads/5.jpg",
+        "alt": ""
+      },
+      {
+        "image": "/assets/uploads/6.jpg",
         "alt": ""
       }
     ],
