@@ -778,9 +778,10 @@
             const isEnglish = typeof getLang === 'function' && getLang() === 'en';
             const hasImages = images => Array.isArray(images) && images.length > 0;
             const chineseDesktop = hasImages(desktopImages) ? desktopImages : [];
-            const chineseMobile = hasImages(mobileImages) ? mobileImages : chineseDesktop;
             const selectedDesktop = isEnglish && hasImages(desktopImagesEn) ? desktopImagesEn : chineseDesktop;
-            const selectedMobile = isEnglish && hasImages(mobileImagesEn) ? mobileImagesEn : chineseMobile;
+            const selectedMobile = isEnglish && hasImages(mobileImagesEn)
+                ? mobileImagesEn
+                : (hasImages(mobileImages) ? mobileImages : selectedDesktop);
             const images = isMobile ? selectedMobile : selectedDesktop;
 
             if (!Array.isArray(images) || images.length === 0) return;
